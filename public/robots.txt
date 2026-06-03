@@ -1,0 +1,9 @@
+# https://testerscommunity.com/robots.txt
+# Dynamic rules are also served from /robots.txt via Next.js (app/robots.ts)
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+Sitemap: https://testerscommunity.com/sitemap.xml
