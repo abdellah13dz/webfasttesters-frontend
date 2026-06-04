@@ -38,7 +38,7 @@ const sections = [
       {
         subtitle: 'Usage Data',
         description:
-          'We automatically collect certain information when you use our Services, including your IP address, browser type, device information, pages visited, and the dates and times of your visits. This information helps us understand how our Services are being used and improve the user experience.',
+          'We may also collect certain technical information when you use our Services, including your IP address, browser type, device information, pages visited, and the dates and times of your visits. This information helps us understand how our Services are being used and improve the user experience.',
       },
     ],
   },

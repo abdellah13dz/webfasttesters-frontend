@@ -51,7 +51,7 @@ const steps = [
     details: [
       'Submit your first client app in under 2 minutes',
       'Add as many apps as you need — no limits',
-      'Volume pricing kicks in automatically at 5+ apps',
+      'Volume pricing applies when you submit 5+ apps',
       'Each app gets its own testing track and dashboard',
     ],
   },
@@ -59,11 +59,11 @@ const steps = [
     number: 3,
     icon: <LayoutDashboard className="size-6 text-blue-600 dark:text-blue-400" />,
     title: 'Track Progress',
-    description: 'Monitor all client apps from a single dashboard with automated reporting.',
+    description: 'Monitor all client apps from a single dashboard with manual testing reports from real testers.',
     details: [
       'View all client apps on a unified dashboard',
       'Track testing progress, tester counts, and status in real-time',
-      'Download automated reports for each client app',
+      'Download detailed human-tester reports for each client app',
       'Receive notifications when testing milestones are reached',
     ],
   },

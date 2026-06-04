@@ -80,7 +80,7 @@ export const ar: Record<string, string> = {
   'home.productionGuarantee': 'ضمان الوصول للإنتاج 100%',
   'home.getTesters': 'احصل على {testers} مختبر',
   'home.forDays': 'لمدة {days} يوم',
-  'home.heroDescription': 'احصل على الوصول للإنتاج في Google Play — أسرع وأسلس وبدون رفض.',
+  'home.heroDescription': 'احصل على الوصول للإنتاج في Google Play مع مختبرين بشر حقيقيين—اختبار يدوي على أجهزة Android، وليس روبوتات.',
   'home.heroDescriptionJoin': 'انضم إلى المطورين من أكثر من 120 دولة يستخدمون خدمتنا.',
   'home.seeWhatYouGet': 'شاهد ما تحصل عليه مقابل $15',
   'home.joinDevelopers': 'انضم إلى 1,500+ مطور',
@@ -975,7 +975,7 @@ export const ar: Record<string, string> = {
 
   // Google reCAPTCHA
   'cookiePolicy.thirdParty.recaptcha.title': 'Google reCAPTCHA',
-  'cookiePolicy.thirdParty.recaptcha.desc': 'نستخدم Google reCAPTCHA لحماية موقعنا الإلكتروني من البريد المزعج والإساءة والنشاط الاحتيالي. يضع reCAPTCHA ملفات تعريف الارتباط للتمييز بين المستخدمين البشر والروبات الآلية. يساعد ذلك في ضمان أمان وسلامة نماذجنا وعمليات الإرسال.',
+  'cookiePolicy.thirdParty.recaptcha.desc': 'نستخدم Google reCAPTCHA لحماية موقعنا من البريد المزعج والإساءة والنشاط الاحتيالي. يضع reCAPTCHA ملفات تعريف الارتباط للتمييز بين الزوار الحقيقيين والحركة غير البشرية المسيئة. هذا يؤمّن نماذجنا فقط—اختبار التطبيقات يتم دائماً يدوياً من قبل مختبرين بشر حقيقيين.',
   'cookiePolicy.thirdParty.recaptcha.policy': 'سياسة خصوصية Google',
 
   // Stripe

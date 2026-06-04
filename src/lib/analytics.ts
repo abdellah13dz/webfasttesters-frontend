@@ -37,7 +37,7 @@ export function trackFormSubmit(page: string, element: string, metadata?: Record
   return trackEvent('form_submit', page, element, metadata);
 }
 
-// Hook that automatically tracks page views on route changes
+// Hook that tracks page views on route changes
 export function useAnalytics() {
   const { currentPath } = useRouter();
   const lastTrackedPath = useRef<string>('');

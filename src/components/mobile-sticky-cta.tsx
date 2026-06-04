@@ -10,7 +10,7 @@ import { APP_URL } from '@/lib/app-urls';
 
 export function MobileStickyCta() {
   const { t } = useLanguage();
-  const { navigate, currentPath } = useRouter();
+  const { currentPath } = useRouter();
   const { trackCta } = useAnalytics();
   const [footerVisible, setFooterVisible] = useState(false);
 
@@ -36,9 +36,8 @@ export function MobileStickyCta() {
 
   if (shouldHide || footerVisible) return null;
 
-  const handleClick = () => {
+  const handleGetStarted = () => {
     trackCta('mobile_sticky_cta');
-    navigate(APP_URL);
   };
 
   return (
@@ -59,12 +58,18 @@ export function MobileStickyCta() {
 
           {/* Right: CTA Button */}
           <Button
-            onClick={handleClick}
+            asChild
             className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold h-10 shadow-lg shadow-blue-500/20 transition-all active:scale-[0.98]"
           >
-            <Zap className="mr-1.5 h-4 w-4" />
-            {t('mobileCta.getStarted')}
-            <ArrowRight className="ml-1.5 h-4 w-4" />
+            <a
+              href={APP_URL}
+              onClick={handleGetStarted}
+              rel="noopener noreferrer"
+            >
+              <Zap className="mr-1.5 h-4 w-4" />
+              {t('mobileCta.getStarted')}
+              <ArrowRight className="ml-1.5 h-4 w-4" />
+            </a>
           </Button>
         </div>
       </div>

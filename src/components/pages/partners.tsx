@@ -23,17 +23,17 @@ import {
 const partners = [
   {
     name: 'Google Play Console',
-    description: 'Deep integration with Google Play Console for seamless app submission, testing track management, and automated rollout workflows.',
+    description: 'Manage closed testing tracks and production rollout steps in Play Console while Fast Testers supplies real human testers—not bots or scripts.',
     icon: Globe,
     gradient: 'from-green-500 to-emerald-600',
     category: 'Integration Partner',
   },
   {
     name: 'Firebase',
-    description: 'Leverage Firebase Test Lab for automated testing across real devices, crash analytics, and performance monitoring in real-time.',
+    description: 'Optional crash and performance insights your team can review alongside feedback from our manual testers on real Android devices.',
     icon: Zap,
     gradient: 'from-amber-500 to-orange-600',
-    category: 'Testing & Analytics',
+    category: 'Developer Tools',
   },
   {
     name: 'Android Studio',
@@ -44,10 +44,10 @@ const partners = [
   },
   {
     name: 'GitHub',
-    description: 'Automated CI/CD pipelines with GitHub Actions, enabling continuous testing on every commit and pull request automatically.',
+    description: 'Coordinate releases and testing milestones with your team. Our closed-testing service remains manual testing by real people.',
     icon: Handshake,
     gradient: 'from-gray-600 to-gray-800',
-    category: 'CI/CD Integration',
+    category: 'Workflow Integration',
   },
   {
     name: 'Slack',
@@ -149,9 +149,8 @@ export default function PartnersPage() {
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-            We partner with industry leaders to deliver the most comprehensive
-            Google Play app testing experience, ensuring your apps meet the
-            highest quality standards.
+            We partner with industry leaders to support manual, human-led Google Play
+            closed testing—real Android testers who install and use your app, never bots.
           </p>
         </div>
       </section>
@@ -171,8 +170,8 @@ export default function PartnersPage() {
               Integrated with the Tools You Love
             </h2>
             <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
-              Our ecosystem of technology partners enables seamless workflows
-              from development to production release.
+              Tools many developers already use alongside our manual testing service—from
+              Play Console setup to team notifications.
             </p>
           </div>
 

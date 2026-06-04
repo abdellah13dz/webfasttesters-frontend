@@ -67,7 +67,7 @@ const sections = [
     content: [
       'The following activities are strictly prohibited and may result in immediate termination from the Program and forfeiture of any unpaid commissions:',
       '• Sending spam or unsolicited emails to promote your referral link. All communications must comply with applicable anti-spam laws.',
-      '• Creating fake or fraudulent referrals, including using bots, scripts, or other automated methods to generate sign-ups.',
+      '• Creating fake or fraudulent referrals, including bots, scripts, or fake sign-up farms (our testing service uses only real human testers).',
       '• Self-referrals or referring individuals within the same household or using the same payment method.',
       '• Making misleading or deceptive claims about Fast Testers\'s services, pricing, or guarantees.',
       '• Using your referral link in any way that could damage Fast Testers\'s reputation or brand.',

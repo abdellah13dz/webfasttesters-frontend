@@ -75,9 +75,9 @@ export function getServiceSchema() {
     name: 'Google Play 12-Tester Compliance Testing',
     provider: { '@id': `${SITE_URL}/#organization` },
     areaServed: 'Worldwide',
-    serviceType: 'Android app beta testing',
+    serviceType: 'Manual Android app beta testing',
     description:
-      'Meet Google Play closed testing and production access requirements with vetted Android testers, feedback reports, and a production access guarantee.',
+      'Meet Google Play closed testing and production access requirements with vetted real human testers—manual testing on real devices, feedback reports, and a production access guarantee.',
     offers: {
       '@type': 'Offer',
       price: '15',
@@ -96,7 +96,7 @@ const FAQ_ENTRIES = [
   {
     question: 'How does Fast Testers work?',
     answer:
-      'Pay $15, submit your Google Play closed testing link, receive 12+ professional testers within hours, complete the 14-day testing period, then apply for production access.',
+      'Pay $15, submit your Google Play closed testing link, and we assign real human testers (manual testing on real devices—no bots). Complete the 14-day period, then apply for production access.',
   },
   {
     question: 'What if my app is rejected after testing?',
