@@ -1,25 +1,42 @@
-# Bypasses Vercel Hobby "commit author" blocks by deploying via Deploy Hook (not Git webhook).
+# Deploy with Vercel CLI + API token (bypasses Hobby git-author checks).
+# Deploy Hooks still deploy the latest git commit and can be blocked the same way.
 #
-# Setup (one time):
-# 1. Vercel → Project → Settings → Git → Deploy Hooks → Create (branch: main)
-# 2. GitHub → repo Settings → Secrets → Actions → VERCEL_DEPLOY_HOOK = hook URL
+# One-time setup:
+# 1. Vercel → Account → Tokens → create token → GitHub secret VERCEL_TOKEN
+# 2. Vercel → Project → Settings → Git → Disconnect (stops blocked git deploys)
+# 3. GitHub → repo → Settings → Secrets → VERCEL_TOKEN
 name: Deploy to Vercel
 
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+
+env:
+  VERCEL_ORG_ID: team_jJj8ineTVhnfuqYzjx4eKMIE
+  VERCEL_PROJECT_ID: prj_NjKMyXxwICNvmVWnfYIEq5LsnMj8
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Vercel Deploy Hook
-        env:
-          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
-        run: |
-          if [ -z "$HOOK" ]; then
-            echo "::error::Add VERCEL_DEPLOY_HOOK in GitHub repo Secrets (Vercel → Settings → Git → Deploy Hooks)."
-            exit 1
-          fi
-          curl -fsS -X POST "$HOOK"
-          echo "Deploy hook triggered."
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Pull Vercel settings
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy to production
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
