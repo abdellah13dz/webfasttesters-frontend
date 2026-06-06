@@ -18,82 +18,89 @@ import {
   AlertOctagon,
   Mail,
   ArrowLeft,
+  type LucideIcon,
 } from 'lucide-react';
 
-const sections = [
+const sectionConfig: {
+  icon: LucideIcon;
+  titleKey: string;
+  paragraphKeys?: string[];
+  introKey?: string;
+  itemKeys?: string[];
+}[] = [
   {
     icon: Gavel,
-    title: 'Binding Agreement',
-    content: [
-      'By participating in the Fast Testers Referral Program ("Program"), you agree to be bound by these Referral Program Policy ("Policy"). This Policy is in addition to and incorporates by reference our Terms and Conditions and Privacy Policy.',
-      'We reserve the right to modify this Policy at any time. Continued participation in the Program after any changes constitutes your acceptance of the revised terms. We will notify active participants of material changes via email.',
+    titleKey: 'referralPolicyPage.sections.binding.title',
+    paragraphKeys: [
+      'referralPolicyPage.sections.binding.p1',
+      'referralPolicyPage.sections.binding.p2',
     ],
   },
   {
     icon: DollarSign,
-    title: 'Commission Structure',
-    content: [
-      'You will earn a commission of 10% of the first purchase amount made by any user who signs up through your unique referral link ("Referred User").',
-      'The commission is calculated based on the total amount paid by the Referred User, excluding any taxes, fees, or refunds.',
-      'A qualifying purchase occurs when a Referred User completes payment for any Fast Testers service for the first time.',
-      'Commissions are only earned on the Referred User\'s first purchase. Subsequent purchases by the same Referred User do not generate additional commissions.',
-      'The minimum commission payout is $10. If your balance is below $10, it will carry over to the next payout period.',
+    titleKey: 'referralPolicyPage.sections.commission.title',
+    paragraphKeys: [
+      'referralPolicyPage.sections.commission.p1',
+      'referralPolicyPage.sections.commission.p2',
+      'referralPolicyPage.sections.commission.p3',
+      'referralPolicyPage.sections.commission.p4',
+      'referralPolicyPage.sections.commission.p5',
     ],
   },
   {
     icon: CreditCard,
-    title: 'Payout Terms',
-    content: [
-      'Commissions are paid out on a monthly basis, typically within the first 10 business days of each month for the previous month\'s earnings.',
-      'A minimum balance of $10 is required before a payout will be processed. Balances below $10 will accumulate until the threshold is met.',
-      'Payouts can be received via PayPal or bank transfer. You must provide valid payment details in your account settings before payouts can be processed.',
-      'You are responsible for any taxes owed on commissions received. Fast Testers does not withhold taxes from commission payments and will issue applicable tax documentation as required by law.',
-      'Processing times for payouts may vary depending on the payment method selected. PayPal transfers typically take 1-3 business days, while bank transfers may take 5-7 business days.',
+    titleKey: 'referralPolicyPage.sections.payout.title',
+    paragraphKeys: [
+      'referralPolicyPage.sections.payout.p1',
+      'referralPolicyPage.sections.payout.p2',
+      'referralPolicyPage.sections.payout.p3',
+      'referralPolicyPage.sections.payout.p4',
+      'referralPolicyPage.sections.payout.p5',
     ],
   },
   {
     icon: UserCheck,
-    title: 'Eligibility',
-    content: [
-      'To participate in the Referral Program, you must have an active Fast Testers account in good standing.',
-      'You must be at least 18 years of age to participate in the Program.',
-      'You cannot refer yourself. Self-referrals, including creating multiple accounts to generate referral commissions, are strictly prohibited and will result in immediate disqualification from the Program.',
-      'You may not use the Program to earn commissions on purchases made by individuals in the same household or using the same payment method.',
+    titleKey: 'referralPolicyPage.sections.eligibility.title',
+    paragraphKeys: [
+      'referralPolicyPage.sections.eligibility.p1',
+      'referralPolicyPage.sections.eligibility.p2',
+      'referralPolicyPage.sections.eligibility.p3',
+      'referralPolicyPage.sections.eligibility.p4',
     ],
   },
   {
     icon: Ban,
-    title: 'Prohibited Activities',
-    content: [
-      'The following activities are strictly prohibited and may result in immediate termination from the Program and forfeiture of any unpaid commissions:',
-      '• Sending spam or unsolicited emails to promote your referral link. All communications must comply with applicable anti-spam laws.',
-      '• Creating fake or fraudulent referrals, including bots, scripts, or fake sign-up farms (our testing service uses only real human testers).',
-      '• Self-referrals or referring individuals within the same household or using the same payment method.',
-      '• Making misleading or deceptive claims about Fast Testers\'s services, pricing, or guarantees.',
-      '• Using your referral link in any way that could damage Fast Testers\'s reputation or brand.',
-      '• Advertising or promoting your referral link on platforms or in contexts that violate those platforms\' terms of service.',
-      '• Using paid advertising (e.g., Google Ads, Facebook Ads) that targets Fast Testers branded keywords.',
+    titleKey: 'referralPolicyPage.sections.prohibited.title',
+    introKey: 'referralPolicyPage.sections.prohibited.p1',
+    itemKeys: [
+      'referralPolicyPage.sections.prohibited.item1',
+      'referralPolicyPage.sections.prohibited.item2',
+      'referralPolicyPage.sections.prohibited.item3',
+      'referralPolicyPage.sections.prohibited.item4',
+      'referralPolicyPage.sections.prohibited.item5',
+      'referralPolicyPage.sections.prohibited.item6',
+      'referralPolicyPage.sections.prohibited.item7',
     ],
   },
   {
     icon: Settings,
-    title: 'Program Modifications',
-    content: [
-      'Fast Testers reserves the right to modify, suspend, or discontinue the Referral Program at any time, with or without notice.',
-      'We may change the commission rate, payout terms, or eligibility requirements with 30 days\' advance notice to active participants.',
-      'In the event of Program discontinuation, all earned and unpaid commissions will be paid out within 60 days of the discontinuation date.',
-      'We will make reasonable efforts to notify participants of material changes via email or through dashboard notifications.',
+    titleKey: 'referralPolicyPage.sections.modifications.title',
+    paragraphKeys: [
+      'referralPolicyPage.sections.modifications.p1',
+      'referralPolicyPage.sections.modifications.p2',
+      'referralPolicyPage.sections.modifications.p3',
+      'referralPolicyPage.sections.modifications.p4',
     ],
   },
   {
     icon: AlertOctagon,
-    title: 'Termination',
-    content: [
-      'Fast Testers reserves the right to terminate your participation in the Referral Program at any time, with or without cause.',
-      'Grounds for termination include, but are not limited to: violation of this Policy, engagement in prohibited activities, fraudulent activity, or behavior that is harmful to Fast Testers or its users.',
-      'Upon termination for cause (violation of this Policy), any unpaid commissions may be forfeited.',
-      'Upon termination without cause, unpaid commissions earned prior to the termination date will be paid out in the next regular payout cycle, subject to the minimum payout threshold.',
-      'You may voluntarily withdraw from the Referral Program at any time by contacting us at contact@fasttesters.com.',
+    titleKey: 'referralPolicyPage.sections.termination.title',
+    paragraphKeys: [
+      'referralPolicyPage.sections.termination.p1',
+      'referralPolicyPage.sections.termination.p2',
+      'referralPolicyPage.sections.termination.p3',
+      'referralPolicyPage.sections.termination.p4',
+      'referralPolicyPage.sections.termination.p5',
     ],
   },
 ];
@@ -104,7 +111,6 @@ export default function ReferralPolicyPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-border/40">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-blue-500/10" />
         <div className="absolute top-20 left-20 h-72 w-72 rounded-full bg-blue-500/5 blur-3xl" />
@@ -115,19 +121,18 @@ export default function ReferralPolicyPage() {
               className="mb-4 border-blue-500/30 text-blue-400 bg-blue-500/10"
             >
               <FileText className="mr-1 h-3 w-3" />
-              Legal
+              {t('referralPolicyPage.badge')}
             </Badge>
             <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
               {t('footer.referralPolicy')}
             </h1>
             <p className="mt-4 text-muted-foreground">
-              Last Updated: 1st March 2026
+              {t('referralPolicyPage.lastUpdated')}: {t('referralPolicyPage.lastUpdatedDate')}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Content */}
       <section className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
         <div className="mb-8">
           <button
@@ -135,25 +140,20 @@ export default function ReferralPolicyPage() {
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-blue-400 transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to Referral Program
+            {t('referralPolicyPage.backToReferralProgram')}
           </button>
         </div>
 
-        {/* Intro */}
         <Card className="border-border/50 bg-card/50 mb-8">
           <CardContent className="p-6">
             <p className="text-muted-foreground leading-relaxed">
-              This Referral Program Policy governs your participation in the Fast Testers
-              Referral Program. Please read this Policy carefully before participating. By
-              participating in the Program, you acknowledge that you have read, understood, and agree
-              to be bound by the terms outlined below.
+              {t('referralPolicyPage.intro')}
             </p>
           </CardContent>
         </Card>
 
-        {/* Sections */}
         <div className="space-y-8">
-          {sections.map((section, index) => (
+          {sectionConfig.map((section, index) => (
             <Card key={index} className="border-border/50 bg-card/50">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4 mb-4">
@@ -161,13 +161,23 @@ export default function ReferralPolicyPage() {
                     <section.icon className="h-5 w-5" />
                   </div>
                   <h2 className="text-lg font-semibold text-foreground mt-1.5">
-                    {index + 1}. {section.title}
+                    {index + 1}. {t(section.titleKey)}
                   </h2>
                 </div>
                 <div className="ml-14 space-y-3">
-                  {section.content.map((paragraph, pIndex) => (
-                    <p key={pIndex} className="text-sm text-muted-foreground leading-relaxed">
-                      {paragraph}
+                  {section.introKey && (
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {t(section.introKey)}
+                    </p>
+                  )}
+                  {section.paragraphKeys?.map((key) => (
+                    <p key={key} className="text-sm text-muted-foreground leading-relaxed">
+                      {t(key)}
+                    </p>
+                  ))}
+                  {section.itemKeys?.map((key) => (
+                    <p key={key} className="text-sm text-muted-foreground leading-relaxed">
+                      • {t(key)}
                     </p>
                   ))}
                 </div>
@@ -175,7 +185,6 @@ export default function ReferralPolicyPage() {
             </Card>
           ))}
 
-          {/* Contact Section */}
           <Card className="border-blue-500/20 bg-blue-500/5">
             <CardContent className="p-6">
               <div className="flex items-start gap-4">
@@ -184,10 +193,10 @@ export default function ReferralPolicyPage() {
                 </div>
                 <div>
                   <h2 className="text-lg font-semibold text-blue-400 mb-2">
-                    {sections.length + 1}. Contact
+                    {sectionConfig.length + 1}. {t('referralPolicyPage.contact.title')}
                   </h2>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                    If you have any questions about this Referral Program Policy, please contact us:
+                    {t('referralPolicyPage.contact.description')}
                   </p>
                   <a
                     href="mailto:contact@fasttesters.com"
@@ -204,7 +213,6 @@ export default function ReferralPolicyPage() {
 
         <Separator className="my-12 opacity-30" />
 
-        {/* Footer navigation */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
           <Button
             variant="outline"
@@ -225,7 +233,7 @@ export default function ReferralPolicyPage() {
             onClick={() => navigate('/')}
             className="cursor-pointer"
           >
-            Back to Home
+            {t('termsPolicy.backToHome')}
           </Button>
         </div>
       </section>

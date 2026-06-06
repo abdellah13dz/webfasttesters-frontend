@@ -26,54 +26,67 @@ import { NewsletterSection } from '@/components/newsletter-section';
 
 const changelogEntries = [
   {
-    date: 'March 2026',
-    version: 'v2.4.0',
-    title: 'Enhanced Dashboard Analytics',
+    dateKey: 'changelog.entry1Date',
+    versionKey: 'changelog.entry1Version',
+    titleKey: 'changelog.entry1Title',
     tags: ['newFeature', 'improvement'],
-    description: 'Completely redesigned dashboard with advanced analytics, real-time charts, and deeper insights into your testing progress. Track tester engagement, daily activity, and completion rates at a glance.',
+    descriptionKey: 'changelog.entry1Description',
     icon: LayoutDashboard,
   },
   {
-    date: 'February 2026',
-    version: 'v2.3.0',
-    title: 'Multi-Language Testing Support',
+    dateKey: 'changelog.entry2Date',
+    versionKey: 'changelog.entry2Version',
+    titleKey: 'changelog.entry2Title',
     tags: ['newFeature'],
-    description: 'Now supporting 30+ languages for app testing. Your app can be tested by native speakers across the globe, ensuring your localization meets the highest standards before production launch.',
+    descriptionKey: 'changelog.entry2Description',
     icon: Globe,
   },
   {
-    date: 'January 2026',
-    version: 'v2.2.0',
-    title: 'Faster Tester Assignment',
+    dateKey: 'changelog.entry3Date',
+    versionKey: 'changelog.entry3Version',
+    titleKey: 'changelog.entry3Title',
     tags: ['improvement'],
-    description: 'We\'ve reduced tester assignment time from 12 hours to just 6 hours. Our improved matching algorithm ensures the right testers are assigned to your app faster than ever.',
+    descriptionKey: 'changelog.entry3Description',
     icon: Zap,
   },
   {
-    date: 'December 2025',
-    version: 'v2.1.0',
-    title: 'Affiliate Program Launch',
+    dateKey: 'changelog.entry4Date',
+    versionKey: 'changelog.entry4Version',
+    titleKey: 'changelog.entry4Title',
     tags: ['newFeature'],
-    description: 'Introducing the Fast Testers Affiliate Program! Earn commissions by referring other developers. Share your unique link and get rewarded for every successful referral.',
+    descriptionKey: 'changelog.entry4Description',
     icon: Gift,
   },
   {
-    date: 'November 2025',
-    version: 'v2.0.0',
-    title: 'New Dashboard Experience',
+    dateKey: 'changelog.entry5Date',
+    versionKey: 'changelog.entry5Version',
+    titleKey: 'changelog.entry5Title',
     tags: ['improvement'],
-    description: 'A complete overhaul of the user dashboard with a modern, intuitive design. Navigate your testing projects, view reports, and manage your account with ease.',
+    descriptionKey: 'changelog.entry5Description',
     icon: Users,
   },
   {
-    date: 'October 2025',
-    version: 'v1.5.0',
-    title: 'Bug Fixes & Performance',
+    dateKey: 'changelog.entry6Date',
+    versionKey: 'changelog.entry6Version',
+    titleKey: 'changelog.entry6Title',
     tags: ['bugFix'],
-    description: 'Fixed critical bugs affecting report generation and email notifications. Improved page load times by 40% and enhanced overall platform stability.',
+    descriptionKey: 'changelog.entry6Description',
     icon: Bug,
   },
 ];
+
+type ChangelogDisplayEntry = {
+  date?: string;
+  version?: string;
+  title?: string;
+  description?: string;
+  dateKey?: string;
+  versionKey?: string;
+  titleKey?: string;
+  descriptionKey?: string;
+  tags: string[];
+  icon: typeof Sparkles;
+};
 
 const tagConfig: Record<string, { color: string; icon: typeof Sparkles }> = {
   newFeature: { color: 'border-green-500/30 text-green-500 bg-green-500/10', icon: Sparkles },
@@ -84,7 +97,7 @@ const tagConfig: Record<string, { color: string; icon: typeof Sparkles }> = {
 export default function ChangelogPage() {
   const { t } = useLanguage();
   const { navigate } = useRouter();
-  const [entries, setEntries] = useState(changelogEntries);
+  const [entries, setEntries] = useState<ChangelogDisplayEntry[]>(changelogEntries);
 
   useEffect(() => {
     (async () => {
@@ -114,7 +127,7 @@ export default function ChangelogPage() {
             className="mb-6 border-blue-400/30 text-blue-400 bg-blue-400/10 px-4 py-1.5 text-sm"
           >
             <Rocket className="h-4 w-4 mr-1" />
-            What&apos;s New
+            {t('changelog.whatsNewBadge')}
           </Badge>
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
             {t('changelog.title')}
@@ -134,6 +147,10 @@ export default function ChangelogPage() {
           <div className="space-y-8">
             {entries.map((entry, index) => {
               const EntryIcon = entry.icon;
+              const date = entry.dateKey ? t(entry.dateKey) : entry.date ?? '';
+              const version = entry.versionKey ? t(entry.versionKey) : entry.version ?? '';
+              const title = entry.titleKey ? t(entry.titleKey) : entry.title ?? '';
+              const description = entry.descriptionKey ? t(entry.descriptionKey) : entry.description ?? '';
               return (
                 <div key={index} className="relative pl-14 sm:pl-20">
                   {/* Timeline node */}
@@ -141,9 +158,9 @@ export default function ChangelogPage() {
 
                   {/* Date & version label */}
                   <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <span className="text-sm font-medium text-blue-400">{entry.date}</span>
+                    <span className="text-sm font-medium text-blue-400">{date}</span>
                     <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
-                      {entry.version}
+                      {version}
                     </span>
                   </div>
 
@@ -156,7 +173,7 @@ export default function ChangelogPage() {
                         <div className="flex-1 min-w-0">
                           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
                             <h3 className="text-lg font-semibold text-foreground group-hover:text-blue-400 transition-colors">
-                              {entry.title}
+                              {title}
                             </h3>
                             <div className="flex flex-wrap gap-2">
                               {entry.tags.map((tag) => {
@@ -176,7 +193,7 @@ export default function ChangelogPage() {
                             </div>
                           </div>
                           <p className="text-sm text-muted-foreground leading-relaxed">
-                            {entry.description}
+                            {description}
                           </p>
                         </div>
                       </div>
@@ -198,13 +215,13 @@ export default function ChangelogPage() {
               className="mb-4 border-blue-400/30 text-blue-400 bg-blue-400/10 px-4 py-1.5 text-sm"
             >
               <Mail className="h-4 w-4 mr-1" />
-              Stay Updated
+              {t('changelog.stayUpdatedBadge')}
             </Badge>
             <h2 className="text-2xl font-bold text-foreground sm:text-3xl mb-2">
-              Never Miss an Update
+              {t('changelog.neverMissUpdate')}
             </h2>
             <p className="text-muted-foreground">
-              Subscribe to our newsletter and be the first to know about new features, improvements, and platform updates.
+              {t('changelog.newsletterDesc')}
             </p>
           </div>
           <div className="max-w-lg mx-auto">
@@ -217,7 +234,7 @@ export default function ChangelogPage() {
               size="lg"
               className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 font-semibold px-8 cursor-pointer"
             >
-              Get Started Now
+              {t('changelog.getStartedNow')}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>

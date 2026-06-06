@@ -2,6 +2,14 @@
 
 import { apiFetch } from '@/lib/api';
 import { CONTACT_EMAIL, CONTACT_MAILTO } from '@/lib/contact';
+import {
+  LEGAL_ENTITY_NAME,
+  BRAND_NAME,
+  SUPPORT_PHONE_DISPLAY,
+  SUPPORT_PHONE_TEL,
+  formatBusinessAddress,
+  hasBusinessAddress,
+} from '@/lib/business';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from '@/lib/router';
@@ -377,6 +385,10 @@ export default function ContactUsPage() {
                   <CardTitle className="text-lg">{t('contact.contactInformation')}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
+                  <p className="text-sm text-muted-foreground">
+                    {LEGAL_ENTITY_NAME} — {BRAND_NAME}
+                  </p>
+
                   <div className="flex items-start gap-3">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400">
                       <Mail className="h-5 w-5" />
@@ -396,6 +408,23 @@ export default function ContactUsPage() {
 
                   <div className="flex items-start gap-3">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400">
+                      <Phone className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium">{t('legal.phoneLabel')}</p>
+                      <a
+                        href={`tel:${SUPPORT_PHONE_TEL}`}
+                        className="text-sm text-blue-400 hover:text-blue-300 transition-colors"
+                      >
+                        {SUPPORT_PHONE_DISPLAY}
+                      </a>
+                    </div>
+                  </div>
+
+                  <Separator className="opacity-50" />
+
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400">
                       <Clock className="h-5 w-5" />
                     </div>
                     <div>
@@ -406,26 +435,19 @@ export default function ContactUsPage() {
 
                   <Separator className="opacity-50" />
 
-                  {/* Location with map pin illustration */}
                   <div className="flex items-start gap-3">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400">
                       <MapPin className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium">{t('contact.availability')}</p>
-                      <p className="text-sm text-muted-foreground">{t('contact.availabilityDesc')}</p>
-                      {/* Mini map pin illustration */}
-                      <div className="mt-3 flex items-center gap-2 rounded-lg border border-border/30 bg-muted/20 p-2.5">
-                        <div className="relative flex h-8 w-8 items-center justify-center">
-                          <MapPin className="h-5 w-5 text-blue-400" />
-                          <span className="absolute -bottom-0.5 h-1.5 w-1.5 rounded-full bg-blue-400/30" />
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                          <span className="font-medium text-foreground/80">Remote-first</span>
-                          <br />
-                          Global support team
-                        </div>
-                      </div>
+                      <p className="text-sm font-medium">{t('legal.businessAddressTitle')}</p>
+                      {hasBusinessAddress() ? (
+                        <p className="text-sm text-muted-foreground whitespace-pre-line">
+                          {formatBusinessAddress()}
+                        </p>
+                      ) : (
+                        <p className="text-sm text-muted-foreground">{t('legal.addressOnRequest')}</p>
+                      )}
                     </div>
                   </div>
                 </CardContent>

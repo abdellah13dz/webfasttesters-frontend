@@ -74,6 +74,21 @@ export const en: Record<string, string> = {
   'footer.cookiePolicy': 'Cookie Policy',
 
   // ═══════════════════════════════════════════════════════════════════════
+  // LEGAL / STRIPE BUSINESS DISCLOSURES
+  // ═══════════════════════════════════════════════════════════════════════
+  'legal.ownershipTitle': 'Business Ownership',
+  'legal.operatedBy': 'This website and {brand} services are owned and operated by {entity}.',
+  'legal.servicesDescription': 'We provide professional Android app testing services to help developers meet Google Play closed-testing and production-access requirements.',
+  'legal.poweredByStripe': 'Payments powered by Stripe',
+  'legal.customerServiceTitle': 'Customer Service',
+  'legal.responseTime': 'We respond to support requests within 2 business hours.',
+  'legal.businessAddressTitle': 'Business Address',
+  'legal.addressOnRequest': 'Business address available on request — contact us for Hassil LLC registered office details.',
+  'legal.phoneLabel': 'Phone',
+  'legal.cancellationPolicyTitle': 'Cancellation Policy',
+  'legal.cancellationPolicyDesc': 'You may cancel your order for a full refund before testers are assigned (typically within 6 hours of payment). Once testing has started, the service is non-cancellable; see our Refund Policy for guarantee terms.',
+
+  // ═══════════════════════════════════════════════════════════════════════
   // HOME PAGE
   // ═══════════════════════════════════════════════════════════════════════
   'home.productionGuarantee': '100% Production Access Guarantee',
@@ -353,7 +368,7 @@ export const en: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   'aboutUs.ourStory': 'Our Story',
   'aboutUs.title': 'About Fast Testers',
-  'aboutUs.subtitle': 'Your trusted partner in app testing and Google Play success',
+  'aboutUs.subtitle': 'Fast Testers is operated by Hassil LLC — your trusted partner in app testing and Google Play success',
   'aboutUs.appsPublished': 'Apps Published',
   'aboutUs.starRating': 'Star Rating',
   'aboutUs.downloads': 'Downloads',

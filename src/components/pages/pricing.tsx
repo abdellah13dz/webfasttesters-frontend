@@ -7,6 +7,7 @@ import { useLanguage } from '@/lib/i18n/context';
 import { useAnalytics } from '@/lib/analytics';
 import { usePricingPlans } from '@/lib/hooks/use-pricing-plans';
 import { formatPlanPrice, parsePlanFeatures } from '@/lib/pricing';
+import { StripePoweredBadge } from '@/components/stripe-powered-badge';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -277,9 +278,12 @@ export default function Pricing() {
                 </ul>
 
                 {/* Secure Payment */}
-                <div className="flex items-center gap-2 mb-6 text-muted-foreground text-xs">
-                  <Shield className="h-4 w-4" />
-                  <span>{t('home.securePayments')}</span>
+                <div className="flex flex-col gap-2 mb-6 text-muted-foreground text-xs">
+                  <div className="flex items-center gap-2">
+                    <Shield className="h-4 w-4" />
+                    <span>{t('home.securePayments')}</span>
+                  </div>
+                  <StripePoweredBadge label={t('legal.poweredByStripe')} />
                 </div>
 
                 {/* CTA Button */}

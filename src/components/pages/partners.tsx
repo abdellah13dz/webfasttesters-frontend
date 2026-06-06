@@ -22,46 +22,46 @@ import {
 
 const partners = [
   {
-    name: 'Google Play Console',
-    description: 'Manage closed testing tracks and production rollout steps in Play Console while Fast Testers supplies real human testers—not bots or scripts.',
+    nameKey: 'partners.partner1Name',
+    descriptionKey: 'partners.partner1Description',
+    categoryKey: 'partners.partner1Category',
     icon: Globe,
     gradient: 'from-green-500 to-emerald-600',
-    category: 'Integration Partner',
   },
   {
-    name: 'Firebase',
-    description: 'Optional crash and performance insights your team can review alongside feedback from our manual testers on real Android devices.',
+    nameKey: 'partners.partner2Name',
+    descriptionKey: 'partners.partner2Description',
+    categoryKey: 'partners.partner2Category',
     icon: Zap,
     gradient: 'from-amber-500 to-orange-600',
-    category: 'Developer Tools',
   },
   {
-    name: 'Android Studio',
-    description: 'Native integration with Android Studio development tools, enabling direct plugin support for test configuration and deployment.',
+    nameKey: 'partners.partner3Name',
+    descriptionKey: 'partners.partner3Description',
+    categoryKey: 'partners.partner3Category',
     icon: Code,
     gradient: 'from-blue-500 to-cyan-600',
-    category: 'Development Tools',
   },
   {
-    name: 'GitHub',
-    description: 'Coordinate releases and testing milestones with your team. Our closed-testing service remains manual testing by real people.',
+    nameKey: 'partners.partner4Name',
+    descriptionKey: 'partners.partner4Description',
+    categoryKey: 'partners.partner4Category',
     icon: Handshake,
     gradient: 'from-gray-600 to-gray-800',
-    category: 'Workflow Integration',
   },
   {
-    name: 'Slack',
-    description: 'Real-time team notifications for test results, reviewer feedback, and production access milestones directly in your channels.',
+    nameKey: 'partners.partner5Name',
+    descriptionKey: 'partners.partner5Description',
+    categoryKey: 'partners.partner5Category',
     icon: MessageSquare,
     gradient: 'from-purple-500 to-violet-600',
-    category: 'Team Notifications',
   },
   {
-    name: 'Stripe',
-    description: 'Secure payment processing for subscription management, invoicing, and seamless billing integration for enterprise clients.',
+    nameKey: 'partners.partner6Name',
+    descriptionKey: 'partners.partner6Description',
+    categoryKey: 'partners.partner6Category',
     icon: CreditCard,
     gradient: 'from-indigo-500 to-blue-600',
-    category: 'Payment Processing',
   },
 ];
 
@@ -98,26 +98,26 @@ const benefits = [
 
 const testimonials = [
   {
-    quote: 'partners.testimonial1Quote',
-    author: 'partners.testimonial1Author',
-    role: 'partners.testimonial1Role',
-    company: 'DevStack Solutions',
+    quoteKey: 'partners.testimonial1Quote',
+    authorKey: 'partners.testimonial1Author',
+    roleKey: 'partners.testimonial1Role',
+    companyKey: 'partners.testimonial1Company',
     rating: 5,
     gradient: 'from-blue-500 to-cyan-500',
   },
   {
-    quote: 'partners.testimonial2Quote',
-    author: 'partners.testimonial2Author',
-    role: 'partners.testimonial2Role',
-    company: 'MobileFirst Inc.',
+    quoteKey: 'partners.testimonial2Quote',
+    authorKey: 'partners.testimonial2Author',
+    roleKey: 'partners.testimonial2Role',
+    companyKey: 'partners.testimonial2Company',
     rating: 5,
     gradient: 'from-cyan-500 to-teal-500',
   },
   {
-    quote: 'partners.testimonial3Quote',
-    author: 'partners.testimonial3Author',
-    role: 'partners.testimonial3Role',
-    company: 'AppVenture Labs',
+    quoteKey: 'partners.testimonial3Quote',
+    authorKey: 'partners.testimonial3Author',
+    roleKey: 'partners.testimonial3Role',
+    companyKey: 'partners.testimonial3Company',
     rating: 5,
     gradient: 'from-teal-500 to-green-500',
   },
@@ -140,17 +140,16 @@ export default function PartnersPage() {
             className="mb-6 border-blue-400/30 text-blue-400 bg-blue-400/10 px-4 py-1.5 text-sm"
           >
             <Handshake className="h-4 w-4 mr-1.5" />
-            Our Partners
+            {t('partners.heroBadge')}
           </Badge>
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-            Trusted by Leading{' '}
+            {t('partners.heroTitlePrefix')}{' '}
             <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-              Companies & Developers
+              {t('partners.heroTitleHighlight')}
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-            We partner with industry leaders to support manual, human-led Google Play
-            closed testing—real Android testers who install and use your app, never bots.
+            {t('partners.heroDescription')}
           </p>
         </div>
       </section>
@@ -164,14 +163,13 @@ export default function PartnersPage() {
               className="mb-6 border-cyan-400/30 text-cyan-400 bg-cyan-400/10 px-4 py-1.5 text-sm"
             >
               <Building2 className="h-4 w-4 mr-1.5" />
-              Technology Partners
+              {t('partners.techPartnersBadge')}
             </Badge>
             <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
-              Integrated with the Tools You Love
+              {t('partners.techPartnersTitle')}
             </h2>
             <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
-              Tools many developers already use alongside our manual testing service—from
-              Play Console setup to team notifications.
+              {t('partners.techPartnersSubtitle')}
             </p>
           </div>
 
@@ -180,7 +178,7 @@ export default function PartnersPage() {
               const Icon = partner.icon;
               return (
                 <Card
-                  key={partner.name}
+                  key={partner.nameKey}
                   className="border border-border bg-card/50 backdrop-blur-sm hover:border-blue-400/30 hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-300 group"
                 >
                   <CardContent className="p-6">
@@ -192,15 +190,15 @@ export default function PartnersPage() {
                       </div>
                       <div className="min-w-0">
                         <h3 className="text-lg font-semibold text-foreground group-hover:text-blue-400 transition-colors truncate">
-                          {partner.name}
+                          {t(partner.nameKey)}
                         </h3>
                         <span className="text-xs text-muted-foreground uppercase tracking-wider">
-                          {partner.category}
+                          {t(partner.categoryKey)}
                         </span>
                       </div>
                     </div>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      {partner.description}
+                      {t(partner.descriptionKey)}
                     </p>
                   </CardContent>
                 </Card>
@@ -218,14 +216,13 @@ export default function PartnersPage() {
             className="mb-6 border-blue-400/30 text-blue-400 bg-blue-400/10 px-4 py-1.5 text-sm"
           >
             <Star className="h-4 w-4 mr-1.5" />
-            Become a Partner
+            {t('partners.becomePartnerBadge')}
           </Badge>
           <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
-            Why Partner with Fast Testers?
+            {t('partners.becomePartnerTitle')}
           </h2>
           <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
-            Join our growing ecosystem and unlock exclusive benefits designed to
-            help your business thrive.
+            {t('partners.becomePartnerSubtitle')}
           </p>
         </div>
 
@@ -269,21 +266,20 @@ export default function PartnersPage() {
               className="mb-6 border-cyan-400/30 text-cyan-400 bg-cyan-400/10 px-4 py-1.5 text-sm"
             >
               <MessageSquare className="h-4 w-4 mr-1.5" />
-              Partner Testimonials
+              {t('partners.testimonialsBadge')}
             </Badge>
             <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
-              What Our Partners Say
+              {t('partners.testimonialsTitle')}
             </h2>
             <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
-              Hear from the companies who have grown alongside us through our
-              partnership program.
+              {t('partners.testimonialsSubtitle')}
             </p>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((testimonial) => (
               <Card
-                key={testimonial.company}
+                key={testimonial.companyKey}
                 className="border border-border bg-card/50 backdrop-blur-sm hover:border-blue-400/20 transition-all duration-300 group"
               >
                 <CardContent className="p-6">
@@ -296,22 +292,22 @@ export default function PartnersPage() {
                     ))}
                   </div>
                   <blockquote className="text-foreground/80 leading-relaxed mb-6 italic">
-                    &ldquo;{t(testimonial.quote)}&rdquo;
+                    &ldquo;{t(testimonial.quoteKey)}&rdquo;
                   </blockquote>
                   <div className="flex items-center gap-3 pt-4 border-t border-border">
                     <div
                       className={`flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br ${testimonial.gradient} shrink-0`}
                     >
                       <span className="text-white text-sm font-bold">
-                        {t(testimonial.author).charAt(0)}
+                        {t(testimonial.authorKey).charAt(0)}
                       </span>
                     </div>
                     <div className="min-w-0">
                       <div className="text-sm font-semibold text-foreground truncate">
-                        {t(testimonial.author)}
+                        {t(testimonial.authorKey)}
                       </div>
                       <div className="text-xs text-muted-foreground truncate">
-                        {t(testimonial.role)}, {testimonial.company}
+                        {t(testimonial.roleKey)}, {t(testimonial.companyKey)}
                       </div>
                     </div>
                   </div>
@@ -335,11 +331,10 @@ export default function PartnersPage() {
                 </div>
               </div>
               <h2 className="text-2xl font-bold text-foreground sm:text-3xl mb-4">
-                Interested in Partnering?
+                {t('partners.ctaTitle')}
               </h2>
               <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
-                We&apos;re always looking for innovative companies to join our
-                ecosystem. Let&apos;s build something great together.
+                {t('partners.ctaDescription')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
@@ -347,7 +342,7 @@ export default function PartnersPage() {
                   size="lg"
                   className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-6 text-base rounded-xl cursor-pointer"
                 >
-                  Get in Touch
+                  {t('partners.ctaGetInTouch')}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 <Button
@@ -355,7 +350,7 @@ export default function PartnersPage() {
                   size="lg"
                   className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 font-semibold px-8 py-6 text-base rounded-xl cursor-pointer"
                 >
-                  View Partnership Tiers
+                  {t('partners.ctaViewTiers')}
                 </Button>
               </div>
             </CardContent>

@@ -8,6 +8,8 @@ import { useSiteNavigation } from '@/lib/hooks/use-site-navigation';
 import { resolveNavLabel, resolveSectionTitle, FALLBACK_NAVIGATION } from '@/lib/navigation';
 import { FACEBOOK_URL, INSTAGRAM_URL } from '@/lib/contact';
 import { BrandLogo } from '@/components/brand-logo';
+import { BusinessLegalNotice } from '@/components/business-legal-notice';
+import { LEGAL_ENTITY_NAME } from '@/lib/business';
 import { Facebook, Instagram } from 'lucide-react';
 
 export function Footer() {
@@ -80,6 +82,11 @@ export function Footer() {
           ))}
         </div>
 
+        {/* Business & customer service (Stripe website verification) */}
+        <div className="border-t border-border/40 py-6">
+          <BusinessLegalNotice />
+        </div>
+
         {/* Newsletter Row */}
         <div className="border-t border-border/40 py-6">
           <NewsletterSection
@@ -91,7 +98,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-border/40 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left safe-area-bottom">
           <p className="text-xs text-muted-foreground order-2 sm:order-1">
-            © {new Date().getFullYear()} {t('footer.brandName')}. {t('footer.allRightsReserved')}
+            © {new Date().getFullYear()} {LEGAL_ENTITY_NAME}. {t('footer.allRightsReserved')}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 order-1 sm:order-2 sm:gap-x-4">
             {footerLegal.map((link) => (

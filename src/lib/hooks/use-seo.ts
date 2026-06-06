@@ -6,6 +6,8 @@ import { useLanguage } from '@/lib/i18n/context';
 import { pageSeoConfig, defaultSeo, SITE_URL, SITE_NAME, type PageSeo } from '@/lib/seo';
 import { resolvePageSeo } from '@/lib/page-metadata';
 import { fetchSiteSettings } from '@/lib/site-settings';
+import { localizePageSeo, ogLocaleForLanguage } from '@/lib/seo-i18n';
+import type { Language } from '@/lib/i18n/context';
 
 function getOrCreateMeta(attr: string, attrValue: string): HTMLMetaElement {
   let el = document.querySelector(`meta[${attr}="${attrValue}"]`);
@@ -58,7 +60,7 @@ function setNoIndex(noindex: boolean) {
 export function applyClientSeo(
   seo: PageSeo,
   path: string,
-  language: string,
+  language: Language,
   siteUrl: string = SITE_URL
 ) {
   const fullUrl = `${siteUrl}${path}`;
@@ -77,10 +79,7 @@ export function applyClientSeo(
   updateMetaProperty('og:url', fullUrl);
   updateMetaProperty('og:type', seo.type);
   updateMetaProperty('og:site_name', SITE_NAME);
-  updateMetaProperty(
-    'og:locale',
-    language === 'ar' ? 'ar_SA' : language === 'es' ? 'es_ES' : language === 'tr' ? 'tr_TR' : 'en_US'
-  );
+  updateMetaProperty('og:locale', ogLocaleForLanguage(language));
   updateMetaName('twitter:card', 'summary_large_image');
   updateMetaName('twitter:title', seo.title);
   updateMetaName('twitter:description', seo.description);
@@ -90,8 +89,7 @@ export function applyClientSeo(
   setCanonicalUrl(fullUrl);
   setNoIndex(!!seo.noindex);
 
-  document.documentElement.lang =
-    language === 'ar' ? 'ar' : language === 'es' ? 'es' : language === 'tr' ? 'tr' : 'en';
+  document.documentElement.lang = language;
 }
 
 function mergeSeo(base: PageSeo, override?: Partial<PageSeo>): PageSeo {
@@ -140,7 +138,11 @@ export function useSeo(): PageSeo | null {
     : isDynamicBlog
       ? baseSeo
       : resolvePageSeo(currentPath);
-  const seo = mergeSeo(pathSeo, dynamicSeo?.overrides[currentPath]);
+  const seo = localizePageSeo(
+    currentPath,
+    mergeSeo(pathSeo, dynamicSeo?.overrides[currentPath]),
+    language
+  );
 
   useEffect(() => {
     if (isDynamicBlog) return;

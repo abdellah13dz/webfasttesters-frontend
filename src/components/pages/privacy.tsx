@@ -18,136 +18,128 @@ import {
   Mail,
   ArrowLeft,
   CheckCircle2,
+  type LucideIcon,
 } from 'lucide-react';
+import { LEGAL_ENTITY_NAME, BRAND_NAME } from '@/lib/business';
 
-const sections = [
+const sectionConfig: {
+  icon: LucideIcon;
+  titleKey: string;
+  items: { subtitleKey: string; descriptionKey: string }[];
+}[] = [
   {
     icon: Database,
-    title: 'Information We Collect',
+    titleKey: 'privacyPolicy.sections.informationWeCollect.title',
     items: [
       {
-        subtitle: 'Personal Information',
-        description:
-          'When you create an account or use our Services, we collect personal information such as your name, email address, and payment information. This information is necessary to provide our Services and communicate with you.',
+        subtitleKey: 'privacyPolicy.sections.informationWeCollect.personalInfo.subtitle',
+        descriptionKey: 'privacyPolicy.sections.informationWeCollect.personalInfo.description',
       },
       {
-        subtitle: 'App Testing Data',
-        description:
-          'When you submit an app for testing, we collect information related to the testing process, including app package names, testing links, tester feedback, and testing results. This data is used solely for the purpose of providing our testing services.',
+        subtitleKey: 'privacyPolicy.sections.informationWeCollect.appTestingData.subtitle',
+        descriptionKey: 'privacyPolicy.sections.informationWeCollect.appTestingData.description',
       },
       {
-        subtitle: 'Usage Data',
-        description:
-          'We may also collect certain technical information when you use our Services, including your IP address, browser type, device information, pages visited, and the dates and times of your visits. This information helps us understand how our Services are being used and improve the user experience.',
+        subtitleKey: 'privacyPolicy.sections.informationWeCollect.usageData.subtitle',
+        descriptionKey: 'privacyPolicy.sections.informationWeCollect.usageData.description',
       },
     ],
   },
   {
     icon: Eye,
-    title: 'How We Use Your Information',
+    titleKey: 'privacyPolicy.sections.howWeUse.title',
     items: [
       {
-        subtitle: 'Provide Testing Services',
-        description:
-          'We use your personal information to deliver the app testing services you have requested, including assigning testers, collecting feedback, and communicating results.',
+        subtitleKey: 'privacyPolicy.sections.howWeUse.provideServices.subtitle',
+        descriptionKey: 'privacyPolicy.sections.howWeUse.provideServices.description',
       },
       {
-        subtitle: 'Improve Our Services',
-        description:
-          'We analyze usage data to understand how our Services are being used, identify trends, and make improvements to our platform, features, and user experience.',
+        subtitleKey: 'privacyPolicy.sections.howWeUse.improveServices.subtitle',
+        descriptionKey: 'privacyPolicy.sections.howWeUse.improveServices.description',
       },
       {
-        subtitle: 'Communication',
-        description:
-          'We use your email address to send you service-related notifications, testing updates, and important account information. We will not send you marketing emails without your explicit consent.',
+        subtitleKey: 'privacyPolicy.sections.howWeUse.communication.subtitle',
+        descriptionKey: 'privacyPolicy.sections.howWeUse.communication.description',
       },
     ],
   },
   {
     icon: UserCheck,
-    title: 'Data Sharing',
+    titleKey: 'privacyPolicy.sections.dataSharing.title',
     items: [
       {
-        subtitle: 'We Don\'t Sell Your Data',
-        description:
-          'We do not sell, rent, or trade your personal information to third parties. Your data is yours, and we respect that.',
+        subtitleKey: 'privacyPolicy.sections.dataSharing.noSelling.subtitle',
+        descriptionKey: 'privacyPolicy.sections.dataSharing.noSelling.description',
       },
       {
-        subtitle: 'Sharing with Testers',
-        description:
-          'We share your app testing link and relevant app information with assigned testers solely for the purpose of conducting testing services. Testers are bound by confidentiality agreements and are prohibited from sharing your app information with third parties.',
+        subtitleKey: 'privacyPolicy.sections.dataSharing.testers.subtitle',
+        descriptionKey: 'privacyPolicy.sections.dataSharing.testers.description',
       },
       {
-        subtitle: 'Service Providers',
-        description:
-          'We may share limited information with trusted third-party service providers who assist us in operating our platform and processing payments (e.g., Stripe for payment processing). These providers are contractually obligated to protect your data.',
+        subtitleKey: 'privacyPolicy.sections.dataSharing.serviceProviders.subtitle',
+        descriptionKey: 'privacyPolicy.sections.dataSharing.serviceProviders.description',
       },
     ],
   },
   {
     icon: Lock,
-    title: 'Data Security',
+    titleKey: 'privacyPolicy.sections.dataSecurity.title',
     items: [
       {
-        subtitle: 'Encryption',
-        description:
-          'We use industry-standard encryption (SSL/TLS) to protect data transmitted between your device and our servers. Sensitive information such as payment details is encrypted at rest.',
+        subtitleKey: 'privacyPolicy.sections.dataSecurity.encryption.subtitle',
+        descriptionKey: 'privacyPolicy.sections.dataSecurity.encryption.description',
       },
       {
-        subtitle: 'Secure Servers',
-        description:
-          'Our infrastructure is hosted on secure cloud servers with robust access controls, firewalls, and intrusion detection systems. Access to personal data is restricted to authorized personnel only.',
+        subtitleKey: 'privacyPolicy.sections.dataSecurity.secureServers.subtitle',
+        descriptionKey: 'privacyPolicy.sections.dataSecurity.secureServers.description',
       },
       {
-        subtitle: 'Regular Audits',
-        description:
-          'We conduct regular security audits and vulnerability assessments to identify and address potential security risks. We stay up to date with the latest security best practices and industry standards.',
+        subtitleKey: 'privacyPolicy.sections.dataSecurity.regularAudits.subtitle',
+        descriptionKey: 'privacyPolicy.sections.dataSecurity.regularAudits.description',
       },
     ],
   },
   {
     icon: CheckCircle2,
-    title: 'Your Rights',
+    titleKey: 'privacyPolicy.sections.yourRights.title',
     items: [
       {
-        subtitle: 'Access Your Data',
-        description:
-          'You have the right to request a copy of the personal information we hold about you. We will provide this information within 30 days of receiving your request.',
+        subtitleKey: 'privacyPolicy.sections.yourRights.access.subtitle',
+        descriptionKey: 'privacyPolicy.sections.yourRights.access.description',
       },
       {
-        subtitle: 'Delete Your Data',
-        description:
-          'You have the right to request the deletion of your personal information. Upon verification of your identity, we will delete your data from our active systems within 30 days, except where retention is required by law.',
+        subtitleKey: 'privacyPolicy.sections.yourRights.delete.subtitle',
+        descriptionKey: 'privacyPolicy.sections.yourRights.delete.description',
       },
       {
-        subtitle: 'Modify Your Data',
-        description:
-          'You have the right to request corrections to any inaccurate or incomplete personal information we hold about you. You can update most of your information directly through your account settings.',
+        subtitleKey: 'privacyPolicy.sections.yourRights.modify.subtitle',
+        descriptionKey: 'privacyPolicy.sections.yourRights.modify.description',
       },
     ],
   },
   {
     icon: Cookie,
-    title: 'Cookies',
+    titleKey: 'privacyPolicy.sections.cookies.title',
     items: [
       {
-        subtitle: 'Essential Cookies Only',
-        description:
-          'We use only essential cookies that are necessary for the operation of our Services. These cookies enable core functionality such as authentication, security, and session management.',
+        subtitleKey: 'privacyPolicy.sections.cookies.essentialOnly.subtitle',
+        descriptionKey: 'privacyPolicy.sections.cookies.essentialOnly.description',
       },
       {
-        subtitle: 'No Tracking Cookies',
-        description:
-          'We do not use tracking cookies, advertising cookies, or third-party analytics cookies. We respect your privacy and believe in minimal data collection.',
+        subtitleKey: 'privacyPolicy.sections.cookies.noTracking.subtitle',
+        descriptionKey: 'privacyPolicy.sections.cookies.noTracking.description',
       },
       {
-        subtitle: 'Cookie Management',
-        description:
-          'You can control and manage cookies through your browser settings. Please note that disabling essential cookies may affect the functionality of our Services.',
+        subtitleKey: 'privacyPolicy.sections.cookies.management.subtitle',
+        descriptionKey: 'privacyPolicy.sections.cookies.management.description',
       },
     ],
   },
 ];
+
+function legalText(t: (key: string) => string, key: string) {
+  return t(key).replace('{brand}', BRAND_NAME).replace('{entity}', LEGAL_ENTITY_NAME);
+}
 
 function PrivacyPageContent() {
   const { navigate } = useRouter();
@@ -155,7 +147,6 @@ function PrivacyPageContent() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-border/40">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-blue-500/10" />
         <div className="absolute top-20 left-10 h-72 w-72 rounded-full bg-blue-500/5 blur-3xl" />
@@ -166,23 +157,22 @@ function PrivacyPageContent() {
               className="mb-4 border-blue-500/30 text-blue-400 bg-blue-500/10"
             >
               <Shield className="mr-1 h-3 w-3" />
-              Your Privacy Matters
+              {t('privacyPolicy.badge')}
             </Badge>
             <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
               {t('footer.privacyPolicy')}
             </h1>
             <p className="mt-4 text-muted-foreground">
-              Last Updated: 1st April 2025
+              {t('privacyPolicy.lastUpdated')}: {t('privacyPolicy.lastUpdatedDate')}
             </p>
             <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-blue-500/10 border border-blue-500/20 px-4 py-1.5">
               <Shield className="h-4 w-4 text-blue-400" />
-              <span className="text-sm text-blue-400 font-medium">GDPR Compliant</span>
+              <span className="text-sm text-blue-400 font-medium">{t('privacyPolicy.gdprCompliant')}</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Content */}
       <section className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
         <div className="mb-8">
           <button
@@ -190,25 +180,20 @@ function PrivacyPageContent() {
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-blue-400 transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to Home
+            {t('privacyPolicy.backToHome')}
           </button>
         </div>
 
-        {/* Intro */}
         <Card className="border-border/50 bg-card/50 mb-8">
           <CardContent className="p-6">
             <p className="text-muted-foreground leading-relaxed">
-              At Fast Testers, we are committed to protecting your privacy and ensuring the
-              security of your personal information. This Privacy Policy explains how we collect, use,
-              share, and protect your data when you use our Services. We comply with the General Data
-              Protection Regulation (GDPR) and are dedicated to transparency in our data practices.
+              {legalText(t, 'privacyPolicy.intro')}
             </p>
           </CardContent>
         </Card>
 
-        {/* Sections */}
         <div className="space-y-8">
-          {sections.map((section, index) => (
+          {sectionConfig.map((section, index) => (
             <Card key={index} className="border-border/50 bg-card/50">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4 mb-5">
@@ -216,17 +201,17 @@ function PrivacyPageContent() {
                     <section.icon className="h-5 w-5" />
                   </div>
                   <h2 className="text-lg font-semibold text-foreground mt-1.5">
-                    {index + 1}. {section.title}
+                    {index + 1}. {t(section.titleKey)}
                   </h2>
                 </div>
                 <div className="ml-14 space-y-4">
                   {section.items.map((item, pIndex) => (
                     <div key={pIndex}>
                       <h3 className="text-sm font-medium text-blue-400 mb-1">
-                        {item.subtitle}
+                        {t(item.subtitleKey)}
                       </h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">
-                        {item.description}
+                        {t(item.descriptionKey)}
                       </p>
                     </div>
                   ))}
@@ -235,7 +220,6 @@ function PrivacyPageContent() {
             </Card>
           ))}
 
-          {/* Contact Section */}
           <Card className="border-blue-500/20 bg-blue-500/5">
             <CardContent className="p-6">
               <div className="flex items-start gap-4">
@@ -244,11 +228,10 @@ function PrivacyPageContent() {
                 </div>
                 <div>
                   <h2 className="text-lg font-semibold text-blue-400 mb-2">
-                    {sections.length + 1}. Contact
+                    {sectionConfig.length + 1}. {t('privacyPolicy.contact.title')}
                   </h2>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                    If you have any questions about this Privacy Policy or wish to exercise your data
-                    rights, please contact our Data Protection Officer:
+                    {t('privacyPolicy.contact.description')}
                   </p>
                   <a
                     href="mailto:contact@fasttesters.com"
@@ -265,7 +248,6 @@ function PrivacyPageContent() {
 
         <Separator className="my-12 opacity-30" />
 
-        {/* Footer navigation */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
           <Button
             variant="outline"
@@ -286,7 +268,7 @@ function PrivacyPageContent() {
             onClick={() => navigate('/')}
             className="cursor-pointer"
           >
-            Back to Home
+            {t('privacyPolicy.backToHome')}
           </Button>
         </div>
       </section>
@@ -295,8 +277,10 @@ function PrivacyPageContent() {
 }
 
 export default function PrivacyPage() {
+  const { t } = useLanguage();
+
   return (
-    <CmsPageOrFallback slug="privacy-policy" badge="Privacy Policy">
+    <CmsPageOrFallback slug="privacy-policy" badge={t('privacyPolicy.cmsBadge')}>
       <PrivacyPageContent />
     </CmsPageOrFallback>
   );

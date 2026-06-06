@@ -48,7 +48,17 @@ function AnimatedSection({ children, className = '', delay = 0 }: { children: Re
   );
 }
 
-const services = [
+import type { LucideIcon } from 'lucide-react';
+
+type ServiceDisplayEntry = {
+  nameKey: string;
+  name?: string;
+  icon: LucideIcon;
+  uptime: string;
+  status?: string;
+};
+
+const services: ServiceDisplayEntry[] = [
   { nameKey: 'status.appTesting', icon: Smartphone, uptime: '99.98%' },
   { nameKey: 'status.testerAssignment', icon: Users, uptime: '99.95%' },
   { nameKey: 'status.dashboard', icon: BarChart3, uptime: '99.99%' },
@@ -57,35 +67,55 @@ const services = [
   { nameKey: 'status.api', icon: Code, uptime: '99.96%' },
 ];
 
-const incidents = [
+type IncidentStatus = 'resolved' | 'scheduled' | 'investigating';
+
+type IncidentDisplayEntry = {
+  title?: string;
+  date?: string;
+  description?: string;
+  duration?: string;
+  titleKey?: string;
+  dateKey?: string;
+  descriptionKey?: string;
+  durationKey?: string;
+  status: IncidentStatus;
+};
+
+const incidents: IncidentDisplayEntry[] = [
   {
-    title: 'Brief API Latency',
-    date: 'Feb 28, 2026',
-    status: 'Resolved',
-    duration: '15 minutes',
-    description: 'Some API requests experienced higher than normal latency. Root cause identified and resolved.',
+    titleKey: 'status.incident1Title',
+    dateKey: 'status.incident1Date',
+    status: 'resolved',
+    durationKey: 'status.incident1Duration',
+    descriptionKey: 'status.incident1Description',
   },
   {
-    title: 'Payment Gateway Maintenance',
-    date: 'Feb 15, 2026',
-    status: 'Scheduled',
-    duration: '30 minutes',
-    description: 'Scheduled maintenance for payment gateway upgrade. All services remained available.',
+    titleKey: 'status.incident2Title',
+    dateKey: 'status.incident2Date',
+    status: 'scheduled',
+    durationKey: 'status.incident2Duration',
+    descriptionKey: 'status.incident2Description',
   },
   {
-    title: 'Dashboard Loading Slow',
-    date: 'Jan 22, 2026',
-    status: 'Resolved',
-    duration: '45 minutes',
-    description: 'Dashboard pages experienced slow loading times due to database optimization. Issue resolved.',
+    titleKey: 'status.incident3Title',
+    dateKey: 'status.incident3Date',
+    status: 'resolved',
+    durationKey: 'status.incident3Duration',
+    descriptionKey: 'status.incident3Description',
   },
 ];
+
+function incidentStatusLabel(status: IncidentStatus, t: (key: string) => string) {
+  if (status === 'resolved') return t('status.resolved');
+  if (status === 'scheduled') return t('status.scheduled');
+  return t('status.investigating');
+}
 
 export default function StatusPage() {
   const { t } = useLanguage();
   const [currentTime, setCurrentTime] = useState('');
-  const [serviceList, setServiceList] = useState(services);
-  const [incidentList, setIncidentList] = useState(incidents);
+  const [serviceList, setServiceList] = useState<ServiceDisplayEntry[]>(services);
+  const [incidentList, setIncidentList] = useState<IncidentDisplayEntry[]>(incidents);
 
   useEffect(() => {
     (async () => {
@@ -107,7 +137,11 @@ export default function StatusPage() {
           data.incidents.map((i: StatusIncident) => ({
             title: i.title,
             date: formatIncidentDate(i.occurredAt),
-            status: i.status === 'resolved' ? 'Resolved' : i.status === 'scheduled' ? 'Scheduled' : 'Investigating',
+            status: (i.status === 'resolved'
+              ? 'resolved'
+              : i.status === 'scheduled'
+                ? 'scheduled'
+                : 'investigating') as IncidentStatus,
             duration: i.duration || '',
             description: i.description,
           }))
@@ -169,7 +203,7 @@ export default function StatusPage() {
             <div className="flex-shrink-0 w-full max-w-sm lg:max-w-md">
               <img
                 src="/images/illustrations/status-monitoring.png"
-                alt="Status Monitoring"
+                alt={t('status.statusMonitoringAlt')}
                 className="w-full h-auto animate-float"
               />
             </div>
@@ -192,7 +226,7 @@ export default function StatusPage() {
                       {t('status.allSystemsOperational')}
                     </h2>
                     <p className="text-sm text-muted-foreground mt-1">
-                      Last checked: {currentTime || '...'}
+                      {t('status.lastCheckedPrefix')} {currentTime || '...'}
                     </p>
                   </div>
                 </div>
@@ -210,12 +244,12 @@ export default function StatusPage() {
       <AnimatedSection delay={100}>
         <section className="mx-auto max-w-5xl px-4 sm:px-6 mb-16">
           <h2 className="text-2xl font-bold text-foreground mb-6">
-            {t('status.operational')} Services
+            {t('status.operationalServices')}
           </h2>
           <div className="grid gap-3">
             {serviceList.map((service, index) => {
               const Icon = service.icon;
-              const label = 'name' in service && service.name ? service.name : t(service.nameKey);
+              const label = service.name ?? t(service.nameKey);
               return (
                 <Card
                   key={service.nameKey + String(index)}
@@ -281,15 +315,15 @@ export default function StatusPage() {
                   <table className="w-full">
                     <thead>
                       <tr className="border-b border-border">
-                        <th className="text-left text-sm font-semibold text-foreground p-4">Service</th>
+                        <th className="text-left text-sm font-semibold text-foreground p-4">{t('status.serviceColumn')}</th>
                         <th className="text-right text-sm font-semibold text-foreground p-4">{t('status.uptime')}</th>
-                        <th className="text-right text-sm font-semibold text-foreground p-4 hidden sm:table-cell">Status</th>
+                        <th className="text-right text-sm font-semibold text-foreground p-4 hidden sm:table-cell">{t('status.statusColumn')}</th>
                       </tr>
                     </thead>
                     <tbody>
                       {serviceList.map((service, index) => {
                         const Icon = service.icon;
-                        const label = 'name' in service && service.name ? service.name : t(service.nameKey);
+                        const label = service.name ?? t(service.nameKey);
                         return (
                           <tr
                             key={service.nameKey + String(index)}
@@ -343,15 +377,23 @@ export default function StatusPage() {
             <div className="absolute left-5 top-0 bottom-0 w-px bg-border sm:left-6" />
 
             <div className="space-y-6">
-              {incidentList.map((incident, index) => (
+              {incidentList.map((incident, index) => {
+                const title = incident.titleKey ? t(incident.titleKey) : incident.title ?? '';
+                const date = incident.dateKey ? t(incident.dateKey) : incident.date ?? '';
+                const description = incident.descriptionKey ? t(incident.descriptionKey) : incident.description ?? '';
+                const duration = incident.durationKey ? t(incident.durationKey) : incident.duration ?? '';
+                const statusLabel = incidentStatusLabel(incident.status, t);
+                const isResolved = incident.status === 'resolved';
+
+                return (
                 <div key={index} className="relative pl-14 sm:pl-16">
                   {/* Timeline dot with pulse */}
                   <div className="absolute left-3 sm:left-4 top-2 flex items-center justify-center w-4 h-4 rounded-full border-2 border-background animate-timeline-dot-pulse"
                     style={{
-                      backgroundColor: incident.status === 'Resolved' ? 'rgb(34, 197, 94)' : 'rgb(59, 130, 246)',
+                      backgroundColor: isResolved ? 'rgb(34, 197, 94)' : 'rgb(59, 130, 246)',
                     }}
                   >
-                    {incident.status === 'Resolved' ? (
+                    {isResolved ? (
                       <CheckCircle className="h-3 w-3 text-green-500 absolute" />
                     ) : (
                       <Wrench className="h-3 w-3 text-blue-400 absolute" />
@@ -361,33 +403,34 @@ export default function StatusPage() {
                   <Card className="border-border bg-card/50 backdrop-blur-sm hover:border-blue-500/20 transition-colors">
                     <CardContent className="p-4 sm:p-5">
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
-                        <h3 className="font-semibold text-foreground">{incident.title}</h3>
+                        <h3 className="font-semibold text-foreground">{title}</h3>
                         <Badge
                           variant="outline"
                           className={`text-xs w-fit ${
-                            incident.status === 'Resolved'
+                            isResolved
                               ? 'border-green-500/30 text-green-500 bg-green-500/10'
                               : 'border-blue-400/30 text-blue-400 bg-blue-400/10'
                           }`}
                         >
-                          {incident.status === 'Resolved' ? t('status.resolved') : incident.status}
+                          {statusLabel}
                         </Badge>
                       </div>
-                      <p className="text-sm text-muted-foreground mb-3">{incident.description}</p>
+                      <p className="text-sm text-muted-foreground mb-3">{description}</p>
                       <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
                         <span className="flex items-center gap-1">
                           <Clock className="h-3 w-3" />
-                          {incident.date}
+                          {date}
                         </span>
                         <span className="flex items-center gap-1">
                           <AlertTriangle className="h-3 w-3" />
-                          {t('status.incidentDuration')}: {incident.duration}
+                          {t('status.incidentDuration')}: {duration}
                         </span>
                       </div>
                     </CardContent>
                   </Card>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>

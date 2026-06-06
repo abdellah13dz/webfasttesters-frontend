@@ -12,89 +12,85 @@ import {
   Users,
   Calendar,
   FileText,
-  Clock,
   Headphones,
-  Zap,
   Star,
   CreditCard,
   Send,
-  Smartphone,
   Trophy,
 } from 'lucide-react'
+
+const steps = [
+  {
+    icon: <CreditCard className="size-6 text-blue-600 dark:text-blue-400" />,
+    stepKey: 'productionAccess.step1Label',
+    titleKey: 'productionAccess.step1Title',
+    descriptionKey: 'productionAccess.step1Description',
+  },
+  {
+    icon: <Send className="size-6 text-blue-600 dark:text-blue-400" />,
+    stepKey: 'productionAccess.step2Label',
+    titleKey: 'productionAccess.step2Title',
+    descriptionKey: 'productionAccess.step2Description',
+  },
+  {
+    icon: <Users className="size-6 text-blue-600 dark:text-blue-400" />,
+    stepKey: 'productionAccess.step3Label',
+    titleKey: 'productionAccess.step3Title',
+    descriptionKey: 'productionAccess.step3Description',
+  },
+  {
+    icon: <Trophy className="size-6 text-blue-600 dark:text-blue-400" />,
+    stepKey: 'productionAccess.step4Label',
+    titleKey: 'productionAccess.step4Title',
+    descriptionKey: 'productionAccess.step4Description',
+  },
+]
+
+const includes = [
+  {
+    icon: <Users className="size-6 text-blue-600 dark:text-blue-400" />,
+    titleKey: 'home.professionalTesters',
+    descriptionKey: 'productionAccess.include1Desc',
+  },
+  {
+    icon: <Calendar className="size-6 text-blue-600 dark:text-blue-400" />,
+    titleKey: 'productionAccess.include2Title',
+    descriptionKey: 'productionAccess.include2Desc',
+  },
+  {
+    icon: <Shield className="size-6 text-blue-600 dark:text-blue-400" />,
+    titleKey: 'home.productionAccessGuarantee',
+    descriptionKey: 'productionAccess.include3Desc',
+  },
+  {
+    icon: <FileText className="size-6 text-blue-600 dark:text-blue-400" />,
+    titleKey: 'home.comprehensiveReports',
+    descriptionKey: 'productionAccess.include4Desc',
+  },
+  {
+    icon: <Headphones className="size-6 text-blue-600 dark:text-blue-400" />,
+    titleKey: 'productionAccess.include5Title',
+    descriptionKey: 'productionAccess.include5Desc',
+  },
+]
+
+const requirements = [
+  { textKey: 'productionAccess.requirement1' },
+  { textKey: 'productionAccess.requirement2' },
+  { textKey: 'productionAccess.requirement3' },
+  { textKey: 'productionAccess.requirement4' },
+  { textKey: 'productionAccess.requirement5' },
+]
+
+const stats = [
+  { valueKey: 'productionAccess.stat1Value', labelKey: 'home.successRate', descriptionKey: 'productionAccess.stat1Desc' },
+  { valueKey: 'productionAccess.stat2Value', labelKey: 'productionAccess.stat2Label', descriptionKey: 'productionAccess.stat2Desc' },
+  { valueKey: 'productionAccess.stat3Value', labelKey: 'home.appsPublished', descriptionKey: 'productionAccess.stat3Desc' },
+]
 
 export default function ProductionAccessPage() {
   const { navigate } = useRouter()
   const { t } = useLanguage()
-
-  const steps = [
-    {
-      icon: <CreditCard className="size-6 text-blue-600 dark:text-blue-400" />,
-      step: 'Step 1',
-      title: 'Pay $15',
-      description:
-        'Make a one-time payment of $15. No subscriptions, no hidden fees. Just a simple, upfront payment for professional testing services.',
-    },
-    {
-      icon: <Send className="size-6 text-blue-600 dark:text-blue-400" />,
-      step: 'Step 2',
-      title: 'Submit Your App',
-      description:
-        'Share your app\'s Play Store link or APK with us. We\'ll set everything up on our end and get your testing track configured.',
-    },
-    {
-      icon: <Users className="size-6 text-blue-600 dark:text-blue-400" />,
-      step: 'Step 3',
-      title: '14 Testers Start',
-      description:
-        'Within 6 hours, 14 professional testers will be assigned to your app. They\'ll install your app and begin the 14-day testing period.',
-    },
-    {
-      icon: <Trophy className="size-6 text-blue-600 dark:text-blue-400" />,
-      step: 'Step 4',
-      title: 'Production Access',
-      description:
-        'After the testing period completes successfully, you\'ll be eligible for production access on Google Play. We guarantee it — or your money back.',
-    },
-  ]
-
-  const includes = [
-    {
-      icon: <Users className="size-6 text-blue-600 dark:text-blue-400" />,
-      title: t('home.professionalTesters'),
-      description:
-        'More than double the required 12 testers. This buffer ensures you always meet Google Play\'s requirements, even if some testers become inactive.',
-    },
-    {
-      icon: <Calendar className="size-6 text-blue-600 dark:text-blue-400" />,
-      title: '16-Day Testing Period',
-      description:
-        'We run testing for 16 days — 2 days beyond the 14-day requirement. This extra buffer ensures there are no gaps in your testing continuity.',
-    },
-    {
-      icon: <Shield className="size-6 text-blue-600 dark:text-blue-400" />,
-      title: t('home.productionAccessGuarantee'),
-      description:
-        'If your app doesn\'t get production access after our testing period, we\'ll run another round of testing for free. That\'s how confident we are in our service.',
-    },
-    {
-      icon: <FileText className="size-6 text-blue-600 dark:text-blue-400" />,
-      title: t('home.comprehensiveReports'),
-      description:
-        'Get detailed testing reports including bug reports, usability feedback, device compatibility notes, and suggestions for improvement.',
-    },
-    {
-      icon: <Headphones className="size-6 text-blue-600 dark:text-blue-400" />,
-      title: '24/7 Support',
-      description:
-        'Our support team is available around the clock to answer your questions, troubleshoot issues, and ensure your testing runs smoothly.',
-    },
-  ]
-
-  const stats = [
-    { value: '99.9%', label: t('home.successRate'), description: 'Apps get production access' },
-    { value: '6 Hours', label: 'Start Time', description: 'Average time to begin testing' },
-    { value: '1,500+', label: t('home.appsPublished'), description: 'Successfully launched on Play Store' },
-  ]
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -105,28 +101,26 @@ export default function ProductionAccessPage() {
           <div className="flex flex-wrap items-center gap-2 mb-6">
             <Badge className="border-blue-800 dark:border-blue-950/50 bg-blue-200/50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-800/50 text-[13px] tracking-wider">
               <CheckCircle2 className="mr-1 size-3" />
-              12 testers for 14 days
+              {t('productionAccess.heroBadgeTesters')}
             </Badge>
             <Badge className="border-blue-800 dark:border-blue-950/50 bg-blue-200/50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-800/50 text-[13px] tracking-wider">
               <CreditCard className="mr-1 size-3" />
-              $15 one-time
+              {t('productionAccess.heroBadgePrice')}
             </Badge>
             <Badge className="border-blue-800 dark:border-blue-950/50 bg-blue-200/50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-800/50 text-[13px] tracking-wider">
               <Star className="mr-1 size-3" />
-              99% approval rate
+              {t('productionAccess.heroBadgeApproval')}
             </Badge>
           </div>
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Get Google Play{' '}
-            <span className="text-blue-600 dark:text-blue-400">Production Access</span>
+            {t('productionAccess.heroTitlePrefix')}{' '}
+            <span className="text-blue-600 dark:text-blue-400">{t('productionAccess.heroTitleHighlight')}</span>
           </h1>
           <p className="mt-2 text-xl text-muted-foreground sm:text-2xl">
-            Google Play Closed Testing $15 | 12 Testers for Production Access
+            {t('productionAccess.heroSubtitle')}
           </p>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-            New Google Play developer accounts require closed testing before publishing. We provide
-            14 verified testers who stay for 16 days — guaranteed to meet Google Play&apos;s
-            requirements and get your app to production.
+            {t('productionAccess.heroDescription')}
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <Button
@@ -134,7 +128,7 @@ export default function ProductionAccessPage() {
               className="bg-blue-600 text-white hover:bg-blue-700"
               onClick={() => navigate('/production-access')}
             >
-              Get Production Access for $15
+              {t('productionAccess.ctaGetProductionAccess')}
               <ArrowRight className="ml-2 size-4" />
             </Button>
             <Button
@@ -143,7 +137,7 @@ export default function ProductionAccessPage() {
               className="border-border text-foreground/80 hover:bg-muted"
               onClick={() => navigate('/closed-testing')}
             >
-              Learn About Closed Testing
+              {t('productionAccess.ctaLearnClosedTesting')}
             </Button>
           </div>
         </div>
@@ -155,45 +149,27 @@ export default function ProductionAccessPage() {
           <div className="grid gap-8 md:grid-cols-2">
             <div>
               <Badge variant="outline" className="border-border text-muted-foreground">
-                Understanding the Requirement
+                {t('productionAccess.understandingBadge')}
               </Badge>
-              <h2 className="mt-4 text-2xl font-bold sm:text-3xl">What is Production Access?</h2>
+              <h2 className="mt-4 text-2xl font-bold sm:text-3xl">{t('productionAccess.whatIsTitle')}</h2>
               <p className="mt-4 text-muted-foreground leading-relaxed">
-                Since 2024, Google Play requires all new personal developer accounts to complete a
-                closed testing phase before they can publish apps to production. This means you need
-                at least <strong className="text-foreground">12 testers</strong> who actively test
-                your app for <strong className="text-foreground">14 consecutive days</strong>.
+                {t('productionAccess.whatIsP1')}
               </p>
               <p className="mt-4 text-muted-foreground leading-relaxed">
-                Only after successfully completing this testing period can you apply for production
-                access and publish your app to the Google Play Store for all users to download.
+                {t('productionAccess.whatIsP2')}
               </p>
             </div>
             <div>
               <Card className="border-border bg-card/50 h-full">
                 <CardContent className="p-6 space-y-4">
-                  <h3 className="font-semibold text-foreground">Google Play Requirements</h3>
+                  <h3 className="font-semibold text-foreground">{t('productionAccess.requirementsTitle')}</h3>
                   <ul className="space-y-3">
-                    <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-blue-600 dark:text-blue-400" />
-                      New personal accounts must complete closed testing
-                    </li>
-                    <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-blue-600 dark:text-blue-400" />
-                      Minimum 12 testers required
-                    </li>
-                    <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-blue-600 dark:text-blue-400" />
-                      Testing must last 14 consecutive days
-                    </li>
-                    <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-blue-600 dark:text-blue-400" />
-                      Testers must provide genuine feedback
-                    </li>
-                    <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-blue-600 dark:text-blue-400" />
-                      Low-quality reviews may be flagged
-                    </li>
+                    {requirements.map((req, index) => (
+                      <li key={index} className="flex items-start gap-3 text-sm text-muted-foreground">
+                        <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-blue-600 dark:text-blue-400" />
+                        {t(req.textKey)}
+                      </li>
+                    ))}
                   </ul>
                 </CardContent>
               </Card>
@@ -206,10 +182,10 @@ export default function ProductionAccessPage() {
       <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
           <Badge variant="outline" className="border-blue-800 dark:border-blue-800 text-blue-600 dark:text-blue-400">
-            How It Works
+            {t('productionAccess.howItWorksBadge')}
           </Badge>
           <h2 className="mt-4 text-2xl font-bold sm:text-3xl">
-            Get Production Access in 4 Simple Steps
+            {t('productionAccess.howItWorksTitle')}
           </h2>
         </div>
         <div className="grid gap-6 sm:grid-cols-2">
@@ -221,12 +197,12 @@ export default function ProductionAccessPage() {
                     <div className="rounded-xl bg-blue-100 dark:bg-blue-950/30 p-3">{step.icon}</div>
                     <div>
                       <p className="text-xs font-medium uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                        {step.step}
+                        {t(step.stepKey)}
                       </p>
-                      <h3 className="font-semibold text-foreground">{step.title}</h3>
+                      <h3 className="font-semibold text-foreground">{t(step.titleKey)}</h3>
                     </div>
                   </div>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{step.description}</p>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{t(step.descriptionKey)}</p>
                 </CardContent>
               </Card>
               {index < steps.length - 1 && (
@@ -244,10 +220,10 @@ export default function ProductionAccessPage() {
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <Badge variant="outline" className="border-blue-800 dark:border-blue-800 text-blue-600 dark:text-blue-400">
-              What&apos;s Included
+              {t('productionAccess.whatsIncludedBadge')}
             </Badge>
             <h2 className="mt-4 text-2xl font-bold sm:text-3xl">
-              Everything You Need for Production Access
+              {t('productionAccess.whatsIncludedTitle')}
             </h2>
           </div>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -256,8 +232,8 @@ export default function ProductionAccessPage() {
                 <div className="mb-4 rounded-xl bg-blue-100 dark:bg-blue-950/30 p-3 w-fit transition-colors group-hover:bg-blue-200 dark:group-hover:bg-blue-950/50">
                   {item.icon}
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-foreground">{item.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+                <h3 className="mb-2 text-lg font-semibold text-foreground">{t(item.titleKey)}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{t(item.descriptionKey)}</p>
               </div>
             ))}
           </div>
@@ -269,9 +245,9 @@ export default function ProductionAccessPage() {
         <div className="grid gap-8 sm:grid-cols-3">
           {stats.map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="mb-2 text-4xl font-bold text-blue-600 dark:text-blue-400">{stat.value}</div>
-              <p className="text-lg font-medium text-foreground">{stat.label}</p>
-              <p className="text-sm text-muted-foreground">{stat.description}</p>
+              <div className="mb-2 text-4xl font-bold text-blue-600 dark:text-blue-400">{t(stat.valueKey)}</div>
+              <p className="text-lg font-medium text-foreground">{t(stat.labelKey)}</p>
+              <p className="text-sm text-muted-foreground">{t(stat.descriptionKey)}</p>
             </div>
           ))}
         </div>
@@ -284,12 +260,10 @@ export default function ProductionAccessPage() {
             <CardContent className="p-8 sm:p-12 text-center">
               <Shield className="mx-auto mb-6 size-12 text-blue-600 dark:text-blue-400" />
               <h2 className="text-2xl font-bold sm:text-3xl">
-                Get Production Access for $15
+                {t('productionAccess.ctaTitle')}
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-                Stop struggling with Google Play&apos;s closed testing requirements. Get 14
-                professional testers, 16 days of testing, and a guaranteed path to production
-                access — all for a one-time payment of $15.
+                {t('productionAccess.ctaDescription')}
               </p>
               <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
                 <Button
@@ -297,12 +271,12 @@ export default function ProductionAccessPage() {
                   className="bg-blue-600 text-white hover:bg-blue-700"
                   onClick={() => navigate('/production-access')}
                 >
-                  Get Production Access for $15
+                  {t('productionAccess.ctaGetProductionAccess')}
                   <ArrowRight className="ml-2 size-4" />
                 </Button>
               </div>
               <p className="mt-4 text-xs text-muted-foreground">
-                One-time payment · No subscriptions · 100% money-back guarantee
+                {t('productionAccess.ctaFootnote')}
               </p>
             </CardContent>
           </Card>

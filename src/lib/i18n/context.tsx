@@ -5,6 +5,9 @@ import { en } from './locales/en';
 import { es } from './locales/es';
 import { tr } from './locales/tr';
 import { ar } from './locales/ar';
+import { contentPagesEn, contentPagesEs, contentPagesTr, contentPagesAr } from './locales/content-pages';
+import { legalPagesEn, legalPagesEs, legalPagesTr, legalPagesAr } from './locales/legal-pages';
+import { seoTranslations } from './seo-translations';
 import { apiFetch } from '@/lib/api';
 
 export type Language = 'en' | 'es' | 'tr' | 'ar';
@@ -17,7 +20,12 @@ interface LanguageContextType {
   dir: 'rtl' | 'ltr';
 }
 
-const allTranslations: Record<Language, Record<string, string>> = { en, es, tr, ar };
+const allTranslations: Record<Language, Record<string, string>> = {
+  en: { ...en, ...contentPagesEn, ...legalPagesEn, ...seoTranslations.en },
+  es: { ...es, ...contentPagesEs, ...legalPagesEs, ...seoTranslations.es },
+  tr: { ...tr, ...contentPagesTr, ...legalPagesTr, ...seoTranslations.tr },
+  ar: { ...ar, ...contentPagesAr, ...legalPagesAr, ...seoTranslations.ar },
+};
 
 const LanguageContext = createContext<LanguageContextType>({
   language: 'en',

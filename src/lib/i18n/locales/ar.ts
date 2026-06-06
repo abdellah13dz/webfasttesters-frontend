@@ -75,6 +75,21 @@ export const ar: Record<string, string> = {
   'footer.cookiePolicy': 'سياسة ملفات تعريف الارتباط',
 
   // ═══════════════════════════════════════════════════════════════════════
+  // LEGAL / STRIPE BUSINESS DISCLOSURES
+  // ═══════════════════════════════════════════════════════════════════════
+  'legal.ownershipTitle': 'ملكية الأعمال',
+  'legal.operatedBy': 'هذا الموقع وخدمات {brand} مملوكة وتُدار من قبل {entity}.',
+  'legal.servicesDescription': 'نقدم خدمات اختبار تطبيقات أندرويد احترافية لمساعدة المطورين على تلبية متطلبات الاختبار المغلق والوصول للإنتاج في Google Play.',
+  'legal.poweredByStripe': 'المدفوعات تتم عبر Stripe',
+  'legal.customerServiceTitle': 'خدمة العملاء',
+  'legal.responseTime': 'نرد على طلبات الدعم خلال ساعتين عمل.',
+  'legal.businessAddressTitle': 'عنوان العمل',
+  'legal.addressOnRequest': 'عنوان العمل متاح عند الطلب — تواصل معنا للحصول على تفاصيل المكتب المسجل لـ Hassil LLC.',
+  'legal.phoneLabel': 'الهاتف',
+  'legal.cancellationPolicyTitle': 'سياسة الإلغاء',
+  'legal.cancellationPolicyDesc': 'يمكنك إلغاء طلبك مع استرداد كامل قبل تعيين المختبرين (عادةً خلال 6 ساعات من الدفع). بمجرد بدء الاختبار، لا يمكن إلغاء الخدمة؛ راجع سياسة الاسترداد لشروط الضمان.',
+
+  // ═══════════════════════════════════════════════════════════════════════
   // HOME PAGE
   // ═══════════════════════════════════════════════════════════════════════
   'home.productionGuarantee': 'ضمان الوصول للإنتاج 100%',
@@ -324,7 +339,7 @@ export const ar: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   'aboutUs.ourStory': 'قصتنا',
   'aboutUs.title': 'عن Fast Testers',
-  'aboutUs.subtitle': 'شريكك الموثوق في اختبار التطبيقات والنجاح في Google Play',
+  'aboutUs.subtitle': 'فاست تسترز تُدار من قبل Hassil LLC — شريكك الموثوق في اختبار التطبيقات والنجاح في Google Play',
   'aboutUs.appsPublished': 'تطبيقات منشورة',
   'aboutUs.starRating': 'تقييم النجوم',
   'aboutUs.downloads': 'التنزيلات',
@@ -625,10 +640,10 @@ export const ar: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   // SUBMIT APP PAGE
   // ═══════════════════════════════════════════════════════════════════════
-  'submitApp.heroBadge': 'أرسل تطبيقك',
-  'submitApp.heroTitle1': 'اجعل تطبيقك يُختبر بواسطة',
-  'submitApp.heroTitle2': '14 مختبراً محترفاً',
-  'submitApp.heroSubtitle': 'أرسل تطبيق أندرويد ودع مختبرينا المحترفين يتولون الباقي. نشر سريع، نتائج مضمونة، وطريق واضح للوصول إلى إنتاج Google Play.',
+  'submitApp.heroBadge': 'WhatsApp والعروض المخصصة',
+  'submitApp.heroTitle1': 'تواصل معنا عبر',
+  'submitApp.heroTitle2': 'WhatsApp للعروض الخاصة',
+  'submitApp.heroSubtitle': 'استخدم هذا النموذج إذا كنت تفضل التواصل عبر WhatsApp أو تحتاج إلى حزمة اختبار مخصصة. للاختبار القياسي، افتح لوحة CRM الاحترافية على app.fasttesters.com.',
   'submitApp.badge': 'ابدأ الآن',
   'submitApp.title': 'أرسل تطبيقك للاختبار',
   'submitApp.subtitle': 'سجل الدخول إلى لوحة التحكم لإرسال تطبيقك وتتبع تقدم الاختبار.',
@@ -665,8 +680,15 @@ export const ar: Record<string, string> = {
   'submitApp.reqTestingLinkDesc': 'رابط مسار الاختبار أو قائمة البريد الإلكتروني من Google Play Console.',
 
   // Form
-  'submitApp.formTitle': 'أرسل تطبيقك',
-  'submitApp.formSubtitle': 'املأ التفاصيل أدناه وسنقوم باختبار تطبيقك فوراً.',
+  'submitApp.formTitle': 'استفسار WhatsApp وعرض مخصص',
+  'submitApp.formSubtitle': 'شارك تفاصيلك ورقم WhatsApp — سنتواصل معك بالأسعار والخطوات التالية.',
+  'submitApp.dashboardBannerTitle': 'اختبار تطبيق قياسي؟',
+  'submitApp.dashboardBannerDesc': 'أرسل التطبيقات، تتبع المختبرين، وأدر الفوترة في لوحة CRM. معظم المطورين يستخدمون التطبيق بدلاً من هذا النموذج.',
+  'submitApp.openDashboard': 'فتح لوحة CRM',
+  'submitApp.whatsappLabel': 'رقم WhatsApp',
+  'submitApp.whatsappPlaceholder': '+1 555 123 4567',
+  'submitApp.whatsappHelp': 'أدرج رمز الدولة حتى نتمكن من مراسلتك على WhatsApp.',
+  'submitApp.standardTestingNote': 'هل تحتاج اختباراً قياسياً؟',
   'submitApp.appNameLabel': 'اسم التطبيق',
   'submitApp.appNamePlaceholder': 'تطبيقي الرائع',
   'submitApp.packageNameLabel': 'اسم الحزمة',

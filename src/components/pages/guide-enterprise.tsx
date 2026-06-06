@@ -5,7 +5,7 @@ import { APP_URL } from '@/lib/app-urls';
 import { useLanguage } from '@/lib/i18n/context';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
   ArrowRight,
@@ -16,55 +16,48 @@ import {
   FileText,
   Headphones,
   LayoutDashboard,
-  Mail,
   Phone,
-  Shield,
   UserCog,
-  Users,
   Zap,
   Calendar,
-  Award,
   Briefcase,
-  Globe,
-  BarChart3,
-  AlertTriangle,
 } from 'lucide-react';
 
 const steps = [
   {
     number: 1,
     icon: <UserCog className="size-6 text-blue-600 dark:text-blue-400" />,
-    title: 'Create Your Account',
-    description: 'Sign up and set up your agency or company profile in minutes.',
-    details: [
-      'Create your Fast Testers account',
-      'Set up your agency profile with company details',
-      'Configure billing and notification preferences',
-      'Invite team members to your workspace',
+    titleKey: 'guideEnterprise.step1Title',
+    descriptionKey: 'guideEnterprise.step1Description',
+    detailKeys: [
+      'guideEnterprise.step1Detail1',
+      'guideEnterprise.step1Detail2',
+      'guideEnterprise.step1Detail3',
+      'guideEnterprise.step1Detail4',
     ],
   },
   {
     number: 2,
     icon: <Briefcase className="size-6 text-blue-600 dark:text-blue-400" />,
-    title: 'Add Client Apps',
-    description: 'Submit multiple apps and let volume pricing work in your favor.',
-    details: [
-      'Submit your first client app in under 2 minutes',
-      'Add as many apps as you need — no limits',
-      'Volume pricing applies when you submit 5+ apps',
-      'Each app gets its own testing track and dashboard',
+    titleKey: 'guideEnterprise.step2Title',
+    descriptionKey: 'guideEnterprise.step2Description',
+    detailKeys: [
+      'guideEnterprise.step2Detail1',
+      'guideEnterprise.step2Detail2',
+      'guideEnterprise.step2Detail3',
+      'guideEnterprise.step2Detail4',
     ],
   },
   {
     number: 3,
     icon: <LayoutDashboard className="size-6 text-blue-600 dark:text-blue-400" />,
-    title: 'Track Progress',
-    description: 'Monitor all client apps from a single dashboard with manual testing reports from real testers.',
-    details: [
-      'View all client apps on a unified dashboard',
-      'Track testing progress, tester counts, and status in real-time',
-      'Download detailed human-tester reports for each client app',
-      'Receive notifications when testing milestones are reached',
+    titleKey: 'guideEnterprise.step3Title',
+    descriptionKey: 'guideEnterprise.step3Description',
+    detailKeys: [
+      'guideEnterprise.step3Detail1',
+      'guideEnterprise.step3Detail2',
+      'guideEnterprise.step3Detail3',
+      'guideEnterprise.step3Detail4',
     ],
   },
 ];
@@ -72,67 +65,66 @@ const steps = [
 const benefits = [
   {
     icon: <FileText className="size-6 text-blue-600 dark:text-blue-400" />,
-    title: 'White-Label Reports',
-    description:
-      'Download professional testing reports branded with your agency\'s logo and colors. Present them directly to your clients as your own work.',
+    titleKey: 'guideEnterprise.benefit1Title',
+    descriptionKey: 'guideEnterprise.benefit1Desc',
   },
   {
     icon: <Zap className="size-6 text-blue-600 dark:text-blue-400" />,
-    title: 'Volume Pricing',
-    description:
-      'The more apps you submit, the less you pay per app. Volume discounts start at just 5 apps, with custom pricing for 10+ apps.',
+    titleKey: 'guideEnterprise.benefit2Title',
+    descriptionKey: 'guideEnterprise.benefit2Desc',
   },
   {
     icon: <Headphones className="size-6 text-blue-600 dark:text-blue-400" />,
-    title: 'Priority Support',
-    description:
-      'Skip the queue with priority access to our support team. Get faster responses and dedicated assistance for any issues with your client apps.',
+    titleKey: 'guideEnterprise.benefit3Title',
+    descriptionKey: 'guideEnterprise.benefit3Desc',
   },
   {
     icon: <UserCog className="size-6 text-blue-600 dark:text-blue-400" />,
-    title: 'Dedicated Account Manager',
-    description:
-      'For agencies with 10+ apps, get a dedicated account manager who understands your business needs and ensures smooth onboarding for every client.',
+    titleKey: 'guideEnterprise.benefit4Title',
+    descriptionKey: 'guideEnterprise.benefit4Desc',
   },
 ];
 
 const pricingTiers = [
   {
-    range: '1\u20134 apps',
-    price: '$15',
-    priceNote: 'per app',
-    features: [
-      '14 professional testers per app',
-      '16-day testing period',
-      'Production access guarantee',
-      'Standard support',
+    rangeKey: 'guideEnterprise.tier1Range',
+    priceKey: 'guideEnterprise.tier1Price',
+    priceNoteKey: 'guideEnterprise.tier1PriceNote',
+    featureKeys: [
+      'guideEnterprise.tier1Feature1',
+      'guideEnterprise.tier1Feature2',
+      'guideEnterprise.tier1Feature3',
+      'guideEnterprise.tier1Feature4',
     ],
     highlighted: false,
+    isCustom: false,
   },
   {
-    range: '5\u20139 apps',
-    price: '$12',
-    priceNote: 'per app',
-    features: [
-      'Everything in the standard plan',
-      '20% volume discount',
-      'Priority support',
-      'White-label reports',
+    rangeKey: 'guideEnterprise.tier2Range',
+    priceKey: 'guideEnterprise.tier2Price',
+    priceNoteKey: 'guideEnterprise.tier2PriceNote',
+    featureKeys: [
+      'guideEnterprise.tier2Feature1',
+      'guideEnterprise.tier2Feature2',
+      'guideEnterprise.tier2Feature3',
+      'guideEnterprise.tier2Feature4',
     ],
     highlighted: true,
+    isCustom: false,
   },
   {
-    range: '10+ apps',
-    price: 'Custom',
-    priceNote: 'contact us',
-    features: [
-      'Everything in volume plan',
-      'Custom pricing',
-      'Dedicated account manager',
-      'Agency dashboard',
-      'SLA guarantees',
+    rangeKey: 'guideEnterprise.tier3Range',
+    priceKey: 'guideEnterprise.tier3Price',
+    priceNoteKey: 'guideEnterprise.tier3PriceNote',
+    featureKeys: [
+      'guideEnterprise.tier3Feature1',
+      'guideEnterprise.tier3Feature2',
+      'guideEnterprise.tier3Feature3',
+      'guideEnterprise.tier3Feature4',
+      'guideEnterprise.tier3Feature5',
     ],
     highlighted: false,
+    isCustom: true,
   },
 ];
 
@@ -149,32 +141,31 @@ export default function GuideEnterprisePage() {
           <div className="flex items-center gap-3 mb-6">
             <Badge className="border-blue-800 dark:border-blue-950/50 bg-blue-200/50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-800/50 text-[13px] tracking-wider">
               <Building2 className="mr-1 size-3" />
-              Enterprise
+              {t('guideEnterprise.heroBadge')}
             </Badge>
             <Badge variant="outline" className="border-border text-muted-foreground">
               <Clock className="mr-1 size-3" />
-              &lt; 10 min setup
+              {t('guideEnterprise.heroBadgeSetup')}
             </Badge>
           </div>
 
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Agency &amp; Enterprise{' '}
-            <span className="text-blue-600 dark:text-blue-400">Onboarding Guide</span>
+            {t('guideEnterprise.heroTitlePrefix')}{' '}
+            <span className="text-blue-600 dark:text-blue-400">{t('guideEnterprise.heroTitleHighlight')}</span>
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
-            Everything your agency or company needs to start using Fast Testers for your
-            clients&apos; apps.
+            {t('guideEnterprise.heroDescription')}
           </p>
 
           {/* Timeline */}
           <div className="mt-8 flex items-center gap-3">
             <div className="flex items-center gap-2 rounded-lg border border-border bg-card/50 px-4 py-2">
               <Zap className="size-4 text-blue-600 dark:text-blue-400" />
-              <span className="text-sm text-foreground">3 simple steps</span>
+              <span className="text-sm text-foreground">{t('guideEnterprise.heroTimelineSteps')}</span>
             </div>
             <div className="flex items-center gap-2 rounded-lg border border-border bg-card/50 px-4 py-2">
               <Clock className="size-4 text-blue-600 dark:text-blue-400" />
-              <span className="text-sm text-foreground">&lt; 10 min setup</span>
+              <span className="text-sm text-foreground">{t('guideEnterprise.heroTimelineSetup')}</span>
             </div>
           </div>
 
@@ -182,14 +173,13 @@ export default function GuideEnterprisePage() {
           <Alert className="mt-8 border-blue-200 dark:border-blue-800/50 bg-blue-50 dark:bg-blue-950/20">
             <Phone className="size-4 text-blue-600 dark:text-blue-400" />
             <AlertDescription className="text-blue-800 dark:text-blue-200/80 text-sm">
-              <strong className="text-blue-900 dark:text-blue-300">Launching multiple client apps?</strong>{' '}
-              Book a 30-Minute Call with our founder to discuss your agency needs and get set up
-              quickly.
+              <strong className="text-blue-900 dark:text-blue-300">{t('guideEnterprise.alertTitle')}</strong>{' '}
+              {t('guideEnterprise.alertText')}
               <button
                 onClick={() => navigate('/contact-us')}
                 className="ml-1 text-blue-700 dark:text-blue-400 underline underline-offset-2 hover:text-blue-900 dark:hover:text-blue-300"
               >
-                Book a call →
+                {t('guideEnterprise.alertLink')}
               </button>
             </AlertDescription>
           </Alert>
@@ -210,7 +200,7 @@ export default function GuideEnterprisePage() {
               onClick={() => navigate('/contact-us')}
             >
               <Phone className="mr-2 size-4" />
-              Book a 30-Minute Call
+              {t('guideEnterprise.ctaBookCall')}
             </Button>
           </div>
         </div>
@@ -221,10 +211,11 @@ export default function GuideEnterprisePage() {
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <Badge variant="outline" className="border-blue-800 dark:border-blue-800 text-blue-600 dark:text-blue-400">
-              Getting Started
+              {t('guideEnterprise.gettingStartedBadge')}
             </Badge>
             <h2 className="mt-4 text-2xl font-bold sm:text-3xl">
-              Onboard in <span className="text-blue-600 dark:text-blue-400">3 Simple Steps</span>
+              {t('guideEnterprise.stepsTitle').replace(t('guideEnterprise.stepsHighlight'), '')}
+              <span className="text-blue-600 dark:text-blue-400">{t('guideEnterprise.stepsHighlight')}</span>
             </h2>
           </div>
 
@@ -239,16 +230,16 @@ export default function GuideEnterprisePage() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-xs font-medium uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                          Step {step.number}
+                          {t('setupGuide.stepLabel')} {step.number}
                         </span>
                       </div>
-                      <h3 className="text-lg font-semibold text-foreground mb-2">{step.title}</h3>
-                      <p className="text-sm text-muted-foreground mb-4">{step.description}</p>
+                      <h3 className="text-lg font-semibold text-foreground mb-2">{t(step.titleKey)}</h3>
+                      <p className="text-sm text-muted-foreground mb-4">{t(step.descriptionKey)}</p>
                       <ul className="space-y-2">
-                        {step.details.map((detail, idx) => (
-                          <li key={idx} className="flex items-start gap-2 text-sm text-foreground/80">
+                        {step.detailKeys.map((detailKey) => (
+                          <li key={detailKey} className="flex items-start gap-2 text-sm text-foreground/80">
                             <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-blue-500" />
-                            {detail}
+                            {t(detailKey)}
                           </li>
                         ))}
                       </ul>
@@ -270,25 +261,26 @@ export default function GuideEnterprisePage() {
       <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
           <Badge variant="outline" className="border-blue-800 dark:border-blue-800 text-blue-600 dark:text-blue-400">
-            Why Agencies Choose Us
+            {t('guideEnterprise.benefitsBadge')}
           </Badge>
           <h2 className="mt-4 text-2xl font-bold sm:text-3xl">
-            Built for <span className="text-blue-600 dark:text-blue-400">Agencies</span>
+            {t('guideEnterprise.benefitsTitle').replace(t('guideEnterprise.benefitsHighlight'), '')}
+            <span className="text-blue-600 dark:text-blue-400">{t('guideEnterprise.benefitsHighlight')}</span>
           </h2>
           <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
-            We understand the unique needs of agencies managing multiple client apps.
+            {t('guideEnterprise.benefitsSubtitle')}
           </p>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2">
-          {benefits.map((benefit, index) => (
-            <Card key={index} className="border-border bg-card/50 group hover:border-blue-500/20 transition-colors">
+          {benefits.map((benefit) => (
+            <Card key={benefit.titleKey} className="border-border bg-card/50 group hover:border-blue-500/20 transition-colors">
               <CardContent className="p-6">
                 <div className="mb-4 rounded-xl bg-blue-100 dark:bg-blue-950/30 p-3 w-fit group-hover:bg-blue-200 dark:group-hover:bg-blue-950/50 transition-colors">
                   {benefit.icon}
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">{benefit.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{benefit.description}</p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">{t(benefit.titleKey)}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t(benefit.descriptionKey)}</p>
               </CardContent>
             </Card>
           ))}
@@ -300,20 +292,21 @@ export default function GuideEnterprisePage() {
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <Badge variant="outline" className="border-blue-800 dark:border-blue-800 text-blue-600 dark:text-blue-400">
-              Agency Pricing
+              {t('guideEnterprise.pricingBadge')}
             </Badge>
             <h2 className="mt-4 text-2xl font-bold sm:text-3xl">
-              Volume <span className="text-blue-600 dark:text-blue-400">Discounts</span>
+              {t('guideEnterprise.pricingTitle').replace(t('guideEnterprise.pricingHighlight'), '')}
+              <span className="text-blue-600 dark:text-blue-400">{t('guideEnterprise.pricingHighlight')}</span>
             </h2>
             <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
-              The more apps you test, the more you save. Volume pricing starts at 5 apps.
+              {t('guideEnterprise.pricingSubtitle')}
             </p>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-3">
-            {pricingTiers.map((tier, index) => (
+            {pricingTiers.map((tier) => (
               <Card
-                key={index}
+                key={tier.rangeKey}
                 className={`relative border-border bg-card/50 flex flex-col ${
                   tier.highlighted
                     ? 'border-blue-300 dark:border-blue-500/30 bg-blue-100/50 dark:bg-blue-950/10 ring-1 ring-blue-300/50 dark:ring-blue-500/20'
@@ -328,16 +321,16 @@ export default function GuideEnterprisePage() {
                   </div>
                 )}
                 <CardContent className="p-6 flex-1 flex flex-col">
-                  <p className="text-sm text-muted-foreground mb-2">{tier.range}</p>
+                  <p className="text-sm text-muted-foreground mb-2">{t(tier.rangeKey)}</p>
                   <div className="mb-4">
-                    <span className="text-3xl font-bold text-blue-600 dark:text-blue-400">{tier.price}</span>
-                    <span className="text-sm text-muted-foreground ml-1">{tier.priceNote}</span>
+                    <span className="text-3xl font-bold text-blue-600 dark:text-blue-400">{t(tier.priceKey)}</span>
+                    <span className="text-sm text-muted-foreground ml-1">{t(tier.priceNoteKey)}</span>
                   </div>
                   <ul className="space-y-2.5 flex-1">
-                    {tier.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-sm text-foreground/80">
+                    {tier.featureKeys.map((featureKey) => (
+                      <li key={featureKey} className="flex items-start gap-2 text-sm text-foreground/80">
                         <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-blue-500" />
-                        {feature}
+                        {t(featureKey)}
                       </li>
                     ))}
                   </ul>
@@ -348,12 +341,12 @@ export default function GuideEnterprisePage() {
                         : 'bg-muted text-foreground hover:bg-muted/80'
                     }`}
                     onClick={() =>
-                      tier.price === 'Custom'
+                      tier.isCustom
                         ? navigate('/contact-us')
                         : navigate(APP_URL)
                     }
                   >
-                    {tier.price === 'Custom' ? 'Contact Sales' : t('common.getStarted')}
+                    {tier.isCustom ? t('guideEnterprise.tier3Cta') : t('common.getStarted')}
                     <ArrowRight className="ml-2 size-4" />
                   </Button>
                 </CardContent>
@@ -370,12 +363,10 @@ export default function GuideEnterprisePage() {
             <CardContent className="p-8 sm:p-12 text-center">
               <Building2 className="mx-auto mb-6 size-12 text-blue-600 dark:text-blue-400" />
               <h2 className="text-2xl font-bold sm:text-3xl">
-                Ready to Scale Your Agency?
+                {t('guideEnterprise.ctaTitle')}
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-                Join hundreds of agencies who trust Fast Testers to handle their client
-                app testing. Get started in under 10 minutes, or book a call to discuss your
-                specific needs.
+                {t('guideEnterprise.ctaDescription')}
               </p>
               <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
                 <Button
@@ -393,7 +384,7 @@ export default function GuideEnterprisePage() {
                   onClick={() => navigate('/contact-us')}
                 >
                   <Calendar className="mr-2 size-4" />
-                  Book a 30-Minute Call
+                  {t('guideEnterprise.ctaBookCall')}
                 </Button>
               </div>
             </CardContent>

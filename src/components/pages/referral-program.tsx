@@ -6,7 +6,6 @@ import { APP_URL } from '@/lib/app-urls';
 import { useLanguage } from '@/lib/i18n/context';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import {
   DollarSign,
@@ -17,7 +16,6 @@ import {
   Share2,
   Gift,
   Zap,
-  Clock,
   Infinity,
   Video,
   MessageSquare,
@@ -30,29 +28,29 @@ import {
 
 const stats = [
   {
-    label: 'Total Earned',
-    value: '$847.20',
+    labelKey: 'referralProgram.statTotalEarned',
+    valueKey: 'referralProgram.statTotalEarnedValue',
     icon: DollarSign,
     color: 'text-blue-400',
     bgColor: 'bg-blue-500/10',
   },
   {
-    label: 'Referrals',
-    value: '47 signups',
+    labelKey: 'referralProgram.statReferrals',
+    valueKey: 'referralProgram.statReferralsValue',
     icon: Users,
     color: 'text-blue-400',
     bgColor: 'bg-blue-500/10',
   },
   {
-    label: 'Converted',
-    value: '12 (25.5%)',
+    labelKey: 'referralProgram.statConverted',
+    valueKey: 'referralProgram.statConvertedValue',
     icon: TrendingUp,
     color: 'text-purple-400',
     bgColor: 'bg-purple-500/10',
   },
   {
-    label: 'Balance',
-    value: '$64.20',
+    labelKey: 'referralProgram.statBalance',
+    valueKey: 'referralProgram.statBalanceValue',
     icon: Wallet,
     color: 'text-amber-400',
     bgColor: 'bg-amber-500/10',
@@ -62,66 +60,66 @@ const stats = [
 const howItWorks = [
   {
     step: 1,
-    title: 'Get your referral link',
-    description: 'Sign in to your dashboard and copy your unique referral link. It takes just 10 seconds.',
+    titleKey: 'referralProgram.step1Title',
+    descriptionKey: 'referralProgram.step1Description',
     icon: Link2,
   },
   {
     step: 2,
-    title: 'Share with developers',
-    description: 'Share your link on social media, in communities, or directly with fellow developers who need testing.',
+    titleKey: 'referralProgram.step2Title',
+    descriptionKey: 'referralProgram.step2Description',
     icon: Share2,
   },
   {
     step: 3,
-    title: 'Earn 10% when they purchase',
-    description: 'When someone signs up through your link and makes their first purchase, you earn 10% of their order value.',
+    titleKey: 'referralProgram.step3Title',
+    descriptionKey: 'referralProgram.step3Description',
     icon: Gift,
   },
 ];
 
 const benefits = [
   {
-    title: 'Free to join',
-    description: 'No fees, no minimum audience size required',
+    titleKey: 'referralProgram.benefit1Title',
+    descriptionKey: 'referralProgram.benefit1Desc',
     icon: Gift,
   },
   {
-    title: 'No minimum audience',
-    description: 'Whether you have 10 followers or 10,000, you can participate',
+    titleKey: 'referralProgram.benefit2Title',
+    descriptionKey: 'referralProgram.benefit2Desc',
     icon: Users,
   },
   {
-    title: 'Activate in 10 seconds',
-    description: 'Just sign in, grab your link, and start sharing immediately',
+    titleKey: 'referralProgram.benefit3Title',
+    descriptionKey: 'referralProgram.benefit3Desc',
     icon: Zap,
   },
   {
-    title: 'No caps on earnings',
-    description: 'Earn unlimited commissions — the more you refer, the more you earn',
+    titleKey: 'referralProgram.benefit4Title',
+    descriptionKey: 'referralProgram.benefit4Desc',
     icon: Infinity,
   },
 ];
 
 const whoItsFor = [
   {
-    title: 'YouTubers',
-    description: 'Share in video descriptions or community posts',
+    titleKey: 'referralProgram.audience1Title',
+    descriptionKey: 'referralProgram.audience1Desc',
     icon: Video,
   },
   {
-    title: 'Community Builders',
-    description: 'Share in Discord, Slack, or Facebook groups',
+    titleKey: 'referralProgram.audience2Title',
+    descriptionKey: 'referralProgram.audience2Desc',
     icon: MessageSquare,
   },
   {
-    title: 'No-Code Agencies',
-    description: 'Recommend to clients who need app testing',
+    titleKey: 'referralProgram.audience3Title',
+    descriptionKey: 'referralProgram.audience3Desc',
     icon: Briefcase,
   },
   {
-    title: 'Developers',
-    description: 'Share with colleagues and fellow developers',
+    titleKey: 'referralProgram.audience4Title',
+    descriptionKey: 'referralProgram.audience4Desc',
     icon: Code2,
   },
 ];
@@ -147,22 +145,21 @@ export default function ReferralProgramPage() {
               {t('footer.affiliateProgram')}
             </Badge>
             <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-              App Testing Referral Program —{' '}
-              <span className="text-blue-400">Earn 10% Commission</span>
+              {t('referralProgram.heroTitlePrefix')}{' '}
+              <span className="text-blue-400">{t('referralProgram.heroTitleHighlight')}</span>
             </h1>
             <p className="mt-6 text-xl text-blue-400 font-semibold">
-              Share a link, get 10% of every sale
+              {t('referralProgram.heroTagline')}
             </p>
             <p className="mt-4 text-lg text-muted-foreground sm:text-xl max-w-2xl mx-auto">
-              Recommend Fast Testers to fellow developers. When they purchase, you earn 10% of
-              their first order. No caps, no approvals, paid out fast.
+              {t('referralProgram.heroDescription')}
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
                 onClick={() => navigate(APP_URL)}
                 className="bg-blue-500 hover:bg-blue-600 text-white font-semibold h-12 px-8 text-base cursor-pointer"
               >
-                Get your referral link
+                {t('referralProgram.ctaGetReferralLink')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button
@@ -170,7 +167,7 @@ export default function ReferralProgramPage() {
                 onClick={() => navigate('/referral-policy')}
                 className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 font-semibold h-12 px-8 text-base cursor-pointer"
               >
-                Read the terms
+                {t('referralProgram.ctaReadTerms')}
               </Button>
             </div>
           </div>
@@ -182,13 +179,13 @@ export default function ReferralProgramPage() {
         <div className="text-center mb-8">
           <Badge variant="outline" className="border-blue-500/30 text-blue-400 bg-blue-500/10 mb-3">
             <BarChart3 className="mr-1 h-3 w-3" />
-            Your Dashboard Preview
+            {t('referralProgram.dashboardBadge')}
           </Badge>
           <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
-            Track Your Earnings
+            {t('referralProgram.dashboardTitle')}
           </h2>
           <p className="mt-2 text-muted-foreground">
-            See your referral performance at a glance
+            {t('referralProgram.dashboardSubtitle')}
           </p>
         </div>
 
@@ -196,21 +193,21 @@ export default function ReferralProgramPage() {
           <CardHeader className="pb-2">
             <CardTitle className="text-lg text-foreground flex items-center gap-2">
               <BarChart3 className="h-5 w-5 text-blue-400" />
-              Referral Dashboard
+              {t('referralProgram.dashboardCardTitle')}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {stats.map((stat) => (
                 <div
-                  key={stat.label}
+                  key={stat.labelKey}
                   className="rounded-xl border border-border/50 bg-background/50 p-4 text-center"
                 >
                   <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/10">
                     <stat.icon className={`h-5 w-5 ${stat.color}`} />
                   </div>
-                  <p className="text-2xl font-bold text-foreground">{stat.value}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{stat.label}</p>
+                  <p className="text-2xl font-bold text-foreground">{t(stat.valueKey)}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{t(stat.labelKey)}</p>
                 </div>
               ))}
             </div>
@@ -226,8 +223,8 @@ export default function ReferralProgramPage() {
                 ))}
               </div>
               <div className="flex items-center justify-between mt-2">
-                <span className="text-xs text-muted-foreground">Jan</span>
-                <span className="text-xs text-muted-foreground">Dec</span>
+                <span className="text-xs text-muted-foreground">{t('referralProgram.chartMonthStart')}</span>
+                <span className="text-xs text-muted-foreground">{t('referralProgram.chartMonthEnd')}</span>
               </div>
             </div>
           </CardContent>
@@ -239,10 +236,11 @@ export default function ReferralProgramPage() {
         <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
           <div className="text-center mb-10">
             <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
-              How It <span className="text-blue-400">Works</span>
+              {t('referralProgram.howItWorksTitle').replace(t('referralProgram.howItWorksHighlight'), '')}
+              <span className="text-blue-400">{t('referralProgram.howItWorksHighlight')}</span>
             </h2>
             <p className="mt-2 text-muted-foreground">
-              Three simple steps to start earning
+              {t('referralProgram.howItWorksSubtitle')}
             </p>
           </div>
 
@@ -258,9 +256,9 @@ export default function ReferralProgramPage() {
                       <step.icon className="h-5 w-5" />
                     </div>
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">{step.title}</h3>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{t(step.titleKey)}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    {step.description}
+                    {t(step.descriptionKey)}
                   </p>
                 </CardContent>
               </Card>
@@ -273,24 +271,25 @@ export default function ReferralProgramPage() {
       <section className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
         <div className="text-center mb-10">
           <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
-            Why <span className="text-blue-400">Join?</span>
+            {t('referralProgram.benefitsTitle').replace(t('referralProgram.benefitsHighlight'), '')}
+            <span className="text-blue-400">{t('referralProgram.benefitsHighlight')}</span>
           </h2>
           <p className="mt-2 text-muted-foreground">
-            Benefits that make our referral program stand out
+            {t('referralProgram.benefitsSubtitle')}
           </p>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2">
           {benefits.map((benefit) => (
-            <Card key={benefit.title} className="border-border/50 bg-card/50">
+            <Card key={benefit.titleKey} className="border-border/50 bg-card/50">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400">
                     <benefit.icon className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground mb-1">{benefit.title}</h3>
-                    <p className="text-sm text-muted-foreground">{benefit.description}</p>
+                    <h3 className="font-semibold text-foreground mb-1">{t(benefit.titleKey)}</h3>
+                    <p className="text-sm text-muted-foreground">{t(benefit.descriptionKey)}</p>
                   </div>
                 </div>
               </CardContent>
@@ -304,22 +303,23 @@ export default function ReferralProgramPage() {
         <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
           <div className="text-center mb-10">
             <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
-              Who Is This <span className="text-blue-400">For?</span>
+              {t('referralProgram.whoItsForTitle').replace(t('referralProgram.whoItsForHighlight'), '')}
+              <span className="text-blue-400">{t('referralProgram.whoItsForHighlight')}</span>
             </h2>
             <p className="mt-2 text-muted-foreground">
-              Perfect for anyone who connects with app developers
+              {t('referralProgram.whoItsForSubtitle')}
             </p>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {whoItsFor.map((item) => (
-              <Card key={item.title} className="border-border/50 bg-card/80 text-center">
+              <Card key={item.titleKey} className="border-border/50 bg-card/80 text-center">
                 <CardContent className="p-6">
                   <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10 text-blue-400">
                     <item.icon className="h-6 w-6" />
                   </div>
-                  <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.description}</p>
+                  <h3 className="font-semibold text-foreground mb-2">{t(item.titleKey)}</h3>
+                  <p className="text-sm text-muted-foreground">{t(item.descriptionKey)}</p>
                 </CardContent>
               </Card>
             ))}
@@ -333,18 +333,17 @@ export default function ReferralProgramPage() {
           <CardContent className="p-8 sm:p-12 text-center">
             <Sparkles className="mx-auto h-10 w-10 text-blue-400 mb-4" />
             <h2 className="text-2xl font-bold text-foreground sm:text-3xl mb-4">
-              Ready to Start Earning?
+              {t('referralProgram.ctaTitle')}
             </h2>
             <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
-              Join our referral program today and earn 10% commission on every developer you refer.
-              No caps, no minimums — just simple, fast earnings.
+              {t('referralProgram.ctaDescription')}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
                 onClick={() => navigate(APP_URL)}
                 className="bg-blue-500 hover:bg-blue-600 text-white font-semibold h-12 px-8 text-base cursor-pointer"
               >
-                Get your referral link
+                {t('referralProgram.ctaGetReferralLink')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button
@@ -352,7 +351,7 @@ export default function ReferralProgramPage() {
                 onClick={() => navigate('/referral-policy')}
                 className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 font-semibold cursor-pointer"
               >
-                Read the terms
+                {t('referralProgram.ctaReadTerms')}
               </Button>
             </div>
           </CardContent>

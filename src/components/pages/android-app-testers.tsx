@@ -16,7 +16,6 @@ import {
   Clock,
   Shield,
   ArrowRight,
-  Zap,
   AlertTriangle,
   UserX,
   Timer,
@@ -29,73 +28,76 @@ export default function AndroidAppTestersPage() {
   const challenges = [
     {
       icon: <AlertTriangle className="size-5 text-amber-400" />,
-      title: 'Google Play Requires 12+ Testers for 14 Days',
-      description:
-        'New personal developer accounts must run closed testing with at least 12 testers for 14 consecutive days before publishing. Finding and managing that many reliable testers is a major hurdle.',
+      titleKey: 'androidAppTesters.challenge1Title',
+      descriptionKey: 'androidAppTesters.challenge1Desc',
     },
     {
       icon: <UserX className="size-5 text-amber-400" />,
-      title: 'Friends Don\'t Provide Real Feedback',
-      description:
-        'Your friends and family will install your app and say "it\'s great!" — but they won\'t find the bugs or give you the honest, detailed feedback you need to improve your app and pass review.',
+      titleKey: 'androidAppTesters.challenge2Title',
+      descriptionKey: 'androidAppTesters.challenge2Desc',
     },
     {
       icon: <Clock className="size-5 text-amber-400" />,
-      title: 'Reddit & Discord Testers Ghost',
-      description:
-        'You spend hours posting on Reddit and Discord, and testers initially seem interested. But within days, they stop responding, leave the testing track, and you\'re back to square one.',
+      titleKey: 'androidAppTesters.challenge3Title',
+      descriptionKey: 'androidAppTesters.challenge3Desc',
     },
     {
       icon: <Timer className="size-5 text-amber-400" />,
-      title: 'Managing Testers Manually Takes Too Much Time',
-      description:
-        'Coordinating with testers, sending reminders, tracking who\'s still active, and collecting feedback — it\'s a full-time job that takes you away from actually building your app.',
+      titleKey: 'androidAppTesters.challenge4Title',
+      descriptionKey: 'androidAppTesters.challenge4Desc',
     },
   ]
 
   const features = [
     {
       icon: <Users className="size-6 text-blue-400" />,
-      title: '14 Verified Testers',
-      description:
-        'We assign 14 professional testers to your app — more than the 12 minimum required by Google Play. This buffer ensures you always meet the requirement even if a few testers drop off.',
+      titleKey: 'androidAppTesters.feature1Title',
+      descriptionKey: 'androidAppTesters.feature1Desc',
     },
     {
       icon: <Smartphone className="size-6 text-blue-400" />,
-      title: 'Real Devices',
-      description:
-        'Our testers use real Android devices — not emulators. This means you get feedback from actual hardware with real network conditions, screen sizes, and Android versions.',
+      titleKey: 'androidAppTesters.feature2Title',
+      descriptionKey: 'androidAppTesters.feature2Desc',
     },
     {
       icon: <MessageSquare className="size-6 text-blue-400" />,
-      title: 'Genuine Feedback',
-      description:
-        'Each tester provides detailed, constructive feedback about your app\'s usability, performance, and bugs. No generic "looks good" reviews — real insights that help you improve.',
+      titleKey: 'androidAppTesters.feature3Title',
+      descriptionKey: 'androidAppTesters.feature3Desc',
     },
     {
       icon: <Calendar className="size-6 text-blue-400" />,
-      title: '14-Day Continuity',
-      description:
-        'Our testers stay active for the full 14-day period required by Google Play. We monitor participation daily and replace any testers who become inactive to ensure continuous coverage.',
+      titleKey: 'androidAppTesters.feature4Title',
+      descriptionKey: 'androidAppTesters.feature4Desc',
     },
     {
       icon: <FileText className="size-6 text-blue-400" />,
-      title: t('home.comprehensiveReports'),
-      description:
-        'Receive detailed testing reports including bug reports, UX feedback, device-specific issues, and screenshots. Everything you need to improve your app and pass Google Play review.',
+      titleKey: 'home.comprehensiveReports',
+      descriptionKey: 'androidAppTesters.feature5Desc',
     },
   ]
 
   const comparisonData = [
-    { feature: 'Testers actually show up', free: false, professional: true },
-    { feature: 'Stay for full 14 days', free: false, professional: true },
-    { feature: 'Provide detailed feedback', free: false, professional: true },
-    { feature: 'Real device testing', free: 'sometimes', professional: true },
-    { feature: 'Bug reports with screenshots', free: false, professional: true },
-    { feature: 'Active monitoring & replacement', free: false, professional: true },
-    { feature: 'Guaranteed production access', free: false, professional: true },
-    { feature: 'Time to set up', free: '5+ hours', professional: '5 minutes' },
-    { feature: 'Ongoing management', free: 'You handle it', professional: 'We handle it' },
+    { featureKey: 'androidAppTesters.compare1', free: false, professional: true },
+    { featureKey: 'androidAppTesters.compare2', free: false, professional: true },
+    { featureKey: 'androidAppTesters.compare3', free: false, professional: true },
+    {
+      featureKey: 'androidAppTesters.compare4',
+      freeKey: 'androidAppTesters.compare4Free',
+      professional: true,
+    },
+    { featureKey: 'androidAppTesters.compare5', free: false, professional: true },
+    { featureKey: 'androidAppTesters.compare6', free: false, professional: true },
+    { featureKey: 'androidAppTesters.compare7', free: false, professional: true },
+    {
+      featureKey: 'androidAppTesters.compare8',
+      freeKey: 'androidAppTesters.compare8Free',
+      proKey: 'androidAppTesters.compare8Pro',
+    },
+    {
+      featureKey: 'androidAppTesters.compare9',
+      freeKey: 'androidAppTesters.compare9Free',
+      proKey: 'androidAppTesters.compare9Pro',
+    },
   ]
 
   return (
@@ -106,17 +108,15 @@ export default function AndroidAppTestersPage() {
         <div className="relative mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <Badge className="mb-6 border-blue-800 dark:border-blue-950/50 bg-blue-200/50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-800/50 text-[13px] tracking-wider">
             <Smartphone className="mr-1 size-3" />
-            Android App Testing
+            {t('androidAppTesters.heroBadge')}
           </Badge>
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Android App Testers Who Actually{' '}
-            <span className="text-blue-400">Show Up</span> &amp; Stay for{' '}
-            <span className="text-blue-400">14 Days</span>
+            {t('androidAppTesters.heroTitlePrefix')}{' '}
+            <span className="text-blue-400">{t('androidAppTesters.heroTitleShowUp')}</span> {t('androidAppTesters.heroTitleAndStayFor')}{' '}
+            <span className="text-blue-400">{t('androidAppTesters.heroTitleStayFor')}</span>
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
-            Stop scrambling to find testers on Reddit, Discord, or among friends. Get 14 verified
-            Android app testers assigned to your app within hours — real people, real devices, real
-            feedback.
+            {t('androidAppTesters.heroDescription')}
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <Button
@@ -124,7 +124,7 @@ export default function AndroidAppTestersPage() {
               className="bg-blue-600 text-white hover:bg-blue-700"
               onClick={() => navigate('/production-access')}
             >
-              Get 14 Android Testers for $15
+              {t('androidAppTesters.ctaGetTesters')}
               <ArrowRight className="ml-2 size-4" />
             </Button>
             <Button
@@ -133,7 +133,7 @@ export default function AndroidAppTestersPage() {
               className="border-border text-foreground/80 hover:bg-muted"
               onClick={() => navigate('/closed-testing')}
             >
-              Learn About Closed Testing
+              {t('androidAppTesters.ctaLearnClosedTesting')}
             </Button>
           </div>
         </div>
@@ -143,13 +143,10 @@ export default function AndroidAppTestersPage() {
       <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
           <Badge variant="outline" className="border-border text-muted-foreground">
-            The Challenge
+            {t('androidAppTesters.challengeBadge')}
           </Badge>
-          <h2 className="mt-4 text-2xl font-bold sm:text-3xl">The Android Developer Challenge</h2>
-          <p className="mt-4 text-muted-foreground">
-            Every new Android developer faces the same frustrating cycle when trying to meet Google
-            Play&apos;s testing requirements.
-          </p>
+          <h2 className="mt-4 text-2xl font-bold sm:text-3xl">{t('androidAppTesters.challengeTitle')}</h2>
+          <p className="mt-4 text-muted-foreground">{t('androidAppTesters.challengeSubtitle')}</p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2">
           {challenges.map((challenge, index) => (
@@ -160,11 +157,11 @@ export default function AndroidAppTestersPage() {
               <CardHeader>
                 <div className="flex items-start gap-3">
                   <div className="mt-0.5 rounded-lg bg-amber-950/10 dark:bg-amber-950/50 p-2">{challenge.icon}</div>
-                  <CardTitle className="text-base text-foreground">{challenge.title}</CardTitle>
+                  <CardTitle className="text-base text-foreground">{t(challenge.titleKey)}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-sm leading-relaxed text-muted-foreground">{challenge.description}</p>
+                <p className="text-sm leading-relaxed text-muted-foreground">{t(challenge.descriptionKey)}</p>
               </CardContent>
             </Card>
           ))}
@@ -176,11 +173,9 @@ export default function AndroidAppTestersPage() {
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <Badge variant="outline" className="border-blue-800 text-blue-400">
-              What You Get
+              {t('androidAppTesters.whatYouGetBadge')}
             </Badge>
-            <h2 className="mt-4 text-2xl font-bold sm:text-3xl">
-              Everything You Need to Pass Closed Testing
-            </h2>
+            <h2 className="mt-4 text-2xl font-bold sm:text-3xl">{t('androidAppTesters.whatYouGetTitle')}</h2>
           </div>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((feature, index) => (
@@ -188,8 +183,8 @@ export default function AndroidAppTestersPage() {
                 <div className="mb-4 rounded-xl bg-blue-950/10 dark:bg-blue-950/50 p-3 w-fit transition-colors group-hover:bg-blue-950/50">
                   {feature.icon}
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-foreground">{feature.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
+                <h3 className="mb-2 text-lg font-semibold text-foreground">{t(feature.titleKey)}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{t(feature.descriptionKey)}</p>
               </div>
             ))}
           </div>
@@ -200,43 +195,43 @@ export default function AndroidAppTestersPage() {
       <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
           <Badge variant="outline" className="border-border text-muted-foreground">
-            Comparison
+            {t('androidAppTesters.comparisonBadge')}
           </Badge>
-          <h2 className="mt-4 text-2xl font-bold sm:text-3xl">
-            Why Professional Testers Beat Free Options
-          </h2>
-          <p className="mt-4 text-muted-foreground">
-            Free testers cost you time, and time is money. Here&apos;s the honest comparison.
-          </p>
+          <h2 className="mt-4 text-2xl font-bold sm:text-3xl">{t('androidAppTesters.comparisonTitle')}</h2>
+          <p className="mt-4 text-muted-foreground">{t('androidAppTesters.comparisonSubtitle')}</p>
         </div>
         <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border bg-card/50">
-                <th className="px-6 py-4 text-left font-medium text-muted-foreground">Feature</th>
+                <th className="px-6 py-4 text-left font-medium text-muted-foreground">
+                  {t('androidAppTesters.tableFeature')}
+                </th>
                 <th className="px-6 py-4 text-center font-medium text-muted-foreground">
-                  Free Testers
+                  {t('androidAppTesters.tableFreeTesters')}
                 </th>
                 <th className="px-6 py-4 text-center font-medium text-blue-400">
-                  Professional Testers
+                  {t('androidAppTesters.tableProfessionalTesters')}
                 </th>
               </tr>
             </thead>
             <tbody>
               {comparisonData.map((row, index) => (
                 <tr key={index} className="border-b border-border/50">
-                  <td className="px-6 py-4 text-foreground/80">{row.feature}</td>
+                  <td className="px-6 py-4 text-foreground/80">{t(row.featureKey)}</td>
                   <td className="px-6 py-4 text-center">
-                    {row.free === true ? (
+                    {row.freeKey ? (
+                      <span className="text-xs text-muted-foreground">{t(row.freeKey)}</span>
+                    ) : row.free === true ? (
                       <CheckCircle2 className="mx-auto size-5 text-blue-400" />
-                    ) : row.free === false ? (
-                      <XCircle className="mx-auto size-5 text-red-400" />
                     ) : (
-                      <span className="text-xs text-muted-foreground">{row.free}</span>
+                      <XCircle className="mx-auto size-5 text-red-400" />
                     )}
                   </td>
                   <td className="px-6 py-4 text-center">
-                    {row.professional === true ? (
+                    {row.proKey ? (
+                      <span className="text-xs text-blue-400">{t(row.proKey)}</span>
+                    ) : row.professional === true ? (
                       <CheckCircle2 className="mx-auto size-5 text-blue-400" />
                     ) : (
                       <span className="text-xs text-blue-400">{row.professional}</span>
@@ -254,16 +249,16 @@ export default function AndroidAppTestersPage() {
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="grid gap-8 sm:grid-cols-3">
             <div className="text-center">
-              <div className="mb-2 text-3xl font-bold text-blue-400">1,500+</div>
+              <div className="mb-2 text-3xl font-bold text-blue-400">{t('androidAppTesters.statAppsPublished')}</div>
               <p className="text-sm text-muted-foreground">{t('home.appsPublished')}</p>
             </div>
             <div className="text-center">
-              <div className="mb-2 text-3xl font-bold text-blue-400">99.9%</div>
+              <div className="mb-2 text-3xl font-bold text-blue-400">{t('androidAppTesters.statSuccessRate')}</div>
               <p className="text-sm text-muted-foreground">{t('home.successRate')}</p>
             </div>
             <div className="text-center">
-              <div className="mb-2 text-3xl font-bold text-blue-400">6 Hours</div>
-              <p className="text-sm text-muted-foreground">Average Start Time</p>
+              <div className="mb-2 text-3xl font-bold text-blue-400">{t('androidAppTesters.statStartTime')}</div>
+              <p className="text-sm text-muted-foreground">{t('androidAppTesters.statAvgStartTime')}</p>
             </div>
           </div>
         </div>
@@ -274,27 +269,19 @@ export default function AndroidAppTestersPage() {
         <Card className="border-blue-900/50 bg-gradient-to-br from-blue-950/30 to-card/50">
           <CardContent className="p-8 sm:p-12 text-center">
             <Shield className="mx-auto mb-6 size-12 text-blue-400" />
-            <h2 className="text-2xl font-bold sm:text-3xl">
-              Ready to Get Your App Published?
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Stop wasting weeks chasing unreliable testers. Get 14 verified Android app testers
-              assigned to your app within hours. Professional testing, guaranteed results, and
-              production access — all for just $15.
-            </p>
+            <h2 className="text-2xl font-bold sm:text-3xl">{t('androidAppTesters.ctaTitle')}</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">{t('androidAppTesters.ctaDescription')}</p>
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Button
                 size="lg"
                 className="bg-blue-600 text-white hover:bg-blue-700"
                 onClick={() => navigate('/production-access')}
               >
-                Get 14 Android Testers for $15
+                {t('androidAppTesters.ctaGetTesters')}
                 <ArrowRight className="ml-2 size-4" />
               </Button>
             </div>
-            <p className="mt-4 text-xs text-muted-foreground">
-              One-time payment · No subscriptions · 100% money-back guarantee
-            </p>
+            <p className="mt-4 text-xs text-muted-foreground">{t('androidAppTesters.ctaFootnote')}</p>
           </CardContent>
         </Card>
       </section>

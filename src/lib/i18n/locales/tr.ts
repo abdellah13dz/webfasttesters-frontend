@@ -74,6 +74,21 @@ export const tr: Record<string, string> = {
   'footer.cookiePolicy': 'Çerez Politikası',
 
   // ═══════════════════════════════════════════════════════════════════════
+  // LEGAL / STRIPE BUSINESS DISCLOSURES
+  // ═══════════════════════════════════════════════════════════════════════
+  'legal.ownershipTitle': 'İşletme sahipliği',
+  'legal.operatedBy': 'Bu web sitesi ve {brand} hizmetleri {entity} tarafından sahip olunmakta ve işletilmektedir.',
+  'legal.servicesDescription': 'Geliştiricilerin Google Play kapalı test ve üretim erişimi gereksinimlerini karşılamasına yardımcı olmak için profesyonel Android uygulama test hizmetleri sunuyoruz.',
+  'legal.poweredByStripe': 'Ödemeler Stripe tarafından işlenir',
+  'legal.customerServiceTitle': 'Müşteri hizmetleri',
+  'legal.responseTime': 'Destek taleplerine 2 iş saati içinde yanıt veriyoruz.',
+  'legal.businessAddressTitle': 'İş adresi',
+  'legal.addressOnRequest': 'İş adresi talep üzerine mevcuttur — Hassil LLC kayıtlı ofis bilgileri için bizimle iletişime geçin.',
+  'legal.phoneLabel': 'Telefon',
+  'legal.cancellationPolicyTitle': 'İptal politikası',
+  'legal.cancellationPolicyDesc': 'Testçiler atanmadan önce (genellikle ödemeden sonraki 6 saat içinde) siparişinizi tam iade ile iptal edebilirsiniz. Test başladıktan sonra hizmet iptal edilemez; garanti koşulları için İade Politikamıza bakın.',
+
+  // ═══════════════════════════════════════════════════════════════════════
   // HOME PAGE
   // ═══════════════════════════════════════════════════════════════════════
   'home.productionGuarantee': '%100 Üretim Erişimi Garantisi',
@@ -323,7 +338,7 @@ export const tr: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   'aboutUs.ourStory': 'Hikayemiz',
   'aboutUs.title': 'Fast Testers Hakkında',
-  'aboutUs.subtitle': 'Uygulama testi ve Google Play başarısında güvenilir ortağınız',
+  'aboutUs.subtitle': 'Fast Testers, Hassil LLC tarafından işletilir — uygulama testi ve Google Play başarısında güvenilir ortağınız',
   'aboutUs.appsPublished': 'Yayınlanan Uygulama',
   'aboutUs.starRating': 'Yıldız Puanı',
   'aboutUs.downloads': 'İndirme',
@@ -624,10 +639,10 @@ export const tr: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   // SUBMIT APP PAGE
   // ═══════════════════════════════════════════════════════════════════════
-  'submitApp.heroBadge': 'Uygulamanızı Gönderin',
-  'submitApp.heroTitle1': 'Uygulamanızı',
-  'submitApp.heroTitle2': '14 Profesyonel Testçiye Test Ettirin',
-  'submitApp.heroSubtitle': 'Android uygulamanızı gönderin ve profesyonel testçilerimizin gerisini halletmesine izin verin. Hızlı dağıtım, garantili sonuçlar ve Google Play üretim erişimine net bir yol.',
+  'submitApp.heroBadge': 'WhatsApp ve Özel Teklifler',
+  'submitApp.heroTitle1': 'Özel Teklifler için',
+  'submitApp.heroTitle2': 'WhatsApp\'tan Bize Ulaşın',
+  'submitApp.heroSubtitle': 'WhatsApp iletişimini tercih ediyorsanız veya özel bir test paketine ihtiyacınız varsa bu formu kullanın. Standart uygulama testi için app.fasttesters.com adresindeki profesyonel CRM panelimizi açın.',
   'submitApp.badge': 'Başlayın',
   'submitApp.title': 'Uygulamanızı Test İçin Gönderin',
   'submitApp.subtitle': 'Uygulamanızı göndermek ve test ilerlemesini takip etmek için panelinize giriş yapın.',
@@ -664,8 +679,15 @@ export const tr: Record<string, string> = {
   'submitApp.reqTestingLinkDesc': 'Google Play Console\'dan test pisti bağlantısı veya e-posta listesi.',
 
   // Form
-  'submitApp.formTitle': 'Uygulamanızı Gönderin',
-  'submitApp.formSubtitle': 'Aşağıdaki detayları doldurun ve uygulamanızı hemen test ettirelim.',
+  'submitApp.formTitle': 'WhatsApp sorgusu ve özel teklif',
+  'submitApp.formSubtitle': 'Bilgilerinizi ve WhatsApp numaranızı paylaşın — fiyatlandırma ve sonraki adımlarla size ulaşacağız.',
+  'submitApp.dashboardBannerTitle': 'Standart uygulama testi mi?',
+  'submitApp.dashboardBannerDesc': 'Uygulamaları gönderin, testçileri takip edin ve CRM panelimizde faturalandırmayı yönetin. Çoğu geliştirici bu form yerine uygulamayı kullanır.',
+  'submitApp.openDashboard': 'CRM Panelini Aç',
+  'submitApp.whatsappLabel': 'WhatsApp numarası',
+  'submitApp.whatsappPlaceholder': '+1 555 123 4567',
+  'submitApp.whatsappHelp': 'WhatsApp üzerinden mesaj atabilmemiz için ülke kodunu ekleyin.',
+  'submitApp.standardTestingNote': 'Standart test mi gerekiyor?',
   'submitApp.appNameLabel': 'Uygulama Adı',
   'submitApp.appNamePlaceholder': 'Harika Uygulamam',
   'submitApp.packageNameLabel': 'Paket Adı',

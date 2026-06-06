@@ -74,6 +74,21 @@ export const es: Record<string, string> = {
   'footer.cookiePolicy': 'Política de Cookies',
 
   // ═══════════════════════════════════════════════════════════════════════
+  // LEGAL / STRIPE BUSINESS DISCLOSURES
+  // ═══════════════════════════════════════════════════════════════════════
+  'legal.ownershipTitle': 'Propiedad del negocio',
+  'legal.operatedBy': 'Este sitio web y los servicios de {brand} son propiedad y están operados por {entity}.',
+  'legal.servicesDescription': 'Ofrecemos servicios profesionales de prueba de apps Android para ayudar a desarrolladores a cumplir los requisitos de pruebas cerradas y acceso a producción de Google Play.',
+  'legal.poweredByStripe': 'Pagos procesados por Stripe',
+  'legal.customerServiceTitle': 'Atención al cliente',
+  'legal.responseTime': 'Respondemos a las solicitudes de soporte en un plazo de 2 horas laborables.',
+  'legal.businessAddressTitle': 'Dirección comercial',
+  'legal.addressOnRequest': 'Dirección comercial disponible bajo solicitud — contáctenos para los datos de la oficina registrada de Hassil LLC.',
+  'legal.phoneLabel': 'Teléfono',
+  'legal.cancellationPolicyTitle': 'Política de cancelación',
+  'legal.cancellationPolicyDesc': 'Puede cancelar su pedido con reembolso completo antes de que se asignen testers (normalmente dentro de las 6 horas posteriores al pago). Una vez iniciadas las pruebas, el servicio no es cancelable; consulte nuestra Política de reembolso.',
+
+  // ═══════════════════════════════════════════════════════════════════════
   // HOME PAGE
   // ═══════════════════════════════════════════════════════════════════════
   'home.productionGuarantee': '100% Garantía de Acceso a Producción',
@@ -323,7 +338,7 @@ export const es: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   'aboutUs.ourStory': 'Nuestra historia',
   'aboutUs.title': 'Sobre Fast Testers',
-  'aboutUs.subtitle': 'Tu socio de confianza en pruebas de apps y éxito en Google Play',
+  'aboutUs.subtitle': 'Fast Testers es operado por Hassil LLC — tu socio de confianza en pruebas de apps y éxito en Google Play',
   'aboutUs.appsPublished': 'Apps publicadas',
   'aboutUs.starRating': 'Calificación',
   'aboutUs.downloads': 'Descargas',
@@ -624,10 +639,10 @@ export const es: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   // SUBMIT APP PAGE
   // ═══════════════════════════════════════════════════════════════════════
-  'submitApp.heroBadge': 'Envía tu App',
-  'submitApp.heroTitle1': 'Haz que tu App sea probada por',
-  'submitApp.heroTitle2': '14 Testers Profesionales',
-  'submitApp.heroSubtitle': 'Envía tu app Android y deja que nuestros testers profesionales se encarguen del resto. Despliegue rápido, resultados garantizados y un camino claro hacia el acceso a producción en Google Play.',
+  'submitApp.heroBadge': 'WhatsApp y Ofertas Personalizadas',
+  'submitApp.heroTitle1': 'Contáctanos por',
+  'submitApp.heroTitle2': 'WhatsApp para Ofertas Especiales',
+  'submitApp.heroSubtitle': 'Usa este formulario si prefieres contacto por WhatsApp o necesitas un paquete de pruebas personalizado. Para pruebas estándar, abre nuestro panel CRM profesional en app.fasttesters.com.',
   'submitApp.badge': 'Comenzar',
   'submitApp.title': 'Envía tu app para pruebas',
   'submitApp.subtitle': 'Inicia sesión en tu panel para enviar tu app y rastrear el progreso de las pruebas.',
@@ -664,8 +679,15 @@ export const es: Record<string, string> = {
   'submitApp.reqTestingLinkDesc': 'El enlace de la pista de prueba o la lista de emails de tu Google Play Console.',
 
   // Form
-  'submitApp.formTitle': 'Envía tu App',
-  'submitApp.formSubtitle': 'Completa los detalles a continuación y probaremos tu app de inmediato.',
+  'submitApp.formTitle': 'Consulta por WhatsApp y oferta personalizada',
+  'submitApp.formSubtitle': 'Comparte tus datos y número de WhatsApp — te contactaremos con precios y próximos pasos.',
+  'submitApp.dashboardBannerTitle': '¿Pruebas estándar de app?',
+  'submitApp.dashboardBannerDesc': 'Envía apps, rastrea testers y gestiona la facturación en nuestro panel CRM. La mayoría de desarrolladores usan la app en lugar de este formulario.',
+  'submitApp.openDashboard': 'Abrir Panel CRM',
+  'submitApp.whatsappLabel': 'Número de WhatsApp',
+  'submitApp.whatsappPlaceholder': '+1 555 123 4567',
+  'submitApp.whatsappHelp': 'Incluye el código de país para que podamos escribirte por WhatsApp.',
+  'submitApp.standardTestingNote': '¿Necesitas pruebas estándar?',
   'submitApp.appNameLabel': 'Nombre de la App',
   'submitApp.appNamePlaceholder': 'Mi App Increíble',
   'submitApp.packageNameLabel': 'Nombre del Paquete',

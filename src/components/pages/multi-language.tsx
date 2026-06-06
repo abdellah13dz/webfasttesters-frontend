@@ -8,94 +8,83 @@ import { Card, CardContent } from '@/components/ui/card'
 import {
   ArrowRight,
   Globe,
-  CheckCircle2,
-  Users,
   MessageSquare,
-  Shield,
   Languages,
   Smartphone,
 } from 'lucide-react'
 
+const languages = [
+  { nameKey: 'multiLanguage.language1Name', codeKey: 'multiLanguage.language1Code', flag: '🇻🇳' },
+  { nameKey: 'multiLanguage.language2Name', codeKey: 'multiLanguage.language2Code', flag: '🇩🇪' },
+  { nameKey: 'multiLanguage.language3Name', codeKey: 'multiLanguage.language3Code', flag: '🇷🇺' },
+  { nameKey: 'multiLanguage.language4Name', codeKey: 'multiLanguage.language4Code', flag: '🇧🇷' },
+  { nameKey: 'multiLanguage.language5Name', codeKey: 'multiLanguage.language5Code', flag: '🇪🇸' },
+  { nameKey: 'multiLanguage.language6Name', codeKey: 'multiLanguage.language6Code', flag: '🇫🇷' },
+  { nameKey: 'multiLanguage.language7Name', codeKey: 'multiLanguage.language7Code', flag: '🇹🇷' },
+  { nameKey: 'multiLanguage.language8Name', codeKey: 'multiLanguage.language8Code', flag: '🇹🇭' },
+  { nameKey: 'multiLanguage.language9Name', codeKey: 'multiLanguage.language9Code', flag: '🇵🇱' },
+  { nameKey: 'multiLanguage.language10Name', codeKey: 'multiLanguage.language10Code', flag: '🇯🇵' },
+  { nameKey: 'multiLanguage.language11Name', codeKey: 'multiLanguage.language11Code', flag: '🇰🇷' },
+  { nameKey: 'multiLanguage.language12Name', codeKey: 'multiLanguage.language12Code', flag: '🇮🇹' },
+  { nameKey: 'multiLanguage.language13Name', codeKey: 'multiLanguage.language13Code', flag: '🇳🇱' },
+  { nameKey: 'multiLanguage.language14Name', codeKey: 'multiLanguage.language14Code', flag: '🇮🇳' },
+  { nameKey: 'multiLanguage.language15Name', codeKey: 'multiLanguage.language15Code', flag: '🇸🇦' },
+  { nameKey: 'multiLanguage.language16Name', codeKey: 'multiLanguage.language16Code', flag: '🇮🇩' },
+  { nameKey: 'multiLanguage.language17Name', codeKey: 'multiLanguage.language17Code', flag: '🇲🇾' },
+  { nameKey: 'multiLanguage.language18Name', codeKey: 'multiLanguage.language18Code', flag: '🇺🇦' },
+  { nameKey: 'multiLanguage.language19Name', codeKey: 'multiLanguage.language19Code', flag: '🇨🇿' },
+  { nameKey: 'multiLanguage.language20Name', codeKey: 'multiLanguage.language20Code', flag: '🇷🇴' },
+]
+
+const howItWorks = [
+  {
+    step: '01',
+    titleKey: 'multiLanguage.step1Title',
+    descriptionKey: 'multiLanguage.step1Description',
+  },
+  {
+    step: '02',
+    titleKey: 'multiLanguage.step2Title',
+    descriptionKey: 'multiLanguage.step2Description',
+  },
+  {
+    step: '03',
+    titleKey: 'multiLanguage.step3Title',
+    descriptionKey: 'multiLanguage.step3Description',
+  },
+  {
+    step: '04',
+    titleKey: 'multiLanguage.step4Title',
+    descriptionKey: 'multiLanguage.step4Description',
+  },
+]
+
+const whyLanguageMatters = [
+  {
+    icon: <MessageSquare className="size-5 text-blue-600 dark:text-blue-400" />,
+    titleKey: 'multiLanguage.benefit1Title',
+    descriptionKey: 'multiLanguage.benefit1Desc',
+  },
+  {
+    icon: <Languages className="size-5 text-blue-600 dark:text-blue-400" />,
+    titleKey: 'multiLanguage.benefit2Title',
+    descriptionKey: 'multiLanguage.benefit2Desc',
+  },
+  {
+    icon: <Smartphone className="size-5 text-blue-600 dark:text-blue-400" />,
+    titleKey: 'multiLanguage.benefit3Title',
+    descriptionKey: 'multiLanguage.benefit3Desc',
+  },
+  {
+    icon: <Globe className="size-5 text-blue-600 dark:text-blue-400" />,
+    titleKey: 'multiLanguage.benefit4Title',
+    descriptionKey: 'multiLanguage.benefit4Desc',
+  },
+]
+
 export default function MultiLanguagePage() {
   const { navigate } = useRouter()
   const { t } = useLanguage()
-
-  const languages = [
-    { name: 'Vietnamese', flag: '🇻🇳', code: 'VI' },
-    { name: 'German', flag: '🇩🇪', code: 'DE' },
-    { name: 'Russian', flag: '🇷🇺', code: 'RU' },
-    { name: 'Portuguese', flag: '🇧🇷', code: 'PT' },
-    { name: 'Spanish', flag: '🇪🇸', code: 'ES' },
-    { name: 'French', flag: '🇫🇷', code: 'FR' },
-    { name: 'Turkish', flag: '🇹🇷', code: 'TR' },
-    { name: 'Thai', flag: '🇹🇭', code: 'TH' },
-    { name: 'Polish', flag: '🇵🇱', code: 'PL' },
-    { name: 'Japanese', flag: '🇯🇵', code: 'JA' },
-    { name: 'Korean', flag: '🇰🇷', code: 'KO' },
-    { name: 'Italian', flag: '🇮🇹', code: 'IT' },
-    { name: 'Dutch', flag: '🇳🇱', code: 'NL' },
-    { name: 'Hindi', flag: '🇮🇳', code: 'HI' },
-    { name: 'Arabic', flag: '🇸🇦', code: 'AR' },
-    { name: 'Indonesian', flag: '🇮🇩', code: 'ID' },
-    { name: 'Malay', flag: '🇲🇾', code: 'MS' },
-    { name: 'Ukrainian', flag: '🇺🇦', code: 'UK' },
-    { name: 'Czech', flag: '🇨🇿', code: 'CS' },
-    { name: 'Romanian', flag: '🇷🇴', code: 'RO' },
-  ]
-
-  const howItWorks = [
-    {
-      step: '01',
-      title: 'Submit Your App',
-      description:
-        'Share your app\'s Play Store link and specify the language(s) you need testers for. We support 30+ languages and can provide testers who are native speakers.',
-    },
-    {
-      step: '02',
-      title: 'Language-Matched Testers',
-      description:
-        'We assign professional testers who speak your app\'s target language natively. This ensures feedback is relevant and reviews are written in the correct language.',
-    },
-    {
-      step: '03',
-      title: 'Testing Begins',
-      description:
-        'Within 6 hours, your assigned testers will start using your app. They\'ll test all features, navigate through your app in their native language, and provide detailed feedback.',
-    },
-    {
-      step: '04',
-      title: 'Production Access',
-      description:
-        'After the 14-day testing period, you\'ll have everything you need for production access — regardless of your app\'s language.',
-    },
-  ]
-
-  const whyLanguageMatters = [
-    {
-      icon: <MessageSquare className="size-5 text-blue-600 dark:text-blue-400" />,
-      title: 'Reviews in the Right Language',
-      description:
-        'Google Play expects reviews from testers to be in the language your app targets. If your app is in German but reviews are in English, it can raise red flags and lead to rejection.',
-    },
-    {
-      icon: <Languages className="size-5 text-blue-600 dark:text-blue-400" />,
-      title: 'Cultural Context Matters',
-      description:
-        'A tester who speaks the language natively understands cultural nuances, common UI patterns in their region, and can identify localization issues that a non-native speaker would miss.',
-    },
-    {
-      icon: <Smartphone className="size-5 text-blue-600 dark:text-blue-400" />,
-      title: 'Localized Device Testing',
-      description:
-        'Our testers use devices set to their native language and region. This means they can catch issues with date formats, currency symbols, text direction (RTL languages), and more.',
-    },
-    {
-      icon: <Globe className="size-5 text-blue-600 dark:text-blue-400" />,
-      title: 'Global App Market',
-      description:
-        'The Google Play Store is global. If your app targets users in specific countries, having testers from those regions gives you a significant advantage in understanding your market.',
-    },
-  ]
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -105,16 +94,14 @@ export default function MultiLanguagePage() {
         <div className="relative mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <Badge className="mb-6 border-blue-800 dark:border-blue-950/50 bg-blue-200/50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-800/50 text-[13px] tracking-wider">
             <Globe className="mr-1 size-3" />
-            International Testing
+            {t('multiLanguage.heroBadge')}
           </Badge>
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Get 12+ Testers for 14 Days for{' '}
-            <span className="text-blue-600 dark:text-blue-400">International Apps</span>
+            {t('multiLanguage.heroTitlePrefix')}{' '}
+            <span className="text-blue-600 dark:text-blue-400">{t('multiLanguage.heroTitleHighlight')}</span>
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
-            Google Play Console closed testing for international apps. Production access guaranteed
-            in any language. We provide native-speaking testers who understand your app&apos;s
-            target market.
+            {t('multiLanguage.heroDescription')}
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <Button
@@ -122,7 +109,7 @@ export default function MultiLanguagePage() {
               className="bg-blue-600 text-white hover:bg-blue-700"
               onClick={() => navigate('/production-access')}
             >
-              Get International Testers
+              {t('multiLanguage.ctaGetInternationalTesters')}
               <ArrowRight className="ml-2 size-4" />
             </Button>
             <Button
@@ -131,7 +118,7 @@ export default function MultiLanguagePage() {
               className="border-border text-foreground/80 hover:bg-muted"
               onClick={() => navigate('/closed-testing')}
             >
-              Learn About Closed Testing
+              {t('multiLanguage.ctaLearnClosedTesting')}
             </Button>
           </div>
         </div>
@@ -141,7 +128,7 @@ export default function MultiLanguagePage() {
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <img
           src="/images/blog/multi-language.png"
-          alt="Multi-Language App Testing Guide"
+          alt={t('multiLanguage.coverImageAlt')}
           className="w-full rounded-xl border border-border/50 mb-8"
         />
       </div>
@@ -152,14 +139,13 @@ export default function MultiLanguagePage() {
           <div className="mb-10 text-center">
             <Badge variant="outline" className="border-blue-800 dark:border-blue-800 text-blue-600 dark:text-blue-400">
               <Languages className="mr-1 size-3" />
-              30+ Languages Supported
+              {t('multiLanguage.languagesBadge')}
             </Badge>
             <h2 className="mt-4 text-2xl font-bold sm:text-3xl">
-              Supported Languages
+              {t('multiLanguage.languagesTitle')}
             </h2>
             <p className="mt-4 text-muted-foreground">
-              We provide native-speaking testers for all major languages. Here are some of our most
-              popular options, plus 20+ more.
+              {t('multiLanguage.languagesSubtitle')}
             </p>
           </div>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
@@ -170,14 +156,14 @@ export default function MultiLanguagePage() {
               >
                 <span className="text-lg">{lang.flag}</span>
                 <div>
-                  <p className="text-sm font-medium text-foreground">{lang.name}</p>
-                  <p className="text-xs text-muted-foreground">{lang.code}</p>
+                  <p className="text-sm font-medium text-foreground">{t(lang.nameKey)}</p>
+                  <p className="text-xs text-muted-foreground">{t(lang.codeKey)}</p>
                 </div>
               </div>
             ))}
           </div>
           <p className="mt-6 text-center text-sm text-muted-foreground">
-            Don&apos;t see your language? Contact us — we support 30+ languages and can add more on request.
+            {t('multiLanguage.languagesFooter')}
           </p>
         </div>
       </section>
@@ -186,10 +172,10 @@ export default function MultiLanguagePage() {
       <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
           <Badge variant="outline" className="border-blue-800 dark:border-blue-800 text-blue-600 dark:text-blue-400">
-            How It Works
+            {t('multiLanguage.howItWorksBadge')}
           </Badge>
           <h2 className="mt-4 text-2xl font-bold sm:text-3xl">
-            How It Works for International Apps
+            {t('multiLanguage.howItWorksTitle')}
           </h2>
         </div>
         <div className="grid gap-6 sm:grid-cols-2">
@@ -200,9 +186,9 @@ export default function MultiLanguagePage() {
                   <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-950/30 text-lg font-bold text-blue-600 dark:text-blue-400">
                     {step.step}
                   </div>
-                  <h3 className="font-semibold text-foreground">{step.title}</h3>
+                  <h3 className="font-semibold text-foreground">{t(step.titleKey)}</h3>
                 </div>
-                <p className="text-sm leading-relaxed text-muted-foreground">{step.description}</p>
+                <p className="text-sm leading-relaxed text-muted-foreground">{t(step.descriptionKey)}</p>
               </CardContent>
             </Card>
           ))}
@@ -214,14 +200,13 @@ export default function MultiLanguagePage() {
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <Badge variant="outline" className="border-blue-800 dark:border-blue-800 text-blue-600 dark:text-blue-400">
-              Why It Matters
+              {t('multiLanguage.whyItMattersBadge')}
             </Badge>
             <h2 className="mt-4 text-2xl font-bold sm:text-3xl">
-              Why Language Matters for Testing
+              {t('multiLanguage.whyItMattersTitle')}
             </h2>
             <p className="mt-4 text-muted-foreground">
-              Getting the language right isn&apos;t just about translation — it&apos;s about providing
-              a testing experience that reflects how real users will interact with your app.
+              {t('multiLanguage.whyItMattersSubtitle')}
             </p>
           </div>
           <div className="grid gap-8 sm:grid-cols-2">
@@ -230,8 +215,8 @@ export default function MultiLanguagePage() {
                 <div className="mb-4 rounded-xl bg-blue-100 dark:bg-blue-950/30 p-3 w-fit transition-colors group-hover:bg-blue-200 dark:group-hover:bg-blue-950/50">
                   {item.icon}
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-foreground">{item.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+                <h3 className="mb-2 text-lg font-semibold text-foreground">{t(item.titleKey)}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{t(item.descriptionKey)}</p>
               </div>
             ))}
           </div>
@@ -242,15 +227,15 @@ export default function MultiLanguagePage() {
       <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-3">
           <div className="text-center">
-            <div className="mb-2 text-3xl font-bold text-blue-600 dark:text-blue-400">30+</div>
-            <p className="text-sm text-muted-foreground">Languages Supported</p>
+            <div className="mb-2 text-3xl font-bold text-blue-600 dark:text-blue-400">{t('multiLanguage.statLanguages')}</div>
+            <p className="text-sm text-muted-foreground">{t('multiLanguage.statLanguagesLabel')}</p>
           </div>
           <div className="text-center">
-            <div className="mb-2 text-3xl font-bold text-blue-600 dark:text-blue-400">50+</div>
-            <p className="text-sm text-muted-foreground">Countries Covered</p>
+            <div className="mb-2 text-3xl font-bold text-blue-600 dark:text-blue-400">{t('multiLanguage.statCountries')}</div>
+            <p className="text-sm text-muted-foreground">{t('multiLanguage.statCountriesLabel')}</p>
           </div>
           <div className="text-center">
-            <div className="mb-2 text-3xl font-bold text-blue-600 dark:text-blue-400">99.9%</div>
+            <div className="mb-2 text-3xl font-bold text-blue-600 dark:text-blue-400">{t('multiLanguage.statSuccessRate')}</div>
             <p className="text-sm text-muted-foreground">{t('home.successRate')}</p>
           </div>
         </div>
@@ -263,11 +248,10 @@ export default function MultiLanguagePage() {
             <CardContent className="p-8 sm:p-12 text-center">
               <Globe className="mx-auto mb-6 size-12 text-blue-600 dark:text-blue-400" />
               <h2 className="text-2xl font-bold sm:text-3xl">
-                Get International Testers
+                {t('multiLanguage.ctaTitle')}
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-                Whether your app is in Vietnamese, German, Russian, or any other language — we have
-                native-speaking testers ready to help you get production access on Google Play.
+                {t('multiLanguage.ctaDescription')}
               </p>
               <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
                 <Button
@@ -275,12 +259,12 @@ export default function MultiLanguagePage() {
                   className="bg-blue-600 text-white hover:bg-blue-700"
                   onClick={() => navigate('/production-access')}
                 >
-                  Get International Testers for $15
+                  {t('multiLanguage.ctaButton')}
                   <ArrowRight className="ml-2 size-4" />
                 </Button>
               </div>
               <p className="mt-4 text-xs text-muted-foreground">
-                One-time payment · 30+ languages · Native-speaking testers
+                {t('multiLanguage.ctaFootnote')}
               </p>
             </CardContent>
           </Card>
