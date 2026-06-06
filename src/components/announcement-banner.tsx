@@ -4,7 +4,13 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { useRouter } from '@/lib/router';
 import { useLanguage } from '@/lib/i18n/context';
 import { X } from 'lucide-react';
+import { APP_URL } from '@/lib/app-urls';
 import { fetchSiteSettings, DEFAULT_ANNOUNCEMENT_BANNER } from '@/lib/site-settings';
+
+function bannerCtaHref(ctaLink?: string): string {
+  if (!ctaLink || ctaLink === '/submit-app') return APP_URL;
+  return ctaLink;
+}
 
 const BANNER_DISMISSED_KEY = 'ft-banner-dismissed';
 const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
@@ -47,7 +53,7 @@ export function AnnouncementBanner() {
   }, []);
 
   const handleCtaClick = useCallback(() => {
-    navigate(banner.ctaLink || '/submit-app');
+    navigate(bannerCtaHref(banner.ctaLink));
   }, [navigate, banner.ctaLink]);
 
   if (!visible || !banner.enabled) return null;
