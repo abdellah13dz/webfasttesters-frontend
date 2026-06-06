@@ -1,10 +1,11 @@
-# Deploy with Vercel CLI + API token (bypasses Hobby git-author checks).
-# Deploy Hooks still deploy the latest git commit and can be blocked the same way.
+# Vercel Hobby blocks @users.noreply.github.com — use your primary GitHub email.
 #
-# One-time setup:
-# 1. Vercel → Account → Tokens → create token → GitHub secret VERCEL_TOKEN
-# 2. Vercel → Project → Settings → Git → Disconnect (stops blocked git deploys)
-# 3. GitHub → repo → Settings → Secrets → VERCEL_TOKEN
+# GitHub repo secrets (required):
+#   VERCEL_TOKEN      → https://vercel.com/account/tokens
+#   GIT_COMMIT_EMAIL  → primary verified email from https://github.com/settings/emails
+#   GIT_COMMIT_NAME   → e.g. Abdallahe Benahmed
+#
+# Vercel → Project → Settings → Git → Disconnect (use this workflow only)
 name: Deploy to Vercel
 
 on:
@@ -22,6 +23,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate secrets
+        run: |
+          if [ -z "${{ secrets.VERCEL_TOKEN }}" ]; then
+            echo "::error::Missing VERCEL_TOKEN secret"
+            exit 1
+          fi
+          if [ -z "${{ secrets.GIT_COMMIT_EMAIL }}" ]; then
+            echo "::error::Missing GIT_COMMIT_EMAIL — use your primary GitHub email, NOT @users.noreply.github.com"
+            exit 1
+          fi
+
+      - name: Fix git author for Vercel (noreply emails are rejected)
+        run: |
+          git config user.email "${{ secrets.GIT_COMMIT_EMAIL }}"
+          git config user.name "${{ secrets.GIT_COMMIT_NAME }}"
+          git commit --amend --no-edit --author="${{ secrets.GIT_COMMIT_NAME }} <${{ secrets.GIT_COMMIT_EMAIL }}>"
 
       - name: Setup Node
         uses: actions/setup-node@v4
