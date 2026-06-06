@@ -56,7 +56,6 @@ export function MobileStickyCta() {
             </div>
           </div>
           {/* Right: CTA Button */}
-          {/* Right: CTA Button */}
           <Button
             asChild
             className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold h-10 shadow-lg shadow-blue-500/20 transition-all active:scale-[0.98]"
