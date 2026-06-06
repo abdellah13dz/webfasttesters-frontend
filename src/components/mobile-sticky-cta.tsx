@@ -55,7 +55,7 @@ export function MobileStickyCta() {
               <span className="text-[10px] text-muted-foreground leading-tight">{t('mobileCta.guarantee')}</span>
             </div>
           </div>
-
+          {/* Right: CTA Button */}
           {/* Right: CTA Button */}
           <Button
             asChild
