@@ -235,7 +235,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════════════════
           HERO SECTION
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden hero-y">
+      <section className="relative overflow-x-hidden hero-y">
         {/* Background image with overlay */}
         <div className="absolute inset-0 -z-20">
           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
@@ -332,26 +332,30 @@ export default function HomePage() {
               </AnimatedSection>
             </div>
 
-            {/* Right: Hero illustration */}
-            <AnimatedSection delay={300} direction="fade-right" className="flex-1 hidden lg:flex justify-center">
-              <div className="relative">
+            {/* Hero illustration — visible on all screen sizes */}
+            <AnimatedSection
+              delay={300}
+              direction="fade-right"
+              className="flex w-full flex-1 justify-center mt-8 sm:mt-10 lg:mt-0"
+            >
+              <div className="relative mx-auto w-full max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg px-2 sm:px-0">
                 <div className="absolute -inset-4 bg-blue-500/5 rounded-3xl blur-2xl" />
                 <img
                   src="/images/illustrations/app-testing.png"
                   alt="App Testing Illustration"
-                  className="relative w-full max-w-md xl:max-w-lg animate-float-slow drop-shadow-2xl"
+                  className="relative mx-auto w-full h-auto animate-float-slow drop-shadow-2xl"
                 />
                 {/* Floating badges around illustration */}
-                <div className="absolute -top-4 -right-4 bg-card border border-border/60 rounded-xl px-3 py-2 shadow-lg animate-float">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-400" />
-                    <span className="text-xs font-semibold text-foreground">Approved</span>
+                <div className="absolute -top-2 end-0 sm:-top-4 sm:-end-4 bg-card border border-border/60 rounded-xl px-2.5 py-1.5 sm:px-3 sm:py-2 shadow-lg animate-float">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                    <CheckCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-green-400" />
+                    <span className="text-[10px] sm:text-xs font-semibold text-foreground">Approved</span>
                   </div>
                 </div>
-                <div className="absolute -bottom-2 -left-4 bg-card border border-border/60 rounded-xl px-3 py-2 shadow-lg animate-float-delay">
-                  <div className="flex items-center gap-2">
-                    <Users className="h-4 w-4 text-blue-400" />
-                    <span className="text-xs font-semibold text-foreground">12 Testers</span>
+                <div className="absolute -bottom-1 start-0 sm:-bottom-2 sm:-start-4 bg-card border border-border/60 rounded-xl px-2.5 py-1.5 sm:px-3 sm:py-2 shadow-lg animate-float-delay">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                    <Users className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-400" />
+                    <span className="text-[10px] sm:text-xs font-semibold text-foreground">12 Testers</span>
                   </div>
                 </div>
               </div>
@@ -469,12 +473,12 @@ export default function HomePage() {
           HOW IT WORKS
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="relative py-16 sm:py-20 border-t border-border/40 overflow-hidden">
-        {/* Side illustration - visible on lg */}
-        <div className="absolute right-0 top-0 bottom-0 w-1/3 hidden xl:block pointer-events-none opacity-[0.06]">
+        {/* Side illustration — subtle on mobile, stronger on desktop */}
+        <div className="absolute inset-0 sm:inset-auto sm:right-0 sm:top-0 sm:bottom-0 sm:w-2/5 lg:w-1/3 pointer-events-none opacity-[0.05] sm:opacity-[0.06]">
           <img
             src="/images/illustrations/how-it-works.png"
             alt=""
-            className="w-full h-full object-contain object-center"
+            className="w-full h-full object-contain object-center sm:object-right"
             aria-hidden="true"
           />
         </div>
@@ -1143,8 +1147,8 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection direction="scale-in">
             <div className="relative rounded-2xl bg-gradient-to-br from-blue-500/10 via-blue-500/5 to-card border border-blue-500/20 p-8 sm:p-12 lg:p-16 text-center overflow-hidden">
-              {/* Background illustration - subtle */}
-              <div className="absolute right-0 bottom-0 w-1/3 h-full hidden lg:block pointer-events-none opacity-[0.08]">
+              {/* Background illustration — visible on mobile at lower opacity */}
+              <div className="absolute end-0 bottom-0 w-1/2 sm:w-2/5 lg:w-1/3 h-full pointer-events-none opacity-[0.06] sm:opacity-[0.07] lg:opacity-[0.08]">
                 <img
                   src="/images/illustrations/success-approved.png"
                   alt=""
