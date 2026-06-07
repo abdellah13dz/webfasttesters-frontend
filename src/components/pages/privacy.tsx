@@ -1,13 +1,5 @@
 'use client';
 
-import React from 'react';
-import { useRouter } from '@/lib/router';
-import { useLanguage } from '@/lib/i18n/context';
-import { CmsPageOrFallback } from '@/lib/hooks/use-cms-page';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { Button } from '@/components/ui/button';
 import {
   Shield,
   UserCheck,
@@ -15,9 +7,6 @@ import {
   Database,
   Lock,
   Cookie,
-  Mail,
-  ArrowLeft,
-  CheckCircle2,
   Building2,
   Scale,
   Globe,
@@ -25,19 +14,23 @@ import {
   Baby,
   CreditCard,
   RefreshCw,
-  type LucideIcon,
 } from 'lucide-react';
-import { LEGAL_ENTITY_NAME, BRAND_NAME } from '@/lib/business';
-import { CONTACT_EMAIL } from '@/lib/contact';
+import { useLanguage } from '@/lib/i18n/context';
+import { CmsPageOrFallback } from '@/lib/hooks/use-cms-page';
+import {
+  PolicyPageShell,
+  POLICY_FOOTER_LINKS,
+  type PolicySection,
+} from '@/components/legal/policy-page-shell';
 
-const sectionConfig: {
-  icon: LucideIcon;
-  titleKey: string;
-  items: { subtitleKey: string; descriptionKey: string }[];
-}[] = [
+const privacySections: PolicySection[] = [
   {
+    kind: 'items',
+    id: 'whoWeAre',
     icon: Building2,
     titleKey: 'privacyPolicy.sections.whoWeAre.title',
+    tocKey: 'privacyPolicy.toc.whoWeAre',
+    nestedCards: true,
     items: [
       {
         subtitleKey: 'privacyPolicy.sections.whoWeAre.dataController.subtitle',
@@ -50,8 +43,12 @@ const sectionConfig: {
     ],
   },
   {
+    kind: 'items',
+    id: 'informationWeCollect',
     icon: Database,
     titleKey: 'privacyPolicy.sections.informationWeCollect.title',
+    tocKey: 'privacyPolicy.toc.informationWeCollect',
+    nestedCards: true,
     items: [
       {
         subtitleKey: 'privacyPolicy.sections.informationWeCollect.personalInfo.subtitle',
@@ -68,8 +65,12 @@ const sectionConfig: {
     ],
   },
   {
+    kind: 'items',
+    id: 'howWeUse',
     icon: Eye,
     titleKey: 'privacyPolicy.sections.howWeUse.title',
+    tocKey: 'privacyPolicy.toc.howWeUse',
+    nestedCards: true,
     items: [
       {
         subtitleKey: 'privacyPolicy.sections.howWeUse.provideServices.subtitle',
@@ -86,8 +87,12 @@ const sectionConfig: {
     ],
   },
   {
+    kind: 'items',
+    id: 'dataSharing',
     icon: UserCheck,
     titleKey: 'privacyPolicy.sections.dataSharing.title',
+    tocKey: 'privacyPolicy.toc.dataSharing',
+    nestedCards: true,
     items: [
       {
         subtitleKey: 'privacyPolicy.sections.dataSharing.noSelling.subtitle',
@@ -112,8 +117,12 @@ const sectionConfig: {
     ],
   },
   {
+    kind: 'items',
+    id: 'legalBasis',
     icon: Scale,
     titleKey: 'privacyPolicy.sections.legalBasis.title',
+    tocKey: 'privacyPolicy.toc.legalBasis',
+    nestedCards: true,
     items: [
       {
         subtitleKey: 'privacyPolicy.sections.legalBasis.contract.subtitle',
@@ -134,8 +143,12 @@ const sectionConfig: {
     ],
   },
   {
+    kind: 'items',
+    id: 'dataSecurity',
     icon: Lock,
     titleKey: 'privacyPolicy.sections.dataSecurity.title',
+    tocKey: 'privacyPolicy.toc.dataSecurity',
+    nestedCards: true,
     items: [
       {
         subtitleKey: 'privacyPolicy.sections.dataSecurity.encryption.subtitle',
@@ -152,8 +165,12 @@ const sectionConfig: {
     ],
   },
   {
-    icon: CheckCircle2,
+    kind: 'items',
+    id: 'yourRights',
+    icon: Shield,
     titleKey: 'privacyPolicy.sections.yourRights.title',
+    tocKey: 'privacyPolicy.toc.yourRights',
+    nestedCards: true,
     items: [
       {
         subtitleKey: 'privacyPolicy.sections.yourRights.access.subtitle',
@@ -186,8 +203,12 @@ const sectionConfig: {
     ],
   },
   {
+    kind: 'items',
+    id: 'dataRetention',
     icon: Clock,
     titleKey: 'privacyPolicy.sections.dataRetention.title',
+    tocKey: 'privacyPolicy.toc.dataRetention',
+    nestedCards: true,
     items: [
       {
         subtitleKey: 'privacyPolicy.sections.dataRetention.account.subtitle',
@@ -208,8 +229,12 @@ const sectionConfig: {
     ],
   },
   {
+    kind: 'items',
+    id: 'internationalTransfers',
     icon: Globe,
     titleKey: 'privacyPolicy.sections.internationalTransfers.title',
+    tocKey: 'privacyPolicy.toc.internationalTransfers',
+    nestedCards: true,
     items: [
       {
         subtitleKey: 'privacyPolicy.sections.internationalTransfers.global.subtitle',
@@ -222,8 +247,12 @@ const sectionConfig: {
     ],
   },
   {
+    kind: 'items',
+    id: 'childrenPrivacy',
     icon: Baby,
     titleKey: 'privacyPolicy.sections.childrenPrivacy.title',
+    tocKey: 'privacyPolicy.toc.childrenPrivacy',
+    nestedCards: true,
     items: [
       {
         subtitleKey: 'privacyPolicy.sections.childrenPrivacy.ageRestriction.subtitle',
@@ -236,8 +265,12 @@ const sectionConfig: {
     ],
   },
   {
+    kind: 'items',
+    id: 'ccpa',
     icon: CreditCard,
     titleKey: 'privacyPolicy.sections.ccpa.title',
+    tocKey: 'privacyPolicy.toc.ccpa',
+    nestedCards: true,
     items: [
       {
         subtitleKey: 'privacyPolicy.sections.ccpa.rightToKnow.subtitle',
@@ -258,8 +291,12 @@ const sectionConfig: {
     ],
   },
   {
+    kind: 'items',
+    id: 'cookies',
     icon: Cookie,
     titleKey: 'privacyPolicy.sections.cookies.title',
+    tocKey: 'privacyPolicy.toc.cookies',
+    nestedCards: true,
     items: [
       {
         subtitleKey: 'privacyPolicy.sections.cookies.essentialOnly.subtitle',
@@ -276,8 +313,12 @@ const sectionConfig: {
     ],
   },
   {
+    kind: 'items',
+    id: 'changes',
     icon: RefreshCw,
     titleKey: 'privacyPolicy.sections.changes.title',
+    tocKey: 'privacyPolicy.toc.changes',
+    nestedCards: true,
     items: [
       {
         subtitleKey: 'privacyPolicy.sections.changes.updates.subtitle',
@@ -291,145 +332,34 @@ const sectionConfig: {
   },
 ];
 
-function legalText(t: (key: string) => string, key: string) {
-  return t(key).replace(/\{brand\}/g, BRAND_NAME).replace(/\{entity\}/g, LEGAL_ENTITY_NAME);
-}
-
 function PrivacyPageContent() {
-  const { navigate } = useRouter();
-  const { t } = useLanguage();
-
   return (
-    <div className="min-h-screen bg-background">
-      <section className="relative overflow-hidden border-b border-border/40">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-blue-500/10" />
-        <div className="absolute top-20 left-10 h-72 w-72 rounded-full bg-blue-500/5 blur-3xl" />
-        <div className="relative mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24">
-          <div className="mx-auto max-w-3xl text-center">
-            <Badge
-              variant="outline"
-              className="mb-4 border-blue-500/30 text-blue-400 bg-blue-500/10"
-            >
-              <Shield className="mr-1 h-3 w-3" />
-              {t('privacyPolicy.badge')}
-            </Badge>
-            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-              {t('footer.privacyPolicy')}
-            </h1>
-            <p className="mt-4 text-muted-foreground">
-              {t('privacyPolicy.lastUpdated')}: {t('privacyPolicy.lastUpdatedDate')}
-            </p>
-            <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-blue-500/10 border border-blue-500/20 px-4 py-1.5">
-              <Shield className="h-4 w-4 text-blue-400" />
-              <span className="text-sm text-blue-400 font-medium">{t('privacyPolicy.gdprCompliant')}</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
-        <div className="mb-8">
-          <button
-            onClick={() => navigate('/')}
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-blue-400 transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            {t('privacyPolicy.backToHome')}
-          </button>
-        </div>
-
-        <Card className="border-border/50 bg-card/50 mb-8">
-          <CardContent className="p-6">
-            <p className="text-muted-foreground leading-relaxed">
-              {legalText(t, 'privacyPolicy.intro')}
-            </p>
-          </CardContent>
-        </Card>
-
-        <div className="space-y-8">
-          {sectionConfig.map((section, index) => (
-            <Card key={index} className="border-border/50 bg-card/50">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4 mb-5">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400">
-                    <section.icon className="h-5 w-5" />
-                  </div>
-                  <h2 className="text-lg font-semibold text-foreground mt-1.5">
-                    {index + 1}. {t(section.titleKey)}
-                  </h2>
-                </div>
-                <div className="ml-14 space-y-4">
-                  {section.items.map((item, pIndex) => (
-                    <div key={pIndex}>
-                      <h3 className="text-sm font-medium text-blue-400 mb-1">
-                        {t(item.subtitleKey)}
-                      </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {legalText(t, item.descriptionKey)}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-
-          <Card className="border-blue-500/20 bg-blue-500/5">
-            <CardContent className="p-6">
-              <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-500/20 text-blue-400">
-                  <Mail className="h-5 w-5" />
-                </div>
-                <div>
-                  <h2 className="text-lg font-semibold text-blue-400 mb-2">
-                    {sectionConfig.length + 1}. {t('privacyPolicy.contact.title')}
-                  </h2>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                    {t('privacyPolicy.contact.description')}
-                  </p>
-                  <a
-                    href={`mailto:${CONTACT_EMAIL}`}
-                    className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 transition-colors"
-                  >
-                    <Mail className="h-4 w-4" />
-                    {CONTACT_EMAIL}
-                  </a>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        <Separator className="my-12 opacity-30" />
-
-        <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-6">
-          <Button
-            variant="outline"
-            onClick={() => navigate('/terms-and-conditions')}
-            className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 cursor-pointer"
-          >
-            {t('footer.termsAndConditions')}
-          </Button>
-          <Button
-            variant="outline"
-            onClick={() => navigate('/refund-policy')}
-            className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 cursor-pointer"
-          >
-            {t('footer.refundPolicy')}
-          </Button>
-          <Button
-            variant="outline"
-            onClick={() => navigate('/cancellation-policy')}
-            className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 cursor-pointer"
-          >
-            {t('footer.cancellationPolicy')}
-          </Button>
-          <Button variant="outline" onClick={() => navigate('/')} className="cursor-pointer">
-            {t('privacyPolicy.backToHome')}
-          </Button>
-        </div>
-      </section>
-    </div>
+    <PolicyPageShell
+      badgeIcon={Shield}
+      badgeKey="privacyPolicy.badge"
+      titleKey="footer.privacyPolicy"
+      subtitleKey="privacyPolicy.subtitle"
+      lastUpdatedKey="privacyPolicy.lastUpdated"
+      lastUpdatedDateKey="privacyPolicy.lastUpdatedDate"
+      highlightPill={{ icon: Shield, labelKey: 'privacyPolicy.gdprCompliant' }}
+      introKey="privacyPolicy.intro"
+      tableOfContentsKey="privacyPolicy.tableOfContents"
+      sections={privacySections}
+      contactTitleKey="privacyPolicy.contact.title"
+      contactDescriptionKey="privacyPolicy.contact.description"
+      backToHomeKey="privacyPolicy.backToHome"
+      highlightBanner={{
+        icon: CreditCard,
+        titleKey: 'privacyPolicy.stripeHighlight.title',
+        descriptionKey: 'privacyPolicy.stripeHighlight.description',
+      }}
+      footerLinks={[
+        POLICY_FOOTER_LINKS.terms,
+        POLICY_FOOTER_LINKS.refund,
+        POLICY_FOOTER_LINKS.cancellation,
+        POLICY_FOOTER_LINKS.cookie,
+      ]}
+    />
   );
 }
 
