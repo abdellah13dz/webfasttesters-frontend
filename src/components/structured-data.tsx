@@ -9,7 +9,7 @@ interface StructuredDataProps {
   currentPath: string;
 }
 
-// Organization schema — always included site-wide
+
 function getOrganizationSchema() {
   return {
     '@context': 'https://schema.org',
