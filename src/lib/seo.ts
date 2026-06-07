@@ -137,6 +137,15 @@ export const pageSeoConfig: Record<string, PageSeo> = {
     type: 'website',
   },
 
+  '/cancellation-policy': {
+    title: 'Cancellation Policy - Fast Testers | Order & Account Cancellation',
+    description:
+      'Learn how to cancel orders and close your Fast Testers account. One-time payments only — no subscriptions. Full refund available before testing begins.',
+    keywords: DEFAULT_KEYWORDS_META,
+    ogImage: BRAND_OG_IMAGE_PATH,
+    type: 'website',
+  },
+
   '/app-testing-referral-program': {
     title:
       'Referral Program - Fast Testers | Earn Rewards for Referring Developers',

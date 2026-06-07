@@ -65,6 +65,7 @@ export const es: Record<string, string> = {
   'footer.termsAndConditions': 'Términos y condiciones',
   'footer.privacyPolicy': 'Política de privacidad',
   'footer.refundPolicy': 'Política de reembolso',
+  'footer.cancellationPolicy': 'Política de cancelación',
   'footer.referralPolicy': 'Política de referidos',
   'footer.allRightsReserved': 'Todos los derechos reservados.',
   'footer.newsletterTitle': 'Suscríbete a nuestro boletín',

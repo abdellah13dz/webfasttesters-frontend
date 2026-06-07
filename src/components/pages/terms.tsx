@@ -21,15 +21,29 @@ import {
   Mail,
   ArrowLeft,
   XCircle,
+  Building2,
+  UserCheck,
+  Truck,
+  Handshake,
   type LucideIcon,
 } from 'lucide-react';
 import { LEGAL_ENTITY_NAME, BRAND_NAME } from '@/lib/business';
+import { CONTACT_EMAIL } from '@/lib/contact';
 
 const sectionConfig: {
   icon: LucideIcon;
   titleKey: string;
   paragraphKeys: string[];
 }[] = [
+  {
+    icon: Building2,
+    titleKey: 'termsPolicy.sections.about.title',
+    paragraphKeys: [
+      'termsPolicy.sections.about.p1',
+      'termsPolicy.sections.about.p2',
+      'termsPolicy.sections.about.p3',
+    ],
+  },
   {
     icon: Scale,
     titleKey: 'termsPolicy.sections.agreement.title',
@@ -61,6 +75,15 @@ const sectionConfig: {
     ],
   },
   {
+    icon: UserCheck,
+    titleKey: 'termsPolicy.sections.eligibility.title',
+    paragraphKeys: [
+      'termsPolicy.sections.eligibility.p1',
+      'termsPolicy.sections.eligibility.p2',
+      'termsPolicy.sections.eligibility.p3',
+    ],
+  },
+  {
     icon: Users,
     titleKey: 'termsPolicy.sections.userAccounts.title',
     paragraphKeys: [
@@ -68,6 +91,27 @@ const sectionConfig: {
       'termsPolicy.sections.userAccounts.p2',
       'termsPolicy.sections.userAccounts.p3',
       'termsPolicy.sections.userAccounts.p4',
+    ],
+  },
+  {
+    icon: XCircle,
+    titleKey: 'termsPolicy.sections.acceptableUse.title',
+    paragraphKeys: [
+      'termsPolicy.sections.acceptableUse.p1',
+      'termsPolicy.sections.acceptableUse.p2',
+      'termsPolicy.sections.acceptableUse.p3',
+      'termsPolicy.sections.acceptableUse.p4',
+      'termsPolicy.sections.acceptableUse.p5',
+    ],
+  },
+  {
+    icon: Truck,
+    titleKey: 'termsPolicy.sections.orderFulfillment.title',
+    paragraphKeys: [
+      'termsPolicy.sections.orderFulfillment.p1',
+      'termsPolicy.sections.orderFulfillment.p2',
+      'termsPolicy.sections.orderFulfillment.p3',
+      'termsPolicy.sections.orderFulfillment.p4',
     ],
   },
   {
@@ -82,7 +126,7 @@ const sectionConfig: {
     ],
   },
   {
-    icon: XCircle,
+    icon: Ban,
     titleKey: 'termsPolicy.sections.cancellation.title',
     paragraphKeys: [
       'termsPolicy.sections.cancellation.p1',
@@ -123,6 +167,23 @@ const sectionConfig: {
     ],
   },
   {
+    icon: Handshake,
+    titleKey: 'termsPolicy.sections.indemnification.title',
+    paragraphKeys: [
+      'termsPolicy.sections.indemnification.p1',
+      'termsPolicy.sections.indemnification.p2',
+    ],
+  },
+  {
+    icon: AlertTriangle,
+    titleKey: 'termsPolicy.sections.disclaimer.title',
+    paragraphKeys: [
+      'termsPolicy.sections.disclaimer.p1',
+      'termsPolicy.sections.disclaimer.p2',
+      'termsPolicy.sections.disclaimer.p3',
+    ],
+  },
+  {
     icon: Ban,
     titleKey: 'termsPolicy.sections.termination.title',
     paragraphKeys: [
@@ -134,16 +195,35 @@ const sectionConfig: {
   },
   {
     icon: Gavel,
+    titleKey: 'termsPolicy.sections.disputeResolution.title',
+    paragraphKeys: [
+      'termsPolicy.sections.disputeResolution.p1',
+      'termsPolicy.sections.disputeResolution.p2',
+      'termsPolicy.sections.disputeResolution.p3',
+    ],
+  },
+  {
+    icon: Gavel,
     titleKey: 'termsPolicy.sections.governingLaw.title',
     paragraphKeys: [
       'termsPolicy.sections.governingLaw.p1',
       'termsPolicy.sections.governingLaw.p2',
     ],
   },
+  {
+    icon: FileText,
+    titleKey: 'termsPolicy.sections.generalProvisions.title',
+    paragraphKeys: [
+      'termsPolicy.sections.generalProvisions.p1',
+      'termsPolicy.sections.generalProvisions.p2',
+      'termsPolicy.sections.generalProvisions.p3',
+      'termsPolicy.sections.generalProvisions.p4',
+    ],
+  },
 ];
 
 function legalText(t: (key: string) => string, key: string) {
-  return t(key).replace('{brand}', BRAND_NAME).replace('{entity}', LEGAL_ENTITY_NAME);
+  return t(key).replace(/\{brand\}/g, BRAND_NAME).replace(/\{entity\}/g, LEGAL_ENTITY_NAME);
 }
 
 function TermsPageContent() {
@@ -232,11 +312,11 @@ function TermsPageContent() {
                     {t('termsPolicy.contact.description')}
                   </p>
                   <a
-                    href="mailto:contact@fasttesters.com"
+                    href={`mailto:${CONTACT_EMAIL}`}
                     className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 transition-colors"
                   >
                     <Mail className="h-4 w-4" />
-                    contact@fasttesters.com
+                    {CONTACT_EMAIL}
                   </a>
                 </div>
               </div>
@@ -246,26 +326,29 @@ function TermsPageContent() {
 
         <Separator className="my-12 opacity-30" />
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+        <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-6">
           <Button
             variant="outline"
-            onClick={() => navigate('/privacy')}
+            onClick={() => navigate('/privacy-policy')}
             className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 cursor-pointer"
           >
             {t('footer.privacyPolicy')}
           </Button>
           <Button
             variant="outline"
-            onClick={() => navigate('/refund')}
+            onClick={() => navigate('/refund-policy')}
             className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 cursor-pointer"
           >
             {t('footer.refundPolicy')}
           </Button>
           <Button
             variant="outline"
-            onClick={() => navigate('/')}
-            className="cursor-pointer"
+            onClick={() => navigate('/cancellation-policy')}
+            className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 cursor-pointer"
           >
+            {t('footer.cancellationPolicy')}
+          </Button>
+          <Button variant="outline" onClick={() => navigate('/')} className="cursor-pointer">
             {t('termsPolicy.backToHome')}
           </Button>
         </div>

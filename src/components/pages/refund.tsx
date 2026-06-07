@@ -133,7 +133,15 @@ export default function RefundPage() {
               </div>
               <div className="ml-14 space-y-3">
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  {t('legal.cancellationPolicyDesc')}
+                  {t('legal.cancellationPolicyDesc')}{' '}
+                  <button
+                    type="button"
+                    onClick={() => navigate('/cancellation-policy')}
+                    className="text-blue-400 hover:text-blue-300 underline underline-offset-2"
+                  >
+                    {t('footer.cancellationPolicy')}
+                  </button>
+                  .
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   {t('refundPolicyPage.cancellationHowTo')}
@@ -281,17 +289,24 @@ export default function RefundPage() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
           <Button
             variant="outline"
-            onClick={() => navigate('/terms')}
+            onClick={() => navigate('/terms-and-conditions')}
             className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 cursor-pointer"
           >
             {t('footer.termsAndConditions')}
           </Button>
           <Button
             variant="outline"
-            onClick={() => navigate('/privacy')}
+            onClick={() => navigate('/privacy-policy')}
             className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 cursor-pointer"
           >
             {t('footer.privacyPolicy')}
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => navigate('/cancellation-policy')}
+            className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 cursor-pointer"
+          >
+            {t('footer.cancellationPolicy')}
           </Button>
           <Button
             variant="outline"

@@ -66,6 +66,7 @@ export const ar: Record<string, string> = {
   'footer.termsAndConditions': 'الشروط والأحكام',
   'footer.privacyPolicy': 'سياسة الخصوصية',
   'footer.refundPolicy': 'سياسة الاسترداد',
+  'footer.cancellationPolicy': 'سياسة الإلغاء',
   'footer.referralPolicy': 'سياسة الإحالة',
   'footer.allRightsReserved': 'جميع الحقوق محفوظة.',
   'footer.newsletterTitle': 'اشترك في نشرتنا الإخبارية',

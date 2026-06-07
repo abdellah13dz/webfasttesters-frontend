@@ -18,15 +18,37 @@ import {
   Mail,
   ArrowLeft,
   CheckCircle2,
+  Building2,
+  Scale,
+  Globe,
+  Clock,
+  Baby,
+  CreditCard,
+  RefreshCw,
   type LucideIcon,
 } from 'lucide-react';
 import { LEGAL_ENTITY_NAME, BRAND_NAME } from '@/lib/business';
+import { CONTACT_EMAIL } from '@/lib/contact';
 
 const sectionConfig: {
   icon: LucideIcon;
   titleKey: string;
   items: { subtitleKey: string; descriptionKey: string }[];
 }[] = [
+  {
+    icon: Building2,
+    titleKey: 'privacyPolicy.sections.whoWeAre.title',
+    items: [
+      {
+        subtitleKey: 'privacyPolicy.sections.whoWeAre.dataController.subtitle',
+        descriptionKey: 'privacyPolicy.sections.whoWeAre.dataController.description',
+      },
+      {
+        subtitleKey: 'privacyPolicy.sections.whoWeAre.scope.subtitle',
+        descriptionKey: 'privacyPolicy.sections.whoWeAre.scope.description',
+      },
+    ],
+  },
   {
     icon: Database,
     titleKey: 'privacyPolicy.sections.informationWeCollect.title',
@@ -79,6 +101,36 @@ const sectionConfig: {
         subtitleKey: 'privacyPolicy.sections.dataSharing.serviceProviders.subtitle',
         descriptionKey: 'privacyPolicy.sections.dataSharing.serviceProviders.description',
       },
+      {
+        subtitleKey: 'privacyPolicy.sections.dataSharing.stripe.subtitle',
+        descriptionKey: 'privacyPolicy.sections.dataSharing.stripe.description',
+      },
+      {
+        subtitleKey: 'privacyPolicy.sections.dataSharing.legalRequirements.subtitle',
+        descriptionKey: 'privacyPolicy.sections.dataSharing.legalRequirements.description',
+      },
+    ],
+  },
+  {
+    icon: Scale,
+    titleKey: 'privacyPolicy.sections.legalBasis.title',
+    items: [
+      {
+        subtitleKey: 'privacyPolicy.sections.legalBasis.contract.subtitle',
+        descriptionKey: 'privacyPolicy.sections.legalBasis.contract.description',
+      },
+      {
+        subtitleKey: 'privacyPolicy.sections.legalBasis.legitimateInterests.subtitle',
+        descriptionKey: 'privacyPolicy.sections.legalBasis.legitimateInterests.description',
+      },
+      {
+        subtitleKey: 'privacyPolicy.sections.legalBasis.legalObligation.subtitle',
+        descriptionKey: 'privacyPolicy.sections.legalBasis.legalObligation.description',
+      },
+      {
+        subtitleKey: 'privacyPolicy.sections.legalBasis.consent.subtitle',
+        descriptionKey: 'privacyPolicy.sections.legalBasis.consent.description',
+      },
     ],
   },
   {
@@ -115,6 +167,94 @@ const sectionConfig: {
         subtitleKey: 'privacyPolicy.sections.yourRights.modify.subtitle',
         descriptionKey: 'privacyPolicy.sections.yourRights.modify.description',
       },
+      {
+        subtitleKey: 'privacyPolicy.sections.yourRights.portability.subtitle',
+        descriptionKey: 'privacyPolicy.sections.yourRights.portability.description',
+      },
+      {
+        subtitleKey: 'privacyPolicy.sections.yourRights.object.subtitle',
+        descriptionKey: 'privacyPolicy.sections.yourRights.object.description',
+      },
+      {
+        subtitleKey: 'privacyPolicy.sections.yourRights.restrict.subtitle',
+        descriptionKey: 'privacyPolicy.sections.yourRights.restrict.description',
+      },
+      {
+        subtitleKey: 'privacyPolicy.sections.yourRights.complain.subtitle',
+        descriptionKey: 'privacyPolicy.sections.yourRights.complain.description',
+      },
+    ],
+  },
+  {
+    icon: Clock,
+    titleKey: 'privacyPolicy.sections.dataRetention.title',
+    items: [
+      {
+        subtitleKey: 'privacyPolicy.sections.dataRetention.account.subtitle',
+        descriptionKey: 'privacyPolicy.sections.dataRetention.account.description',
+      },
+      {
+        subtitleKey: 'privacyPolicy.sections.dataRetention.transactions.subtitle',
+        descriptionKey: 'privacyPolicy.sections.dataRetention.transactions.description',
+      },
+      {
+        subtitleKey: 'privacyPolicy.sections.dataRetention.testing.subtitle',
+        descriptionKey: 'privacyPolicy.sections.dataRetention.testing.description',
+      },
+      {
+        subtitleKey: 'privacyPolicy.sections.dataRetention.support.subtitle',
+        descriptionKey: 'privacyPolicy.sections.dataRetention.support.description',
+      },
+    ],
+  },
+  {
+    icon: Globe,
+    titleKey: 'privacyPolicy.sections.internationalTransfers.title',
+    items: [
+      {
+        subtitleKey: 'privacyPolicy.sections.internationalTransfers.global.subtitle',
+        descriptionKey: 'privacyPolicy.sections.internationalTransfers.global.description',
+      },
+      {
+        subtitleKey: 'privacyPolicy.sections.internationalTransfers.safeguards.subtitle',
+        descriptionKey: 'privacyPolicy.sections.internationalTransfers.safeguards.description',
+      },
+    ],
+  },
+  {
+    icon: Baby,
+    titleKey: 'privacyPolicy.sections.childrenPrivacy.title',
+    items: [
+      {
+        subtitleKey: 'privacyPolicy.sections.childrenPrivacy.ageRestriction.subtitle',
+        descriptionKey: 'privacyPolicy.sections.childrenPrivacy.ageRestriction.description',
+      },
+      {
+        subtitleKey: 'privacyPolicy.sections.childrenPrivacy.parentalContact.subtitle',
+        descriptionKey: 'privacyPolicy.sections.childrenPrivacy.parentalContact.description',
+      },
+    ],
+  },
+  {
+    icon: CreditCard,
+    titleKey: 'privacyPolicy.sections.ccpa.title',
+    items: [
+      {
+        subtitleKey: 'privacyPolicy.sections.ccpa.rightToKnow.subtitle',
+        descriptionKey: 'privacyPolicy.sections.ccpa.rightToKnow.description',
+      },
+      {
+        subtitleKey: 'privacyPolicy.sections.ccpa.rightToDelete.subtitle',
+        descriptionKey: 'privacyPolicy.sections.ccpa.rightToDelete.description',
+      },
+      {
+        subtitleKey: 'privacyPolicy.sections.ccpa.rightToOptOut.subtitle',
+        descriptionKey: 'privacyPolicy.sections.ccpa.rightToOptOut.description',
+      },
+      {
+        subtitleKey: 'privacyPolicy.sections.ccpa.nonDiscrimination.subtitle',
+        descriptionKey: 'privacyPolicy.sections.ccpa.nonDiscrimination.description',
+      },
     ],
   },
   {
@@ -126,8 +266,8 @@ const sectionConfig: {
         descriptionKey: 'privacyPolicy.sections.cookies.essentialOnly.description',
       },
       {
-        subtitleKey: 'privacyPolicy.sections.cookies.noTracking.subtitle',
-        descriptionKey: 'privacyPolicy.sections.cookies.noTracking.description',
+        subtitleKey: 'privacyPolicy.sections.cookies.analytics.subtitle',
+        descriptionKey: 'privacyPolicy.sections.cookies.analytics.description',
       },
       {
         subtitleKey: 'privacyPolicy.sections.cookies.management.subtitle',
@@ -135,10 +275,24 @@ const sectionConfig: {
       },
     ],
   },
+  {
+    icon: RefreshCw,
+    titleKey: 'privacyPolicy.sections.changes.title',
+    items: [
+      {
+        subtitleKey: 'privacyPolicy.sections.changes.updates.subtitle',
+        descriptionKey: 'privacyPolicy.sections.changes.updates.description',
+      },
+      {
+        subtitleKey: 'privacyPolicy.sections.changes.materialChanges.subtitle',
+        descriptionKey: 'privacyPolicy.sections.changes.materialChanges.description',
+      },
+    ],
+  },
 ];
 
 function legalText(t: (key: string) => string, key: string) {
-  return t(key).replace('{brand}', BRAND_NAME).replace('{entity}', LEGAL_ENTITY_NAME);
+  return t(key).replace(/\{brand\}/g, BRAND_NAME).replace(/\{entity\}/g, LEGAL_ENTITY_NAME);
 }
 
 function PrivacyPageContent() {
@@ -211,7 +365,7 @@ function PrivacyPageContent() {
                         {t(item.subtitleKey)}
                       </h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">
-                        {t(item.descriptionKey)}
+                        {legalText(t, item.descriptionKey)}
                       </p>
                     </div>
                   ))}
@@ -234,11 +388,11 @@ function PrivacyPageContent() {
                     {t('privacyPolicy.contact.description')}
                   </p>
                   <a
-                    href="mailto:contact@fasttesters.com"
+                    href={`mailto:${CONTACT_EMAIL}`}
                     className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 transition-colors"
                   >
                     <Mail className="h-4 w-4" />
-                    contact@fasttesters.com
+                    {CONTACT_EMAIL}
                   </a>
                 </div>
               </div>
@@ -248,26 +402,29 @@ function PrivacyPageContent() {
 
         <Separator className="my-12 opacity-30" />
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+        <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-6">
           <Button
             variant="outline"
-            onClick={() => navigate('/terms')}
+            onClick={() => navigate('/terms-and-conditions')}
             className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 cursor-pointer"
           >
             {t('footer.termsAndConditions')}
           </Button>
           <Button
             variant="outline"
-            onClick={() => navigate('/refund')}
+            onClick={() => navigate('/refund-policy')}
             className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 cursor-pointer"
           >
             {t('footer.refundPolicy')}
           </Button>
           <Button
             variant="outline"
-            onClick={() => navigate('/')}
-            className="cursor-pointer"
+            onClick={() => navigate('/cancellation-policy')}
+            className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 cursor-pointer"
           >
+            {t('footer.cancellationPolicy')}
+          </Button>
+          <Button variant="outline" onClick={() => navigate('/')} className="cursor-pointer">
             {t('privacyPolicy.backToHome')}
           </Button>
         </div>
