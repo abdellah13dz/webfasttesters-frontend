@@ -41,6 +41,7 @@ import {
   Trophy,
 } from 'lucide-react';
 import { NewsletterSection } from '@/components/newsletter-section';
+import { LiveDemoDashboard } from '@/components/live-demo-dashboard';
 
 // ─── Animated Counter Hook ─────────────────────────────────────────────
 function useAnimatedCounter(target: number, duration: number = 2000, startOnMount: boolean = true) {
@@ -742,20 +743,14 @@ export default function HomePage() {
           </AnimatedSection>
 
           <AnimatedSection delay={150}>
-            <Card className="card-hover glow-blue bg-card/90 border-border/60 max-w-sm mx-auto">
-              <CardContent className="p-6 flex flex-col items-center text-center">
-                {/* App icon */}
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-500/10 mb-4">
-                  <FileText className="h-8 w-8 text-blue-400" />
-                </div>
-                {/* App name */}
-                <h3 className="text-xl font-bold text-foreground mb-2">QuickNote</h3>
-                {/* Key stats */}
-                <div className="flex items-center gap-4 mb-5 text-sm text-muted-foreground">
-                  <span className="flex items-center gap-1"><Users className="h-3.5 w-3.5 text-blue-400" />14 testers</span>
-                  <span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5 text-blue-400" />14 days</span>
-                  <span className="flex items-center gap-1"><CheckCircle className="h-3.5 w-3.5 text-blue-400" />Approved</span>
-                </div>
+            <div className="relative max-w-5xl mx-auto">
+              <div className="absolute -inset-6 pointer-events-none">
+                <svg className="absolute top-0 left-[15%] animate-particle" width="6" height="6" viewBox="0 0 6 6" fill="none"><circle cx="3" cy="3" r="2" fill="rgba(59,130,246,0.15)" /></svg>
+                <svg className="absolute top-[40%] right-[3%] animate-particle" style={{ animationDelay: '1s' }} width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="2.5" fill="rgba(59,130,246,0.12)" /></svg>
+                <svg className="absolute bottom-[5%] left-[5%] animate-particle" style={{ animationDelay: '2s' }} width="5" height="5" viewBox="0 0 5 5" fill="none"><circle cx="2.5" cy="2.5" r="1.5" fill="rgba(59,130,246,0.1)" /></svg>
+              </div>
+              <LiveDemoDashboard />
+              <div className="mt-6 flex justify-center">
                 <Button
                   onClick={() => navigate('/sample-app')}
                   className="bg-blue-500 hover:bg-blue-600 text-white font-semibold shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 transition-all"
@@ -763,8 +758,8 @@ export default function HomePage() {
                   {t('home.viewDemo')}
                   <ArrowRight className="h-4 w-4 ml-1" />
                 </Button>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </AnimatedSection>
         </div>
       </section>

@@ -1,16 +1,10 @@
 'use client';
 
 import React, { useState, useCallback, useEffect } from 'react';
-import { useRouter } from '@/lib/router';
 import { useLanguage } from '@/lib/i18n/context';
 import { X } from 'lucide-react';
 import { APP_URL } from '@/lib/app-urls';
 import { fetchSiteSettings, DEFAULT_ANNOUNCEMENT_BANNER } from '@/lib/site-settings';
-
-function bannerCtaHref(ctaLink?: string): string {
-  if (!ctaLink || ctaLink === '/submit-app') return APP_URL;
-  return ctaLink;
-}
 
 const BANNER_DISMISSED_KEY = 'ft-banner-dismissed';
 const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
@@ -31,15 +25,14 @@ function getInitialVisibility(): boolean {
 export function AnnouncementBanner() {
   const [visible, setVisible] = useState(getInitialVisibility);
   const [dismissed, setDismissed] = useState(false);
-  const [banner, setBanner] = useState(DEFAULT_ANNOUNCEMENT_BANNER);
-  const { t } = useLanguage();
-  const { navigate } = useRouter();
+  const [enabled, setEnabled] = useState(DEFAULT_ANNOUNCEMENT_BANNER.enabled);
+  const { t, dir } = useLanguage();
 
   useEffect(() => {
     (async () => {
       const settings = await fetchSiteSettings();
       if (settings?.announcementBanner) {
-        setBanner(settings.announcementBanner);
+        setEnabled(settings.announcementBanner.enabled);
       }
     })();
   }, []);
@@ -52,46 +45,46 @@ export function AnnouncementBanner() {
     }, 300);
   }, []);
 
-  const handleCtaClick = useCallback(() => {
-    navigate(bannerCtaHref(banner.ctaLink));
-  }, [navigate, banner.ctaLink]);
-
-  if (!visible || !banner.enabled) return null;
+  if (!visible || !enabled) return null;
 
   return (
     <div
-      className={`w-full bg-gradient-to-r from-blue-600 to-blue-500 text-white transition-all duration-300 ease-out overflow-hidden safe-area-x ${
-        dismissed ? 'max-h-0 opacity-0' : 'max-h-24 sm:max-h-16 opacity-100 animate-banner-slide-down'
+      className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+        dismissed ? 'grid-rows-[0fr] opacity-0' : 'grid-rows-[1fr] opacity-100'
       }`}
+      dir={dir}
     >
-      <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-start gap-1 py-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
-          {/* Message */}
-          <p className="text-xs sm:text-sm font-medium leading-snug sm:truncate sm:flex-1 sm:min-w-0">
-            {banner.message || t('banner.message')}
-          </p>
+      <div className="overflow-hidden">
+        <div className="w-full bg-gradient-to-r from-blue-600 to-blue-500 text-white safe-area-x safe-area-top animate-banner-slide-down">
+          <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
+            <div className="relative py-2.5 sm:py-2">
+              <button
+                type="button"
+                suppressHydrationWarning
+                onClick={handleDismiss}
+                className="absolute top-2 end-2 z-10 touch-target rounded p-1.5 hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 sm:top-1/2 sm:-translate-y-1/2"
+                aria-label={t('banner.dismiss')}
+              >
+                <X className="h-4 w-4" />
+              </button>
 
-          <div className="flex w-full items-center justify-between gap-2 sm:w-auto sm:shrink-0">
-            {/* CTA */}
-            <button
-              type="button"
-              suppressHydrationWarning
-              onClick={handleCtaClick}
-              className="shrink-0 text-xs sm:text-sm font-semibold underline underline-offset-2 hover:text-blue-100 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded min-h-9 px-1"
-            >
-              {banner.ctaText || t('banner.cta')}
-            </button>
-
-            {/* Dismiss */}
-            <button
-              type="button"
-              suppressHydrationWarning
-              onClick={handleDismiss}
-              className="shrink-0 touch-target p-1 rounded hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
-              aria-label="Dismiss announcement"
-            >
-              <X className="h-4 w-4" />
-            </button>
+              <div className="flex flex-col gap-2 pe-9 sm:flex-row sm:items-center sm:gap-4 sm:pe-12">
+                <p
+                  className="min-w-0 flex-1 text-start text-xs font-medium leading-relaxed sm:text-sm sm:leading-snug sm:truncate"
+                  suppressHydrationWarning
+                >
+                  {t('banner.message')}
+                </p>
+                <a
+                  href={APP_URL}
+                  className="inline-flex min-h-9 shrink-0 items-center self-start text-xs font-semibold underline underline-offset-2 transition-colors hover:text-blue-100 focus:outline-none focus:ring-2 focus:ring-white/50 rounded sm:self-center sm:text-sm"
+                  rel="noopener noreferrer"
+                  suppressHydrationWarning
+                >
+                  {t('banner.cta')}
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

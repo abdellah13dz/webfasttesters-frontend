@@ -8,6 +8,7 @@ export const tr: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   'banner.message': '🚀 Sınırlı süre: Sadece $15/uygulama ile 14 profesyonel test uzmanı — %99.9 başarı!',
   'banner.cta': 'Başla →',
+  'banner.dismiss': 'Duyuruyu kapat',
 
   // ═══════════════════════════════════════════════════════════════════════
   // HEADER

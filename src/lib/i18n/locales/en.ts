@@ -8,6 +8,7 @@ export const en: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   'banner.message': '🚀 Limited time: Get 14 professional testers for just $15/app — 99.9% success rate!',
   'banner.cta': 'Get Started →',
+  'banner.dismiss': 'Dismiss announcement',
 
   // ═══════════════════════════════════════════════════════════════════════
   // HEADER
