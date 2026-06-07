@@ -1,9 +1,9 @@
-# Vercel Hobby blocks @users.noreply.github.com — use your primary GitHub email.
+﻿# Vercel Hobby blocks @users.noreply.github.com — use your primary GitHub email.
 #
 # GitHub repo secrets (required):
 #   VERCEL_TOKEN      → https://vercel.com/account/tokens
 #   GIT_COMMIT_EMAIL  → primary verified email from https://github.com/settings/emails
-#   GIT_COMMIT_NAME   → e.g. Abdallahe Benahmed
+#   GIT_COMMIT_NAME   → e.g. Abdallahe Benahmed (optional; defaults below)
 #
 # Vercel → Project → Settings → Git → Disconnect (use this workflow only)
 name: Deploy to Vercel
@@ -38,10 +38,20 @@ jobs:
           fi
 
       - name: Fix git author for Vercel (noreply emails are rejected)
+        env:
+          COMMIT_EMAIL: ${{ secrets.GIT_COMMIT_EMAIL }}
+          COMMIT_NAME: ${{ secrets.GIT_COMMIT_NAME }}
         run: |
-          git config user.email "${{ secrets.GIT_COMMIT_EMAIL }}"
-          git config user.name "${{ secrets.GIT_COMMIT_NAME }}"
-          git commit --amend --no-edit --author="${{ secrets.GIT_COMMIT_NAME }} <${{ secrets.GIT_COMMIT_EMAIL }}>"
+          NAME="${COMMIT_NAME:-Abdallahe Benahmed}"
+          git config user.email "$COMMIT_EMAIL"
+          git config user.name "$NAME"
+          AUTHOR_EMAIL=$(git log -1 --format='%ae')
+          if echo "$AUTHOR_EMAIL" | grep -qE 'noreply\.github\.com|z@container'; then
+            git commit --amend --no-edit --allow-empty --author="$NAME <$COMMIT_EMAIL>"
+            echo "Rewrote author to: $NAME <$COMMIT_EMAIL>"
+          else
+            echo "Author already valid: $(git log -1 --format='%an <%ae>')"
+          fi
 
       - name: Setup Node
         uses: actions/setup-node@v4
