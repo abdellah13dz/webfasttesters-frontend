@@ -669,6 +669,49 @@ body {
   cursor: pointer;
 }
 
+/* Blog article reading experience */
+.blog-article-content {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: color-mix(in oklch, var(--foreground) 88%, transparent);
+}
+.blog-article-content h1,
+.blog-article-content h2,
+.blog-article-content h3 {
+  color: var(--foreground);
+}
+.blog-article-content h2 {
+  margin-top: 2em;
+  padding-bottom: 0.35em;
+  border-bottom: 1px solid var(--border);
+}
+.blog-article-content strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+.blog-article-content a {
+  color: #2563eb;
+  text-underline-offset: 2px;
+}
+.blog-article-content a:hover {
+  color: #1d4ed8;
+}
+.dark .blog-article-content a {
+  color: #60a5fa;
+}
+.dark .blog-article-content a:hover {
+  color: #93c5fd;
+}
+.blog-article-content blockquote {
+  border-left-color: color-mix(in oklch, #3b82f6 35%, var(--border));
+  background: color-mix(in oklch, #3b82f6 6%, var(--muted));
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 0.75em 1em;
+}
+.dark .blog-article-content blockquote {
+  background: color-mix(in oklch, #3b82f6 8%, var(--muted));
+}
+
 /* Float animation classes defined above */
 
 /* Pulse ring for expanding concentric circles */

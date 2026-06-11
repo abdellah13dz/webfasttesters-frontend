@@ -26,6 +26,22 @@ import {
   Send,
 } from 'lucide-react';
 
+const categoryLabelMap: Record<string, string> = {
+  ALL: 'blog.categoryAll',
+  'GOOGLE PLAY': 'blog.categoryGooglePlay',
+  'APP TESTING': 'blog.categoryAppTesting',
+  'BETA TESTING': 'blog.categoryBetaTesting',
+  'CLOSED TESTING': 'blog.categoryClosedTesting',
+  'APP REJECTION': 'blog.categoryAppRejection',
+  INTERNATIONAL: 'blog.categoryInternational',
+  PUBLISHING: 'blog.categoryPublishing',
+};
+
+function isHtmlContent(content: string): boolean {
+  const trimmed = content.trim();
+  return trimmed.startsWith('<') && /<\/[a-z][\s\S]*>/i.test(trimmed);
+}
+
 export default function BlogArticlePage() {
   const { currentPath, navigate } = useRouter();
   const { t, language } = useLanguage();
@@ -136,12 +152,13 @@ export default function BlogArticlePage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-blue-500/5 to-transparent dark:from-blue-950/20 dark:via-transparent dark:to-transparent" />
+        <div className="absolute inset-0 hero-grid-pattern opacity-20" />
         <div className="relative mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
           <Breadcrumbs items={breadcrumbItems} />
-          <div className="relative overflow-hidden rounded-xl aspect-video mb-8">
+          <div className="relative overflow-hidden rounded-xl aspect-video mb-8 ring-1 ring-border shadow-lg dark:shadow-none">
             <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent dark:from-black/40" />
           </div>
         </div>
       </section>
@@ -153,9 +170,9 @@ export default function BlogArticlePage() {
               {article.categories.map((cat) => (
                 <Badge
                   key={cat}
-                  className="border-blue-800 bg-blue-950/50 text-blue-400 hover:bg-blue-950/70 text-[10px] tracking-wider"
+                  className="border-blue-400/30 bg-blue-400/10 text-blue-700 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-400 hover:bg-blue-400/15 dark:hover:bg-blue-950/70 text-[10px] tracking-wider"
                 >
-                  {cat}
+                  {categoryLabelMap[cat] ? t(categoryLabelMap[cat]) : cat}
                 </Badge>
               ))}
             </div>
@@ -177,16 +194,23 @@ export default function BlogArticlePage() {
                     navigator.share({ title: article.title, url: window.location.href });
                   }
                 }}
-                className="flex items-center gap-1.5 ml-auto hover:text-blue-400 transition-colors"
+                className="flex items-center gap-1.5 ml-auto text-muted-foreground hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               >
                 <Share2 className="size-3.5" />
                 Share
               </button>
             </div>
 
-            <div className="prose prose-sm sm:prose-base max-w-none dark:prose-invert prose-headings:font-bold prose-a:text-blue-400 hover:prose-a:text-blue-300">
-              <ReactMarkdown>{article.content}</ReactMarkdown>
-            </div>
+            {isHtmlContent(article.content) ? (
+              <div
+                className="tiptap-editor-content blog-article-content"
+                dangerouslySetInnerHTML={{ __html: article.content }}
+              />
+            ) : (
+              <div className="tiptap-editor-content blog-article-content">
+                <ReactMarkdown>{article.content}</ReactMarkdown>
+              </div>
+            )}
 
             <div className="mt-12 pt-8 border-t border-border">
               <Button onClick={() => navigate('/blog')} variant="outline" className="gap-2">
@@ -197,10 +221,10 @@ export default function BlogArticlePage() {
           </article>
 
           <aside className="lg:w-80 shrink-0 space-y-6">
-            <Card className="border-border bg-card/50">
+            <Card className="border-border bg-card shadow-sm dark:bg-card/50 dark:shadow-none">
               <CardContent className="p-4">
                 <div className="flex items-center gap-2 mb-4">
-                  <BookOpen className="size-4 text-blue-400" />
+                  <BookOpen className="size-4 text-blue-600 dark:text-blue-400" />
                   <h3 className="text-sm font-semibold text-foreground">{t('blogArticle.relatedArticles')}</h3>
                 </div>
                 <div className="space-y-3 max-h-96 overflow-y-auto">
@@ -210,8 +234,8 @@ export default function BlogArticlePage() {
                       onClick={() => navigate(blogArticlePath(related.slug))}
                       className="w-full text-left group block"
                     >
-                      <div className="rounded-lg p-2 hover:bg-blue-500/5 transition-colors">
-                        <h4 className="text-sm font-medium text-foreground group-hover:text-blue-400 transition-colors leading-snug line-clamp-2">
+                      <div className="rounded-lg p-2 hover:bg-blue-50 dark:hover:bg-blue-500/5 transition-colors">
+                        <h4 className="text-sm font-medium text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug line-clamp-2">
                           {related.title}
                         </h4>
                         <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{related.description}</p>
@@ -222,16 +246,16 @@ export default function BlogArticlePage() {
               </CardContent>
             </Card>
 
-            <Card className="border-blue-500/30 bg-blue-950/20">
+            <Card className="border-blue-400/30 bg-gradient-to-br from-blue-50 via-white to-blue-50/80 shadow-sm dark:border-blue-500/30 dark:from-blue-950/20 dark:via-card dark:to-blue-950/10 dark:shadow-none">
               <CardContent className="p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <Send className="size-4 text-blue-400" />
+                  <Send className="size-4 text-blue-600 dark:text-blue-400" />
                   <h3 className="text-sm font-semibold text-foreground">{t('blogArticle.submitApp')}</h3>
                 </div>
                 <p className="text-xs text-muted-foreground mb-4">{t('blogArticle.submitAppDesc')}</p>
                 <Button
                   onClick={() => navigate(APP_URL)}
-                  className="w-full bg-blue-500 hover:bg-blue-600 text-white"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white shadow-sm shadow-blue-500/20 dark:bg-blue-500 dark:hover:bg-blue-600 dark:shadow-blue-500/20"
                   size="sm"
                 >
                   {t('blogArticle.getStarted')}

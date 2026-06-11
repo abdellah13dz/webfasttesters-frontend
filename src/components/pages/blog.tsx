@@ -88,14 +88,21 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-100/80 dark:from-blue-950/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-blue-500/5 to-cyan-500/10 dark:from-blue-950/20 dark:via-transparent dark:to-transparent" />
+        <div className="absolute inset-0 hero-grid-pattern opacity-30 dark:opacity-20" />
+        <div className="absolute top-16 right-[12%] hidden sm:block animate-float opacity-[0.12] dark:opacity-10">
+          <Newspaper className="h-10 w-10 text-blue-500 dark:text-blue-400" />
+        </div>
+        <div className="absolute bottom-20 left-[8%] hidden sm:block animate-float-slow opacity-[0.08] dark:opacity-[0.06]">
+          <BookOpen className="h-8 w-8 text-cyan-500 dark:text-cyan-400" />
+        </div>
         <div className="relative mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <div className="flex items-center gap-3 mb-6">
-            <Badge className="border-blue-800 dark:border-blue-950/50 bg-blue-200/50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-800/50 text-[13px] tracking-wider">
+            <Badge className="border-blue-400/30 bg-blue-400/10 text-blue-600 dark:border-blue-950/50 dark:bg-blue-950/50 dark:text-blue-400 hover:bg-blue-400/15 dark:hover:bg-blue-950/70 text-[13px] tracking-wider">
               <Newspaper className="mr-1 size-3" />
               {t('blog.weeklyUpdates')}
             </Badge>
-            <Badge variant="outline" className="border-border text-muted-foreground">
+            <Badge variant="outline" className="border-border bg-white/60 dark:bg-transparent text-muted-foreground">
               <Clock className="mr-1 size-3" />
               {t('blog.readTime')}
             </Badge>
@@ -116,14 +123,14 @@ export default function BlogPage() {
                 placeholder={t('blog.searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-lg border border-border bg-card/50 py-2.5 pl-10 pr-4 text-sm text-foreground placeholder:text-muted-foreground focus:border-blue-500/50 focus:outline-none focus:ring-1 focus:ring-blue-500/30"
+                className="w-full rounded-lg border border-border/80 bg-white py-2.5 pl-10 pr-4 text-sm text-foreground shadow-sm placeholder:text-muted-foreground focus:border-blue-500/50 focus:outline-none focus:ring-1 focus:ring-blue-500/30 dark:border-border dark:bg-card/50 dark:shadow-none"
               />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="border-y border-border bg-background">
+      <section className="border-y border-border bg-muted/40 dark:bg-background">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 overflow-x-auto py-4 scrollbar-hide">
             <Filter className="size-4 shrink-0 text-muted-foreground" />
@@ -133,8 +140,8 @@ export default function BlogPage() {
                 onClick={() => setActiveCategory(category.key)}
                 className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-medium transition-colors ${
                   activeCategory === category.key
-                    ? 'bg-blue-100 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 border border-blue-300 dark:border-blue-500/30'
-                    : 'border border-border text-muted-foreground hover:border-border hover:text-foreground/80'
+                    ? 'bg-blue-100 text-blue-700 border border-blue-300 shadow-sm dark:bg-blue-500/20 dark:text-blue-400 dark:border-blue-500/30 dark:shadow-none'
+                    : 'border border-border bg-white/70 text-muted-foreground hover:border-blue-200 hover:text-foreground/80 dark:bg-transparent dark:hover:border-border'
                 }`}
               >
                 {category.key === category.labelKey ? category.key : t(category.labelKey)}
@@ -151,7 +158,7 @@ export default function BlogPage() {
             <span className="text-sm font-medium text-blue-600 dark:text-blue-400">{t('blog.featuredArticle')}</span>
           </div>
           <Card
-            className="group cursor-pointer border-border bg-card/50 transition-all hover:border-blue-500/30 overflow-hidden"
+            className="group cursor-pointer border-border bg-card shadow-md transition-all hover:border-blue-300 hover:shadow-lg dark:bg-card/50 dark:shadow-none dark:hover:border-blue-500/30 overflow-hidden"
             onClick={() => navigate(blogArticlePath(featuredPost.slug))}
           >
             <div className="relative overflow-hidden aspect-video">
@@ -167,7 +174,7 @@ export default function BlogPage() {
                 {featuredPost.categories.map((cat) => (
                   <Badge
                     key={cat}
-                    className="border-blue-800 dark:border-blue-950/50 bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-950/70 text-[10px] tracking-wider"
+                    className="border-blue-400/30 bg-blue-400/10 text-blue-700 dark:border-blue-950/50 dark:bg-blue-950/50 dark:text-blue-400 hover:bg-blue-400/15 dark:hover:bg-blue-950/70 text-[10px] tracking-wider"
                   >
                     {categoryLabelMap[cat] ? t(categoryLabelMap[cat]) : cat}
                   </Badge>
@@ -217,7 +224,7 @@ export default function BlogPage() {
         </div>
 
         {filteredPosts.length === 0 ? (
-          <div className="rounded-xl border border-border bg-card/50 p-12 text-center">
+          <div className="rounded-xl border border-border bg-card p-12 text-center shadow-sm dark:bg-card/50 dark:shadow-none">
             <Search className="mx-auto size-8 text-muted-foreground mb-3" />
             <p className="text-muted-foreground">{t('blog.noArticles')}</p>
             <button
@@ -237,7 +244,7 @@ export default function BlogPage() {
               .map((post) => (
                 <Card
                   key={post.slug}
-                  className="group cursor-pointer border-border bg-card/50 transition-all hover:border-blue-500/20 hover:bg-card/50 flex flex-col overflow-hidden"
+                  className="group cursor-pointer border-border bg-card shadow-sm transition-all hover:border-blue-200 hover:shadow-md flex flex-col overflow-hidden dark:bg-card/50 dark:shadow-none dark:hover:border-blue-500/20 dark:hover:shadow-none"
                   onClick={() => navigate(blogArticlePath(post.slug))}
                 >
                   <div className="relative overflow-hidden aspect-video">
