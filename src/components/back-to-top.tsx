@@ -50,7 +50,7 @@ export function BackToTop() {
     <button
       onClick={scrollToTop}
       aria-label="Back to top"
-      className={`fixed z-40 flex h-10 w-10 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg shadow-blue-500/25 transition-all duration-300 hover:bg-blue-600 hover:shadow-blue-500/40 safe-area-x md:bottom-6 md:left-6 md:z-50 ${shouldHideMobile ? 'bottom-4 left-3 opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto' : 'bottom-[calc(5rem+env(safe-area-inset-bottom))] left-3 sm:left-4'} ${
+      className={`fixed z-40 flex h-10 w-10 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg shadow-blue-500/25 transition-all duration-300 hover:bg-blue-600 hover:shadow-blue-500/40 safe-area-x md:bottom-6 md:left-6 md:z-50 ${shouldHideMobile ? 'bottom-4 left-3 opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto' : 'bottom-[var(--mobile-sticky-offset)] left-3 sm:left-4'} ${
         isVisible
           ? 'opacity-100 translate-y-0'
           : 'opacity-0 translate-y-4 pointer-events-none'

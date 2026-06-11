@@ -50,6 +50,8 @@
 
 /* Light Mode */
 :root {
+  --mobile-cta-bar-height: 4.75rem;
+  --mobile-sticky-offset: calc(var(--mobile-cta-bar-height) + env(safe-area-inset-bottom, 0px));
   --radius: 0.625rem;
   --background: oklch(0.985 0.002 250);
   --foreground: oklch(0.145 0.02 260);
@@ -182,7 +184,13 @@
   }
 
   .mobile-cta-spacer {
-    padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+    padding-bottom: var(--mobile-sticky-offset);
+  }
+
+  .mobile-sticky-cta-bar {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
   }
 
   .safe-area-top {

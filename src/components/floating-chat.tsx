@@ -75,16 +75,20 @@ export function FloatingChat() {
   const shouldHideMobile = footerVisible;
 
   return (
-    <div data-floating-chat className={`fixed z-50 flex flex-col gap-3 transition-all duration-300 safe-area-x md:bottom-6 ${isRtl ? 'left-3 sm:left-4 items-end' : 'right-3 sm:right-4 items-end'} ${shouldHideMobile ? 'bottom-4 opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto' : 'bottom-[calc(5rem+env(safe-area-inset-bottom))]'}`}>
-      {/* Popup Card */}
+    <div
+      data-floating-chat
+      className={`fixed z-50 transition-all duration-300 safe-area-x pointer-events-none md:bottom-6 ${isRtl ? 'left-3 sm:left-4' : 'right-3 sm:right-4'} ${shouldHideMobile ? 'bottom-4 opacity-0 md:opacity-100' : 'bottom-[var(--mobile-sticky-offset)]'}`}
+    >
+      {/* Popup — absolute so the closed card does not reserve layout space over page content */}
       <div
-        className={`transition-all duration-300 ease-out ${
+        className={`absolute bottom-full mb-3 w-[min(18rem,calc(100vw-1.5rem))] sm:w-80 transition-all duration-300 ease-out pointer-events-auto ${isRtl ? 'left-0' : 'right-0'} ${
           isOpen
             ? 'opacity-100 translate-y-0 scale-100'
-            : 'opacity-0 translate-y-4 scale-95 pointer-events-none'
+            : 'pointer-events-none invisible opacity-0 translate-y-4 scale-95'
         }`}
+        aria-hidden={!isOpen}
       >
-        <Card className="w-[min(18rem,calc(100vw-1.5rem))] sm:w-80 overflow-hidden border-border/60 bg-card/95 backdrop-blur-md shadow-xl">
+        <Card className="w-full overflow-hidden border-border/60 bg-card/95 backdrop-blur-md shadow-xl">
           {/* Header */}
           <div className="flex items-center justify-between bg-blue-500 px-4 py-3">
             <div className="flex items-center gap-2">
@@ -150,7 +154,7 @@ export function FloatingChat() {
         type="button"
         suppressHydrationWarning
         onClick={() => setIsOpen(!isOpen)}
-        className={`relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg shadow-blue-500/30 transition-all duration-300 hover:bg-blue-600 hover:shadow-blue-500/50 hover:scale-105 active:scale-95 ${
+        className={`pointer-events-auto relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg shadow-blue-500/30 transition-all duration-300 hover:bg-blue-600 hover:shadow-blue-500/50 hover:scale-105 active:scale-95 ${
           isOpen ? 'rotate-0' : ''
         }`}
         aria-label={isOpen ? 'Close support chat' : 'Open support chat'}

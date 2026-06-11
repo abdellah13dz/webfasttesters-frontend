@@ -41,8 +41,8 @@ export function MobileStickyCta() {
   };
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-30 md:hidden safe-area-bottom safe-area-x">
-      <div className="border-t border-border/40 bg-background/95 backdrop-blur-lg shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+    <div className="fixed inset-x-0 bottom-0 z-30 md:hidden">
+      <div className="mobile-sticky-cta-bar border-t border-border/40 bg-background/95 backdrop-blur-lg shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
         <div className="flex items-center gap-2 px-3 py-2.5 sm:gap-3 sm:px-4">
           {/* Left: Price & Trust */}
           <div className="flex flex-col shrink-0">
