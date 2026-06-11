@@ -241,11 +241,11 @@ add('productionAccess', {
 // ─── referralProgram ───
 add('referralProgram', {
   heroTitlePrefix: 'App Testing Referral Program —',
-  heroTitleHighlight: 'Earn 10% Commission',
-  heroTitle: 'App Testing Referral Program — Earn 10% Commission',
-  heroTagline: 'Share a link, get 10% of every sale',
+  heroTitleHighlight: 'Earn 20% Commission',
+  heroTitle: 'App Testing Referral Program — Earn 20% Commission',
+  heroTagline: 'Share a link, get 20% of every sale',
   heroDescription:
-    'Recommend Fast Testers to fellow developers. When they purchase, you earn 10% of their first order. No caps, no approvals, paid out fast.',
+    'Recommend Fast Testers to fellow developers. When they purchase, you earn 20% of their first order. No caps, no approvals, paid out fast.',
   ctaGetReferralLink: 'Get your referral link',
   ctaReadTerms: 'Read the terms',
   dashboardBadge: 'Your Dashboard Preview',
@@ -271,9 +271,9 @@ add('referralProgram', {
   step2Title: 'Share with developers',
   step2Description:
     'Share your link on social media, in communities, or directly with fellow developers who need testing.',
-  step3Title: 'Earn 10% when they purchase',
+  step3Title: 'Earn 20% when they purchase',
   step3Description:
-    'When someone signs up through your link and makes their first purchase, you earn 10% of their order value.',
+    'When someone signs up through your link and makes their first purchase, you earn 20% of their order value.',
   benefitsTitle: 'Why Join?',
   benefitsHighlight: 'Join?',
   benefitsSubtitle: 'Benefits that make our referral program stand out',
@@ -298,7 +298,7 @@ add('referralProgram', {
   audience4Desc: 'Share with colleagues and fellow developers',
   ctaTitle: 'Ready to Start Earning?',
   ctaDescription:
-    'Join our referral program today and earn 10% commission on every developer you refer. No caps, no minimums — just simple, fast earnings.',
+    'Join our referral program today and earn 20% commission on every developer you refer. No caps, no minimums — just simple, fast earnings.',
 });
 
 // ─── setupGuide ───

@@ -56,18 +56,16 @@ function getTranslation(
   return key;
 }
 
-function getInitialLanguage(): Language {
-  if (typeof window === 'undefined') return 'en';
-  const saved = localStorage.getItem('ft-lang') as Language | null;
-  if (saved && ['en', 'es', 'tr', 'ar'].includes(saved)) {
-    return saved;
-  }
-  return 'en';
-}
-
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(getInitialLanguage);
+  const [language, setLanguageState] = useState<Language>('en');
   const [overrides, setOverrides] = useState<Record<string, Record<string, string>>>({});
+
+  useEffect(() => {
+    const saved = localStorage.getItem('ft-lang') as Language | null;
+    if (saved && ['en', 'es', 'tr', 'ar'].includes(saved)) {
+      setLanguageState(saved);
+    }
+  }, []);
 
   useEffect(() => {
     document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';

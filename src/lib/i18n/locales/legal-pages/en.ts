@@ -403,7 +403,7 @@ export const legalPagesEn: Record<string, string> = {
   'referralPolicyPage.sections.binding.p2': 'We reserve the right to modify this Policy at any time. Continued participation in the Program after any changes constitutes your acceptance of the revised terms. We will notify active participants of material changes via email.',
 
   'referralPolicyPage.sections.commission.title': 'Commission Structure',
-  'referralPolicyPage.sections.commission.p1': 'You will earn a commission of 10% of the first purchase amount made by any user who signs up through your unique referral link ("Referred User").',
+  'referralPolicyPage.sections.commission.p1': 'You will earn a commission of 20% of the first purchase amount made by any user who signs up through your unique referral link ("Referred User").',
   'referralPolicyPage.sections.commission.p2': 'The commission is calculated based on the total amount paid by the Referred User, excluding any taxes, fees, or refunds.',
   'referralPolicyPage.sections.commission.p3': 'A qualifying purchase occurs when a Referred User completes payment for any Fast Testers service for the first time.',
   'referralPolicyPage.sections.commission.p4': "Commissions are only earned on the Referred User's first purchase. Subsequent purchases by the same Referred User do not generate additional commissions.",

@@ -193,7 +193,7 @@ export const legalPagesTr: Record<string, string> = {
   'referralPolicyPage.sections.binding.p2': 'Bu Politikayı istediğimiz zaman değiştirme hakkını saklı tutarız. Herhangi bir değişiklikten sonra Programa katılmaya devam etmeniz, revize edilmiş şartları kabul ettiğiniz anlamına gelir. Önemli değişiklikleri aktif katılımcılara e-posta yoluyla bildireceğiz.',
 
   'referralPolicyPage.sections.commission.title': 'Komisyon Yapısı',
-  'referralPolicyPage.sections.commission.p1': 'Benzersiz referans bağlantınız aracılığıyla kaydolan herhangi bir kullanıcının yaptığı ilk satın alma tutarının %10\'u kadar komisyon kazanacaksınız ("Yönlendirilen Kullanıcı").',
+  'referralPolicyPage.sections.commission.p1': 'Benzersiz referans bağlantınız aracılığıyla kaydolan herhangi bir kullanıcının yaptığı ilk satın alma tutarının %20\'si kadar komisyon kazanacaksınız ("Yönlendirilen Kullanıcı").',
   'referralPolicyPage.sections.commission.p2': 'Komisyon, vergiler, ücretler veya geri ödemeler hariç olmak üzere Yönlendirilen Kullanıcının ödediği toplam tutara göre hesaplanır.',
   'referralPolicyPage.sections.commission.p3': 'Nitelikli bir satın alma, Yönlendirilen Kullanıcının herhangi bir Fast Testers hizmeti için ilk kez ödemeyi tamamladığında gerçekleşir.',
   'referralPolicyPage.sections.commission.p4': 'Komisyonlar yalnızca Yönlendirilen Kullanıcının ilk satın almasından kazanılır. Aynı Yönlendirilen Kullanıcının sonraki satın almaları ek komisyon oluşturmaz.',

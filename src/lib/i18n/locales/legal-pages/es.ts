@@ -193,7 +193,7 @@ export const legalPagesEs: Record<string, string> = {
   'referralPolicyPage.sections.binding.p2': 'Nos reservamos el derecho de modificar esta Política en cualquier momento. La participación continuada en el Programa después de cualquier cambio constituye su aceptación de los términos revisados. Notificaremos a los participantes activos sobre cambios materiales por correo electrónico.',
 
   'referralPolicyPage.sections.commission.title': 'Estructura de Comisiones',
-  'referralPolicyPage.sections.commission.p1': 'Ganará una comisión del 10% del monto de la primera compra realizada por cualquier usuario que se registre a través de su enlace de referido único ("Usuario Referido").',
+  'referralPolicyPage.sections.commission.p1': 'Ganará una comisión del 20% del monto de la primera compra realizada por cualquier usuario que se registre a través de su enlace de referido único ("Usuario Referido").',
   'referralPolicyPage.sections.commission.p2': 'La comisión se calcula en base al monto total pagado por el Usuario Referido, excluyendo impuestos, tarifas o reembolsos.',
   'referralPolicyPage.sections.commission.p3': 'Una compra calificada ocurre cuando un Usuario Referido completa el pago de cualquier servicio de Fast Testers por primera vez.',
   'referralPolicyPage.sections.commission.p4': 'Las comisiones solo se ganan en la primera compra del Usuario Referido. Las compras posteriores del mismo Usuario Referido no generan comisiones adicionales.',

@@ -151,7 +151,7 @@ export default function Blog12TestersPage() {
     <div className="min-h-screen bg-background text-foreground">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-100/80 dark:from-blue-950/20 to-transparent" />
         <div className="relative mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <button
             onClick={() => navigate('/blog')}
@@ -162,17 +162,17 @@ export default function Blog12TestersPage() {
           </button>
 
           <div className="flex items-center gap-2 mb-4">
-            <Badge className="border-blue-800 bg-blue-950/50 text-blue-400 hover:bg-blue-950/70 text-[10px] tracking-wider">
+            <Badge className="border-blue-200 dark:border-blue-800 bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-950/70 text-[10px] tracking-wider">
               {t('blog.categoryGooglePlay')}
             </Badge>
-            <Badge className="border-blue-800 bg-blue-950/50 text-blue-400 hover:bg-blue-950/70 text-[10px] tracking-wider">
+            <Badge className="border-blue-200 dark:border-blue-800 bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-950/70 text-[10px] tracking-wider">
               {t('blog.categoryAppTesting')}
             </Badge>
           </div>
 
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl leading-tight">
             {t('blog12Testers.heroTitlePrefix')}{' '}
-            <span className="text-blue-400">{t('blog12Testers.heroTitleHighlight')}</span>{' '}
+            <span className="text-blue-600 dark:text-blue-400">{t('blog12Testers.heroTitleHighlight')}</span>{' '}
             {t('blog12Testers.heroTitleSuffix')}
           </h1>
 
@@ -214,7 +214,7 @@ export default function Blog12TestersPage() {
 
           <section>
             <h2 className="flex items-center gap-2 text-xl font-bold text-foreground mb-4">
-              <div className="flex size-7 items-center justify-center rounded-lg bg-blue-950/30 text-blue-400 text-xs">
+              <div className="flex size-7 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 text-xs">
                 1
               </div>
               {t('blog12Testers.section1Title')}
@@ -228,7 +228,7 @@ export default function Blog12TestersPage() {
                 <ul className="space-y-2">
                   {keyRequirements.map((item) => (
                     <li key={item.textKey} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-blue-500" />
+                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-blue-600 dark:text-blue-500" />
                       {t(item.textKey)}
                     </li>
                   ))}
@@ -239,7 +239,7 @@ export default function Blog12TestersPage() {
 
           <section>
             <h2 className="flex items-center gap-2 text-xl font-bold text-foreground mb-4">
-              <div className="flex size-7 items-center justify-center rounded-lg bg-blue-950/30 text-blue-400 text-xs">
+              <div className="flex size-7 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 text-xs">
                 2
               </div>
               {t('blog12Testers.section2Title')}
@@ -251,7 +251,7 @@ export default function Blog12TestersPage() {
               <Card className="border-border bg-card/50">
                 <CardContent className="p-5">
                   <div className="flex items-center gap-2 mb-3">
-                    <XCircle className="size-5 text-red-400" />
+                    <XCircle className="size-5 text-red-500 dark:text-red-400" />
                     <span className="text-sm font-semibold text-foreground">{t('blog12Testers.notRequiredLabel')}</span>
                   </div>
                   <ul className="space-y-2 text-sm text-muted-foreground">
@@ -264,7 +264,7 @@ export default function Blog12TestersPage() {
               <Card className="border-border bg-card/50">
                 <CardContent className="p-5">
                   <div className="flex items-center gap-2 mb-3">
-                    <AlertTriangle className="size-5 text-amber-400" />
+                    <AlertTriangle className="size-5 text-amber-600 dark:text-amber-400" />
                     <span className="text-sm font-semibold text-foreground">{t('blog12Testers.requiredLabel')}</span>
                   </div>
                   <ul className="space-y-2 text-sm text-muted-foreground">
@@ -279,7 +279,7 @@ export default function Blog12TestersPage() {
 
           <section>
             <h2 className="flex items-center gap-2 text-xl font-bold text-foreground mb-4">
-              <div className="flex size-7 items-center justify-center rounded-lg bg-blue-950/30 text-blue-400 text-xs">
+              <div className="flex size-7 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 text-xs">
                 3
               </div>
               {t('blog12Testers.section3Title')}
@@ -293,7 +293,7 @@ export default function Blog12TestersPage() {
             <ul className="mt-3 space-y-2">
               {section3Benefits.map((item) => (
                 <li key={item.labelKey} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-blue-500" />
+                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-blue-600 dark:text-blue-500" />
                   <span>
                     <strong className="text-foreground">{t(item.labelKey)}</strong> {t(item.textKey)}
                   </span>
@@ -304,7 +304,7 @@ export default function Blog12TestersPage() {
 
           <section>
             <h2 className="flex items-center gap-2 text-xl font-bold text-foreground mb-4">
-              <div className="flex size-7 items-center justify-center rounded-lg bg-blue-950/30 text-blue-400 text-xs">
+              <div className="flex size-7 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 text-xs">
                 4
               </div>
               {t('blog12Testers.section4Title')}
@@ -316,7 +316,7 @@ export default function Blog12TestersPage() {
               <CardContent className="p-5 space-y-3">
                 {testerCriteria.map((item) => (
                   <div key={item.titleKey} className="flex items-start gap-3">
-                    <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-blue-500" />
+                    <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-blue-600 dark:text-blue-500" />
                     <div>
                       <p className="text-sm font-medium text-foreground">{t(item.titleKey)}</p>
                       <p className="text-xs text-muted-foreground">{t(item.descriptionKey)}</p>
@@ -329,17 +329,17 @@ export default function Blog12TestersPage() {
 
           <section>
             <h2 className="flex items-center gap-2 text-xl font-bold text-foreground mb-4">
-              <div className="flex size-7 items-center justify-center rounded-lg bg-blue-950/30 text-blue-400 text-xs">
+              <div className="flex size-7 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 text-xs">
                 5
               </div>
               {t('blog12Testers.section5Title')}
             </h2>
             <div className="space-y-4">
               {misconceptions.map((item) => (
-                <Card key={item.titleKey} className="border-red-900/30 bg-red-950/10">
+                <Card key={item.titleKey} className="border-red-200 dark:border-red-900/30 bg-red-50 dark:bg-red-950/10">
                   <CardContent className="p-5">
                     <div className="flex items-start gap-3">
-                      <XCircle className="size-5 shrink-0 text-red-400 mt-0.5" />
+                      <XCircle className="size-5 shrink-0 text-red-500 dark:text-red-400 mt-0.5" />
                       <div>
                         <p className="text-sm font-medium text-foreground">{t(item.titleKey)}</p>
                         <p className="text-sm text-muted-foreground mt-1">
@@ -356,7 +356,7 @@ export default function Blog12TestersPage() {
 
           <section>
             <h2 className="flex items-center gap-2 text-xl font-bold text-foreground mb-4">
-              <div className="flex size-7 items-center justify-center rounded-lg bg-blue-950/30 text-blue-400 text-xs">
+              <div className="flex size-7 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 text-xs">
                 6
               </div>
               {t('blog12Testers.section6Title')}
@@ -370,7 +370,7 @@ export default function Blog12TestersPage() {
                   <CardContent className="p-5">
                     <div className="flex items-center gap-2 mb-3">
                       {index === 0 ? (
-                        <Shield className="size-5 text-blue-400" />
+                        <Shield className="size-5 text-blue-600 dark:text-blue-400" />
                       ) : index === 1 ? (
                         <Users className="size-5 text-muted-foreground" />
                       ) : (
@@ -380,7 +380,7 @@ export default function Blog12TestersPage() {
                       <Badge
                         className={
                           option.badge === 'guaranteed'
-                            ? 'border-blue-800 bg-blue-950/50 text-blue-400 text-[10px]'
+                            ? 'border-blue-200 dark:border-blue-800 bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-400 text-[10px]'
                             : 'border-border text-muted-foreground text-[10px]'
                         }
                         variant={option.badge === 'guaranteed' ? 'default' : 'outline'}
@@ -391,7 +391,7 @@ export default function Blog12TestersPage() {
                     <p className="text-sm text-muted-foreground">{t(option.descriptionKey)}</p>
                     {option.showCta && (
                       <Button
-                        className="mt-3 bg-blue-600 text-white hover:bg-blue-700 h-8 text-xs"
+                        className="mt-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold h-8 text-xs"
                         onClick={() => navigate(APP_URL)}
                       >
                         {t('blog12Testers.option1Cta')}
@@ -406,7 +406,7 @@ export default function Blog12TestersPage() {
 
           <section>
             <h2 className="flex items-center gap-2 text-xl font-bold text-foreground mb-4">
-              <div className="flex size-7 items-center justify-center rounded-lg bg-blue-950/30 text-blue-400 text-xs">
+              <div className="flex size-7 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 text-xs">
                 7
               </div>
               {t('blog12Testers.section7Title')}
@@ -421,7 +421,7 @@ export default function Blog12TestersPage() {
                     <th className="px-4 py-3 text-center font-medium text-muted-foreground">
                       {t('blog12Testers.compareHeaderFree')}
                     </th>
-                    <th className="px-4 py-3 text-center font-medium text-blue-400">
+                    <th className="px-4 py-3 text-center font-medium text-blue-600 dark:text-blue-400">
                       {t('blog12Testers.compareHeaderProfessional')}
                     </th>
                   </tr>
@@ -435,16 +435,16 @@ export default function Blog12TestersPage() {
                       <td className="px-4 py-3 text-foreground/80">{t(row.featureKey)}</td>
                       <td className="px-4 py-3 text-center text-foreground/80">
                         {'isGuaranteeRow' in row && row.isGuaranteeRow ? (
-                          <XCircle className="mx-auto size-4 text-red-400/50" />
+                          <XCircle className="mx-auto size-4 text-red-500/70 dark:text-red-400/50" />
                         ) : (
                           t(row.freeKey!)
                         )}
                       </td>
                       <td className="px-4 py-3 text-center">
                         {'isGuaranteeRow' in row && row.isGuaranteeRow ? (
-                          <CheckCircle2 className="mx-auto size-4 text-blue-400" />
+                          <CheckCircle2 className="mx-auto size-4 text-blue-600 dark:text-blue-400" />
                         ) : (
-                          <span className={row.professionalHighlight ? 'text-blue-400 font-medium' : 'text-blue-400'}>
+                          <span className={row.professionalHighlight ? 'text-blue-600 dark:text-blue-400 font-medium' : 'text-blue-600 dark:text-blue-400'}>
                             {t(row.professionalKey!)}
                           </span>
                         )}
@@ -458,7 +458,7 @@ export default function Blog12TestersPage() {
 
           <section>
             <h2 className="flex items-center gap-2 text-xl font-bold text-foreground mb-4">
-              <div className="flex size-7 items-center justify-center rounded-lg bg-blue-950/30 text-blue-400 text-xs">
+              <div className="flex size-7 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 text-xs">
                 8
               </div>
               {t('blog12Testers.section8Title')}
@@ -471,8 +471,8 @@ export default function Blog12TestersPage() {
                     key={tip.titleKey}
                     className="flex items-start gap-4 rounded-xl border border-border bg-card/50 p-5"
                   >
-                    <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-blue-950/30">
-                      <TipIcon className="size-4 text-blue-400" />
+                    <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-950/30">
+                      <TipIcon className="size-4 text-blue-600 dark:text-blue-400" />
                     </div>
                     <div>
                       <h4 className="text-sm font-semibold text-foreground">{t(tip.titleKey)}</h4>
@@ -485,9 +485,9 @@ export default function Blog12TestersPage() {
           </section>
 
           <section>
-            <Card className="border-blue-800/30 bg-blue-950/10">
+            <Card className="border-blue-200 dark:border-blue-800/30 bg-blue-50 dark:bg-blue-950/10">
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-blue-400 mb-3">{t('common.keyTakeaway')}</h3>
+                <h3 className="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-3">{t('common.keyTakeaway')}</h3>
                 <p className="text-foreground/80 leading-relaxed">{t('blog12Testers.summaryText')}</p>
               </CardContent>
             </Card>
@@ -499,7 +499,7 @@ export default function Blog12TestersPage() {
         <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
           <div className="flex items-start gap-4">
             <div className="flex size-14 shrink-0 items-center justify-center rounded-full bg-blue-500/10">
-              <Users className="size-6 text-blue-400" />
+              <Users className="size-6 text-blue-600 dark:text-blue-400" />
             </div>
             <div>
               <p className="text-sm font-semibold text-foreground">{t('blog12Testers.authorName')}</p>
@@ -540,9 +540,9 @@ export default function Blog12TestersPage() {
 
       <section className="border-t border-border bg-background">
         <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
-          <Card className="border-blue-900/50 bg-gradient-to-br from-blue-950/30 to-card/50">
+          <Card className="border-blue-300/50 dark:border-blue-900/50 bg-gradient-to-br from-blue-100/80 dark:from-blue-950/30 to-card/50">
             <CardContent className="p-8 sm:p-10 text-center">
-              <Shield className="mx-auto mb-5 size-10 text-blue-400" />
+              <Shield className="mx-auto mb-5 size-10 text-blue-600 dark:text-blue-400" />
               <h2 className="text-2xl font-bold sm:text-3xl">{t('blog12Testers.ctaTitle')}</h2>
               <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
                 {t('blog12Testers.ctaDescription')}
@@ -550,7 +550,7 @@ export default function Blog12TestersPage() {
               <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                 <Button
                   size="lg"
-                  className="bg-blue-600 text-white hover:bg-blue-700"
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-semibold"
                   onClick={() => navigate(APP_URL)}
                 >
                   {t('blog12Testers.ctaButton')}

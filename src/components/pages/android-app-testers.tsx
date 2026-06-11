@@ -27,22 +27,22 @@ export default function AndroidAppTestersPage() {
 
   const challenges = [
     {
-      icon: <AlertTriangle className="size-5 text-amber-400" />,
+      icon: <AlertTriangle className="size-5 text-amber-600 dark:text-amber-400" />,
       titleKey: 'androidAppTesters.challenge1Title',
       descriptionKey: 'androidAppTesters.challenge1Desc',
     },
     {
-      icon: <UserX className="size-5 text-amber-400" />,
+      icon: <UserX className="size-5 text-amber-600 dark:text-amber-400" />,
       titleKey: 'androidAppTesters.challenge2Title',
       descriptionKey: 'androidAppTesters.challenge2Desc',
     },
     {
-      icon: <Clock className="size-5 text-amber-400" />,
+      icon: <Clock className="size-5 text-amber-600 dark:text-amber-400" />,
       titleKey: 'androidAppTesters.challenge3Title',
       descriptionKey: 'androidAppTesters.challenge3Desc',
     },
     {
-      icon: <Timer className="size-5 text-amber-400" />,
+      icon: <Timer className="size-5 text-amber-600 dark:text-amber-400" />,
       titleKey: 'androidAppTesters.challenge4Title',
       descriptionKey: 'androidAppTesters.challenge4Desc',
     },
@@ -50,27 +50,27 @@ export default function AndroidAppTestersPage() {
 
   const features = [
     {
-      icon: <Users className="size-6 text-blue-400" />,
+      icon: <Users className="size-6 text-blue-600 dark:text-blue-400" />,
       titleKey: 'androidAppTesters.feature1Title',
       descriptionKey: 'androidAppTesters.feature1Desc',
     },
     {
-      icon: <Smartphone className="size-6 text-blue-400" />,
+      icon: <Smartphone className="size-6 text-blue-600 dark:text-blue-400" />,
       titleKey: 'androidAppTesters.feature2Title',
       descriptionKey: 'androidAppTesters.feature2Desc',
     },
     {
-      icon: <MessageSquare className="size-6 text-blue-400" />,
+      icon: <MessageSquare className="size-6 text-blue-600 dark:text-blue-400" />,
       titleKey: 'androidAppTesters.feature3Title',
       descriptionKey: 'androidAppTesters.feature3Desc',
     },
     {
-      icon: <Calendar className="size-6 text-blue-400" />,
+      icon: <Calendar className="size-6 text-blue-600 dark:text-blue-400" />,
       titleKey: 'androidAppTesters.feature4Title',
       descriptionKey: 'androidAppTesters.feature4Desc',
     },
     {
-      icon: <FileText className="size-6 text-blue-400" />,
+      icon: <FileText className="size-6 text-blue-600 dark:text-blue-400" />,
       titleKey: 'home.comprehensiveReports',
       descriptionKey: 'androidAppTesters.feature5Desc',
     },
@@ -104,7 +104,7 @@ export default function AndroidAppTestersPage() {
     <div className="min-h-screen bg-background text-foreground">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-100/80 dark:from-blue-950/30 to-transparent" />
         <div className="relative mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <Badge className="mb-6 border-blue-800 dark:border-blue-950/50 bg-blue-200/50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-800/50 text-[13px] tracking-wider">
             <Smartphone className="mr-1 size-3" />
@@ -112,8 +112,8 @@ export default function AndroidAppTestersPage() {
           </Badge>
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             {t('androidAppTesters.heroTitlePrefix')}{' '}
-            <span className="text-blue-400">{t('androidAppTesters.heroTitleShowUp')}</span> {t('androidAppTesters.heroTitleAndStayFor')}{' '}
-            <span className="text-blue-400">{t('androidAppTesters.heroTitleStayFor')}</span>
+            <span className="text-blue-600 dark:text-blue-400">{t('androidAppTesters.heroTitleShowUp')}</span> {t('androidAppTesters.heroTitleAndStayFor')}{' '}
+            <span className="text-blue-600 dark:text-blue-400">{t('androidAppTesters.heroTitleStayFor')}</span>
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
             {t('androidAppTesters.heroDescription')}
@@ -121,7 +121,7 @@ export default function AndroidAppTestersPage() {
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <Button
               size="lg"
-              className="bg-blue-600 text-white hover:bg-blue-700"
+              className="bg-blue-500 hover:bg-blue-600 text-white font-semibold"
               onClick={() => navigate('/production-access')}
             >
               {t('androidAppTesters.ctaGetTesters')}
@@ -130,7 +130,7 @@ export default function AndroidAppTestersPage() {
             <Button
               size="lg"
               variant="outline"
-              className="border-border text-foreground/80 hover:bg-muted"
+              className="border-border text-foreground hover:bg-muted"
               onClick={() => navigate('/closed-testing')}
             >
               {t('androidAppTesters.ctaLearnClosedTesting')}
@@ -156,7 +156,7 @@ export default function AndroidAppTestersPage() {
             >
               <CardHeader>
                 <div className="flex items-start gap-3">
-                  <div className="mt-0.5 rounded-lg bg-amber-950/10 dark:bg-amber-950/50 p-2">{challenge.icon}</div>
+                  <div className="mt-0.5 rounded-lg bg-amber-100 dark:bg-amber-950/50 p-2">{challenge.icon}</div>
                   <CardTitle className="text-base text-foreground">{t(challenge.titleKey)}</CardTitle>
                 </div>
               </CardHeader>
@@ -172,7 +172,7 @@ export default function AndroidAppTestersPage() {
       <section className="border-y border-border bg-background">
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
-            <Badge variant="outline" className="border-blue-800 text-blue-400">
+            <Badge variant="outline" className="border-blue-800 dark:border-blue-800 text-blue-600 dark:text-blue-400">
               {t('androidAppTesters.whatYouGetBadge')}
             </Badge>
             <h2 className="mt-4 text-2xl font-bold sm:text-3xl">{t('androidAppTesters.whatYouGetTitle')}</h2>
@@ -180,7 +180,7 @@ export default function AndroidAppTestersPage() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((feature, index) => (
               <div key={index} className="group">
-                <div className="mb-4 rounded-xl bg-blue-950/10 dark:bg-blue-950/50 p-3 w-fit transition-colors group-hover:bg-blue-950/50">
+                <div className="mb-4 rounded-xl bg-blue-100 dark:bg-blue-950/50 p-3 w-fit transition-colors group-hover:bg-blue-200 dark:group-hover:bg-blue-950/70">
                   {feature.icon}
                 </div>
                 <h3 className="mb-2 text-lg font-semibold text-foreground">{t(feature.titleKey)}</h3>
@@ -210,7 +210,7 @@ export default function AndroidAppTestersPage() {
                 <th className="px-6 py-4 text-center font-medium text-muted-foreground">
                   {t('androidAppTesters.tableFreeTesters')}
                 </th>
-                <th className="px-6 py-4 text-center font-medium text-blue-400">
+                <th className="px-6 py-4 text-center font-medium text-blue-600 dark:text-blue-400">
                   {t('androidAppTesters.tableProfessionalTesters')}
                 </th>
               </tr>
@@ -223,18 +223,18 @@ export default function AndroidAppTestersPage() {
                     {row.freeKey ? (
                       <span className="text-xs text-muted-foreground">{t(row.freeKey)}</span>
                     ) : row.free === true ? (
-                      <CheckCircle2 className="mx-auto size-5 text-blue-400" />
+                      <CheckCircle2 className="mx-auto size-5 text-blue-600 dark:text-blue-400" />
                     ) : (
-                      <XCircle className="mx-auto size-5 text-red-400" />
+                      <XCircle className="mx-auto size-5 text-red-500 dark:text-red-400" />
                     )}
                   </td>
                   <td className="px-6 py-4 text-center">
                     {row.proKey ? (
-                      <span className="text-xs text-blue-400">{t(row.proKey)}</span>
+                      <span className="text-xs text-blue-600 dark:text-blue-400">{t(row.proKey)}</span>
                     ) : row.professional === true ? (
-                      <CheckCircle2 className="mx-auto size-5 text-blue-400" />
+                      <CheckCircle2 className="mx-auto size-5 text-blue-600 dark:text-blue-400" />
                     ) : (
-                      <span className="text-xs text-blue-400">{row.professional}</span>
+                      <span className="text-xs text-blue-600 dark:text-blue-400">{row.professional}</span>
                     )}
                   </td>
                 </tr>
@@ -249,15 +249,15 @@ export default function AndroidAppTestersPage() {
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="grid gap-8 sm:grid-cols-3">
             <div className="text-center">
-              <div className="mb-2 text-3xl font-bold text-blue-400">{t('androidAppTesters.statAppsPublished')}</div>
+              <div className="mb-2 text-3xl font-bold text-blue-600 dark:text-blue-400">{t('androidAppTesters.statAppsPublished')}</div>
               <p className="text-sm text-muted-foreground">{t('home.appsPublished')}</p>
             </div>
             <div className="text-center">
-              <div className="mb-2 text-3xl font-bold text-blue-400">{t('androidAppTesters.statSuccessRate')}</div>
+              <div className="mb-2 text-3xl font-bold text-blue-600 dark:text-blue-400">{t('androidAppTesters.statSuccessRate')}</div>
               <p className="text-sm text-muted-foreground">{t('home.successRate')}</p>
             </div>
             <div className="text-center">
-              <div className="mb-2 text-3xl font-bold text-blue-400">{t('androidAppTesters.statStartTime')}</div>
+              <div className="mb-2 text-3xl font-bold text-blue-600 dark:text-blue-400">{t('androidAppTesters.statStartTime')}</div>
               <p className="text-sm text-muted-foreground">{t('androidAppTesters.statAvgStartTime')}</p>
             </div>
           </div>
@@ -266,15 +266,15 @@ export default function AndroidAppTestersPage() {
 
       {/* CTA Section */}
       <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-        <Card className="border-blue-900/50 bg-gradient-to-br from-blue-950/30 to-card/50">
+        <Card className="border-blue-300/50 dark:border-blue-900/50 bg-gradient-to-br from-blue-100/80 dark:from-blue-950/30 to-card/50">
           <CardContent className="p-8 sm:p-12 text-center">
-            <Shield className="mx-auto mb-6 size-12 text-blue-400" />
+            <Shield className="mx-auto mb-6 size-12 text-blue-600 dark:text-blue-400" />
             <h2 className="text-2xl font-bold sm:text-3xl">{t('androidAppTesters.ctaTitle')}</h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">{t('androidAppTesters.ctaDescription')}</p>
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Button
                 size="lg"
-                className="bg-blue-600 text-white hover:bg-blue-700"
+                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold"
                 onClick={() => navigate('/production-access')}
               >
                 {t('androidAppTesters.ctaGetTesters')}
