@@ -1,5 +1,45 @@
+import { apiUrl } from '@/lib/api';
+import { mergeKeywords } from '@/lib/seo-keywords';
+
 export function blogArticlePath(slug: string): string {
   return `/blog/${slug}`;
+}
+
+const CATEGORY_KEYWORDS: Record<string, string> = {
+  'GOOGLE PLAY':
+    'google play 12 testers policy, google play closed testing, play store testing requirements',
+  'APP TESTING': 'android app testing, app testing service, google play app testing',
+  'BETA TESTING': 'beta testers android, find beta testers, android beta testing',
+  'CLOSED TESTING': 'google play closed testing, closed test android app, play store closed testing',
+  'APP REJECTION': 'app rejected google play, fix app rejection, google play rejection',
+  INTERNATIONAL: 'multi-language app testing, localization testing, international app testers',
+  PUBLISHING: 'publish app google play, google play production access, play store publishing',
+};
+
+export function blogArticleKeywords(article: ApiArticle): string {
+  return mergeKeywords(
+    CATEGORY_KEYWORDS[article.category] || article.category,
+    article.title,
+    article.seoTitle || ''
+  );
+}
+
+export async function fetchPublishedArticles(): Promise<ApiArticle[]> {
+  try {
+    const res = await fetch(apiUrl('/api/articles'), {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return [];
+    const articles = (await res.json()) as ApiArticle[];
+    return articles.filter((a) => a.status === 'published');
+  } catch {
+    return [];
+  }
+}
+
+export async function fetchArticleBySlug(slug: string): Promise<ApiArticle | null> {
+  const articles = await fetchPublishedArticles();
+  return articles.find((a) => a.slug === slug) ?? null;
 }
 
 export interface ApiArticle {

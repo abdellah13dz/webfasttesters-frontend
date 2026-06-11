@@ -1,10 +1,22 @@
 import type { NextConfig } from "next";
 
+const API_BASE = (
+  process.env.NEXT_PUBLIC_API_URL || "https://webapi.fasttesters.com"
+).replace(/\/$/, "");
+
 const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
   reactStrictMode: false,
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: `${API_BASE}/api/:path*`,
+      },
+    ];
+  },
   async redirects() {
     return [
       {

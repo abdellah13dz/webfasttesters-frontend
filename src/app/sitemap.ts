@@ -1,7 +1,6 @@
 import type { MetadataRoute } from 'next';
-import { apiUrl } from '@/lib/api';
+import { fetchPublishedArticles } from '@/lib/blog';
 import { SITE_URL } from '@/lib/site-url';
-import type { ApiArticle } from '@/lib/blog';
 
 const STATIC_ROUTES: {
   path: string;
@@ -16,16 +15,16 @@ const STATIC_ROUTES: {
   { path: '/reviews', priority: 0.85, changeFrequency: 'weekly' },
   { path: '/compare', priority: 0.85, changeFrequency: 'monthly' },
   { path: '/faq', priority: 0.85, changeFrequency: 'monthly' },
-  { path: '/blog', priority: 0.85, changeFrequency: 'weekly' },
-  { path: '/how-to-find-beta-testers-for-android-apps', priority: 0.85, changeFrequency: 'monthly' },
+  { path: '/blog', priority: 0.9, changeFrequency: 'weekly' },
+  { path: '/blog/google-play-12-testers-policy', priority: 0.9, changeFrequency: 'monthly' },
+  { path: '/blog/how-to-find-beta-testers-for-android-apps', priority: 0.85, changeFrequency: 'monthly' },
+  { path: '/blog/google-play-closed-testing', priority: 0.85, changeFrequency: 'monthly' },
+  { path: '/blog/app-rejected-google-play', priority: 0.85, changeFrequency: 'monthly' },
+  { path: '/blog/multi-language-app-testing', priority: 0.85, changeFrequency: 'monthly' },
+  { path: '/blog/publish-app-google-play', priority: 0.85, changeFrequency: 'monthly' },
   { path: '/google-play-production-access-12-testers', priority: 0.85, changeFrequency: 'monthly' },
-  { path: '/google-play-closed-testing', priority: 0.85, changeFrequency: 'monthly' },
   { path: '/google-play-setup-guide', priority: 0.85, changeFrequency: 'monthly' },
-  { path: '/app-rejected-google-play', priority: 0.8, changeFrequency: 'monthly' },
-  { path: '/multi-language-app-testing', priority: 0.8, changeFrequency: 'monthly' },
-  { path: '/guides/publish-app-google-play', priority: 0.85, changeFrequency: 'monthly' },
   { path: '/guides/enterprise-onboarding', priority: 0.8, changeFrequency: 'monthly' },
-  { path: '/blog/google-play-12-testers-policy', priority: 0.85, changeFrequency: 'monthly' },
   { path: '/about-us', priority: 0.75, changeFrequency: 'monthly' },
   { path: '/case-studies', priority: 0.75, changeFrequency: 'monthly' },
   { path: '/support', priority: 0.75, changeFrequency: 'monthly' },
@@ -44,18 +43,7 @@ const STATIC_ROUTES: {
   { path: '/referral-policy', priority: 0.4, changeFrequency: 'monthly' },
 ];
 
-async function fetchPublishedArticles(): Promise<ApiArticle[]> {
-  try {
-    const res = await fetch(apiUrl('/api/articles'), {
-      next: { revalidate: 3600 },
-    });
-    if (!res.ok) return [];
-    const articles = (await res.json()) as ApiArticle[];
-    return articles.filter((a) => a.status === 'published');
-  } catch {
-    return [];
-  }
-}
+const STATIC_BLOG_SLUGS = new Set(['google-play-12-testers-policy']);
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = SITE_URL;
@@ -76,9 +64,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: article.featured ? 0.8 : 0.7,
   }));
 
-  const staticBlogSlugs = new Set(['google-play-12-testers-policy']);
   const dedupedArticles = articleEntries.filter(
-    (entry) => !staticBlogSlugs.has(entry.url.replace(`${baseUrl}/blog/`, ''))
+    (entry) => !STATIC_BLOG_SLUGS.has(entry.url.replace(`${baseUrl}/blog/`, ''))
   );
 
   return [...staticEntries, ...dedupedArticles];

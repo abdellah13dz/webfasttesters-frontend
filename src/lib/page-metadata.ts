@@ -72,6 +72,40 @@ export function pageSeoToMetadata(path: string, seo: PageSeo): Metadata {
         },
       };
 
+  const openGraph: Metadata['openGraph'] = {
+    type: seo.type === 'article' ? 'article' : 'website',
+    locale: 'en_US',
+    url,
+    siteName: SITE_NAME,
+    title: seo.title,
+    description: seo.description,
+    images: [
+      {
+        url: ogImage,
+        width: 1200,
+        height: 630,
+        alt: seo.title,
+      },
+    ],
+  };
+
+  if (seo.type === 'article') {
+    openGraph.type = 'article';
+    if (seo.publishedTime) {
+      openGraph.publishedTime = seo.publishedTime;
+    }
+    if (seo.modifiedTime) {
+      openGraph.modifiedTime = seo.modifiedTime;
+    }
+    if (seo.section) {
+      openGraph.section = seo.section;
+    }
+    if (seo.tags?.length) {
+      openGraph.tags = seo.tags;
+    }
+    openGraph.authors = [SITE_URL];
+  }
+
   return {
     title: { absolute: seo.title },
     description: seo.description,
@@ -82,22 +116,7 @@ export function pageSeoToMetadata(path: string, seo: PageSeo): Metadata {
     alternates: {
       canonical: url,
     },
-    openGraph: {
-      type: seo.type === 'article' ? 'article' : 'website',
-      locale: 'en_US',
-      url,
-      siteName: SITE_NAME,
-      title: seo.title,
-      description: seo.description,
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: seo.title,
-        },
-      ],
-    },
+    openGraph,
     twitter: {
       card: 'summary_large_image',
       title: seo.title,
@@ -125,4 +144,40 @@ export function buildMetadataForPath(
 /** Shorthand for static route page.tsx files */
 export function createPageMetadata(path: string): Metadata {
   return buildMetadataForPath(path);
+}
+
+/** Build metadata for a CMS or dynamic blog article. */
+export function buildBlogArticleMetadata(
+  article: {
+    slug: string;
+    title: string;
+    description: string;
+    coverImage: string | null;
+    category: string;
+    createdAt: string;
+    seoTitle?: string | null;
+    seoDescription?: string | null;
+  },
+  keywords: string
+): Metadata {
+  const path = `/blog/${article.slug}`;
+  const title =
+    article.seoTitle?.trim() || `${article.title} - Fast Testers Blog`;
+  const description = (
+    article.seoDescription?.trim() ||
+    article.description ||
+    'Expert guide on Google Play testing and Android app publishing from Fast Testers.'
+  ).slice(0, 160);
+
+  return buildMetadataForPath(path, {
+    title,
+    description,
+    keywords,
+    ogImage: article.coverImage || BRAND_OG_IMAGE_PATH,
+    type: 'article',
+    publishedTime: article.createdAt,
+    modifiedTime: article.createdAt,
+    section: article.category,
+    tags: [article.category, 'Google Play', 'Android app testing'],
+  });
 }

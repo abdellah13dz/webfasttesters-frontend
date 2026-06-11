@@ -9,6 +9,10 @@ export interface PageSeo {
   ogImage: string;
   type: 'website' | 'article';
   noindex?: boolean;
+  publishedTime?: string;
+  modifiedTime?: string;
+  section?: string;
+  tags?: string[];
 }
 
 export { SITE_URL, SITE_NAME };
@@ -201,6 +205,56 @@ export const pageSeoConfig: Record<string, PageSeo> = {
       'Everything you need to know about Google Play 12-tester policy: requirements, timelines, exemptions, and how to meet the standard quickly.',
     keywords: mergeKeywords('google play 12 testers policy', '12 tester requirement explained'),
     ogImage: '/images/blog/blog-12-testers.png',
+    type: 'article',
+  },
+
+  '/blog/how-to-find-beta-testers-for-android-apps': {
+    title:
+      'How to Find Beta Testers for Android Apps - Fast Testers | Expert Guide',
+    description:
+      'Struggling to find beta testers? Learn proven strategies to recruit Android beta testers and meet Google Play 12-tester requirement fast and reliably.',
+    keywords: mergeKeywords('find beta testers', 'recruit app testers', 'android beta testers guide'),
+    ogImage: '/images/blog/beta-testers.png',
+    type: 'article',
+  },
+
+  '/blog/google-play-closed-testing': {
+    title:
+      'Google Play Closed Testing - Fast Testers | Complete Closed Testing Guide',
+    description:
+      'Master Google Play closed testing with our complete guide. Learn requirements, setup steps, tester management, and how to graduate to production access.',
+    keywords: mergeKeywords('closed testing guide', 'play store closed test setup'),
+    ogImage: '/images/blog/closed-testing.png',
+    type: 'article',
+  },
+
+  '/blog/app-rejected-google-play': {
+    title:
+      'App Rejected by Google Play? - Fast Testers | Fix Rejections Fast',
+    description:
+      'Your app was rejected by Google Play? Learn common rejection reasons and how Fast Testers helps you fix issues and get approved for production access.',
+    keywords: mergeKeywords('app rejected google play', 'fix app rejection', 'play store rejected'),
+    ogImage: '/images/illustrations/app-rejected.png',
+    type: 'article',
+  },
+
+  '/blog/multi-language-app-testing': {
+    title:
+      'Multi-Language App Testing - Fast Testers | Global Testing Coverage',
+    description:
+      'Test your Android app across multiple languages and regions. Fast Testers provides multi-language testing to ensure Google Play compliance worldwide.',
+    keywords: mergeKeywords('multi-language app testing', 'localization testing', 'international app testers'),
+    ogImage: '/images/blog/multi-language.png',
+    type: 'article',
+  },
+
+  '/blog/publish-app-google-play': {
+    title:
+      'How to Publish an App on Google Play - Fast Testers | Complete Guide',
+    description:
+      'Step-by-step guide to publish your Android app on Google Play, including 12-tester requirement, closed testing, and production access walkthrough.',
+    keywords: mergeKeywords('publish app google play', 'play store developer setup'),
+    ogImage: '/images/blog/guide-publish.png',
     type: 'article',
   },
 

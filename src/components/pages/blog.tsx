@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from '@/lib/router';
 import { useLanguage } from '@/lib/i18n/context';
 import { apiFetch } from '@/lib/api';
@@ -32,15 +33,23 @@ const categoryLabelMap: Record<string, string> = {
   PUBLISHING: 'blog.categoryPublishing',
 };
 
-export default function BlogPage() {
+interface BlogPageProps {
+  initialArticles?: ApiArticle[];
+}
+
+export default function BlogPage({ initialArticles = [] }: BlogPageProps) {
   const { navigate } = useRouter();
   const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState('ALL');
   const [searchQuery, setSearchQuery] = useState('');
-  const [articles, setArticles] = useState<ReturnType<typeof mapApiArticle>[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [articles, setArticles] = useState<ReturnType<typeof mapApiArticle>[]>(() =>
+    initialArticles.map(mapApiArticle)
+  );
+  const [loading, setLoading] = useState(initialArticles.length === 0);
 
   useEffect(() => {
+    if (initialArticles.length > 0) return;
+
     (async () => {
       try {
         const res = await apiFetch('/api/articles');
@@ -55,7 +64,7 @@ export default function BlogPage() {
         setLoading(false);
       }
     })();
-  }, []);
+  }, [initialArticles.length]);
 
   const categories = useMemo(() => {
     const unique = Array.from(new Set(articles.flatMap((post) => post.categories)));
@@ -157,9 +166,9 @@ export default function BlogPage() {
             <Sparkles className="size-4 text-blue-600 dark:text-blue-400" />
             <span className="text-sm font-medium text-blue-600 dark:text-blue-400">{t('blog.featuredArticle')}</span>
           </div>
+          <Link href={blogArticlePath(featuredPost.slug)} className="block">
           <Card
-            className="group cursor-pointer border-border bg-card shadow-md transition-all hover:border-blue-300 hover:shadow-lg dark:bg-card/50 dark:shadow-none dark:hover:border-blue-500/30 overflow-hidden"
-            onClick={() => navigate(blogArticlePath(featuredPost.slug))}
+            className="group border-border bg-card shadow-md transition-all hover:border-blue-300 hover:shadow-lg dark:bg-card/50 dark:shadow-none dark:hover:border-blue-500/30 overflow-hidden"
           >
             <div className="relative overflow-hidden aspect-video">
               <img
@@ -205,6 +214,7 @@ export default function BlogPage() {
               </div>
             </CardContent>
           </Card>
+          </Link>
         </section>
       )}
 
@@ -242,10 +252,9 @@ export default function BlogPage() {
             {filteredPosts
               .filter((p) => !(featuredPost && activeCategory === 'ALL' && searchQuery === '' && p.slug === featuredPost.slug))
               .map((post) => (
+                <Link key={post.slug} href={blogArticlePath(post.slug)} className="block h-full">
                 <Card
-                  key={post.slug}
-                  className="group cursor-pointer border-border bg-card shadow-sm transition-all hover:border-blue-200 hover:shadow-md flex flex-col overflow-hidden dark:bg-card/50 dark:shadow-none dark:hover:border-blue-500/20 dark:hover:shadow-none"
-                  onClick={() => navigate(blogArticlePath(post.slug))}
+                  className="group h-full border-border bg-card shadow-sm transition-all hover:border-blue-200 hover:shadow-md flex flex-col overflow-hidden dark:bg-card/50 dark:shadow-none dark:hover:border-blue-500/20 dark:hover:shadow-none"
                 >
                   <div className="relative overflow-hidden aspect-video">
                     <img
@@ -288,6 +297,7 @@ export default function BlogPage() {
                     </div>
                   </CardContent>
                 </Card>
+                </Link>
               ))}
           </div>
         )}

@@ -1,4 +1,6 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+const API_BASE = (
+  process.env.NEXT_PUBLIC_API_URL || 'https://webapi.fasttesters.com'
+).replace(/\/$/, '');
 const ADMIN_SESSION_KEY = 'ft-admin';
 
 export interface AdminSession {
@@ -11,6 +13,10 @@ export interface AdminSession {
 
 export function apiUrl(path: string): string {
   const normalized = path.startsWith('/') ? path : `/${path}`;
+  // Browser: same-origin /api/* proxied by Next.js (avoids CORS + mixed content).
+  if (typeof window !== 'undefined') {
+    return normalized;
+  }
   return `${API_BASE}${normalized}`;
 }
 

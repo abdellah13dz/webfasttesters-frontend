@@ -1,11 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useRouter } from '@/lib/router';
 import { APP_URL } from '@/lib/app-urls';
 import { useLanguage } from '@/lib/i18n/context';
 import { apiFetch } from '@/lib/api';
-import { blogArticlePath, mapApiArticle, type ApiArticle } from '@/lib/blog';
+import {
+  blogArticleKeywords,
+  blogArticlePath,
+  mapApiArticle,
+  type ApiArticle,
+} from '@/lib/blog';
 import { applyClientSeo } from '@/lib/hooks/use-seo';
 import { BRAND_OG_IMAGE_PATH } from '@/lib/brand';
 import { Breadcrumbs } from '@/components/breadcrumbs';
@@ -42,19 +48,40 @@ function isHtmlContent(content: string): boolean {
   return trimmed.startsWith('<') && /<\/[a-z][\s\S]*>/i.test(trimmed);
 }
 
-export default function BlogArticlePage() {
+function toIsoDate(createdAt: string): string {
+  const date = new Date(createdAt);
+  return Number.isNaN(date.getTime()) ? createdAt : date.toISOString();
+}
+
+interface BlogArticlePageProps {
+  slug?: string;
+  initialArticle?: ApiArticle | null;
+  initialRelated?: ApiArticle[];
+}
+
+export default function BlogArticlePage({
+  slug: slugProp,
+  initialArticle = null,
+  initialRelated = [],
+}: BlogArticlePageProps) {
   const { currentPath, navigate } = useRouter();
   const { t, language } = useLanguage();
 
-  const [article, setArticle] = useState<ReturnType<typeof mapApiArticle> | null>(null);
-  const [rawArticle, setRawArticle] = useState<ApiArticle | null>(null);
-  const [relatedArticles, setRelatedArticles] = useState<ReturnType<typeof mapApiArticle>[]>([]);
-  const [loading, setLoading] = useState(true);
+  const slug = slugProp ?? currentPath.replace('/blog/', '');
+
+  const [article, setArticle] = useState<ReturnType<typeof mapApiArticle> | null>(() =>
+    initialArticle ? mapApiArticle(initialArticle) : null
+  );
+  const [rawArticle, setRawArticle] = useState<ApiArticle | null>(initialArticle);
+  const [relatedArticles, setRelatedArticles] = useState<ReturnType<typeof mapApiArticle>[]>(() =>
+    initialRelated.map(mapApiArticle)
+  );
+  const [loading, setLoading] = useState(!initialArticle);
   const [error, setError] = useState(false);
 
-  const slug = currentPath.replace('/blog/', '');
-
   useEffect(() => {
+    if (initialArticle) return;
+
     async function fetchArticle() {
       setLoading(true);
       setError(false);
@@ -88,7 +115,7 @@ export default function BlogArticlePage() {
     if (slug) {
       fetchArticle();
     }
-  }, [slug]);
+  }, [slug, initialArticle]);
 
   useEffect(() => {
     if (!rawArticle) return;
@@ -102,14 +129,18 @@ export default function BlogArticlePage() {
           rawArticle.description ||
           ''
         ).slice(0, 160),
-        keywords: `${rawArticle.category}, google play testing, android app testing, ${rawArticle.title}`,
+        keywords: blogArticleKeywords(rawArticle),
         ogImage: rawArticle.coverImage || BRAND_OG_IMAGE_PATH,
         type: 'article',
+        publishedTime: rawArticle.createdAt,
+        modifiedTime: rawArticle.createdAt,
+        section: rawArticle.category,
+        tags: [rawArticle.category, 'Google Play', 'Android app testing'],
       },
-      currentPath,
+      `/blog/${slug}`,
       language
     );
-  }, [rawArticle, currentPath, language]);
+  }, [rawArticle, slug, language]);
 
   const breadcrumbItems = [
     { label: t('header.blog'), path: '/blog' },
@@ -157,7 +188,12 @@ export default function BlogArticlePage() {
         <div className="relative mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
           <Breadcrumbs items={breadcrumbItems} />
           <div className="relative overflow-hidden rounded-xl aspect-video mb-8 ring-1 ring-border shadow-lg dark:shadow-none">
-            <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
+            <img
+              src={article.image}
+              alt={`${article.title} - Google Play app testing guide`}
+              className="w-full h-full object-cover"
+              fetchPriority="high"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent dark:from-black/40" />
           </div>
         </div>
@@ -165,7 +201,11 @@ export default function BlogArticlePage() {
 
       <section className="mx-auto max-w-5xl px-4 pb-16 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-8">
-          <article className="flex-1 max-w-3xl">
+          <article
+            className="flex-1 max-w-3xl"
+            itemScope
+            itemType="https://schema.org/BlogPosting"
+          >
             <div className="flex flex-wrap items-center gap-2 mb-4">
               {article.categories.map((cat) => (
                 <Badge
@@ -177,12 +217,23 @@ export default function BlogArticlePage() {
               ))}
             </div>
 
-            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">{article.title}</h1>
+            <h1
+              className="text-3xl font-bold tracking-tight sm:text-4xl mb-4"
+              itemProp="headline"
+            >
+              {article.title}
+            </h1>
+            <meta itemProp="description" content={rawArticle?.description || ''} />
 
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-8 pb-8 border-b border-border">
               <div className="flex items-center gap-1.5">
                 <Calendar className="size-3.5" />
-                {article.date}
+                <time
+                  dateTime={rawArticle ? toIsoDate(rawArticle.createdAt) : undefined}
+                  itemProp="datePublished"
+                >
+                  {article.date}
+                </time>
               </div>
               <div className="flex items-center gap-1.5">
                 <Clock className="size-3.5" />
@@ -201,16 +252,18 @@ export default function BlogArticlePage() {
               </button>
             </div>
 
-            {isHtmlContent(article.content) ? (
-              <div
-                className="tiptap-editor-content blog-article-content"
-                dangerouslySetInnerHTML={{ __html: article.content }}
-              />
-            ) : (
-              <div className="tiptap-editor-content blog-article-content">
-                <ReactMarkdown>{article.content}</ReactMarkdown>
-              </div>
-            )}
+            <div itemProp="articleBody">
+              {isHtmlContent(article.content) ? (
+                <div
+                  className="tiptap-editor-content blog-article-content"
+                  dangerouslySetInnerHTML={{ __html: article.content }}
+                />
+              ) : (
+                <div className="tiptap-editor-content blog-article-content">
+                  <ReactMarkdown>{article.content}</ReactMarkdown>
+                </div>
+              )}
+            </div>
 
             <div className="mt-12 pt-8 border-t border-border">
               <Button onClick={() => navigate('/blog')} variant="outline" className="gap-2">
@@ -229,9 +282,9 @@ export default function BlogArticlePage() {
                 </div>
                 <div className="space-y-3 max-h-96 overflow-y-auto">
                   {relatedArticles.map((related) => (
-                    <button
+                    <Link
                       key={related.slug}
-                      onClick={() => navigate(blogArticlePath(related.slug))}
+                      href={blogArticlePath(related.slug)}
                       className="w-full text-left group block"
                     >
                       <div className="rounded-lg p-2 hover:bg-blue-50 dark:hover:bg-blue-500/5 transition-colors">
@@ -240,7 +293,7 @@ export default function BlogArticlePage() {
                         </h4>
                         <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{related.description}</p>
                       </div>
-                    </button>
+                    </Link>
                   ))}
                 </div>
               </CardContent>

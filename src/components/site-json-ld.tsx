@@ -1,5 +1,8 @@
 import { headers } from 'next/headers';
-import { getSchemasForPath } from '@/lib/structured-data-schemas';
+import {
+  getSchemasForPath,
+  type BlogListArticle,
+} from '@/lib/structured-data-schemas';
 
 interface SiteJsonLdProps {
   /** Override pathname when set in a page (e.g. dynamic blog slug metadata). */
@@ -9,13 +12,21 @@ interface SiteJsonLdProps {
     description: string;
     image?: string;
     datePublished?: string;
+    dateModified?: string;
+    section?: string;
+    keywords?: string;
   };
+  blogArticles?: BlogListArticle[];
 }
 
-export async function SiteJsonLd({ path: pathProp, article }: SiteJsonLdProps = {}) {
+export async function SiteJsonLd({
+  path: pathProp,
+  article,
+  blogArticles,
+}: SiteJsonLdProps = {}) {
   const headersList = await headers();
   const path = pathProp ?? headersList.get('x-pathname') ?? '/';
-  const schemas = getSchemasForPath(path, article);
+  const schemas = getSchemasForPath(path, article, blogArticles);
 
   return (
     <>

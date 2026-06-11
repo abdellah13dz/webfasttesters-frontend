@@ -159,17 +159,22 @@ export function getArticleSchema(options: {
   description: string;
   image?: string;
   datePublished?: string;
+  dateModified?: string;
+  section?: string;
+  keywords?: string;
 }) {
+  const imageUrl = options.image
+    ? options.image.startsWith('http')
+      ? options.image
+      : `${SITE_URL}${options.image}`
+    : `${SITE_URL}${BRAND_OG_IMAGE_PATH}`;
+
   return {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: options.title,
     description: options.description,
-    image: options.image
-      ? options.image.startsWith('http')
-        ? options.image
-        : `${SITE_URL}${options.image}`
-      : `${SITE_URL}${BRAND_OG_IMAGE_PATH}`,
+    image: imageUrl,
     author: { '@type': 'Organization', name: 'Fast Testers', url: SITE_URL },
     publisher: {
       '@type': 'Organization',
@@ -177,7 +182,65 @@ export function getArticleSchema(options: {
       logo: { '@type': 'ImageObject', url: `${SITE_URL}${BRAND_LOGO_PATH}` },
     },
     datePublished: options.datePublished || new Date().toISOString(),
+    dateModified: options.dateModified || options.datePublished || new Date().toISOString(),
+    ...(options.section ? { articleSection: options.section } : {}),
+    ...(options.keywords ? { keywords: options.keywords } : {}),
+    inLanguage: 'en',
+    isAccessibleForFree: true,
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}${options.path}` },
+  };
+}
+
+export function getBlogCollectionSchema() {
+  const seo = resolvePageSeo('/blog');
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    '@id': `${SITE_URL}/blog#blog`,
+    name: 'Fast Testers Blog',
+    description: seo.description,
+    url: `${SITE_URL}/blog`,
+    publisher: { '@id': `${SITE_URL}/#organization` },
+    inLanguage: 'en',
+    about: {
+      '@type': 'Thing',
+      name: 'Google Play app testing and Android publishing',
+    },
+  };
+}
+
+export interface BlogListArticle {
+  title: string;
+  slug: string;
+  description: string;
+  datePublished?: string;
+}
+
+export function getBlogItemListSchema(articles: BlogListArticle[]) {
+  const seo = resolvePageSeo('/blog');
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': `${SITE_URL}/blog#itemlist`,
+    name: 'Fast Testers Blog — Google Play Testing Guides',
+    description: seo.description,
+    numberOfItems: articles.length,
+    itemListOrder: 'https://schema.org/ItemListOrderDescending',
+    itemListElement: articles.map((article, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: article.title,
+      url: `${SITE_URL}/blog/${article.slug}`,
+      item: {
+        '@type': 'BlogPosting',
+        headline: article.title,
+        description: article.description,
+        url: `${SITE_URL}/blog/${article.slug}`,
+        ...(article.datePublished ? { datePublished: article.datePublished } : {}),
+        publisher: { '@id': `${SITE_URL}/#organization` },
+      },
+    })),
   };
 }
 
@@ -207,7 +270,11 @@ export function getSchemasForPath(
     description: string;
     image?: string;
     datePublished?: string;
-  }
+    dateModified?: string;
+    section?: string;
+    keywords?: string;
+  },
+  blogArticles?: BlogListArticle[]
 ): object[] {
   const seo = resolvePageSeo(path);
   const schemas: object[] = [
@@ -224,6 +291,13 @@ export function getSchemasForPath(
     schemas.push(getFaqSchema());
   }
 
+  if (path === '/blog') {
+    schemas.push(getBlogCollectionSchema());
+    if (blogArticles?.length) {
+      schemas.push(getBlogItemListSchema(blogArticles));
+    }
+  }
+
   if (path !== '/') {
     schemas.push(getBreadcrumbSchema(path, seo));
   }
@@ -236,6 +310,9 @@ export function getSchemasForPath(
         description: article.description,
         image: article.image,
         datePublished: article.datePublished,
+        dateModified: article.dateModified,
+        section: article.section,
+        keywords: article.keywords,
       })
     );
   } else if (seo.type === 'article' && path.startsWith('/blog/')) {
@@ -245,6 +322,10 @@ export function getSchemasForPath(
         title: seo.title.split(' - ')[0] || seo.title,
         description: seo.description,
         image: seo.ogImage,
+        datePublished: seo.publishedTime,
+        dateModified: seo.modifiedTime,
+        section: seo.section,
+        keywords: seo.keywords,
       })
     );
   }

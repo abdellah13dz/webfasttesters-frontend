@@ -1,5 +1,33 @@
-﻿import Page from '@/components/pages/blog';
+﻿import type { Metadata } from 'next';
+import Page from '@/components/pages/blog';
+import { SiteJsonLd } from '@/components/site-json-ld';
+import { fetchPublishedArticles } from '@/lib/blog';
+import { buildMetadataForPath } from '@/lib/page-metadata';
+import { SITE_URL } from '@/lib/site-url';
 
-export default function RoutePage() {
-  return <Page />;
+export const metadata: Metadata = {
+  ...buildMetadataForPath('/blog'),
+  alternates: {
+    canonical: `${SITE_URL}/blog`,
+    types: {
+      'application/rss+xml': `${SITE_URL}/blog/feed.xml`,
+    },
+  },
+};
+
+export default async function RoutePage() {
+  const articles = await fetchPublishedArticles();
+  const blogArticles = articles.map((article) => ({
+    slug: article.slug,
+    title: article.seoTitle?.trim() || article.title,
+    description: article.seoDescription?.trim() || article.description,
+    datePublished: article.createdAt,
+  }));
+
+  return (
+    <>
+      <SiteJsonLd path="/blog" blogArticles={blogArticles} />
+      <Page initialArticles={articles} />
+    </>
+  );
 }
