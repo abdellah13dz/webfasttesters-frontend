@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import BlogArticlePage from '@/components/pages/blog-article';
-import { SiteJsonLd } from '@/components/site-json-ld';
+import { JsonLdForPath } from '@/components/site-json-ld';
 import {
   blogArticleKeywords,
   fetchArticleBySlug,
@@ -11,10 +11,8 @@ import { buildBlogArticleMetadata, buildMetadataForPath } from '@/lib/page-metad
 
 type Props = { params: Promise<{ slug: string }> };
 
-export async function generateStaticParams() {
-  const articles = await fetchPublishedArticles();
-  return articles.map((article) => ({ slug: article.slug }));
-}
+/** ISR: re-fetch articles from API every 5 minutes */
+export const revalidate = 300;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -53,7 +51,7 @@ export default async function BlogSlugPage({ params }: Props) {
 
   return (
     <>
-      <SiteJsonLd
+      <JsonLdForPath
         path={path}
         article={{
           title,

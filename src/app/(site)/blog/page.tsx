@@ -1,6 +1,6 @@
 ﻿import type { Metadata } from 'next';
 import Page from '@/components/pages/blog';
-import { SiteJsonLd } from '@/components/site-json-ld';
+import { JsonLdForPath } from '@/components/site-json-ld';
 import { fetchPublishedArticles } from '@/lib/blog';
 import { buildMetadataForPath } from '@/lib/page-metadata';
 import { SITE_URL } from '@/lib/site-url';
@@ -15,6 +15,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 300;
+
 export default async function RoutePage() {
   const articles = await fetchPublishedArticles();
   const blogArticles = articles.map((article) => ({
@@ -26,7 +28,7 @@ export default async function RoutePage() {
 
   return (
     <>
-      <SiteJsonLd path="/blog" blogArticles={blogArticles} />
+      <JsonLdForPath path="/blog" blogArticles={blogArticles} />
       <Page initialArticles={articles} />
     </>
   );
