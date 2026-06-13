@@ -44,26 +44,62 @@ import { NewsletterSection } from '@/components/newsletter-section';
 import { LiveDemoDashboard } from '@/components/live-demo-dashboard';
 
 // ─── Animated Counter Hook ─────────────────────────────────────────────
-function useAnimatedCounter(target: number, duration: number = 2000, startOnMount: boolean = true) {
+function useAnimatedCounter(
+  target: number,
+  duration: number = 2000,
+  options: { whenVisible?: boolean } = {}
+) {
+  const { whenVisible = false } = options;
   const [count, setCount] = useState(0);
-  const hasStartedRef = useRef(false);
+  const [isVisible, setIsVisible] = useState(!whenVisible);
+  const elementRef = useRef<HTMLDivElement>(null);
+  const countRef = useRef(0);
+  const rafRef = useRef(0);
 
   useEffect(() => {
-    if (!startOnMount || hasStartedRef.current) return;
-    hasStartedRef.current = true;
+    if (!whenVisible) return;
+    const node = elementRef.current;
+    if (!node) return;
 
-    const startTime = Date.now();
-    const step = () => {
-      const elapsed = Date.now() - startTime;
-      const progress = Math.min(elapsed / duration, 1);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [whenVisible]);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const safeTarget = Number(target);
+    if (!Number.isFinite(safeTarget) || safeTarget < 0) return;
+
+    cancelAnimationFrame(rafRef.current);
+    const from = countRef.current;
+    const startTime = performance.now();
+
+    const step = (now: number) => {
+      const progress = Math.min((now - startTime) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(eased * target));
-      if (progress < 1) requestAnimationFrame(step);
+      const next = Math.floor(from + eased * (safeTarget - from));
+      setCount(next);
+      countRef.current = next;
+      if (progress < 1) {
+        rafRef.current = requestAnimationFrame(step);
+      }
     };
-    requestAnimationFrame(step);
-  }, [target, duration, startOnMount]);
 
-  return count;
+    rafRef.current = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [target, duration, isVisible]);
+
+  return { count, ref: elementRef };
 }
 
 // ─── Animated Section Wrapper ──────────────────────────────────────────
@@ -181,18 +217,27 @@ export default function HomePage() {
     fallbackTestimonials.map((item) => ({ ...item, rating: 5 }))
   );
   const [heroStats, setHeroStats] = useState(DEFAULT_HERO_STATS);
-  const [statsReady, setStatsReady] = useState(false);
-  const heroCount = useAnimatedCounter(heroStats.heroCount, 2500, statsReady);
-  const statsSuccessRate = useAnimatedCounter(heroStats.successRate, 2000, statsReady);
-  const statsApps = useAnimatedCounter(heroStats.appsCount, 2200, statsReady);
-  const statsCountries = useAnimatedCounter(heroStats.countriesCount, 1800, statsReady);
+  const { count: heroCount } = useAnimatedCounter(heroStats.heroCount, 2500);
+  const { count: statsSuccessRate, ref: successRateRef } = useAnimatedCounter(heroStats.successRate, 2000, {
+    whenVisible: true,
+  });
+  const { count: statsApps, ref: appsRef } = useAnimatedCounter(heroStats.appsCount, 2200, { whenVisible: true });
+  const { count: statsCountries, ref: countriesRef } = useAnimatedCounter(heroStats.countriesCount, 1800, {
+    whenVisible: true,
+  });
   const [dashboardProgress, setDashboardProgress] = useState(0);
 
   useEffect(() => {
     (async () => {
       const settings = await fetchSiteSettings();
-      if (settings?.heroStats) setHeroStats(settings.heroStats);
-      setStatsReady(true);
+      if (!settings?.heroStats) return;
+      const s = settings.heroStats;
+      setHeroStats({
+        heroCount: Number(s.heroCount) || DEFAULT_HERO_STATS.heroCount,
+        successRate: Number(s.successRate) || DEFAULT_HERO_STATS.successRate,
+        appsCount: Number(s.appsCount) || DEFAULT_HERO_STATS.appsCount,
+        countriesCount: Number(s.countriesCount) || DEFAULT_HERO_STATS.countriesCount,
+      });
     })();
   }, []);
 
@@ -378,6 +423,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             <AnimatedSection delay={0}>
+              <div ref={successRateRef}>
               <Card className="card-hover glow-blue bg-card/80 border-border/60 text-center">
                 <CardContent className="p-6">
                   <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10">
@@ -389,9 +435,11 @@ export default function HomePage() {
                   <p className="text-sm text-muted-foreground font-medium">{t('home.successRate')}</p>
                 </CardContent>
               </Card>
+              </div>
             </AnimatedSection>
 
             <AnimatedSection delay={100}>
+              <div ref={appsRef}>
               <Card className="card-hover glow-blue bg-card/80 border-border/60 text-center">
                 <CardContent className="p-6">
                   <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10">
@@ -403,9 +451,11 @@ export default function HomePage() {
                   <p className="text-sm text-muted-foreground font-medium">{t('home.appsPublished')}</p>
                 </CardContent>
               </Card>
+              </div>
             </AnimatedSection>
 
             <AnimatedSection delay={200}>
+              <div ref={countriesRef}>
               <Card className="card-hover glow-blue bg-card/80 border-border/60 text-center">
                 <CardContent className="p-6">
                   <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10">
@@ -417,6 +467,7 @@ export default function HomePage() {
                   <p className="text-sm text-muted-foreground font-medium">{t('home.countriesServed')}</p>
                 </CardContent>
               </Card>
+              </div>
             </AnimatedSection>
           </div>
         </div>
