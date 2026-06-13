@@ -18,11 +18,11 @@ export const SUPPORT_PHONE_TEL = '+213549179303';
  * Set via NEXT_PUBLIC_BUSINESS_ADDRESS_* environment variables before going live.
  */
 export const BUSINESS_ADDRESS = {
-  line1: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS_LINE1 ?? '',
+  line1: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS_LINE1 ?? '30 N Gould St Ste N',
   line2: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS_LINE2 ?? '',
-  city: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS_CITY ?? '',
-  state: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS_STATE ?? '',
-  postalCode: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS_POSTAL ?? '',
+  city: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS_CITY ?? 'Sheridan',
+  state: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS_STATE ?? 'WY',
+  postalCode: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS_POSTAL ?? '82801',
   country: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS_COUNTRY ?? 'United States',
 };
 

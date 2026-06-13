@@ -112,7 +112,7 @@ export default function CancellationPolicyPage() {
       contactTitleKey="cancellationPolicyPage.contact.title"
       contactDescriptionKey="cancellationPolicyPage.contact.description"
       backToHomeKey="cancellationPolicyPage.backToHome"
-      showBusinessNotice={false}
+      showBusinessNotice={true}
       footerLinks={[
         POLICY_FOOTER_LINKS.terms,
         POLICY_FOOTER_LINKS.privacy,

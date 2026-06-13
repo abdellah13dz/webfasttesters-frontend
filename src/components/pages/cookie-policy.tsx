@@ -3,6 +3,8 @@
 import React from 'react';
 import { useRouter } from '@/lib/router';
 import { useLanguage } from '@/lib/i18n/context';
+import { BusinessLegalNotice } from '@/components/business-legal-notice';
+import { PolicyContactSection } from '@/components/legal/policy-page-shell';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -125,7 +127,7 @@ export default function CookiePolicyPage() {
               {t('cookiePolicy.subtitle')}
             </p>
             <p className="mt-3 text-sm text-muted-foreground">
-              {t('cookiePolicy.lastUpdated')}: March 4, 2026
+              {t('cookiePolicy.lastUpdated')}: {t('cookiePolicy.lastUpdatedDate')}
             </p>
             <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-blue-500/10 border border-blue-500/20 px-4 py-1.5">
               <Shield className="h-4 w-4 text-blue-400" />
@@ -159,6 +161,12 @@ export default function CookiePolicyPage() {
                 {t('cookiePolicy.intro')}
               </p>
             </div>
+          </CardContent>
+        </Card>
+
+        <Card className="border-border/50 bg-card/50 mb-8">
+          <CardContent className="p-6">
+            <BusinessLegalNotice variant="footer" />
           </CardContent>
         </Card>
 
@@ -579,26 +587,10 @@ export default function CookiePolicyPage() {
           {/* Section 8: Contact Us */}
           <Card id="section-contact" className="border-blue-500/20 bg-blue-500/5 scroll-mt-20">
             <CardContent className="p-6">
-              <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-500/20 text-blue-400">
-                  <Mail className="h-5 w-5" />
-                </div>
-                <div>
-                  <h2 className="text-lg font-semibold text-blue-400 mb-2">
-                    8. {t('cookiePolicy.contact.title')}
-                  </h2>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                    {t('cookiePolicy.contact.p1')}
-                  </p>
-                  <a
-                    href="mailto:contact@fasttesters.com"
-                    className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 transition-colors"
-                  >
-                    <Mail className="h-4 w-4" />
-                    contact@fasttesters.com
-                  </a>
-                </div>
-              </div>
+              <PolicyContactSection
+                title={`8. ${t('cookiePolicy.contact.title')}`}
+                description={t('cookiePolicy.contact.p1')}
+              />
             </CardContent>
           </Card>
         </div>
@@ -609,21 +601,21 @@ export default function CookiePolicyPage() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
           <Button
             variant="outline"
-            onClick={() => navigate('/terms')}
+            onClick={() => navigate('/terms-and-conditions')}
             className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 cursor-pointer"
           >
             {t('footer.termsAndConditions')}
           </Button>
           <Button
             variant="outline"
-            onClick={() => navigate('/privacy')}
+            onClick={() => navigate('/privacy-policy')}
             className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 cursor-pointer"
           >
             {t('footer.privacyPolicy')}
           </Button>
           <Button
             variant="outline"
-            onClick={() => navigate('/refund')}
+            onClick={() => navigate('/refund-policy')}
             className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 cursor-pointer"
           >
             {t('footer.refundPolicy')}

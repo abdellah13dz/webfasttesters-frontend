@@ -15,8 +15,6 @@ import {
   CreditCard,
   RefreshCw,
 } from 'lucide-react';
-import { useLanguage } from '@/lib/i18n/context';
-import { CmsPageOrFallback } from '@/lib/hooks/use-cms-page';
 import {
   PolicyPageShell,
   POLICY_FOOTER_LINKS,
@@ -364,11 +362,5 @@ function PrivacyPageContent() {
 }
 
 export default function PrivacyPage() {
-  const { t } = useLanguage();
-
-  return (
-    <CmsPageOrFallback slug="privacy-policy" badge={t('privacyPolicy.cmsBadge')}>
-      <PrivacyPageContent />
-    </CmsPageOrFallback>
-  );
+  return <PrivacyPageContent />;
 }

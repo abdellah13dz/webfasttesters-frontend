@@ -80,6 +80,7 @@ export const es: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   'legal.ownershipTitle': 'Propiedad del negocio',
   'legal.operatedBy': 'Este sitio web y los servicios de {brand} son propiedad y están operados por {entity}.',
+  'legal.registeredEntityLine': '{entity} — registrada en Wyoming, Estados Unidos.',
   'legal.servicesDescription': 'Ofrecemos servicios profesionales de prueba de apps Android para ayudar a desarrolladores a cumplir los requisitos de pruebas cerradas y acceso a producción de Google Play.',
   'legal.poweredByStripe': 'Pagos procesados por Stripe',
   'legal.customerServiceTitle': 'Atención al cliente',
@@ -940,8 +941,9 @@ export const es: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   'cookiePolicy.badge': 'Política de Cookies',
   'cookiePolicy.title': 'Nuestra Política de Cookies',
-  'cookiePolicy.subtitle': 'En Fast Testers, creemos en la transparencia total sobre cómo recopilamos y usamos sus datos. Esta Política de Cookies explica qué cookies usamos, por qué las usamos y cómo puede gestionar sus preferencias.',
+  'cookiePolicy.subtitle': 'Cómo Hassil LLC (Fast Testers) utiliza cookies y tecnologías similares, incluidas las cookies de pago de Stripe y Google Analytics.',
   'cookiePolicy.lastUpdated': 'Última Actualización',
+  'cookiePolicy.lastUpdatedDate': '13 de junio de 2026',
   'cookiePolicy.gdprCompliant': 'Cumple con GDPR y ePrivacy',
   'cookiePolicy.backToHome': 'Volver al inicio',
   'cookiePolicy.intro': 'Esta Política de Cookies explica cómo Fast Testers ("nosotros", "nos" o "nuestro") usa cookies y tecnologías similares cuando visita nuestro sitio web. Estamos comprometidos con la transparencia sobre nuestro uso de cookies y garantizamos que usted tenga la información y el control necesarios para gestionar sus preferencias de privacidad.',
@@ -1009,7 +1011,7 @@ export const es: Record<string, string> = {
   'cookiePolicy.changes.p2': 'Le recomendamos revisar esta política periódicamente para mantenerse informado sobre cómo usamos las cookies. Si se realizan cambios significativos, proporcionaremos un aviso más prominente, como mostrar un banner de consentimiento actualizado en su próxima visita.',
   'cookiePolicy.changes.reviewDate': 'Esta política fue revisada por última vez el 4 de marzo de 2026',
   'cookiePolicy.contact.title': 'Contáctenos',
-  'cookiePolicy.contact.p1': 'Si tiene alguna pregunta sobre esta Política de Cookies, nuestro uso de cookies o desea ejercer sus derechos de datos, no dude en contactarnos. Estamos comprometidos a atender sus inquietudes de manera rápida y transparente.',
+  'cookiePolicy.contact.p1': 'Si tiene preguntas sobre esta Política de Cookies, nuestro uso de cookies o desea ejercer sus derechos de datos, contacte a nuestro equipo de atención al cliente por correo electrónico, teléfono o correo postal a nuestra dirección comercial registrada:',
 
   // ═══════════════════════════════════════════════════════════════════════
   // CASE STUDIES PAGE

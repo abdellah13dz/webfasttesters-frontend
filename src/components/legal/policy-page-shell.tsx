@@ -7,13 +7,23 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Info, Mail, type LucideIcon } from 'lucide-react';
-import { BRAND_NAME, LEGAL_ENTITY_NAME } from '@/lib/business';
+import { ArrowLeft, Info, Mail, MapPin, Phone, type LucideIcon } from 'lucide-react';
+import {
+  BRAND_NAME,
+  LEGAL_ENTITY_NAME,
+  SUPPORT_PHONE_DISPLAY,
+  SUPPORT_PHONE_TEL,
+  formatBusinessAddress,
+  hasBusinessAddress,
+} from '@/lib/business';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { BusinessLegalNotice } from '@/components/business-legal-notice';
 
 export function legalText(t: (key: string) => string, key: string) {
-  return t(key).replace(/\{brand\}/g, BRAND_NAME).replace(/\{entity\}/g, LEGAL_ENTITY_NAME);
+  return t(key)
+    .replace(/\{brand\}/g, BRAND_NAME)
+    .replace(/\{entity\}/g, LEGAL_ENTITY_NAME)
+    .replace(/\{address\}/g, formatBusinessAddress().replace(/\n/g, ', '));
 }
 
 export type PolicyItemBlock = {
@@ -151,6 +161,70 @@ function PolicySectionCard({
         </div>
       </CardContent>
     </Card>
+  );
+}
+
+export function PolicyContactSection({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) {
+  const { t } = useLanguage();
+  const address = formatBusinessAddress();
+
+  return (
+    <div className="flex items-start gap-4">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-500/20 text-blue-400">
+        <Mail className="h-5 w-5" />
+      </div>
+      <div className="space-y-4">
+        <div>
+          <h2 className="text-lg font-semibold text-blue-400 mb-2">{title}</h2>
+          <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2 text-sm">
+          <div className="flex items-start gap-2">
+            <Mail className="h-4 w-4 mt-0.5 shrink-0 text-blue-400" />
+            <div>
+              <p className="font-medium text-foreground/90">{t('legal.customerServiceTitle')}</p>
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                {CONTACT_EMAIL}
+              </a>
+            </div>
+          </div>
+          <div className="flex items-start gap-2">
+            <Phone className="h-4 w-4 mt-0.5 shrink-0 text-blue-400" />
+            <div>
+              <p className="font-medium text-foreground/90">{t('legal.phoneLabel')}</p>
+              <a
+                href={`tel:${SUPPORT_PHONE_TEL}`}
+                className="text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                {SUPPORT_PHONE_DISPLAY}
+              </a>
+            </div>
+          </div>
+          {hasBusinessAddress() && (
+            <div className="flex items-start gap-2 sm:col-span-2">
+              <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-blue-400" />
+              <div>
+                <p className="font-medium text-foreground/90">{t('legal.businessAddressTitle')}</p>
+                <p className="text-muted-foreground whitespace-pre-line">{address}</p>
+                <p className="text-muted-foreground mt-1">
+                  {legalText(t, 'legal.registeredEntityLine')}
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+        <p className="text-xs text-muted-foreground">{t('legal.responseTime')}</p>
+      </div>
+    </div>
   );
 }
 
@@ -308,26 +382,10 @@ export function PolicyPageShell({
 
           <Card id="section-contact" className="border-blue-500/20 bg-blue-500/5 scroll-mt-24">
             <CardContent className="p-6 sm:p-7">
-              <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-500/20 text-blue-400">
-                  <Mail className="h-5 w-5" />
-                </div>
-                <div>
-                  <h2 className="text-lg font-semibold text-blue-400 mb-2">
-                    {sections.length + 1}. {t(contactTitleKey)}
-                  </h2>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                    {t(contactDescriptionKey)}
-                  </p>
-                  <a
-                    href={`mailto:${CONTACT_EMAIL}`}
-                    className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 transition-colors"
-                  >
-                    <Mail className="h-4 w-4" />
-                    {CONTACT_EMAIL}
-                  </a>
-                </div>
-              </div>
+              <PolicyContactSection
+                title={`${sections.length + 1}. ${t(contactTitleKey)}`}
+                description={t(contactDescriptionKey)}
+              />
             </CardContent>
           </Card>
         </div>

@@ -12,6 +12,7 @@ import { CookieConsent } from '@/components/cookie-consent';
 import { GoogleTracking } from '@/components/google-tracking';
 import { MobileStickyCta } from '@/components/mobile-sticky-cta';
 import { PageProgress } from '@/components/page-progress';
+import { RouteLoadingBar } from '@/components/route-loading-bar';
 import { useSeo } from '@/lib/hooks/use-seo';
 
 function SiteShellInner({ children }: { children: React.ReactNode }) {
@@ -23,6 +24,7 @@ function SiteShellInner({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col" dir={dir} suppressHydrationWarning>
       <GoogleTracking />
+      <RouteLoadingBar />
       <PageProgress />
       <FixedSiteHeader />
       <main className="flex-1 min-w-0 overflow-x-clip mobile-cta-spacer md:pb-0">{children}</main>

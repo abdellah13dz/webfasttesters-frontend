@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchPublicPage } from '@/lib/cms';
 import type { CmsPage } from '@/lib/cms';
 import { CmsMarkdownPage } from '@/components/cms/cms-markdown-page';
+import { PageLoading } from '@/components/page-loading';
 
 interface UseCmsPageResult {
   page: CmsPage | null;
@@ -48,11 +49,7 @@ export function CmsPageOrFallback({
   const { page, loading, hasCmsContent } = useCmsPage(slug);
 
   if (loading) {
-    return (
-      <div className="min-h-[40vh] flex items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent" />
-      </div>
-    );
+    return <PageLoading variant="inline" label="Loading content…" />;
   }
 
   if (hasCmsContent && page) {

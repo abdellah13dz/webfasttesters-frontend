@@ -85,6 +85,7 @@ export const en: Record<string, string> = {
   'legal.customerServiceTitle': 'Customer Service',
   'legal.responseTime': 'We respond to support requests within 2 business hours.',
   'legal.businessAddressTitle': 'Business Address',
+  'legal.registeredEntityLine': '{entity} — registered in Wyoming, United States.',
   'legal.addressOnRequest': 'Business address available on request — contact us for Hassil LLC registered office details.',
   'legal.phoneLabel': 'Phone',
   'legal.cancellationPolicyTitle': 'Cancellation Policy',
@@ -941,8 +942,9 @@ export const en: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   'cookiePolicy.badge': 'Cookie Policy',
   'cookiePolicy.title': 'Our Cookie Policy',
-  'cookiePolicy.subtitle': 'At Fast Testers, we believe in complete transparency about how we collect and use your data. This Cookie Policy explains what cookies we use, why we use them, and how you can manage your preferences.',
+  'cookiePolicy.subtitle': 'How Hassil LLC (Fast Testers) uses cookies and similar technologies — including Stripe payment cookies and Google Analytics.',
   'cookiePolicy.lastUpdated': 'Last Updated',
+  'cookiePolicy.lastUpdatedDate': '13th June 2026',
   'cookiePolicy.gdprCompliant': 'GDPR & ePrivacy Compliant',
   'cookiePolicy.backToHome': 'Back to Home',
   'cookiePolicy.intro': 'This Cookie Policy explains how Fast Testers ("we", "us", or "our") uses cookies and similar technologies when you visit our website. We are committed to being transparent about our use of cookies and ensuring you have the information and control you need to manage your privacy preferences.',
@@ -1030,7 +1032,7 @@ export const en: Record<string, string> = {
 
   // Section 8: Contact
   'cookiePolicy.contact.title': 'Contact Us',
-  'cookiePolicy.contact.p1': 'If you have any questions about this Cookie Policy, our use of cookies, or wish to exercise your data rights, please don\'t hesitate to contact us. We are committed to addressing your concerns promptly and transparently.',
+  'cookiePolicy.contact.p1': 'If you have any questions about this Cookie Policy, our use of cookies, or wish to exercise your data rights, contact our customer service team by email, phone, or mail at our registered business address:',
 
   // ═══════════════════════════════════════════════════════════════════════
   // CASE STUDIES PAGE

@@ -388,6 +388,33 @@ body {
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
+/* Page route enter + loader bar */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-page-enter {
+  animation: pageEnter 0.45s ease-out forwards;
+}
+
+@keyframes pageLoaderBar {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(320%);
+  }
+}
+.animate-page-loader-bar {
+  animation: pageLoaderBar 1.2s ease-in-out infinite;
+}
+
 /* Progress bar animation */
 @keyframes progressFill {
   from { width: 0%; }

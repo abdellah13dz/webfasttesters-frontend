@@ -4,6 +4,7 @@ import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { useRouter } from '@/lib/router';
 import AdminLayout from '@/components/admin/admin-layout';
 import AdminLogin from '@/components/admin/admin-login';
+import { PageLoading } from '@/components/page-loading';
 import { clearAdminSession, getStoredAdminSession } from '@/lib/admin-session';
 import type { AdminSession } from '@/lib/api';
 
@@ -45,14 +46,7 @@ function readStoredAdmin(): AdminData | null {
 }
 
 function AdminPageLoader() {
-  return (
-    <div className="flex items-center justify-center py-20">
-      <div className="flex flex-col items-center gap-4">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent" />
-        <p className="text-sm text-muted-foreground">Loading...</p>
-      </div>
-    </div>
-  );
+  return <PageLoading variant="minimal" label="Loading…" className="py-20" />;
 }
 
 // Map hash paths to admin sub-pages

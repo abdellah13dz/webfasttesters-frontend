@@ -17,8 +17,6 @@ import {
   Handshake,
   CheckCircle2,
 } from 'lucide-react';
-import { useLanguage } from '@/lib/i18n/context';
-import { CmsPageOrFallback } from '@/lib/hooks/use-cms-page';
 import {
   PolicyPageShell,
   POLICY_FOOTER_LINKS,
@@ -257,6 +255,19 @@ const termsSections: PolicySection[] = [
   },
   {
     kind: 'paragraphs',
+    id: 'legalRestrictions',
+    icon: AlertTriangle,
+    titleKey: 'termsPolicy.sections.legalRestrictions.title',
+    tocKey: 'termsPolicy.toc.legalRestrictions',
+    paragraphKeys: [
+      'termsPolicy.sections.legalRestrictions.p1',
+      'termsPolicy.sections.legalRestrictions.p2',
+      'termsPolicy.sections.legalRestrictions.p3',
+      'termsPolicy.sections.legalRestrictions.p4',
+    ],
+  },
+  {
+    kind: 'paragraphs',
     id: 'generalProvisions',
     icon: FileText,
     titleKey: 'termsPolicy.sections.generalProvisions.title',
@@ -301,11 +312,5 @@ function TermsPageContent() {
 }
 
 export default function TermsPage() {
-  const { t } = useLanguage();
-
-  return (
-    <CmsPageOrFallback slug="terms-and-conditions" badge={t('termsPolicy.cmsBadge')}>
-      <TermsPageContent />
-    </CmsPageOrFallback>
-  );
+  return <TermsPageContent />;
 }

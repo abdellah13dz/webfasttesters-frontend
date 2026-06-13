@@ -80,6 +80,7 @@ export const tr: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   'legal.ownershipTitle': 'İşletme sahipliği',
   'legal.operatedBy': 'Bu web sitesi ve {brand} hizmetleri {entity} tarafından sahip olunmakta ve işletilmektedir.',
+  'legal.registeredEntityLine': '{entity} — Wyoming, Amerika Birleşik Devletleri\'nde kayıtlıdır.',
   'legal.servicesDescription': 'Geliştiricilerin Google Play kapalı test ve üretim erişimi gereksinimlerini karşılamasına yardımcı olmak için profesyonel Android uygulama test hizmetleri sunuyoruz.',
   'legal.poweredByStripe': 'Ödemeler Stripe tarafından işlenir',
   'legal.customerServiceTitle': 'Müşteri hizmetleri',
@@ -1206,8 +1207,9 @@ export const tr: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   'cookiePolicy.badge': 'Çerez Politikası',
   'cookiePolicy.title': 'Çerez Politikamız',
-  'cookiePolicy.subtitle': 'Fast Testers olarak, verilerinizi nasıl topladığımız ve kullandığımız konusunda tam şeffaflığa inanıyoruz. Bu Çerez Politikası, hangi çerezleri kullandığımızı, neden kullandığımızı ve tercihlerinizi nasıl yönetebileceğinizi açıklar.',
+  'cookiePolicy.subtitle': 'Hassil LLC (Fast Testers) çerezleri ve benzer teknolojileri — Stripe ödeme çerezleri ve Google Analytics dahil — nasıl kullanır.',
   'cookiePolicy.lastUpdated': 'Son Güncelleme',
+  'cookiePolicy.lastUpdatedDate': '13 Haziran 2026',
   'cookiePolicy.gdprCompliant': 'GDPR ve ePrivacy Uyumlu',
   'cookiePolicy.backToHome': 'Ana Sayfaya Dön',
   'cookiePolicy.tableOfContents': 'İçindekiler',
@@ -1295,7 +1297,7 @@ export const tr: Record<string, string> = {
 
   // Contact
   'cookiePolicy.contact.title': 'Bize Ulaşın',
-  'cookiePolicy.contact.p1': 'Bu Çerez Politikası, çerez kullanımımız veya veri haklarınızı kullanmakla ilgili herhangi bir sorunuz varsa, lütfen bizimle iletişime geçmekten çekinmeyin. Endişelerinizi hızlı ve şeffaf bir şekilde ele almaya kararlıyız.',
+  'cookiePolicy.contact.p1': 'Bu Çerez Politikası, çerez kullanımımız veya veri haklarınızı kullanmakla ilgili sorularınız varsa, kayıtlı iş adresimize e-posta, telefon veya posta yoluyla müşteri hizmetleri ekibimizle iletişime geçin:',
 
   // ═══════════════════════════════════════════════════════════════════════
   // SEO META

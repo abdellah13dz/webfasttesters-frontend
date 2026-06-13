@@ -5,7 +5,7 @@ export const legalPagesEn: Record<string, string> = {
   'privacyPolicy.badge': 'Your Privacy Matters',
   'privacyPolicy.cmsBadge': 'Privacy Policy',
   'privacyPolicy.lastUpdated': 'Last Updated',
-  'privacyPolicy.lastUpdatedDate': '7th June 2026',
+  'privacyPolicy.lastUpdatedDate': '13th June 2026',
   'privacyPolicy.gdprCompliant': 'GDPR Compliant',
   'privacyPolicy.backToHome': 'Back to Home',
   'privacyPolicy.subtitle': 'How {entity} collects, uses, and protects your personal data when you use {brand} — including payment processing through Stripe.',
@@ -29,7 +29,7 @@ export const legalPagesEn: Record<string, string> = {
 
   'privacyPolicy.sections.whoWeAre.title': 'Who We Are',
   'privacyPolicy.sections.whoWeAre.dataController.subtitle': 'Data Controller',
-  'privacyPolicy.sections.whoWeAre.dataController.description': '{entity} operating as {brand} is the data controller responsible for your personal information. We provide professional Android app testing services to help developers meet Google Play Store testing requirements. For privacy inquiries, contact us at contact@fasttesters.com.',
+  'privacyPolicy.sections.whoWeAre.dataController.description': '{entity} operating as {brand} is the data controller responsible for your personal information. We provide professional Android app testing services to help developers meet Google Play Store testing requirements. Our registered business address is {address}. For privacy inquiries, contact us at contact@fasttesters.com or call +213 549 17 93 03.',
   'privacyPolicy.sections.whoWeAre.scope.subtitle': 'Scope of This Policy',
   'privacyPolicy.sections.whoWeAre.scope.description': 'This Privacy Policy applies to all personal information collected through fasttesters.com, our web application, customer support channels, and payment flows. By using our Services, you acknowledge that you have read and understood this policy.',
 
@@ -142,7 +142,7 @@ export const legalPagesEn: Record<string, string> = {
   'privacyPolicy.sections.changes.materialChanges.description': 'If we make material changes that significantly affect your rights, we will notify you by email (if you have an account) or by posting a prominent notice on our website before the changes take effect.',
 
   'privacyPolicy.contact.title': 'Contact',
-  'privacyPolicy.contact.description': 'If you have any questions about this Privacy Policy or wish to exercise your data rights, please contact our Data Protection Officer:',
+  'privacyPolicy.contact.description': 'If you have any questions about this Privacy Policy or wish to exercise your data rights, contact our customer service team by email, phone, or mail at our registered business address:',
 
   // ═══════════════════════════════════════════════════════════════════════
   // TERMS & CONDITIONS
@@ -150,12 +150,13 @@ export const legalPagesEn: Record<string, string> = {
   'termsPolicy.badge': 'Legal',
   'termsPolicy.cmsBadge': 'Terms & Conditions',
   'termsPolicy.lastUpdated': 'Last Updated',
-  'termsPolicy.lastUpdatedDate': '7th June 2026',
+  'termsPolicy.lastUpdatedDate': '13th June 2026',
   'termsPolicy.backToHome': 'Back to Home',
   'termsPolicy.subtitle': 'The service agreement governing your use of {brand} app testing services — pricing, delivery, cancellations, refunds, and your responsibilities as a customer.',
   'termsPolicy.tableOfContents': 'Table of Contents',
   'termsPolicy.serviceHighlight.title': 'What You Are Purchasing',
   'termsPolicy.serviceHighlight.description': 'Each order is a one-time $15 USD payment for professional Android app testing: 14 testers over 14–16 days to help you meet Google Play closed-testing requirements. No subscriptions. No hidden fees.',
+  'termsPolicy.toc.legalRestrictions': 'Legal Restrictions',
   'termsPolicy.toc.about': 'About Fast Testers',
   'termsPolicy.toc.agreement': 'Legally Binding Agreement',
   'termsPolicy.toc.definitions': 'Definitions',
@@ -180,7 +181,7 @@ export const legalPagesEn: Record<string, string> = {
   'termsPolicy.sections.about.title': 'About Fast Testers',
   'termsPolicy.sections.about.p1': '{brand} is a professional app testing service operated by {entity} that helps Android developers meet Google Play Store\'s closed testing and production access requirements.',
   'termsPolicy.sections.about.p2': 'We assign 14 professional testers to evaluate your app over a 14–16 day testing period. Our standard service fee is $15 USD per app, charged as a one-time payment with no recurring subscriptions.',
-  'termsPolicy.sections.about.p3': 'For questions about our services, contact us at contact@fasttesters.com or visit our Contact Us page. We aim to respond to all inquiries within 1–2 business days.',
+  'termsPolicy.sections.about.p3': 'For questions about our services, contact us at contact@fasttesters.com, call +213 549 17 93 03, or write to us at {address}. We aim to respond to all inquiries within 1–2 business days.',
 
   'termsPolicy.sections.agreement.title': 'Legally Binding Agreement',
   'termsPolicy.sections.agreement.p1': 'Welcome to {brand}, a service operated by {entity} ("we", "us", or "our"). By accessing or using our website, mobile application, or any related services (collectively, the "Services"), you agree to be bound by these Terms and Conditions ("Terms").',
@@ -277,8 +278,14 @@ export const legalPagesEn: Record<string, string> = {
   'termsPolicy.sections.disputeResolution.p3': 'You agree to bring any claim individually and not as part of a class action. Nothing in this section prevents either party from seeking injunctive relief in a court of competent jurisdiction.',
 
   'termsPolicy.sections.governingLaw.title': 'Governing Law',
-  'termsPolicy.sections.governingLaw.p1': 'These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which {entity} is registered, without regard to its conflict of law provisions.',
-  'termsPolicy.sections.governingLaw.p2': 'Any disputes not subject to arbitration shall be submitted to the exclusive jurisdiction of the courts in the applicable jurisdiction.',
+  'termsPolicy.sections.legalRestrictions.title': 'Legal Restrictions & Disclosures',
+  'termsPolicy.sections.legalRestrictions.p1': 'Our Services are available worldwide to Android app developers aged 16 and older. You must comply with all applicable laws in your jurisdiction, including Google Play Developer Program policies and export control regulations.',
+  'termsPolicy.sections.legalRestrictions.p2': 'We do not provide services for apps containing illegal content, malware, gambling where prohibited, adult content without proper age gates, or apps that violate intellectual property rights. We reserve the right to refuse or discontinue service for any app that violates applicable law or platform policies.',
+  'termsPolicy.sections.legalRestrictions.p3': 'All prices are displayed in US Dollars (USD). Sales tax or VAT may apply depending on your location and will be shown at checkout where required by law.',
+  'termsPolicy.sections.legalRestrictions.p4': 'Payments are processed by Stripe, Inc. By completing a purchase, you also agree to Stripe\'s applicable terms of service and privacy policy available at stripe.com/legal.',
+
+  'termsPolicy.sections.governingLaw.p1': 'These Terms shall be governed by and construed in accordance with the laws of the State of Wyoming, United States, without regard to its conflict of law provisions.',
+  'termsPolicy.sections.governingLaw.p2': 'Any disputes not subject to arbitration shall be submitted to the exclusive jurisdiction of the state and federal courts located in Sheridan County, Wyoming, United States.',
 
   'termsPolicy.sections.generalProvisions.title': 'General Provisions',
   'termsPolicy.sections.generalProvisions.p1': 'Severability: If any provision of these Terms is found to be unenforceable, the remaining provisions will continue in full force and effect.',
@@ -287,18 +294,43 @@ export const legalPagesEn: Record<string, string> = {
   'termsPolicy.sections.generalProvisions.p4': 'Assignment: You may not assign your rights under these Terms without our prior written consent. We may assign our rights without restriction.',
 
   'termsPolicy.contact.title': 'Contact',
-  'termsPolicy.contact.description': 'If you have any questions about these Terms and Conditions, please contact us:',
+  'termsPolicy.contact.description': 'If you have any questions about these Terms and Conditions, contact our customer service team:',
 
   // ═══════════════════════════════════════════════════════════════════════
   // REFUND POLICY
   // ═══════════════════════════════════════════════════════════════════════
   'refundPolicyPage.badge': 'Your Investment is Protected',
   'refundPolicyPage.lastUpdated': 'Last Updated',
-  'refundPolicyPage.lastUpdatedDate': '7th June 2026',
+  'refundPolicyPage.lastUpdatedDate': '13th June 2026',
   'refundPolicyPage.backToHome': 'Back to Home',
+  'refundPolicyPage.subtitle': 'Refund, return, and cancellation terms for {brand} digital app testing services — processed securely via Stripe.',
+  'refundPolicyPage.tableOfContents': 'Table of Contents',
   'refundPolicyPage.guaranteeHighlight': "We are so confident in our testing service that we offer a full refund if Google rejects your app after you have used our service. If your app meets Google Play's basic requirements and has completed our full testing period, but still gets rejected, we'll refund your entire $15 payment — no questions asked.",
-  'refundPolicyPage.intro': 'This Refund Policy applies to digital app testing services sold by {entity} through the {brand} website. All payments are processed securely by Stripe.',
-  'refundPolicyPage.cancellationHowTo': 'To cancel before testing begins, email contact@fasttesters.com with your order reference. Approved cancellations are refunded via Stripe within 5–10 business days.',
+  'refundPolicyPage.intro': 'This Refund and Return Policy applies to digital app testing services sold by {entity} through the {brand} website at fasttesters.com. All payments are processed securely by Stripe, Inc. Because we deliver digital services rather than physical goods, our return process is handled through order cancellation (before service delivery) or refund requests (after service delivery) as described below.',
+  'refundPolicyPage.cancellationHowTo': 'To cancel before testing begins, email contact@fasttesters.com with your order reference or call +213 549 17 93 03. Approved cancellations are refunded to your original payment method via Stripe within 5–10 business days.',
+
+  'refundPolicyPage.toc.cancellation': 'Cancellation Before Delivery',
+  'refundPolicyPage.toc.returnPolicy': 'Return Policy (Digital Services)',
+  'refundPolicyPage.toc.eligibility': 'Refund Eligibility',
+  'refundPolicyPage.toc.request': 'How to Request a Refund',
+  'refundPolicyPage.toc.timeline': 'Refund Timeline',
+  'refundPolicyPage.toc.nonRefundable': 'Non-Refundable Items',
+  'refundPolicyPage.toc.chargebacks': 'Chargebacks & Disputes',
+
+  'refundPolicyPage.sections.cancellation.title': 'Cancellation Before Delivery',
+  'refundPolicyPage.sections.cancellation.p1': 'You may cancel your order and receive a full refund if you request cancellation before we assign testers to your app (typically within 6 hours of payment). See our Cancellation Policy for full details.',
+  'refundPolicyPage.sections.cancellation.p2': 'Once testers have been assigned and the 14–16 day testing period has begun, the digital service is considered delivered and cannot be cancelled. Refunds after delivery are available only under the Production Access Guarantee described below.',
+
+  'refundPolicyPage.sections.returnPolicy.title': 'Return Policy (Digital Services)',
+  'refundPolicyPage.sections.returnPolicy.p1': '{brand} sells digital app testing services, not physical products. Because our service is delivered electronically and begins immediately after tester assignment, traditional product returns do not apply.',
+  'refundPolicyPage.sections.returnPolicy.p2': 'If you are unsatisfied with our service, you may request a refund under our Production Access Guarantee if Google Play rejects your app after you complete the full testing period and meet all eligibility criteria outlined below.',
+  'refundPolicyPage.sections.returnPolicy.p3': 'If you have not yet received the service (testers not assigned), you may cancel your order for a full refund — this is equivalent to returning an undelivered product.',
+  'refundPolicyPage.sections.returnPolicy.p4': 'All refund and return requests must be submitted to contact@fasttesters.com or by phone at +213 549 17 93 03. Include your order reference, app package name, and account email. We respond within 1–2 business days.',
+
+  'refundPolicyPage.sections.chargebacks.title': 'Chargebacks & Payment Disputes',
+  'refundPolicyPage.sections.chargebacks.p1': 'If you have a concern about a charge, please contact us at contact@fasttesters.com before initiating a chargeback with your bank or card issuer. We are committed to resolving billing issues fairly and promptly.',
+  'refundPolicyPage.sections.chargebacks.p2': 'Initiating a chargeback without first contacting us may delay resolution and may result in account suspension while the dispute is investigated.',
+  'refundPolicyPage.sections.chargebacks.p3': 'Approved refunds are processed through Stripe to your original payment method within 5–10 business days.',
 
   'refundPolicyPage.eligibility.title': 'Eligibility for Refund',
   'refundPolicyPage.eligibility.intro': 'To be eligible for a refund under our Production Access Guarantee, you must meet the following criteria:',
@@ -334,7 +366,7 @@ export const legalPagesEn: Record<string, string> = {
   'refundPolicyPage.nonRefundable.item4': 'Apps where critical tester feedback was not addressed before submission to Google Play',
 
   'refundPolicyPage.contact.title': 'Contact',
-  'refundPolicyPage.contact.description': "If you have any questions about our Refund Policy or need assistance with a refund request, please don't hesitate to contact us:",
+  'refundPolicyPage.contact.description': 'If you have any questions about our Refund and Return Policy or need assistance with a refund request, contact our customer service team:',
 
   // ═══════════════════════════════════════════════════════════════════════
   // CANCELLATION POLICY
@@ -342,7 +374,7 @@ export const legalPagesEn: Record<string, string> = {
   'cancellationPolicyPage.badge': 'Order & Account Policy',
   'cancellationPolicyPage.cmsBadge': 'Cancellation Policy',
   'cancellationPolicyPage.lastUpdated': 'Last Updated',
-  'cancellationPolicyPage.lastUpdatedDate': '7th June 2026',
+  'cancellationPolicyPage.lastUpdatedDate': '13th June 2026',
   'cancellationPolicyPage.backToHome': 'Back to Home',
   'cancellationPolicyPage.noSubscriptions': 'One-time payments only — no subscriptions',
   'cancellationPolicyPage.subtitle': 'How to cancel orders and close your account with {brand}. No subscriptions — each purchase is a single $15 payment per app.',
@@ -394,9 +426,12 @@ export const legalPagesEn: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   'referralPolicyPage.badge': 'Legal',
   'referralPolicyPage.lastUpdated': 'Last Updated',
-  'referralPolicyPage.lastUpdatedDate': '1st March 2026',
+  'referralPolicyPage.lastUpdatedDate': '13th June 2026',
+  'referralPolicyPage.subtitle': 'Terms governing participation in the {brand} Referral Program, operated by {entity}.',
+  'referralPolicyPage.tableOfContents': 'Table of Contents',
   'referralPolicyPage.backToReferralProgram': 'Back to Referral Program',
-  'referralPolicyPage.intro': 'This Referral Program Policy governs your participation in the Fast Testers Referral Program. Please read this Policy carefully before participating. By participating in the Program, you acknowledge that you have read, understood, and agree to be bound by the terms outlined below.',
+  'referralPolicyPage.backToHome': 'Back to Home',
+  'referralPolicyPage.intro': 'This Referral Program Policy governs your participation in the {brand} Referral Program operated by {entity}. Please read this Policy carefully before participating. By participating in the Program, you acknowledge that you have read, understood, and agree to be bound by the terms outlined below.',
 
   'referralPolicyPage.sections.binding.title': 'Binding Agreement',
   'referralPolicyPage.sections.binding.p1': 'By participating in the Fast Testers Referral Program ("Program"), you agree to be bound by these Referral Program Policy ("Policy"). This Policy is in addition to and incorporates by reference our Terms and Conditions and Privacy Policy.',
@@ -446,5 +481,5 @@ export const legalPagesEn: Record<string, string> = {
   'referralPolicyPage.sections.termination.p5': 'You may voluntarily withdraw from the Referral Program at any time by contacting us at contact@fasttesters.com.',
 
   'referralPolicyPage.contact.title': 'Contact',
-  'referralPolicyPage.contact.description': 'If you have any questions about this Referral Program Policy, please contact us:',
+  'referralPolicyPage.contact.description': 'If you have any questions about this Referral Program Policy, contact our customer service team:',
 };
