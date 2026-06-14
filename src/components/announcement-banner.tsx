@@ -9,8 +9,7 @@ import { fetchSiteSettings, DEFAULT_ANNOUNCEMENT_BANNER } from '@/lib/site-setti
 const BANNER_DISMISSED_KEY = 'ft-banner-dismissed';
 const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
 
-function getInitialVisibility(): boolean {
-  if (typeof window === 'undefined') return false;
+function readBannerVisibility(): boolean {
   const dismissedAt = localStorage.getItem(BANNER_DISMISSED_KEY);
   if (dismissedAt) {
     const elapsed = Date.now() - parseInt(dismissedAt, 10);
@@ -23,12 +22,14 @@ function getInitialVisibility(): boolean {
 }
 
 export function AnnouncementBanner() {
-  const [visible, setVisible] = useState(getInitialVisibility);
+  const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const [enabled, setEnabled] = useState(DEFAULT_ANNOUNCEMENT_BANNER.enabled);
   const { t, dir } = useLanguage();
 
   useEffect(() => {
+    setVisible(readBannerVisibility());
+
     (async () => {
       const settings = await fetchSiteSettings();
       if (settings?.announcementBanner) {
