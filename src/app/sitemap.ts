@@ -40,6 +40,7 @@ const STATIC_ROUTES: {
   { path: '/cookie-policy', priority: 0.4, changeFrequency: 'monthly' },
   { path: '/refund-policy', priority: 0.4, changeFrequency: 'monthly' },
   { path: '/cancellation-policy', priority: 0.4, changeFrequency: 'monthly' },
+  { path: '/account-deletion', priority: 0.4, changeFrequency: 'monthly' },
   { path: '/referral-policy', priority: 0.4, changeFrequency: 'monthly' },
 ];
 

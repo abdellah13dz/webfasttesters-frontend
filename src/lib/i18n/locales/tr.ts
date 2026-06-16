@@ -66,6 +66,7 @@ export const tr: Record<string, string> = {
   'footer.privacyPolicy': 'Gizlilik Politikası',
   'footer.refundPolicy': 'İade Politikası',
   'footer.cancellationPolicy': 'İptal Politikası',
+  'footer.accountDeletion': 'Hesap Silme',
   'footer.referralPolicy': 'Yönlendirme Politikası',
   'footer.allRightsReserved': 'Tüm hakları saklıdır.',
   'footer.newsletterTitle': 'Bültenimize abone olun',

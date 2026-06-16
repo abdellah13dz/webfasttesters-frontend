@@ -482,4 +482,66 @@ export const legalPagesEn: Record<string, string> = {
 
   'referralPolicyPage.contact.title': 'Contact',
   'referralPolicyPage.contact.description': 'If you have any questions about this Referral Program Policy, contact our customer service team:',
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // ACCOUNT DELETION (Google Play requirement)
+  // ═══════════════════════════════════════════════════════════════════════
+  'accountDeletionPage.badge': 'Account & Data Deletion',
+  'accountDeletionPage.lastUpdated': 'Last Updated',
+  'accountDeletionPage.lastUpdatedDate': '16th June 2026',
+  'accountDeletionPage.backToHome': 'Back to Home',
+  'accountDeletionPage.appName': 'Fast Testers Android app',
+  'accountDeletionPage.subtitle': 'How to request deletion of your {brand} account and associated personal data from our website and Android app.',
+  'accountDeletionPage.tableOfContents': 'Table of Contents',
+  'accountDeletionPage.introFull': 'This page explains how users of the Fast Testers Android app and fasttesters.com can request deletion of their account and personal data. {entity} ({brand}) is committed to honoring your right to delete your account and the data associated with it, in accordance with Google Play policies, the GDPR, and our Privacy Policy.',
+  'accountDeletionPage.highlight.title': 'Request account deletion by email',
+  'accountDeletionPage.highlight.description': 'Send an email to contact@fasttesters.com with the subject line "Account Deletion Request". Include the email address linked to your account (if applicable) and, for Android app users, the device model you use with the app. We will verify your identity and process your request within 30 days.',
+  'accountDeletionPage.toc.scope': 'Who This Applies To',
+  'accountDeletionPage.toc.howToDelete': 'How to Request Deletion',
+  'accountDeletionPage.toc.dataDeleted': 'Data That Is Deleted',
+  'accountDeletionPage.toc.dataRetained': 'Data That May Be Retained',
+  'accountDeletionPage.toc.retentionPeriod': 'Retention Period',
+  'accountDeletionPage.toc.processingTime': 'Processing Timeline',
+
+  'accountDeletionPage.sections.scope.title': 'Who This Applies To',
+  'accountDeletionPage.sections.scope.p1': 'This account deletion process applies to users of the Fast Testers Android app (published on Google Play as "fast testers") and registered accounts on fasttesters.com, including developers who submit apps for testing and testers who participate through our platform.',
+  'accountDeletionPage.sections.scope.p2': 'If you only visited our website without creating an account, no account deletion is necessary. You may still contact us to request removal of any personal data we may hold (for example, from a contact form submission).',
+
+  'accountDeletionPage.sections.howToDelete.title': 'How to Request Account Deletion',
+  'accountDeletionPage.sections.howToDelete.intro': 'You can request deletion of your account and associated personal data using the following steps:',
+  'accountDeletionPage.sections.howToDelete.step1': 'Send an email to contact@fasttesters.com from the email address associated with your {brand} account (or the address you used to contact us).',
+  'accountDeletionPage.sections.howToDelete.step2': 'Use the subject line: "Account Deletion Request".',
+  'accountDeletionPage.sections.howToDelete.step3': 'In the email body, state that you want to permanently delete your account and associated personal data.',
+  'accountDeletionPage.sections.howToDelete.step4': 'If you use the Fast Testers Android app, include the device model and the Google account email on the device (if applicable) to help us locate your data.',
+  'accountDeletionPage.sections.howToDelete.step5': 'We may reply to verify your identity before processing the deletion request.',
+  'accountDeletionPage.sections.howToDelete.p1': 'Account deletion is free of charge. You do not need to create a new account or pay any fee to request deletion.',
+
+  'accountDeletionPage.sections.dataDeleted.title': 'Data That Is Deleted',
+  'accountDeletionPage.sections.dataDeleted.intro': 'When your account deletion request is approved and processed, we delete or anonymize the following data from our active systems:',
+  'accountDeletionPage.sections.dataDeleted.item1': 'Account profile information (name, email address, and login credentials).',
+  'accountDeletionPage.sections.dataDeleted.item2': 'App submission details, testing assignments, and in-app activity linked to your account.',
+  'accountDeletionPage.sections.dataDeleted.item3': 'Tester feedback, messages, and support conversations tied to your account.',
+  'accountDeletionPage.sections.dataDeleted.item4': 'Device identifiers and app usage data associated with the Fast Testers Android app on your device.',
+  'accountDeletionPage.sections.dataDeleted.item5': 'Referral program data and dashboard preferences linked to your account.',
+  'accountDeletionPage.sections.dataDeleted.item6': 'Marketing preferences and newsletter subscriptions.',
+
+  'accountDeletionPage.sections.dataRetained.title': 'Data That May Be Retained',
+  'accountDeletionPage.sections.dataRetained.intro': 'Certain data may be retained after account deletion where required by law or for legitimate business purposes. Retained data is no longer used to identify you or provide services to you:',
+  'accountDeletionPage.sections.dataRetained.item1': 'Payment and order records (transaction amounts, dates, and invoice references) retained for tax and accounting compliance. Card details are stored by Stripe, not on our servers.',
+  'accountDeletionPage.sections.dataRetained.item2': 'Anonymized or aggregated analytics that cannot be used to identify you.',
+  'accountDeletionPage.sections.dataRetained.item3': 'Records required to resolve disputes, enforce our Terms and Conditions, or comply with legal obligations.',
+  'accountDeletionPage.sections.dataRetained.item4': 'Backup copies that are automatically purged on our standard backup rotation schedule (typically within 90 days).',
+
+  'accountDeletionPage.sections.retentionPeriod.title': 'Retention Period for Kept Data',
+  'accountDeletionPage.sections.retentionPeriod.p1': 'Payment and order records are retained for up to 7 years to comply with tax, accounting, and financial regulations.',
+  'accountDeletionPage.sections.retentionPeriod.p2': 'Support communications related to your account are retained for up to 2 years after deletion, unless a longer period is required for dispute resolution.',
+  'accountDeletionPage.sections.retentionPeriod.p3': 'App testing data that must be kept for an in-progress order may continue until the testing period ends, after which it is deleted or anonymized in line with our Privacy Policy.',
+
+  'accountDeletionPage.sections.processingTime.title': 'Processing Timeline',
+  'accountDeletionPage.sections.processingTime.p1': 'We acknowledge account deletion requests within 1–2 business days.',
+  'accountDeletionPage.sections.processingTime.p2': 'After verifying your identity, we complete deletion of personal data from our active systems within 30 days.',
+  'accountDeletionPage.sections.processingTime.p3': 'You will receive a confirmation email once your account and associated personal data have been deleted. If you have questions about the status of your request, contact contact@fasttesters.com.',
+
+  'accountDeletionPage.contact.title': 'Contact Us',
+  'accountDeletionPage.contact.description': 'To request account deletion or ask questions about how we handle your data, contact our support team at contact@fasttesters.com. We aim to respond within 1–2 business days.',
 };

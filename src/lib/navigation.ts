@@ -73,6 +73,7 @@ export const FALLBACK_NAVIGATION: SiteNavigation = {
     { labelKey: 'footer.cookiePolicy', path: '/cookie-policy' },
     { labelKey: 'footer.refundPolicy', path: '/refund-policy' },
     { labelKey: 'footer.cancellationPolicy', path: '/cancellation-policy' },
+    { labelKey: 'footer.accountDeletion', path: '/account-deletion' },
     { labelKey: 'footer.referralPolicy', path: '/referral-policy' },
   ],
 };

@@ -150,6 +150,15 @@ export const pageSeoConfig: Record<string, PageSeo> = {
     type: 'website',
   },
 
+  '/account-deletion': {
+    title: 'Account Deletion - Fast Testers | Delete Your Account & Data',
+    description:
+      'Request deletion of your Fast Testers account and personal data from our website or Android app. Learn what data is deleted, retained, and how long processing takes.',
+    keywords: DEFAULT_KEYWORDS_META,
+    ogImage: BRAND_OG_IMAGE_PATH,
+    type: 'website',
+  },
+
   '/app-testing-referral-program': {
     title:
       'Referral Program - Fast Testers | Earn Rewards for Referring Developers',

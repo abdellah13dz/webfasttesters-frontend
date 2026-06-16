@@ -417,5 +417,6 @@ export const POLICY_FOOTER_LINKS = {
   privacy: { labelKey: 'footer.privacyPolicy', path: '/privacy-policy' },
   refund: { labelKey: 'footer.refundPolicy', path: '/refund-policy' },
   cancellation: { labelKey: 'footer.cancellationPolicy', path: '/cancellation-policy' },
+  accountDeletion: { labelKey: 'footer.accountDeletion', path: '/account-deletion' },
   cookie: { labelKey: 'footer.cookiePolicy', path: '/cookie-policy' },
 } as const;
