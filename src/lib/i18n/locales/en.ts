@@ -396,7 +396,7 @@ export const en: Record<string, string> = {
   'aboutUs.startJourney': 'Start Your Testing Journey',
   'aboutUs.ourTeam': 'Our Team',
   'aboutUs.builtByDevelopers': 'Built by Developers, for Developers',
-  'aboutUs.teamAlex': 'Alex Chen',
+  'aboutUs.teamAlex': 'Abdallah Benahmed',
   'aboutUs.teamAlexRole': 'Founder & CEO',
   'aboutUs.teamAlexBio': 'Former Android developer who experienced the testing struggle firsthand.',
   'aboutUs.teamSarah': 'Sarah Miller',

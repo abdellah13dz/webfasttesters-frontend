@@ -25,6 +25,7 @@ import {
   Clock,
   Languages,
   CheckCircle,
+  Linkedin,
 } from 'lucide-react';
 
 function AnimatedSection({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
@@ -88,8 +89,9 @@ const teamMembers = [
     nameKey: 'aboutUs.teamAlex',
     roleKey: 'aboutUs.teamAlexRole',
     bioKey: 'aboutUs.teamAlexBio',
-    initials: 'AC',
+    initials: 'AB',
     color: 'bg-blue-500',
+    linkedin: 'https://www.linkedin.com/in/abdellah-benahmed-03a1601a2/',
   },
   {
     nameKey: 'aboutUs.teamSarah',
@@ -340,6 +342,18 @@ export default function AboutUs() {
                     <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
                       {t(member.bioKey)}
                     </p>
+                    {'linkedin' in member && member.linkedin && (
+                      <a
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                        aria-label={`${t(member.nameKey)} LinkedIn`}
+                      >
+                        <Linkedin className="h-4 w-4" />
+                        LinkedIn
+                      </a>
+                    )}
                   </CardContent>
                 </Card>
               </AnimatedSection>
