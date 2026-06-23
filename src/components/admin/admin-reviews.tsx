@@ -27,9 +27,12 @@ interface Review {
   avatarUrl: string | null;
   appLink: string | null;
   appName: string | null;
+  category: string | null;
+  result: string | null;
   rating: number;
   visible: boolean;
   featured: boolean;
+  caseStudy: boolean;
   sortOrder: number;
   createdAt: string;
   updatedAt: string;
@@ -42,11 +45,14 @@ interface ReviewFormData {
   rating: number;
   visible: boolean;
   featured: boolean;
+  caseStudy: boolean;
   sortOrder: number;
   link: string;
   avatarUrl: string;
   appLink: string;
   appName: string;
+  category: string;
+  result: string;
 }
 
 const emptyForm: ReviewFormData = {
@@ -56,11 +62,14 @@ const emptyForm: ReviewFormData = {
   rating: 5,
   visible: true,
   featured: false,
+  caseStudy: false,
   sortOrder: 0,
   link: '',
   avatarUrl: '',
   appLink: '',
   appName: '',
+  category: '',
+  result: '',
 };
 
 export default function AdminReviews() {
@@ -107,11 +116,14 @@ export default function AdminReviews() {
       rating: review.rating,
       visible: review.visible,
       featured: review.featured,
+      caseStudy: review.caseStudy,
       sortOrder: review.sortOrder,
       link: review.link || '',
       avatarUrl: review.avatarUrl || '',
       appLink: review.appLink || '',
       appName: review.appName || '',
+      category: review.category || '',
+      result: review.result || '',
     });
     setDialogOpen(true);
   };
@@ -128,11 +140,14 @@ export default function AdminReviews() {
         rating: form.rating,
         visible: form.visible,
         featured: form.featured,
+        caseStudy: form.caseStudy,
         sortOrder: form.sortOrder,
         link: form.link.trim() || null,
         avatarUrl: form.avatarUrl.trim() || null,
         appLink: form.appLink.trim() || null,
         appName: form.appName.trim() || null,
+        category: form.category.trim() || null,
+        result: form.result.trim() || null,
       };
 
       if (editingId) {
@@ -266,6 +281,9 @@ export default function AdminReviews() {
           <EyeOff className="h-3 w-3 mr-1" />
           Hidden: {reviews.filter((r) => !r.visible).length}
         </Badge>
+        <Badge variant="outline" className="border-violet-500/30 text-violet-600 dark:text-violet-400 px-3 py-1">
+          Case studies: {reviews.filter((r) => r.caseStudy).length}
+        </Badge>
       </div>
 
       {/* Reviews Grid */}
@@ -310,6 +328,16 @@ export default function AdminReviews() {
                   >
                     {review.visible ? 'Visible' : 'Hidden'}
                   </Badge>
+                  {review.featured && (
+                    <Badge variant="outline" className="text-[10px] px-2 py-0 h-5 bg-blue-500/10 text-blue-600 border-blue-500/20">
+                      Featured
+                    </Badge>
+                  )}
+                  {review.caseStudy && (
+                    <Badge variant="outline" className="text-[10px] px-2 py-0 h-5 bg-violet-500/10 text-violet-600 border-violet-500/20">
+                      Case study
+                    </Badge>
+                  )}
                 </div>
 
                 {/* Review text */}
@@ -519,6 +547,39 @@ export default function AdminReviews() {
               </p>
             </div>
 
+            {/* Case study fields */}
+            <div className="space-y-2">
+              <Label htmlFor="review-category" className="text-sm font-medium text-foreground">
+                App Category
+              </Label>
+              <Input
+                id="review-category"
+                value={form.category}
+                onChange={(e) => setForm({ ...form, category: e.target.value })}
+                placeholder="e.g. Finance, Productivity"
+                className="bg-muted/30"
+              />
+              <p className="text-xs text-muted-foreground">
+                Used on case study cards (homepage success stories and case studies page)
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="review-result" className="text-sm font-medium text-foreground">
+                Outcome / Result
+              </Label>
+              <Input
+                id="review-result"
+                value={form.result}
+                onChange={(e) => setForm({ ...form, result: e.target.value })}
+                placeholder="e.g. Production access granted in 16 days"
+                className="bg-muted/30"
+              />
+              <p className="text-xs text-muted-foreground">
+                Short outcome headline shown on case study cards
+              </p>
+            </div>
+
             {/* Review text */}
             <div className="space-y-2">
               <Label htmlFor="review-text" className="text-sm font-medium text-foreground">
@@ -572,13 +633,29 @@ export default function AdminReviews() {
                   Featured on homepage
                 </Label>
                 <p className="text-xs text-muted-foreground">
-                  Show this review in the home page testimonials section
+                  Show in the homepage &ldquo;Trusted by Developers&rdquo; reviews section
                 </p>
               </div>
               <Switch
                 checked={form.featured}
-                onCheckedChange={(checked) => setForm({ ...form, featured: checked })}
+                onCheckedChange={(checked) => setForm({ ...form, featured: checked, ...(checked ? { caseStudy: false } : {}) })}
                 className="data-[state=checked]:bg-blue-500"
+              />
+            </div>
+
+            <div className="flex items-center justify-between rounded-lg border border-border/50 p-3 bg-muted/20">
+              <div className="space-y-0.5">
+                <Label className="text-sm font-medium text-foreground">
+                  Case study
+                </Label>
+                <p className="text-xs text-muted-foreground">
+                  Show on homepage success stories and the case studies page (not in featured reviews)
+                </p>
+              </div>
+              <Switch
+                checked={form.caseStudy}
+                onCheckedChange={(checked) => setForm({ ...form, caseStudy: checked, ...(checked ? { featured: false } : {}) })}
+                className="data-[state=checked]:bg-violet-500"
               />
             </div>
 

@@ -5,7 +5,10 @@ import { useRouter } from '@/lib/router';
 import { APP_HOST, APP_URL } from '@/lib/app-urls';
 import { useLanguage } from '@/lib/i18n/context';
 import { useAnalytics } from '@/lib/analytics';
-import { apiFetch } from '@/lib/api';
+import { fetchPublicReviews } from '@/lib/reviews-api';
+import type { Review } from '@/lib/types/review';
+import { ReviewCard } from '@/components/reviews/review-card';
+import { CaseStudyCard } from '@/components/reviews/case-study-card';
 import { usePricingPlans } from '@/lib/hooks/use-pricing-plans';
 import { fetchSiteSettings, DEFAULT_HERO_STATS } from '@/lib/site-settings';
 import { formatPlanPrice, parsePlanFeatures } from '@/lib/pricing';
@@ -146,50 +149,6 @@ function AnimatedSection({ children, className = '', delay = 0, direction = 'fad
   );
 }
 
-// ─── Testimonials fallback (used when API has no featured reviews) ───────
-const fallbackTestimonials = [
-  {
-    quote: "Not only did Fast Testers fulfill the requirement of 12 testers engaging with my app over 14 days, but they also provided thoughtful feedback.",
-    author: "Madeline Petersen",
-    app: "Grosch",
-  },
-  {
-    quote: "Got my app approved in the Play Store on the first attempt, thanks to the testers community. It was a great experience with excellent communication.",
-    author: "Wouter Olwagen",
-    app: "",
-  },
-  {
-    quote: "Private testing option did wonders. I got not only dozens of testers who knew how to interact with the app, but also I received detailed report.",
-    author: "Konrad Ptasi\u0144ski",
-    app: "Game Developer",
-  },
-  {
-    quote: "Your reviews were excellent. And we got approved for production in one day after integrating your feedback.",
-    author: "Dennis Chukwuemeka",
-    app: "DDV Bible",
-  },
-  {
-    quote: "This app was a blessing when I needed testers for closed testing. Definitely worth the money, especially with the comprehensive feedback.",
-    author: "Kenan Grahic",
-    app: "Sandman",
-  },
-  {
-    quote: "Best app for testers... I got my app rejected five times and finally, with the help of Fast Testers, today I got production access.",
-    author: "NIRAV K PATEL",
-    app: "ScrinTrim",
-  },
-  {
-    quote: "I just got granted production access for my app! I couldn't have done it without you guys. Highly recommended.",
-    author: "Keval Sakariya",
-    app: "Modern QR",
-  },
-  {
-    quote: "After just 14 days, I was finally able to access production without any issues. The support was impeccable.",
-    author: "Kevin Corigliano",
-    app: "Echo Verse",
-  },
-];
-
 // ─── Android Plan Features ─────────────────────────────────────────────
 const androidFeatures = [
   { icon: Users, text: 'home.professionalTesters' },
@@ -200,12 +159,6 @@ const androidFeatures = [
   { icon: MessageSquare, text: 'home.prioritySupport' },
 ];
 
-interface HomeTestimonial {
-  quote: string;
-  author: string;
-  app: string;
-  rating: number;
-}
 
 // ─── Main Component ────────────────────────────────────────────────────
 export default function HomePage() {
@@ -213,9 +166,9 @@ export default function HomePage() {
   const { t } = useLanguage();
   const { trackCta } = useAnalytics();
   const { primaryPlan } = usePricingPlans();
-  const [testimonials, setTestimonials] = useState<HomeTestimonial[]>(
-    fallbackTestimonials.map((item) => ({ ...item, rating: 5 }))
-  );
+  const [featuredReviews, setFeaturedReviews] = useState<Review[]>([]);
+  const [caseStudyReviews, setCaseStudyReviews] = useState<Review[]>([]);
+  const [reviewsLoading, setReviewsLoading] = useState(true);
   const [heroStats, setHeroStats] = useState(DEFAULT_HERO_STATS);
   const { count: heroCount } = useAnimatedCounter(heroStats.heroCount, 2500);
   const { count: statsSuccessRate, ref: successRateRef } = useAnimatedCounter(heroStats.successRate, 2000, {
@@ -249,20 +202,17 @@ export default function HomePage() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await apiFetch('/api/reviews?featured=true&limit=8');
-        if (!res.ok) return;
-        const data = await res.json();
-        if (!Array.isArray(data) || data.length === 0) return;
-        setTestimonials(
-          data.map((review: { text: string; author: string; role?: string | null; appName?: string | null; rating?: number }) => ({
-            quote: review.text,
-            author: review.author,
-            app: review.appName || review.role || '',
-            rating: review.rating ?? 5,
-          }))
-        );
+        setReviewsLoading(true);
+        const [featured, caseStudies] = await Promise.all([
+          fetchPublicReviews({ featured: true, limit: 8 }),
+          fetchPublicReviews({ caseStudy: true, excludeFeatured: true, limit: 3 }),
+        ]);
+        setFeaturedReviews(featured);
+        setCaseStudyReviews(caseStudies);
       } catch {
-        // Keep fallback testimonials
+        // Sections show empty state when no reviews
+      } finally {
+        setReviewsLoading(false);
       }
     })();
   }, []);
@@ -1052,48 +1002,21 @@ export default function HomePage() {
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {testimonials.map((testimonial, index) => (
-              <AnimatedSection key={testimonial.author} delay={index * 80}>
-                <Card className="card-hover scale-hover bg-card/80 border-border/60 h-full flex flex-col">
-                  <CardContent className="p-5 flex-1 flex flex-col">
-                    {/* Quote icon decoration */}
-                    <svg className="h-6 w-6 text-blue-500/15 mb-2 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-                    {/* Stars */}
-                    <div className="flex items-center gap-0.5 mb-3">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`h-3.5 w-3.5 ${i < testimonial.rating ? 'fill-amber-400 text-amber-400' : 'text-muted-foreground/30'}`}
-                        />
-                      ))}
-                    </div>
-
-                    {/* Quote */}
-                    <p className="text-sm text-foreground/85 leading-relaxed mb-4 flex-1">
-                      &ldquo;{testimonial.quote}&rdquo;
-                    </p>
-
-                    {/* Author */}
-                    <div className="border-t border-border/40 pt-3 mt-auto flex items-center gap-3">
-                      {/* Avatar with initials */}
-                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold shrink-0">
-                        {testimonial.author.split(' ').map(n => n[0]).join('').slice(0, 2)}
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-foreground">{testimonial.author}</p>
-                        {testimonial.app && (
-                          <p className="text-xs text-muted-foreground">
-                            {testimonial.app.includes('Developer') ? testimonial.app : `Creator of ${testimonial.app}`}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </AnimatedSection>
-            ))}
-          </div>
+          {reviewsLoading ? (
+            <div className="flex items-center justify-center py-12">
+              <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-400 border-t-transparent" />
+            </div>
+          ) : featuredReviews.length === 0 ? (
+            <p className="text-center text-muted-foreground py-8">{t('reviews.noReviewsYet')}</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {featuredReviews.map((review, index) => (
+                <AnimatedSection key={review.id} delay={index * 80}>
+                  <ReviewCard review={review} />
+                </AnimatedSection>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -1114,74 +1037,26 @@ export default function HomePage() {
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8">
-            {[
-              {
-                appNameKey: 'home.successStoriesApp1Name',
-                categoryKey: 'home.successStoriesApp1Category',
-                developerKey: 'home.successStoriesApp1Developer',
-                resultKey: 'home.successStoriesApp1Result',
-                rating: 5,
-              },
-              {
-                appNameKey: 'home.successStoriesApp2Name',
-                categoryKey: 'home.successStoriesApp2Category',
-                developerKey: 'home.successStoriesApp2Developer',
-                resultKey: 'home.successStoriesApp2Result',
-                rating: 5,
-              },
-              {
-                appNameKey: 'home.successStoriesApp3Name',
-                categoryKey: 'home.successStoriesApp3Category',
-                developerKey: 'home.successStoriesApp3Developer',
-                resultKey: 'home.successStoriesApp3Result',
-                rating: 5,
-              },
-            ].map((story, idx) => (
-              <AnimatedSection key={story.appNameKey} delay={idx * 100}>
-                <Card className="card-hover bg-card/80 border-border/60 h-full flex flex-col">
-                  <CardContent className="p-5 flex-1 flex flex-col">
-                    {/* App name and category */}
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-base font-bold text-foreground">{t(story.appNameKey)}</h3>
-                      <Badge variant="secondary" className="text-xs">
-                        {t(story.categoryKey)}
-                      </Badge>
-                    </div>
-
-                    {/* Developer */}
-                    <p className="text-sm text-muted-foreground mb-2">
-                      {t(story.developerKey)}
-                    </p>
-
-                    {/* Quick result */}
-                    <div className="flex items-center gap-2 rounded-lg bg-blue-500/10 px-3 py-2 mb-3">
-                      <CheckCircle className="h-4 w-4 text-blue-400 shrink-0" />
-                      <span className="text-sm font-semibold text-blue-400">{t(story.resultKey)}</span>
-                    </div>
-
-                    {/* Star rating */}
-                    <div className="flex items-center gap-0.5 mb-4">
-                      {Array.from({ length: story.rating }).map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
-                      ))}
-                    </div>
-
-                    {/* Read more */}
-                    <button
-                      type="button"
-                      suppressHydrationWarning
-                      onClick={() => navigate('/case-studies')}
-                      className="mt-auto flex items-center gap-1 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors group"
-                    >
-                      {t('home.successStoriesReadMore')}
-                      <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-                    </button>
-                  </CardContent>
-                </Card>
-              </AnimatedSection>
-            ))}
-          </div>
+          {reviewsLoading ? (
+            <div className="flex items-center justify-center py-12 mb-8">
+              <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-400 border-t-transparent" />
+            </div>
+          ) : caseStudyReviews.length === 0 ? (
+            <p className="text-center text-muted-foreground py-8 mb-8">{t('reviews.noReviewsYet')}</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8">
+              {caseStudyReviews.map((review, idx) => (
+                <AnimatedSection key={review.id} delay={idx * 100}>
+                  <CaseStudyCard
+                    review={review}
+                    compact
+                    readMoreLabel={t('home.successStoriesReadMore')}
+                    onReadMore={() => navigate('/case-studies')}
+                  />
+                </AnimatedSection>
+              ))}
+            </div>
+          )}
 
           <AnimatedSection delay={300}>
             <div className="text-center">

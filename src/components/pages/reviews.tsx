@@ -1,11 +1,12 @@
 'use client';
 
-import { apiFetch } from '@/lib/api';
-
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { useRouter } from '@/lib/router';
 import { APP_URL } from '@/lib/app-urls';
 import { useLanguage } from '@/lib/i18n/context';
+import { fetchPublicReviews } from '@/lib/reviews-api';
+import type { Review } from '@/lib/types/review';
+import { ReviewCard } from '@/components/reviews/review-card';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -24,13 +25,27 @@ import {
   Trophy,
   Globe,
   Quote,
-  ExternalLink,
-  Smartphone,
   Search,
-  ShieldCheck,
   X,
   Users,
 } from 'lucide-react';
+
+function StarRating({ rating }: { rating: number }) {
+  return (
+    <div className="flex items-center gap-0.5">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <Star
+          key={star}
+          className={`h-4 w-4 ${
+            star <= rating
+              ? 'fill-yellow-400 text-yellow-400'
+              : 'fill-none text-muted-foreground/30'
+          }`}
+        />
+      ))}
+    </div>
+  );
+}
 
 function AnimatedSection({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -59,86 +74,8 @@ function AnimatedSection({ children, className = '', delay = 0 }: { children: Re
   );
 }
 
-interface Review {
-  id: string;
-  text: string;
-  author: string;
-  role: string | null;
-  link: string | null;
-  avatarUrl: string | null;
-  appLink: string | null;
-  appName: string | null;
-  rating: number;
-  visible: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
-
 type StarFilter = 'all' | '5' | '4' | '3';
 type SortOption = 'recent' | 'highest' | 'lowest';
-
-// Mock relative date labels mapped by review index for variety
-const mockRelativeDates = [
-  '2 days ago',
-  '1 week ago',
-  '2 weeks ago',
-  '3 weeks ago',
-  '1 month ago',
-  '1 month ago',
-  '2 months ago',
-  '2 months ago',
-  '3 months ago',
-  '3 months ago',
-  '4 months ago',
-  '5 months ago',
-];
-
-// Mock verified status - reviews with rating >= 4 are "verified"
-function isVerified(review: Review): boolean {
-  return review.rating >= 4;
-}
-
-function StarRating({ rating }: { rating: number }) {
-  return (
-    <div className="flex items-center gap-0.5">
-      {[1, 2, 3, 4, 5].map((star) => (
-        <Star
-          key={star}
-          className={`h-4 w-4 ${
-            star <= rating
-              ? 'fill-yellow-400 text-yellow-400'
-              : 'fill-none text-muted-foreground/30'
-          }`}
-        />
-      ))}
-    </div>
-  );
-}
-
-function AuthorAvatar({ author, avatarUrl }: { author: string; avatarUrl: string | null }) {
-  const initials = author
-    .split(' ')
-    .map((n) => n[0])
-    .join('')
-    .slice(0, 2)
-    .toUpperCase();
-
-  if (avatarUrl) {
-    return (
-      <img
-        src={avatarUrl}
-        alt={author}
-        className="w-9 h-9 rounded-full object-cover shrink-0"
-      />
-    );
-  }
-
-  return (
-    <div className="flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-blue-400 to-cyan-400 text-white font-semibold text-sm shrink-0 shadow-md shadow-blue-500/20">
-      {initials}
-    </div>
-  );
-}
 
 export default function Reviews() {
   const { navigate } = useRouter();
@@ -150,21 +87,18 @@ export default function Reviews() {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    const fetchReviews = async () => {
+    const loadReviews = async () => {
       try {
         setLoading(true);
-        const res = await apiFetch('/api/reviews');
-        if (res.ok) {
-          const data = await res.json();
-          setReviews(data);
-        }
+        const data = await fetchPublicReviews();
+        setReviews(data);
       } catch (error) {
         console.error('Error fetching reviews:', error);
       } finally {
         setLoading(false);
       }
     };
-    fetchReviews();
+    loadReviews();
   }, []);
 
   // Compute stats from all reviews
@@ -494,96 +428,7 @@ export default function Reviews() {
           <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredReviews.map((review, index) => (
               <AnimatedSection key={review.id} delay={Math.min(index * 80, 400)}>
-                <Card
-                  className="border border-border bg-card/50 backdrop-blur-sm hover:border-blue-400/20 transition-all duration-300 group gradient-border overflow-hidden hover-scale"
-                >
-                  <CardContent className="relative p-5 sm:p-6 flex flex-col h-full z-10">
-                    {/* Quote Icon */}
-                    <Quote className="h-5 w-5 text-blue-400/30 mb-3" />
-
-                    {/* Star Rating + Verified Badge */}
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <StarRating rating={review.rating} />
-                      {isVerified(review) && (
-                        <Badge
-                          variant="outline"
-                          className="border-emerald-500/30 text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 text-[10px] px-1.5 py-0 h-5 gap-0.5"
-                        >
-                          <ShieldCheck className="h-3 w-3" />
-                          {t('reviews.verifiedReviewer')}
-                        </Badge>
-                      )}
-                    </div>
-
-                    {/* Review Text */}
-                    <p className="text-foreground/80 text-sm leading-relaxed mt-4 flex-1">
-                      &ldquo;{review.text}&rdquo;
-                    </p>
-
-                    {/* App Name Badge */}
-                    {review.appName && (
-                      <div className="mt-3">
-                        <Badge
-                          variant="secondary"
-                          className="text-xs bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20"
-                        >
-                          <Smartphone className="h-3 w-3 mr-1" />
-                          {review.appName}
-                        </Badge>
-                      </div>
-                    )}
-
-                    {/* Author + Date */}
-                    <div className="mt-4 pt-4 border-t border-border">
-                      <div className="flex items-center gap-3">
-                        <AuthorAvatar author={review.author} avatarUrl={review.avatarUrl} />
-                        <div className="min-w-0 flex-1">
-                          <div className="flex items-center gap-1.5">
-                            <div className="text-foreground text-sm font-medium truncate">
-                              {review.author}
-                            </div>
-                            {review.link && (
-                              <a
-                                href={review.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="shrink-0 text-blue-400 hover:text-blue-500 transition-colors"
-                              >
-                                <ExternalLink className="h-3 w-3" />
-                              </a>
-                            )}
-                          </div>
-                          <div className="flex items-center gap-2">
-                            {review.role && (
-                              <span className="text-muted-foreground text-xs truncate">
-                                {review.role}
-                              </span>
-                            )}
-                          </div>
-                          {/* Relative date */}
-                          <div className="text-muted-foreground/60 text-[11px] mt-0.5">
-                            {mockRelativeDates[index % mockRelativeDates.length]}
-                          </div>
-                        </div>
-                      </div>
-                      {/* App Link */}
-                      {review.appLink && (
-                        <a
-                          href={review.appLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="mt-3 flex items-center gap-2 rounded-lg bg-blue-500/5 border border-blue-500/10 px-3 py-2 hover:bg-blue-500/10 hover:border-blue-500/20 transition-all group/app"
-                        >
-                          <Smartphone className="h-3.5 w-3.5 text-blue-400 shrink-0" />
-                          <span className="text-xs font-medium text-blue-600 dark:text-blue-400 truncate">
-                            {review.appName || 'View App'}
-                          </span>
-                          <ExternalLink className="h-3 w-3 text-blue-400/50 group-hover/app:text-blue-400 shrink-0 ml-auto" />
-                        </a>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
+                <ReviewCard review={review} />
               </AnimatedSection>
             ))}
           </div>
