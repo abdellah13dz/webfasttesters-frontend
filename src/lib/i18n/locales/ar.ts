@@ -137,6 +137,7 @@ export const ar: Record<string, string> = {
   'home.popular': 'رائج',
   'home.trustedByDevelopers': 'ثقة المطورين',
   'home.helpedDevelopers': 'ساعدنا أكثر من 1,500 مطور في نشر تطبيقاتهم على Google Play',
+  'home.seeMoreReviews': 'عرض المزيد من المراجعات',
   'home.rating': 'تقييم 4.9/5',
   'home.availableNow': 'متاح الآن',
   'home.readyForAccess': 'هل أنت مستعد للوصول للإنتاج؟',

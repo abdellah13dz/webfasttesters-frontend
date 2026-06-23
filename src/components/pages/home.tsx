@@ -204,7 +204,7 @@ export default function HomePage() {
       try {
         setReviewsLoading(true);
         const [featured, caseStudies] = await Promise.all([
-          fetchPublicReviews({ featured: true, limit: 8 }),
+          fetchPublicReviews({ featured: true, limit: 9 }),
           fetchPublicReviews({ caseStudy: true, excludeFeatured: true, limit: 3 }),
         ]);
         setFeaturedReviews(featured);
@@ -1009,13 +1009,28 @@ export default function HomePage() {
           ) : featuredReviews.length === 0 ? (
             <p className="text-center text-muted-foreground py-8">{t('reviews.noReviewsYet')}</p>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {featuredReviews.map((review, index) => (
-                <AnimatedSection key={review.id} delay={index * 80}>
-                  <ReviewCard review={review} />
-                </AnimatedSection>
-              ))}
-            </div>
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                {featuredReviews.map((review, index) => (
+                  <AnimatedSection key={review.id} delay={index * 80}>
+                    <ReviewCard review={review} />
+                  </AnimatedSection>
+                ))}
+              </div>
+              <AnimatedSection delay={300}>
+                <div className="text-center mt-10">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    onClick={() => navigate('/reviews')}
+                    className="border-blue-500/30 text-blue-400 hover:bg-blue-500/10 font-semibold px-8 h-11"
+                  >
+                    {t('home.seeMoreReviews')}
+                    <ArrowRight className="h-4 w-4 ml-2" />
+                  </Button>
+                </div>
+              </AnimatedSection>
+            </>
           )}
         </div>
       </section>

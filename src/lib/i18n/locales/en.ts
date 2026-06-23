@@ -136,6 +136,7 @@ export const en: Record<string, string> = {
   'home.popular': 'POPULAR',
   'home.trustedByDevelopers': 'Trusted by Developers',
   'home.helpedDevelopers': 'We\'ve helped over 1,500 developers get their apps published on Google Play',
+  'home.seeMoreReviews': 'See More Reviews',
   'home.rating': '4.9/5 Rating',
   'home.availableNow': 'Available Now',
   'home.readyForAccess': 'Ready to Get Production Access?',

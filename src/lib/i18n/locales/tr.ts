@@ -136,6 +136,7 @@ export const tr: Record<string, string> = {
   'home.popular': 'POPÜLER',
   'home.trustedByDevelopers': 'Geliştiricilerin Güveni',
   'home.helpedDevelopers': '1.500+ geliştiricinin uygulamalarını Google Play\'de yayınlamasına yardımcı olduk',
+  'home.seeMoreReviews': 'Daha Fazla İnceleme Gör',
   'home.rating': '4.9/5 Puan',
   'home.availableNow': 'Şimdi Kullanılabilir',
   'home.readyForAccess': 'Üretim Erişimi Almaya Hazır mısınız?',
