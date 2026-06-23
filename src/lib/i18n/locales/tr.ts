@@ -888,15 +888,11 @@ export const tr: Record<string, string> = {
 
   // Social Proof / As Seen On
   'home.socialProofTitle': 'Dünya Çapında Geliştiricilerin Güveni',
-  'home.socialProofSubtitle': 'Önde gelen teknoloji platformlarında yer aldı',
-  'home.socialProofProductHunt': 'Product Hunt',
-  'home.socialProofHackerNews': 'Hacker News',
-  'home.socialProofDevTo': 'Dev.to',
-  'home.socialProofAndroidCentral': 'Android Central',
-  'home.socialProofTechCrunch': 'TechCrunch',
-  'home.socialProofXda': 'XDA Developers',
-  'home.socialProofReddit': 'Reddit',
-  'home.socialProofMedium': 'Medium',
+  'home.socialProofSubtitle': 'Güvenilir freelance ve değerlendirme platformlarında',
+  'home.socialProofTrustpilot': 'Trustpilot',
+  'home.socialProofFiverr': 'Fiverr',
+  'home.socialProofUpwork': 'Upwork',
+  'home.socialProofKhamsat': 'Khamsat',
 
   // Success Stories
   'home.successStoriesBadge': 'Başarı Hikayeleri',

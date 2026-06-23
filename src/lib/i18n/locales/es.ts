@@ -888,15 +888,11 @@ export const es: Record<string, string> = {
 
   // Social Proof / As Seen On
   'home.socialProofTitle': 'Confianza de desarrolladores en todo el mundo',
-  'home.socialProofSubtitle': 'Destacados en plataformas tecnológicas líderes',
-  'home.socialProofProductHunt': 'Product Hunt',
-  'home.socialProofHackerNews': 'Hacker News',
-  'home.socialProofDevTo': 'Dev.to',
-  'home.socialProofAndroidCentral': 'Android Central',
-  'home.socialProofTechCrunch': 'TechCrunch',
-  'home.socialProofXda': 'XDA Developers',
-  'home.socialProofReddit': 'Reddit',
-  'home.socialProofMedium': 'Medium',
+  'home.socialProofSubtitle': 'Disponible en plataformas freelance y de reseñas de confianza',
+  'home.socialProofTrustpilot': 'Trustpilot',
+  'home.socialProofFiverr': 'Fiverr',
+  'home.socialProofUpwork': 'Upwork',
+  'home.socialProofKhamsat': 'Khamsat',
 
   // Success Stories
   'home.successStoriesBadge': 'Historias de Éxito',

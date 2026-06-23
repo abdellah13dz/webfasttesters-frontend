@@ -886,15 +886,11 @@ export const ar: Record<string, string> = {
 
   // Social Proof / As Seen On
   'home.socialProofTitle': 'موثوق من قبل المطورين حول العالم',
-  'home.socialProofSubtitle': 'مُبرز على منصات التقنية الرائدة',
-  'home.socialProofProductHunt': 'Product Hunt',
-  'home.socialProofHackerNews': 'Hacker News',
-  'home.socialProofDevTo': 'Dev.to',
-  'home.socialProofAndroidCentral': 'Android Central',
-  'home.socialProofTechCrunch': 'TechCrunch',
-  'home.socialProofXda': 'XDA Developers',
-  'home.socialProofReddit': 'Reddit',
-  'home.socialProofMedium': 'Medium',
+  'home.socialProofSubtitle': 'متاح على منصات العمل الحر ومراجعات موثوقة',
+  'home.socialProofTrustpilot': 'Trustpilot',
+  'home.socialProofFiverr': 'Fiverr',
+  'home.socialProofUpwork': 'Upwork',
+  'home.socialProofKhamsat': 'خمسات',
 
   // Success Stories
   'home.successStoriesBadge': 'قصص النجاح',

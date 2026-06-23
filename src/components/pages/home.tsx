@@ -490,30 +490,49 @@ export default function HomePage() {
           </AnimatedSection>
 
           <AnimatedSection delay={100}>
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
               {[
-                { nameKey: 'home.socialProofProductHunt', color: '#DA552F', logo: 'PH' },
-                { nameKey: 'home.socialProofHackerNews', color: '#FF6600', logo: 'HN' },
-                { nameKey: 'home.socialProofDevTo', color: '#0A0A0A', logo: 'DEV' },
-                { nameKey: 'home.socialProofAndroidCentral', color: '#3EBF13', logo: 'AC' },
-                { nameKey: 'home.socialProofTechCrunch', color: '#0A9952', logo: 'TC' },
-                { nameKey: 'home.socialProofXda', color: '#3E8EDE', logo: 'XDA' },
-                { nameKey: 'home.socialProofReddit', color: '#FF4500', logo: 'R' },
-                { nameKey: 'home.socialProofMedium', color: '#0A0A0A', logo: 'M' },
+                {
+                  nameKey: 'home.socialProofTrustpilot',
+                  icon: '/trusted/trustpilot.png',
+                  href: 'https://www.trustpilot.com/review/fasttesters.com',
+                },
+                {
+                  nameKey: 'home.socialProofFiverr',
+                  icon: '/trusted/fiverr.png',
+                  href: 'https://www.fiverr.com/s/wkRj1a8',
+                },
+                {
+                  nameKey: 'home.socialProofUpwork',
+                  icon: '/trusted/upwork.png',
+                  href: 'https://www.upwork.com/freelancers/~0104b635429bb67397?viewMode=1',
+                },
+                {
+                  nameKey: 'home.socialProofKhamsat',
+                  icon: '/trusted/khamsat.png',
+                  href: 'https://khamsat.com/programming/upload-app-to-store/3097656-%D8%B3%D8%A3%D9%82%D9%88%D9%85-%D8%A8%D8%AA%D9%88%D9%81%D9%8A%D8%B1-%D9%85%D8%AE%D8%AA%D8%A8%D8%B1%D8%A7%D8%AA-%D8%AD%D9%82%D9%8A%D9%82%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D8%AE%D8%AA%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%85%D8%BA%D9%84%D9%82-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D9%84%D8%A7%D9%8A-%D8%B3%D8%AA%D9%88%D8%B1',
+                },
               ].map((brand) => (
-                <Card
+                <a
                   key={brand.nameKey}
-                  className="bg-card/60 border-border/40 hover:border-border/80 hover:shadow-md transition-all scale-hover"
+                  href={brand.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
                 >
-                  <CardContent className="p-3 sm:p-4 flex flex-col items-center justify-center gap-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg" style={{ backgroundColor: `${brand.color}15` }}>
-                      <span className="text-xs font-bold" style={{ color: brand.color }}>{brand.logo}</span>
-                    </div>
-                    <span className="text-xs sm:text-sm font-semibold text-muted-foreground/80 whitespace-nowrap">
-                      {t(brand.nameKey)}
-                    </span>
-                  </CardContent>
-                </Card>
+                  <Card className="bg-card/60 border-border/40 hover:border-border/80 hover:shadow-md transition-all scale-hover h-full min-h-[120px] sm:min-h-[140px]">
+                    <CardContent className="p-5 sm:p-8 flex flex-col items-center justify-center gap-3 sm:gap-4">
+                      <img
+                        src={brand.icon}
+                        alt={t(brand.nameKey)}
+                        className="h-12 sm:h-16 w-auto max-w-[120px] sm:max-w-[140px] object-contain"
+                      />
+                      <span className="text-sm sm:text-base font-semibold text-muted-foreground/80 whitespace-nowrap">
+                        {t(brand.nameKey)}
+                      </span>
+                    </CardContent>
+                  </Card>
+                </a>
               ))}
             </div>
           </AnimatedSection>
