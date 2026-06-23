@@ -544,7 +544,7 @@ export default function Pricing() {
       <AnimatedSection>
         <section className="mx-auto max-w-5xl px-4 sm:px-6 py-16 sm:py-24">
           <div className="mb-8 flex justify-center">
-            <TrustpilotWidget className="w-full max-w-md" />
+            <TrustpilotWidget className="w-full max-w-md" align="center" />
           </div>
           <Card className="border-blue-400/20 bg-gradient-to-br from-blue-500/5 to-blue-500/10 backdrop-blur-sm">
             <CardContent className="p-8 sm:p-12 text-center">

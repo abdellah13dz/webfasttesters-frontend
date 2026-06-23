@@ -895,6 +895,11 @@ export const es: Record<string, string> = {
   'home.socialProofUpwork': 'Upwork',
   'home.socialProofKhamsat': 'Khamsat',
 
+  'trustpilot.ratingLabel': 'Excelente',
+  'trustpilot.reviewUs': 'Reseñanos en Trustpilot',
+  'trustpilot.shareExperience': 'Comparte tu experiencia con Fast Testers',
+  'trustpilot.cta': 'Escribir reseña',
+
   // Success Stories
   'home.successStoriesBadge': 'Historias de Éxito',
   'home.successStoriesTitle': 'Resultados reales de desarrolladores reales',

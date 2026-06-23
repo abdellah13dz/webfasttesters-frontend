@@ -213,7 +213,7 @@ export default function Reviews() {
               {t('reviews.subtitle')}
             </p>
             <div className="mx-auto mt-8 flex max-w-md justify-center">
-              <TrustpilotWidget className="w-full" />
+              <TrustpilotWidget className="w-full" align="center" />
             </div>
           </AnimatedSection>
         </div>

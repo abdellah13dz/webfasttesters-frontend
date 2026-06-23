@@ -456,7 +456,7 @@ export default function ContactUsPage() {
 
               <Card className="border-border/50 bg-card/50">
                 <CardContent className="p-5">
-                  <TrustpilotWidget className="w-full" />
+                  <TrustpilotWidget className="w-full" variant="compact" />
                 </CardContent>
               </Card>
 

@@ -32,7 +32,7 @@ export function Footer() {
         {/* Main Footer */}
         <div className="grid grid-cols-1 gap-8 py-10 sm:grid-cols-2 sm:py-12 md:grid-cols-4 lg:grid-cols-5">
           {/* Brand Column */}
-          <div className="col-span-1 sm:col-span-2 md:col-span-4 lg:col-span-1 mb-2 sm:mb-4 lg:mb-0">
+          <div className="col-span-1 sm:col-span-2 md:col-span-4 lg:col-span-1 mb-2 sm:mb-4 lg:mb-0 min-w-0 w-full">
             <button
               type="button"
               suppressHydrationWarning
@@ -59,7 +59,7 @@ export function Footer() {
                 <Instagram className="h-4 w-4" />
               </a>
             </div>
-            <TrustpilotWidget className="mt-5 max-w-xs" />
+            
           </div>
 
           {/* Link Columns */}
@@ -84,17 +84,21 @@ export function Footer() {
           ))}
         </div>
 
+        
+
         {/* Business & customer service (Stripe website verification) */}
         <div className="border-t border-border/40 py-6">
           <BusinessLegalNotice />
         </div>
 
         {/* Newsletter Row */}
-        <div className="border-t border-border/40 py-6">
+        <div className="flex gap-5 items-center justify-between flex-col lg:flex-row w-full border-t border-border/40 py-6">
           <NewsletterSection
             variant="inline"
             title={t('footer.newsletterTitle')}
           />
+          <TrustpilotWidget className="w-full md:max-w-sm lg:max-w-md mx-auto" variant="compact" align="start" />
+
         </div>
 
         {/* Bottom Bar */}

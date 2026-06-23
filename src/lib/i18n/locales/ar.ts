@@ -893,6 +893,11 @@ export const ar: Record<string, string> = {
   'home.socialProofUpwork': 'Upwork',
   'home.socialProofKhamsat': 'خمسات',
 
+  'trustpilot.ratingLabel': 'ممتاز',
+  'trustpilot.reviewUs': 'قيّمنا على Trustpilot',
+  'trustpilot.shareExperience': 'شارك تجربتك مع Fast Testers',
+  'trustpilot.cta': 'اكتب مراجعة',
+
   // Success Stories
   'home.successStoriesBadge': 'قصص النجاح',
   'home.successStoriesTitle': 'نتائج حقيقية من مطورين حقيقيين',

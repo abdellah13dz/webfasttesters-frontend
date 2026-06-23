@@ -10,7 +10,6 @@ import { BackToTop } from '@/components/back-to-top';
 import { FloatingChat } from '@/components/floating-chat';
 import { CookieConsent } from '@/components/cookie-consent';
 import { GoogleTracking } from '@/components/google-tracking';
-import { TrustpilotScript } from '@/components/trustpilot/trustpilot-script';
 import { MobileStickyCta } from '@/components/mobile-sticky-cta';
 import { PageProgress } from '@/components/page-progress';
 import { RouteLoadingBar } from '@/components/route-loading-bar';
@@ -25,7 +24,6 @@ function SiteShellInner({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col" dir={dir} suppressHydrationWarning>
       <GoogleTracking />
-      <TrustpilotScript />
       <RouteLoadingBar />
       <PageProgress />
       <FixedSiteHeader />

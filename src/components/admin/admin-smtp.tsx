@@ -86,6 +86,7 @@ export default function AdminSmtp() {
   const [transport, setTransport] = useState<'brevo-api' | 'smtp'>('smtp');
   const [brevoApiConfigured, setBrevoApiConfigured] = useState(false);
   const [brevoHost, setBrevoHost] = useState(false);
+  const [cloudSmtpBlocked, setCloudSmtpBlocked] = useState(false);
   const [form, setForm] = useState<SmtpForm>(defaultForm);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
@@ -106,6 +107,7 @@ export default function AdminSmtp() {
         setTransport(json.transport === 'brevo-api' ? 'brevo-api' : 'smtp');
         setBrevoApiConfigured(Boolean(json.brevoApiConfigured));
         setBrevoHost(Boolean(json.brevoHost));
+        setCloudSmtpBlocked(Boolean(json.cloudSmtpBlocked));
         if (json.config) {
           const cfg = json.config as SmtpConfig;
           setConfig(cfg);
@@ -319,15 +321,16 @@ export default function AdminSmtp() {
           <p className="text-muted-foreground text-sm">
             Manage your email server settings for sending notifications. When SMTP_* environment variables are set, they take priority over saved settings.
           </p>
-          {brevoHost && !brevoApiConfigured && (
+          {cloudSmtpBlocked && brevoHost && !brevoApiConfigured && (
             <p className="text-amber-600 dark:text-amber-400 text-sm mt-2">
-              Brevo is configured but <code className="text-xs">BREVO_API_KEY</code> is missing on the server.
-              Cloud hosts (e.g. Render) block SMTP port 587 — add a Brevo API key in your backend environment and redeploy, then test again.
+              This server blocks SMTP port 587 (e.g. Render). Set <code className="text-xs">SMTP_KEY</code> to your
+              Brevo API key (<code className="text-xs">xkeysib-...</code>) — not <code className="text-xs">SMTP_PASSWORD</code> or the
+              <code className="text-xs"> xsmtpsib-</code> relay key — then redeploy.
             </p>
           )}
           {transport === 'brevo-api' && (
             <p className="text-emerald-600 dark:text-emerald-400 text-sm mt-2">
-              Email is sent via Brevo HTTP API (HTTPS), not SMTP port 587.
+              Email is sent via Brevo HTTPS API using <code className="text-xs">SMTP_KEY</code> (port 443).
             </p>
           )}
         </div>

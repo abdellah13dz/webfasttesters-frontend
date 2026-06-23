@@ -349,7 +349,7 @@ export default function SubmitAppPage() {
               </Badge>
             </div>
             <div className="mt-8 flex justify-center">
-              <TrustpilotWidget className="w-full max-w-md" />
+              <TrustpilotWidget className="w-full max-w-md" align="center" />
             </div>
           </div>
         </div>

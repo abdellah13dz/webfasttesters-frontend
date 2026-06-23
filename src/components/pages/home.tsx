@@ -486,9 +486,6 @@ export default function HomePage() {
                 </a>
               ))}
             </div>
-            <div className="mt-8 flex justify-center">
-              <TrustpilotWidget className="w-full max-w-md" />
-            </div>
           </AnimatedSection>
         </div>
       </section>
@@ -1004,7 +1001,7 @@ export default function HomePage() {
                 {t('home.helpedDevelopers')}
               </p>
               <div className="mt-6 flex justify-center">
-                <TrustpilotWidget className="w-full max-w-md" />
+                <TrustpilotWidget className="w-full max-w-md" align="center" />
               </div>
             </div>
           </AnimatedSection>
