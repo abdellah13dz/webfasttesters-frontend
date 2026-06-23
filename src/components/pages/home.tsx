@@ -45,6 +45,7 @@ import {
 } from 'lucide-react';
 import { NewsletterSection } from '@/components/newsletter-section';
 import { LiveDemoDashboard } from '@/components/live-demo-dashboard';
+import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
 
 // ─── Animated Counter Hook ─────────────────────────────────────────────
 function useAnimatedCounter(
@@ -484,6 +485,9 @@ export default function HomePage() {
                   </Card>
                 </a>
               ))}
+            </div>
+            <div className="mt-8 flex justify-center">
+              <TrustpilotWidget className="w-full max-w-md" />
             </div>
           </AnimatedSection>
         </div>
@@ -999,6 +1003,9 @@ export default function HomePage() {
               <p className="text-muted-foreground max-w-xl mx-auto">
                 {t('home.helpedDevelopers')}
               </p>
+              <div className="mt-6 flex justify-center">
+                <TrustpilotWidget className="w-full max-w-md" />
+              </div>
             </div>
           </AnimatedSection>
 

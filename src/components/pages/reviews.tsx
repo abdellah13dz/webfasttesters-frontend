@@ -7,6 +7,7 @@ import { useLanguage } from '@/lib/i18n/context';
 import { fetchPublicReviews } from '@/lib/reviews-api';
 import type { Review } from '@/lib/types/review';
 import { ReviewCard } from '@/components/reviews/review-card';
+import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -211,6 +212,9 @@ export default function Reviews() {
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
               {t('reviews.subtitle')}
             </p>
+            <div className="mx-auto mt-8 flex max-w-md justify-center">
+              <TrustpilotWidget className="w-full" />
+            </div>
           </AnimatedSection>
         </div>
       </section>

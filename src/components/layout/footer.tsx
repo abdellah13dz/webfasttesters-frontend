@@ -11,6 +11,7 @@ import { BrandLogo } from '@/components/brand-logo';
 import { BusinessLegalNotice } from '@/components/business-legal-notice';
 import { LEGAL_ENTITY_NAME } from '@/lib/business';
 import { Facebook, Instagram } from 'lucide-react';
+import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
 
 export function Footer() {
   const { navigate } = useRouter();
@@ -58,6 +59,7 @@ export function Footer() {
                 <Instagram className="h-4 w-4" />
               </a>
             </div>
+            <TrustpilotWidget className="mt-5 max-w-xs" />
           </div>
 
           {/* Link Columns */}

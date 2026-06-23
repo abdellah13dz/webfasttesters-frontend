@@ -8,6 +8,7 @@ import { useAnalytics } from '@/lib/analytics';
 import { usePricingPlans } from '@/lib/hooks/use-pricing-plans';
 import { formatPlanPrice, parsePlanFeatures } from '@/lib/pricing';
 import { StripePoweredBadge } from '@/components/stripe-powered-badge';
+import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -542,6 +543,9 @@ export default function Pricing() {
       {/* Bottom CTA */}
       <AnimatedSection>
         <section className="mx-auto max-w-5xl px-4 sm:px-6 py-16 sm:py-24">
+          <div className="mb-8 flex justify-center">
+            <TrustpilotWidget className="w-full max-w-md" />
+          </div>
           <Card className="border-blue-400/20 bg-gradient-to-br from-blue-500/5 to-blue-500/10 backdrop-blur-sm">
             <CardContent className="p-8 sm:p-12 text-center">
               <h2 className="text-2xl font-bold text-foreground sm:text-3xl mb-4">

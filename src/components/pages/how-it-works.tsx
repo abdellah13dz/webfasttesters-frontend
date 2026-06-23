@@ -19,6 +19,7 @@ import {
   Clock,
   Star,
 } from 'lucide-react';
+import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
 
 function AnimatedSection({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -233,6 +234,9 @@ export default function HowItWorks() {
       {/* CTA Section */}
       <AnimatedSection>
         <section className="mx-auto max-w-5xl px-4 sm:px-6 py-16 sm:py-24">
+          <div className="mb-8 flex justify-center">
+            <TrustpilotWidget className="w-full max-w-md" />
+          </div>
           <Card className="border-blue-400/20 bg-gradient-to-br from-blue-500/5 to-blue-500/10 backdrop-blur-sm">
             <CardContent className="p-8 sm:p-12 text-center">
               <h2 className="text-2xl font-bold text-foreground sm:text-3xl mb-4">

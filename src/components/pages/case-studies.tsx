@@ -8,6 +8,7 @@ import { useAnalytics } from '@/lib/analytics';
 import { fetchPublicReviews } from '@/lib/reviews-api';
 import type { Review } from '@/lib/types/review';
 import { CaseStudyCard } from '@/components/reviews/case-study-card';
+import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -126,6 +127,9 @@ export default function CaseStudies() {
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
             {t('caseStudies.heroSubtitle')}
           </p>
+          <div className="mx-auto mt-8 flex max-w-md justify-center">
+            <TrustpilotWidget className="w-full" />
+          </div>
         </div>
       </section>
 

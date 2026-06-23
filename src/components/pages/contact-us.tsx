@@ -42,6 +42,7 @@ import {
   CheckCircle2,
   AlertCircle,
 } from 'lucide-react';
+import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
 
 // reCAPTCHA v3 site key - configure via NEXT_PUBLIC_RECAPTCHA_SITE_KEY env var
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '';
@@ -450,6 +451,12 @@ export default function ContactUsPage() {
                       )}
                     </div>
                   </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-border/50 bg-card/50">
+                <CardContent className="p-5">
+                  <TrustpilotWidget className="w-full" />
                 </CardContent>
               </Card>
 

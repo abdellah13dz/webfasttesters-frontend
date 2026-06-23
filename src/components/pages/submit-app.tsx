@@ -46,6 +46,7 @@ import {
   Loader2,
 } from 'lucide-react';
 import { ClientOnly } from '@/components/client-only';
+import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
 
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '';
 
@@ -346,6 +347,9 @@ export default function SubmitAppPage() {
                 <Shield className="mr-1 h-3 w-3" />
                 {t('submitApp.productionAccess')}
               </Badge>
+            </div>
+            <div className="mt-8 flex justify-center">
+              <TrustpilotWidget className="w-full max-w-md" />
             </div>
           </div>
         </div>
