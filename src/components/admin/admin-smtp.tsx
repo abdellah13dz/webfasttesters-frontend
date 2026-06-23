@@ -83,6 +83,9 @@ const defaultForm: SmtpForm = {
 
 export default function AdminSmtp() {
   const [config, setConfig] = useState<SmtpConfig | null>(null);
+  const [transport, setTransport] = useState<'brevo-api' | 'smtp'>('smtp');
+  const [brevoApiConfigured, setBrevoApiConfigured] = useState(false);
+  const [brevoHost, setBrevoHost] = useState(false);
   const [form, setForm] = useState<SmtpForm>(defaultForm);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
@@ -100,6 +103,9 @@ export default function AdminSmtp() {
       const res = await apiFetch('/api/admin/smtp');
       if (res.ok) {
         const json = await res.json();
+        setTransport(json.transport === 'brevo-api' ? 'brevo-api' : 'smtp');
+        setBrevoApiConfigured(Boolean(json.brevoApiConfigured));
+        setBrevoHost(Boolean(json.brevoHost));
         if (json.config) {
           const cfg = json.config as SmtpConfig;
           setConfig(cfg);
@@ -313,6 +319,17 @@ export default function AdminSmtp() {
           <p className="text-muted-foreground text-sm">
             Manage your email server settings for sending notifications. When SMTP_* environment variables are set, they take priority over saved settings.
           </p>
+          {brevoHost && !brevoApiConfigured && (
+            <p className="text-amber-600 dark:text-amber-400 text-sm mt-2">
+              Brevo is configured but <code className="text-xs">BREVO_API_KEY</code> is missing on the server.
+              Cloud hosts (e.g. Render) block SMTP port 587 — add a Brevo API key in your backend environment and redeploy, then test again.
+            </p>
+          )}
+          {transport === 'brevo-api' && (
+            <p className="text-emerald-600 dark:text-emerald-400 text-sm mt-2">
+              Email is sent via Brevo HTTP API (HTTPS), not SMTP port 587.
+            </p>
+          )}
         </div>
       </div>
 
@@ -354,6 +371,11 @@ export default function AdminSmtp() {
               {'source' in config && config.source === 'environment' && (
                 <Badge variant="outline" className="bg-blue-500/10 text-blue-500 border-blue-500/20">
                   From environment
+                </Badge>
+              )}
+              {transport === 'brevo-api' && (
+                <Badge variant="outline" className="bg-violet-500/10 text-violet-500 border-violet-500/20">
+                  Brevo API
                 </Badge>
               )}
               <Button variant="outline" size="sm" onClick={handleEdit} className="gap-1.5">
