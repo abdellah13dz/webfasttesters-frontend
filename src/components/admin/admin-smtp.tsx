@@ -36,7 +36,9 @@ interface SmtpConfig {
   pass: string;
   fromName: string;
   fromEmail: string;
+  notifyEmail?: string;
   active: boolean;
+  source?: 'database' | 'environment';
 }
 
 interface SmtpForm {
@@ -47,6 +49,8 @@ interface SmtpForm {
   pass: string;
   fromName: string;
   fromEmail: string;
+  notifyEmail: string;
+  testEmail: string;
 }
 
 interface TestResult {
@@ -69,6 +73,8 @@ const defaultForm: SmtpForm = {
   pass: '',
   fromName: 'Fast Testers',
   fromEmail: 'support@fasttesters.com',
+  notifyEmail: '',
+  testEmail: '',
 };
 
 // ---------------------------------------------------------------------------
@@ -102,9 +108,11 @@ export default function AdminSmtp() {
             port: cfg.port,
             secure: cfg.secure,
             user: cfg.user,
-            pass: '', // Don't pre-fill password field
+            pass: '',
             fromName: cfg.fromName,
             fromEmail: cfg.fromEmail,
+            notifyEmail: cfg.notifyEmail || cfg.fromEmail,
+            testEmail: cfg.notifyEmail || cfg.fromEmail,
           });
           setEditing(false);
         } else {
@@ -144,6 +152,8 @@ export default function AdminSmtp() {
         pass: '',
         fromName: config.fromName,
         fromEmail: config.fromEmail,
+        notifyEmail: config.notifyEmail || config.fromEmail,
+        testEmail: config.notifyEmail || config.fromEmail,
       });
     } else {
       setForm(defaultForm);
@@ -152,26 +162,33 @@ export default function AdminSmtp() {
   };
 
   const handleSave = async () => {
+    if (!form.host.trim() || !form.user.trim()) return;
+    if (!config && !form.pass.trim()) {
+      setTestResult({
+        success: false,
+        error: 'Password is required when saving a new SMTP configuration',
+      });
+      return;
+    }
+
     setSaving(true);
     setTestResult(null);
     try {
       const payload: Record<string, unknown> = {
-        host: form.host,
+        host: form.host.trim(),
         port: form.port,
         secure: form.secure,
-        user: form.user,
-        fromName: form.fromName || 'Fast Testers',
-        fromEmail: form.fromEmail || 'support@fasttesters.com',
+        user: form.user.trim(),
+        fromName: form.fromName.trim() || 'Fast Testers',
+        fromEmail: form.fromEmail.trim() || 'support@fasttesters.com',
+        notifyEmail: form.notifyEmail.trim() || form.fromEmail.trim(),
       };
 
-      // Only send password if user entered a new one
-      if (form.pass && form.pass !== MASKED_PASSWORD) {
+      if (form.pass.trim()) {
         payload.pass = form.pass;
       } else if (!config) {
-        // New config requires password
         payload.pass = form.pass;
       } else {
-        // Send masked placeholder – backend will know not to update
         payload.pass = MASKED_PASSWORD;
       }
 
@@ -193,6 +210,8 @@ export default function AdminSmtp() {
             pass: '',
             fromName: json.config.fromName,
             fromEmail: json.config.fromEmail,
+            notifyEmail: json.config.notifyEmail || json.config.fromEmail,
+            testEmail: json.config.notifyEmail || json.config.fromEmail,
           });
           setEditing(false);
         }
@@ -214,29 +233,41 @@ export default function AdminSmtp() {
     }
   };
 
-  const handleTest = async () => {
+  const handleTest = async (sendEmail = false) => {
+    if (!form.host.trim() || !form.user.trim()) return;
+
     setTesting(true);
     setTestResult(null);
     try {
-      const payload: Record<string, unknown> = {
-        action: 'test',
-        host: form.host,
-        port: form.port,
-        secure: form.secure,
-        user: form.user,
-      };
+      const useSaved = Boolean(config) && !form.pass.trim();
+      const testEmail = form.testEmail.trim();
 
-      // For test, we need the actual password
-      if (form.pass && form.pass !== MASKED_PASSWORD) {
-        payload.pass = form.pass;
-      } else if (config?.pass === MASKED_PASSWORD) {
-        // Can't test with masked password – user needs to enter it
+      if (sendEmail && !testEmail) {
         setTestResult({
           success: false,
-          error: 'Please enter the password to test the connection',
+          error: 'Enter a test email address to verify sending and receiving',
         });
         setTesting(false);
         return;
+      }
+
+      const payload: Record<string, unknown> = {
+        action: 'test',
+        host: form.host.trim(),
+        port: form.port,
+        secure: form.secure,
+        user: form.user.trim(),
+        fromName: form.fromName.trim() || 'Fast Testers',
+        fromEmail: form.fromEmail.trim() || 'support@fasttesters.com',
+        useSaved,
+      };
+
+      if (form.pass.trim()) {
+        payload.pass = form.pass;
+      }
+
+      if (sendEmail) {
+        payload.testEmail = testEmail;
       }
 
       const res = await apiFetch('/api/admin/smtp', {
@@ -247,9 +278,12 @@ export default function AdminSmtp() {
 
       const json = await res.json();
       if (json.success) {
-        setTestResult({ success: true, message: json.message || 'SMTP connection successful' });
+        setTestResult({
+          success: true,
+          message: json.message || (sendEmail ? 'Test email sent successfully' : 'SMTP connection successful'),
+        });
       } else {
-        setTestResult({ success: false, error: json.error || 'SMTP connection failed' });
+        setTestResult({ success: false, error: json.error || 'SMTP test failed' });
       }
     } catch (error) {
       console.error('Failed to test SMTP:', error);
@@ -277,7 +311,7 @@ export default function AdminSmtp() {
         <div>
           <h2 className="text-2xl font-bold text-foreground">SMTP Configuration</h2>
           <p className="text-muted-foreground text-sm">
-            Manage your email server settings for sending notifications
+            Manage your email server settings for sending notifications. When SMTP_* environment variables are set, they take priority over saved settings.
           </p>
         </div>
       </div>
@@ -317,6 +351,11 @@ export default function AdminSmtp() {
               >
                 {config.active ? 'Active' : 'Inactive'}
               </Badge>
+              {'source' in config && config.source === 'environment' && (
+                <Badge variant="outline" className="bg-blue-500/10 text-blue-500 border-blue-500/20">
+                  From environment
+                </Badge>
+              )}
               <Button variant="outline" size="sm" onClick={handleEdit} className="gap-1.5">
                 <Pencil className="h-3.5 w-3.5" />
                 Edit
@@ -353,6 +392,15 @@ export default function AdminSmtp() {
               <div className="rounded-lg border border-border p-4 space-y-1">
                 <p className="text-xs text-muted-foreground">From Email</p>
                 <p className="text-sm font-medium text-foreground">{config.fromEmail}</p>
+              </div>
+              <div className="rounded-lg border border-border p-4 space-y-1 sm:col-span-2">
+                <p className="text-xs text-muted-foreground">Notification Inbox</p>
+                <p className="text-sm font-medium text-foreground">
+                  {config.notifyEmail || config.fromEmail}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Contact form and submission alerts are sent here
+                </p>
               </div>
             </div>
           </CardContent>
@@ -489,6 +537,43 @@ export default function AdminSmtp() {
                       className="bg-muted/30"
                     />
                   </div>
+                  <div className="space-y-2 sm:col-span-2">
+                    <Label htmlFor="smtp-notify-email">Notification Inbox</Label>
+                    <Input
+                      id="smtp-notify-email"
+                      type="email"
+                      placeholder="you@yourdomain.com"
+                      value={form.notifyEmail}
+                      onChange={(e) => updateForm('notifyEmail', e.target.value)}
+                      className="bg-muted/30"
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Incoming contact form and app submission alerts are delivered to this address
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <Separator />
+
+              <div>
+                <h4 className="text-sm font-semibold text-foreground flex items-center gap-2 mb-3">
+                  <Send className="h-3.5 w-3.5 text-blue-500" />
+                  Test Delivery
+                </h4>
+                <div className="space-y-2">
+                  <Label htmlFor="smtp-test-email">Send test email to</Label>
+                  <Input
+                    id="smtp-test-email"
+                    type="email"
+                    placeholder="you@yourdomain.com"
+                    value={form.testEmail}
+                    onChange={(e) => updateForm('testEmail', e.target.value)}
+                    className="bg-muted/30"
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    Sends a real test message to verify both sending and inbox delivery
+                  </p>
                 </div>
               </div>
 
@@ -525,10 +610,23 @@ export default function AdminSmtp() {
 
               {/* Actions */}
               <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
-                <div className="flex gap-3 w-full sm:w-auto">
+                <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                   <Button
-                    onClick={handleTest}
+                    onClick={() => handleTest(false)}
                     disabled={testing || !form.host || !form.user}
+                    variant="outline"
+                    className="gap-1.5 flex-1 sm:flex-none"
+                  >
+                    {testing ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <Server className="h-4 w-4" />
+                    )}
+                    Test Connection
+                  </Button>
+                  <Button
+                    onClick={() => handleTest(true)}
+                    disabled={testing || !form.host || !form.user || !form.testEmail.trim()}
                     variant="outline"
                     className="gap-1.5 flex-1 sm:flex-none"
                   >
@@ -537,7 +635,7 @@ export default function AdminSmtp() {
                     ) : (
                       <Send className="h-4 w-4" />
                     )}
-                    Test Connection
+                    Send Test Email
                   </Button>
                 </div>
                 <div className="flex gap-3 w-full sm:w-auto">
@@ -553,7 +651,7 @@ export default function AdminSmtp() {
                   )}
                   <Button
                     onClick={handleSave}
-                    disabled={saving || !form.host || !form.user}
+                    disabled={saving || !form.host || !form.user || (!config && !form.pass.trim())}
                     className="bg-blue-500 hover:bg-blue-600 text-white flex-1 sm:flex-none gap-1.5"
                   >
                     {saving ? (

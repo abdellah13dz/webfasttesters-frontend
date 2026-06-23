@@ -156,6 +156,7 @@ export default function AdminContacts() {
   const [replyText, setReplyText] = useState('');
   const [replyStatus, setReplyStatus] = useState<string>('replied');
   const [sendingReply, setSendingReply] = useState(false);
+  const [replyFeedback, setReplyFeedback] = useState<{ type: 'success' | 'warning'; message: string } | null>(null);
 
   // Delete state
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
@@ -327,10 +328,22 @@ export default function AdminContacts() {
         }),
       });
       if (!res.ok) throw new Error('Failed to send reply');
+      const data = await res.json();
       setReplyDialogOpen(false);
       setReplyContact(null);
       setReplyText('');
       fetchContacts();
+      if (data.emailSent === false) {
+        setReplyFeedback({
+          type: 'warning',
+          message: data.emailError || 'Reply saved, but the email could not be sent. Check SMTP settings.',
+        });
+      } else {
+        setReplyFeedback({
+          type: 'success',
+          message: 'Reply saved and email sent successfully.',
+        });
+      }
     } catch (error) {
       console.error('Error sending reply:', error);
     } finally {
@@ -426,6 +439,17 @@ export default function AdminContacts() {
 
   return (
     <div className="space-y-6">
+      {replyFeedback && (
+        <div
+          className={`rounded-lg border px-4 py-3 text-sm ${
+            replyFeedback.type === 'success'
+              ? 'border-emerald-500/20 bg-emerald-500/5 text-emerald-600'
+              : 'border-amber-500/20 bg-amber-500/5 text-amber-700'
+          }`}
+        >
+          {replyFeedback.message}
+        </div>
+      )}
       {/* ----------------------------------------------------------------- */}
       {/* Header                                                            */}
       {/* ----------------------------------------------------------------- */}
