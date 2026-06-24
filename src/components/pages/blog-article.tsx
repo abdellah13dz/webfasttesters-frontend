@@ -273,14 +273,14 @@ export default function BlogArticlePage({
             </div>
           </article>
 
-          <aside className="lg:w-80 shrink-0 space-y-6">
+          <aside className="lg:w-80 shrink-0 space-y-6 lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100dvh-5rem)] lg:overflow-y-auto">
             <Card className="border-border bg-card shadow-sm dark:bg-card/50 dark:shadow-none">
               <CardContent className="p-4">
                 <div className="flex items-center gap-2 mb-4">
                   <BookOpen className="size-4 text-blue-600 dark:text-blue-400" />
                   <h3 className="text-sm font-semibold text-foreground">{t('blogArticle.relatedArticles')}</h3>
                 </div>
-                <div className="space-y-3 max-h-96 overflow-y-auto">
+                <div className="space-y-3">
                   {relatedArticles.map((related) => (
                     <Link
                       key={related.slug}

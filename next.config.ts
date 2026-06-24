@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
         source: "/api/:path*",
         destination: `${API_BASE}/api/:path*`,
       },
+      {
+        source: "/uploads/:path*",
+        destination: `${API_BASE}/uploads/:path*`,
+      },
     ];
   },
   async redirects() {

@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useRef, useState, useEffect } from 'react';
+import { uploadArticleImage } from '@/lib/upload-article-image';
 // Note: useState and useEffect are used by TiptapEditorInner
 import {
   Bold,
@@ -31,17 +32,20 @@ const ToolbarButton = ({
   isActive,
   children,
   title,
+  disabled,
 }: {
   onClick: () => void;
   isActive?: boolean;
   children: React.ReactNode;
   title: string;
+  disabled?: boolean;
 }) => (
   <button
     type="button"
     onClick={onClick}
     title={title}
-    className={`p-1.5 rounded-md transition-colors ${
+    disabled={disabled}
+    className={`p-1.5 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
       isActive
         ? 'bg-blue-500/15 text-blue-500'
         : 'text-muted-foreground hover:text-foreground hover:bg-muted'
@@ -57,6 +61,9 @@ const ToolbarDivider = () => (
 
 // Inner component that uses Tiptap - only rendered on client
 function TiptapEditorInner({ content, onChange, placeholder }: TiptapEditorProps) {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const [imageUploadError, setImageUploadError] = useState<string | null>(null);
   // Dynamic imports for tiptap to avoid SSR issues
   const [editor, setEditor] = useState<any>(null);
   const [EditorContent, setEditorContent] = useState<any>(null);
@@ -127,12 +134,30 @@ function TiptapEditorInner({ content, onChange, placeholder }: TiptapEditorProps
   }, []);
 
   const addImage = useCallback(() => {
-    if (!editor) return;
-    const url = window.prompt('Enter the image URL:');
-    if (url) {
-      editor.chain().focus().setImage({ src: url }).run();
-    }
-  }, [editor]);
+    setImageUploadError(null);
+    fileInputRef.current?.click();
+  }, []);
+
+  const handleImageUpload = useCallback(
+    async (event: React.ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0];
+      if (!file || !editor) return;
+
+      setUploadingImage(true);
+      setImageUploadError(null);
+
+      try {
+        const url = await uploadArticleImage(file);
+        editor.chain().focus().setImage({ src: url }).run();
+      } catch (error) {
+        setImageUploadError(error instanceof Error ? error.message : 'Failed to upload image');
+      } finally {
+        setUploadingImage(false);
+        event.target.value = '';
+      }
+    },
+    [editor]
+  );
 
   const addLink = useCallback(() => {
     if (!editor) return;
@@ -286,11 +311,30 @@ function TiptapEditorInner({ content, onChange, placeholder }: TiptapEditorProps
         </ToolbarButton>
         <ToolbarButton
           onClick={addImage}
-          title="Add Image"
+          title="Upload image"
+          disabled={uploadingImage}
         >
-          <ImageIcon className="h-4 w-4" />
+          {uploadingImage ? (
+            <span className="h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
+          ) : (
+            <ImageIcon className="h-4 w-4" />
+          )}
         </ToolbarButton>
       </div>
+
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/jpeg,image/png,image/webp,image/gif"
+        className="hidden"
+        onChange={(event) => void handleImageUpload(event)}
+      />
+
+      {imageUploadError && (
+        <div className="border-b border-border bg-destructive/5 px-3 py-2 text-xs text-destructive">
+          {imageUploadError}
+        </div>
+      )}
 
       {/* Editor Content */}
       <EditorContent editor={editor} />

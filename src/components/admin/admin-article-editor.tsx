@@ -24,6 +24,7 @@ import {
   FileText,
 } from 'lucide-react';
 import TiptapEditor from '@/components/admin/tiptap-editor';
+import { ImageUploadField } from '@/components/admin/image-upload-field';
 
 interface Article {
   id: string;
@@ -380,28 +381,14 @@ export default function AdminArticleEditor({ articleId }: AdminArticleEditorProp
               <CardTitle className="text-base">Cover Image</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="coverImage" className="text-sm font-medium">Image URL</Label>
-                <Input
-                  id="coverImage"
-                  value={form.coverImage}
-                  onChange={e => setForm(f => ({ ...f, coverImage: e.target.value }))}
-                  placeholder="/images/blog/example.png"
-                  className="bg-muted/30"
-                />
-              </div>
-              {form.coverImage && (
-                <div className="rounded-lg overflow-hidden border border-border">
-                  <img
-                    src={form.coverImage}
-                    alt="Cover preview"
-                    className="w-full h-40 object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = 'none';
-                    }}
-                  />
-                </div>
-              )}
+              <ImageUploadField
+                id="coverImage"
+                label="Cover image"
+                value={form.coverImage}
+                onChange={(coverImage) => setForm((f) => ({ ...f, coverImage }))}
+                placeholder="/uploads/blog/cover.webp"
+                helperText="Upload from your computer or paste an existing image URL."
+              />
             </CardContent>
           </Card>
 
