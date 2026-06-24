@@ -19,6 +19,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { NewsletterSection } from '@/components/newsletter-section';
+import { SubmitAppTestingCta } from '@/components/submit-app-testing-cta';
 import ReactMarkdown from 'react-markdown';
 import {
   Calendar,
@@ -321,7 +322,8 @@ export default function BlogArticlePage({
       </section>
 
       <section className="border-t border-border bg-background">
-        <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl space-y-8 px-4 py-16 sm:px-6 lg:px-8">
+          <SubmitAppTestingCta />
           <NewsletterSection />
         </div>
       </section>

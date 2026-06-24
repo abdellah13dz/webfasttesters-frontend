@@ -12,10 +12,13 @@ import { BusinessLegalNotice } from '@/components/business-legal-notice';
 import { LEGAL_ENTITY_NAME } from '@/lib/business';
 import { Facebook, Instagram } from 'lucide-react';
 import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
+import { SubmitAppTestingCta } from '@/components/submit-app-testing-cta';
+import { shouldShowFooterSubmitCta } from '@/lib/page-has-dashboard-cta';
 
 export function Footer() {
-  const { navigate } = useRouter();
+  const { navigate, currentPath } = useRouter();
   const { t } = useLanguage();
+  const showSubmitCta = shouldShowFooterSubmitCta(currentPath);
   const navigation = useSiteNavigation();
   const footerSections = navigation.footerSections?.length ? navigation.footerSections : FALLBACK_NAVIGATION.footerSections;
   const footerLegal = navigation.footerLegal?.length ? navigation.footerLegal : FALLBACK_NAVIGATION.footerLegal;
@@ -91,14 +94,16 @@ export function Footer() {
           <BusinessLegalNotice />
         </div>
 
-        {/* Newsletter Row */}
-        <div className="flex gap-5 items-center justify-between flex-col lg:flex-row w-full border-t border-border/40 py-6">
-          <NewsletterSection
-            variant="inline"
-            title={t('footer.newsletterTitle')}
-          />
-          <TrustpilotWidget className="w-full md:max-w-sm lg:max-w-md mx-auto" variant="compact" align="start" />
-
+        {/* Submit app CTA + Newsletter Row */}
+        <div className="border-t border-border/40 py-6 space-y-5">
+          {showSubmitCta && <SubmitAppTestingCta variant="banner" />}
+          <div className="flex flex-col items-center justify-between gap-5 lg:flex-row w-full">
+            <NewsletterSection
+              variant="inline"
+              title={t('footer.newsletterTitle')}
+            />
+            <TrustpilotWidget className="w-full md:max-w-sm lg:max-w-md mx-auto" variant="compact" align="start" />
+          </div>
         </div>
 
         {/* Bottom Bar */}

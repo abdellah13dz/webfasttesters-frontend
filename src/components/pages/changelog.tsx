@@ -2,19 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/lib/i18n/context';
-import { useRouter } from '@/lib/router';
-import { APP_URL } from '@/lib/app-urls';
 import { fetchPublicChangelog, parseChangelogTags, formatChangelogDate } from '@/lib/cms';
 import { getCmsIcon } from '@/lib/cms-icons';
 import type { ChangelogEntry } from '@/lib/cms';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import {
   Sparkles,
   Zap,
   Bug,
-  ArrowRight,
   Mail,
   Rocket,
   Globe,
@@ -23,6 +19,7 @@ import {
   Gift,
 } from 'lucide-react';
 import { NewsletterSection } from '@/components/newsletter-section';
+import { SubmitAppTestingCta } from '@/components/submit-app-testing-cta';
 
 const changelogEntries = [
   {
@@ -96,7 +93,6 @@ const tagConfig: Record<string, { color: string; icon: typeof Sparkles }> = {
 
 export default function ChangelogPage() {
   const { t } = useLanguage();
-  const { navigate } = useRouter();
   const [entries, setEntries] = useState<ChangelogDisplayEntry[]>(changelogEntries);
 
   useEffect(() => {
@@ -209,6 +205,9 @@ export default function ChangelogPage() {
       {/* Newsletter Section */}
       <section className="border-t border-border bg-card/50">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 py-16">
+          <div className="max-w-lg mx-auto mb-8">
+            <SubmitAppTestingCta />
+          </div>
           <div className="max-w-lg mx-auto text-center mb-8">
             <Badge
               variant="outline"
@@ -226,17 +225,6 @@ export default function ChangelogPage() {
           </div>
           <div className="max-w-lg mx-auto">
             <NewsletterSection variant="card" />
-          </div>
-          <div className="text-center mt-8">
-            <Button
-              onClick={() => navigate(APP_URL)}
-              variant="outline"
-              size="lg"
-              className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 font-semibold px-8 cursor-pointer"
-            >
-              {t('changelog.getStartedNow')}
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
           </div>
         </div>
       </section>
