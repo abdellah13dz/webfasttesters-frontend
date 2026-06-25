@@ -147,7 +147,7 @@ export default function BlogArticlePage({
   if (loading) {
     return (
       <div className="min-h-screen bg-background text-foreground">
-        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center min-h-[50vh]">
             <div className="flex flex-col items-center gap-4">
               <Loader2 className="h-10 w-10 animate-spin text-blue-500" />
@@ -162,7 +162,7 @@ export default function BlogArticlePage({
   if (error || !article) {
     return (
       <div className="min-h-screen bg-background text-foreground">
-        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-center min-h-[50vh] text-center">
             <AlertCircle className="h-16 w-16 text-muted-foreground mb-4" />
             <h1 className="text-2xl font-bold mb-2">{t('blogArticle.articleNotFound')}</h1>
@@ -182,7 +182,7 @@ export default function BlogArticlePage({
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-blue-500/5 to-transparent dark:from-blue-950/20 dark:via-transparent dark:to-transparent" />
         <div className="absolute inset-0 hero-grid-pattern opacity-20" />
-        <div className="relative mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <Breadcrumbs items={breadcrumbItems} />
           <div className="relative overflow-hidden rounded-xl aspect-video mb-8 ring-1 ring-border shadow-lg dark:shadow-none">
             <img
@@ -196,10 +196,10 @@ export default function BlogArticlePage({
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-4 pb-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-8">
           <article
-            className="flex-1 max-w-3xl"
+            className="flex-1 min-w-0"
             itemScope
             itemType="https://schema.org/BlogPosting"
           >
@@ -318,7 +318,7 @@ export default function BlogArticlePage({
       </section>
 
       <section className="border-t border-border bg-background">
-        <div className="mx-auto max-w-4xl space-y-8 px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl space-y-8 px-4 py-16 sm:px-6 lg:px-8">
           <SubmitAppTestingCta />
           <NewsletterSection />
         </div>
