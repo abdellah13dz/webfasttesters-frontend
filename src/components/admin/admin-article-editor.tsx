@@ -23,7 +23,7 @@ import {
   Loader2,
   FileText,
 } from 'lucide-react';
-import TiptapEditor from '@/components/admin/tiptap-editor';
+import { ArticleContentEditor } from '@/components/admin/article-content-editor';
 import { ImageUploadField } from '@/components/admin/image-upload-field';
 
 interface Article {
@@ -136,6 +136,11 @@ export default function AdminArticleEditor({ articleId }: AdminArticleEditorProp
   const handleSave = async () => {
     if (!form.title.trim()) {
       setError('Title is required');
+      return;
+    }
+
+    if (!form.content.trim()) {
+      setError('Article content is required');
       return;
     }
 
@@ -288,9 +293,10 @@ export default function AdminArticleEditor({ articleId }: AdminArticleEditorProp
               <CardTitle className="text-base">Content</CardTitle>
             </CardHeader>
             <CardContent className="p-0 pb-0">
-              <TiptapEditor
+              <ArticleContentEditor
                 content={form.content}
                 onChange={handleContentChange}
+                contentKey={articleId || 'new'}
                 placeholder="Start writing your article content..."
               />
             </CardContent>

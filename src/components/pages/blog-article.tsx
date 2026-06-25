@@ -13,6 +13,7 @@ import {
   type ApiArticle,
 } from '@/lib/blog';
 import { applyClientSeo } from '@/lib/hooks/use-seo';
+import { isHtmlArticleContent } from '@/lib/article-content';
 import { BRAND_OG_IMAGE_PATH } from '@/lib/brand';
 import { Breadcrumbs } from '@/components/breadcrumbs';
 import { Badge } from '@/components/ui/badge';
@@ -43,11 +44,6 @@ const categoryLabelMap: Record<string, string> = {
   INTERNATIONAL: 'blog.categoryInternational',
   PUBLISHING: 'blog.categoryPublishing',
 };
-
-function isHtmlContent(content: string): boolean {
-  const trimmed = content.trim();
-  return trimmed.startsWith('<') && /<\/[a-z][\s\S]*>/i.test(trimmed);
-}
 
 function toIsoDate(createdAt: string): string {
   const date = new Date(createdAt);
@@ -254,7 +250,7 @@ export default function BlogArticlePage({
             </div>
 
             <div itemProp="articleBody">
-              {isHtmlContent(article.content) ? (
+              {isHtmlArticleContent(article.content) ? (
                 <div
                   className="tiptap-editor-content blog-article-content"
                   dangerouslySetInnerHTML={{ __html: article.content }}
