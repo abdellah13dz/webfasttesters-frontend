@@ -6,6 +6,7 @@ import TiptapEditor from '@/components/admin/tiptap-editor';
 import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { isHtmlArticleContent } from '@/lib/article-content';
+import { ArticleHtmlBody } from '@/components/article-html-body';
 
 type ContentMode = 'visual' | 'html' | 'preview';
 
@@ -42,7 +43,7 @@ export function ArticleContentEditor({
     const nextMode = next as ContentMode;
     setHasUserPickedMode(true);
 
-    if (nextMode === 'html') {
+    if (nextMode === 'html' || nextMode === 'preview') {
       setHtmlDraft(content);
     }
 
@@ -102,10 +103,7 @@ export function ArticleContentEditor({
       <TabsContent value="preview" className="mt-0 px-4 py-4 sm:px-6 sm:py-6">
         <div className="min-h-[480px] rounded-lg border border-border bg-background p-4 text-foreground sm:p-6">
           {htmlDraft.trim() ? (
-            <div
-              className="tiptap-editor-content blog-article-content article-html-preview"
-              dangerouslySetInnerHTML={{ __html: htmlDraft }}
-            />
+            <ArticleHtmlBody html={htmlDraft} />
           ) : (
             <p className="text-sm text-muted-foreground">No content to preview yet.</p>
           )}

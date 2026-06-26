@@ -21,6 +21,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { NewsletterSection } from '@/components/newsletter-section';
 import { SubmitAppTestingCta } from '@/components/submit-app-testing-cta';
+import { ArticleHtmlBody } from '@/components/article-html-body';
 import ReactMarkdown from 'react-markdown';
 import {
   Calendar,
@@ -251,10 +252,7 @@ export default function BlogArticlePage({
 
             <div itemProp="articleBody" className="text-foreground">
               {isHtmlArticleContent(article.content) ? (
-                <div
-                  className="tiptap-editor-content blog-article-content article-html-preview"
-                  dangerouslySetInnerHTML={{ __html: article.content }}
-                />
+                <ArticleHtmlBody html={article.content} />
               ) : (
                 <div className="tiptap-editor-content blog-article-content">
                   <ReactMarkdown>{article.content}</ReactMarkdown>
