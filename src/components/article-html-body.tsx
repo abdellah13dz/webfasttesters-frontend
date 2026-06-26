@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
-import { sanitizeHtmlArticleForTheme } from '@/lib/article-content';
+import { prepareHtmlArticleForDisplay } from '@/lib/article-content';
 import { cn } from '@/lib/utils';
 
 interface ArticleHtmlBodyProps {
@@ -10,15 +10,24 @@ interface ArticleHtmlBodyProps {
 }
 
 export function ArticleHtmlBody({ html, className }: ArticleHtmlBodyProps) {
-  const themedHtml = useMemo(() => sanitizeHtmlArticleForTheme(html), [html]);
+  const prepared = useMemo(() => prepareHtmlArticleForDisplay(html), [html]);
 
   return (
     <div
       className={cn(
-        'tiptap-editor-content blog-article-content article-html-preview',
+        'article-html-preview',
+        prepared.hasEmbeddedStyles && 'article-html-preview--styled',
+        !prepared.hasEmbeddedStyles && 'tiptap-editor-content blog-article-content',
         className
       )}
-      dangerouslySetInnerHTML={{ __html: themedHtml }}
-    />
+    >
+      {prepared.styles.map((css, index) => (
+        <style key={index} dangerouslySetInnerHTML={{ __html: css }} />
+      ))}
+      <div
+        className="article-html-preview-body"
+        dangerouslySetInnerHTML={{ __html: prepared.bodyHtml }}
+      />
+    </div>
   );
 }

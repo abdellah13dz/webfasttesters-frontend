@@ -836,40 +836,45 @@ body {
   color: var(--muted-foreground);
 }
 
-/* HTML article preview + public page — force theme colors in dark mode */
-.article-html-preview {
+/* HTML articles without embedded stylesheets — theme fallback */
+.article-html-preview:not(.article-html-preview--styled) {
   color: var(--article-text);
 }
 
-.dark .article-html-preview :where(
+.dark .article-html-preview:not(.article-html-preview--styled) :where(
   p, div, span, li, ul, ol, td, th, tr, tbody, thead, table, section, article, address,
   h1, h2, h3, h4, h5, h6, blockquote, figcaption, label, strong, em, b, i, u, small, font, dt, dd, pre
 ) {
   color: var(--article-text) !important;
 }
 
-.dark .article-html-preview :where(h1, h2, h3, h4, h5, h6, strong, b, th) {
+.dark .article-html-preview:not(.article-html-preview--styled) :where(h1, h2, h3, h4, h5, h6, strong, b, th) {
   color: var(--article-heading) !important;
 }
 
-.dark .article-html-preview a,
-.dark .article-html-preview a :where(span, strong, em, b, i, u) {
+.dark .article-html-preview:not(.article-html-preview--styled) a,
+.dark .article-html-preview:not(.article-html-preview--styled) a :where(span, strong, em, b, i, u) {
   color: var(--article-link) !important;
 }
 
-.dark .article-html-preview a:hover,
-.dark .article-html-preview a:hover :where(span, strong, em, b, i, u) {
+.dark .article-html-preview:not(.article-html-preview--styled) a:hover,
+.dark .article-html-preview:not(.article-html-preview--styled) a:hover :where(span, strong, em, b, i, u) {
   color: var(--article-link-hover) !important;
 }
 
-.dark .article-html-preview [style*="color"],
-.dark .article-html-preview [color] {
+.dark .article-html-preview:not(.article-html-preview--styled) [style*="color"],
+.dark .article-html-preview:not(.article-html-preview--styled) [color] {
   color: var(--article-text) !important;
 }
 
-.dark .article-html-preview [style*="background"],
-.dark .article-html-preview [bgcolor] {
+.dark .article-html-preview:not(.article-html-preview--styled) [style*="background"],
+.dark .article-html-preview:not(.article-html-preview--styled) [bgcolor] {
   background-color: transparent !important;
+}
+
+/* Embedded article styles are scoped under .article-html-preview */
+.article-html-preview--styled .article-html-preview-body {
+  width: 100%;
 }
 
 /* Float animation classes defined above */
