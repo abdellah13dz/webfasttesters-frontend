@@ -836,6 +836,29 @@ body {
   color: var(--muted-foreground);
 }
 
+/* Shared HTML article preview surface (admin + public) */
+.article-html-surface {
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--foreground);
+  padding: 1rem;
+}
+
+@media (min-width: 640px) {
+  .article-html-surface {
+    padding: 1.5rem;
+  }
+}
+
+.article-html-preview--styled {
+  color: var(--foreground);
+}
+
+.article-html-preview--styled .article-html-preview-body {
+  width: 100%;
+}
+
 /* HTML articles without embedded stylesheets — theme fallback */
 .article-html-preview:not(.article-html-preview--styled) {
   color: var(--article-text);
@@ -870,11 +893,6 @@ body {
 .dark .article-html-preview:not(.article-html-preview--styled) [style*="background"],
 .dark .article-html-preview:not(.article-html-preview--styled) [bgcolor] {
   background-color: transparent !important;
-}
-
-/* Embedded article styles are scoped under .article-html-preview */
-.article-html-preview--styled .article-html-preview-body {
-  width: 100%;
 }
 
 /* Float animation classes defined above */

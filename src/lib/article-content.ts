@@ -13,8 +13,13 @@ export type PreparedArticleHtml = {
 const LIGHT_BACKGROUND_RE =
   /^(?:#(?:fff(?:fff)?|fafafa|f5f5f5|f8f9fa|f9fafb|eeeeee|f0f0f0|fefefe|e8f0fe|f1f3f4)|white|window|rgb\(\s*255\s*,\s*255\s*,\s*255\s*\)|rgba\(\s*255\s*,\s*255\s*,\s*255\s*[^)]*\))$/i;
 
-const COLOR_PROPERTY_RE =
-  /\b(color|background-color|background|border-color|border-bottom|border-left|border-top|border-right|border-bottom-color|border-left-color|border-top-color|border-right-color)\s*:\s*([^;}{]+)/gi;
+const COLOR_PROPERTY_NAMES =
+  'color|background-color|background|border-color|border-bottom|border-left|border-top|border-right|border-bottom-color|border-left-color|border-top-color|border-right-color';
+
+const COLOR_PROPERTY_RE = new RegExp(
+  `\\b(${COLOR_PROPERTY_NAMES})\\s*:\\s*([^;}{]+)`,
+  'gi'
+);
 
 const CSS_VARIABLE_RE = /(--[\w-]+)\s*:\s*([^;}{]+)/g;
 
@@ -41,7 +46,7 @@ function isLightBackground(value: string): boolean {
   return LIGHT_BACKGROUND_RE.test(value.trim());
 }
 
-function inferDarkValue(lightValue: string, varName = '', prop = ''): string {
+export function inferDarkValue(lightValue: string, varName = '', prop = ''): string {
   const value = lightValue.trim();
   const lowerValue = value.toLowerCase();
   const lowerName = varName.toLowerCase();
@@ -107,54 +112,100 @@ function inferDarkValue(lightValue: string, varName = '', prop = ''): string {
   return value;
 }
 
-function toLightDark(lightValue: string, varName = '', prop = ''): string {
-  const trimmed = lightValue.trim();
-  if (!trimmed || trimmed.includes('light-dark(') || trimmed.startsWith('var(')) {
-    return trimmed;
-  }
-  if (trimmed.includes('url(') || trimmed.includes('gradient(')) {
-    return trimmed;
-  }
-
-  const darkValue = inferDarkValue(trimmed, varName, prop);
-  if (darkValue === trimmed) return trimmed;
-  return `light-dark(${trimmed}, ${darkValue})`;
-}
-
-function adaptColorTokens(value: string, varName = '', prop = ''): string {
-  if (value.includes('light-dark(')) return value;
-  return value.replace(/#[0-9a-f]{3,8}\b/gi, (hex) => toLightDark(hex, varName, prop));
-}
-
 function scopeEmbeddedCss(css: string): string {
   return css
     .replace(/:root\b/g, '.article-html-preview')
     .replace(/(^|})\s*body\s*\{/g, '$1.article-html-preview {');
 }
 
-export function adaptEmbeddedArticleCss(css: string): string {
-  let scoped = scopeEmbeddedCss(css);
+function scopeSelectorForDark(selector: string): string {
+  return selector
+    .split(',')
+    .map((part) => {
+      const trimmed = part.trim();
+      if (!trimmed) return '';
+      if (trimmed.startsWith('.dark')) return trimmed;
+      return `.dark .article-html-preview ${trimmed}`;
+    })
+    .filter(Boolean)
+    .join(', ');
+}
 
-  scoped = scoped.replace(CSS_VARIABLE_RE, (_match, name: string, value: string) => {
-    const adapted = adaptColorTokens(value.trim(), name, '');
-    return `${name}: ${adapted};`;
-  });
+function collectColorOverrides(declarations: string): string[] {
+  const overrides: string[] = [];
 
-  scoped = scoped.replace(COLOR_PROPERTY_RE, (match, prop: string, value: string) => {
-    const trimmed = value.trim();
-    if (
-      trimmed.includes('url(') ||
-      trimmed.includes('gradient(') ||
-      trimmed.includes('light-dark(')
-    ) {
-      return match;
+  COLOR_PROPERTY_RE.lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = COLOR_PROPERTY_RE.exec(declarations)) !== null) {
+    const prop = match[1].toLowerCase();
+    const value = match[2].trim();
+
+    if (value.includes('var(') || value.includes('url(') || value.includes('gradient(')) {
+      continue;
     }
 
-    const adapted = adaptColorTokens(trimmed, '', prop.toLowerCase());
-    return `${prop}: ${adapted}`;
-  });
+    const darkValue = inferDarkValue(value, '', prop);
+    if (darkValue !== value) {
+      overrides.push(`${prop}: ${darkValue} !important`);
+    }
+  }
 
-  return scoped;
+  return overrides;
+}
+
+function buildDarkCompanion(scopedCss: string): string {
+  const parts: string[] = [];
+
+  const variableBlock = scopedCss.match(/\.article-html-preview\s*\{([^{}]*)\}/);
+  if (variableBlock) {
+    const darkVariables: string[] = [];
+
+    CSS_VARIABLE_RE.lastIndex = 0;
+    let variableMatch: RegExpExecArray | null;
+    while ((variableMatch = CSS_VARIABLE_RE.exec(variableBlock[1])) !== null) {
+      const name = variableMatch[1];
+      const value = variableMatch[2].trim();
+      darkVariables.push(`${name}: ${inferDarkValue(value, name, '')}`);
+    }
+
+    if (darkVariables.length) {
+      parts.push(
+        `.dark .article-html-preview {\n  ${darkVariables.join(';\n  ')};\n}`
+      );
+    }
+  }
+
+  const ruleRegex = /([^{}@/][^{}]*)\{([^{}]*)\}/g;
+  const propertyOverrides: string[] = [];
+
+  for (const ruleMatch of scopedCss.matchAll(ruleRegex)) {
+    const selector = ruleMatch[1].trim();
+    const declarations = ruleMatch[2];
+
+    if (!selector || selector.startsWith('@')) continue;
+    if (/^\.article-html-preview\s*$/.test(selector)) continue;
+
+    const overrides = collectColorOverrides(declarations);
+    if (!overrides.length) continue;
+
+    propertyOverrides.push(
+      `${scopeSelectorForDark(selector)} {\n  ${overrides.join(';\n  ')};\n}`
+    );
+  }
+
+  if (propertyOverrides.length) {
+    parts.push(propertyOverrides.join('\n\n'));
+  }
+
+  return parts.join('\n\n');
+}
+
+/** Adapt embedded article CSS for site theme toggle (.dark class), not prefers-color-scheme. */
+export function adaptEmbeddedArticleCss(css: string): string {
+  const scoped = scopeEmbeddedCss(css);
+  const darkCompanion = buildDarkCompanion(scoped);
+  return darkCompanion ? `${scoped}\n\n${darkCompanion}` : scoped;
 }
 
 function extractEmbeddedStyles(html: string): { styles: string[]; htmlWithoutStyles: string } {

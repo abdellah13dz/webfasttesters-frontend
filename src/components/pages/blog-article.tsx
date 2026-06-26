@@ -250,9 +250,9 @@ export default function BlogArticlePage({
               </button>
             </div>
 
-            <div itemProp="articleBody" className="text-foreground">
+            <div itemProp="articleBody">
               {isHtmlArticleContent(article.content) ? (
-                <ArticleHtmlBody html={article.content} />
+                <ArticleHtmlBody html={article.content} variant="surface" />
               ) : (
                 <div className="tiptap-editor-content blog-article-content">
                   <ReactMarkdown>{article.content}</ReactMarkdown>

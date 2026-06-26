@@ -101,13 +101,13 @@ export function ArticleContentEditor({
       </TabsContent>
 
       <TabsContent value="preview" className="mt-0 px-4 py-4 sm:px-6 sm:py-6">
-        <div className="min-h-[480px] rounded-lg border border-border bg-background p-4 text-foreground sm:p-6">
-          {htmlDraft.trim() ? (
-            <ArticleHtmlBody html={htmlDraft} />
-          ) : (
+        {htmlDraft.trim() ? (
+          <ArticleHtmlBody html={htmlDraft} variant="surface" className="min-h-[480px]" />
+        ) : (
+          <div className="article-html-surface min-h-[480px]">
             <p className="text-sm text-muted-foreground">No content to preview yet.</p>
-          )}
-        </div>
+          </div>
+        )}
       </TabsContent>
     </Tabs>
   );
