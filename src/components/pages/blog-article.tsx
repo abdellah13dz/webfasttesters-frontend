@@ -249,10 +249,10 @@ export default function BlogArticlePage({
               </button>
             </div>
 
-            <div itemProp="articleBody">
+            <div itemProp="articleBody" className="text-foreground">
               {isHtmlArticleContent(article.content) ? (
                 <div
-                  className="tiptap-editor-content blog-article-content"
+                  className="tiptap-editor-content blog-article-content article-html-preview"
                   dangerouslySetInnerHTML={{ __html: article.content }}
                 />
               ) : (

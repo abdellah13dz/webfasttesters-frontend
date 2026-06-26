@@ -100,10 +100,10 @@ export function ArticleContentEditor({
       </TabsContent>
 
       <TabsContent value="preview" className="mt-0 px-4 py-4 sm:px-6 sm:py-6">
-        <div className="min-h-[480px] rounded-lg border border-border bg-background p-4 sm:p-6">
+        <div className="min-h-[480px] rounded-lg border border-border bg-background p-4 text-foreground sm:p-6">
           {htmlDraft.trim() ? (
             <div
-              className="tiptap-editor-content blog-article-content"
+              className="tiptap-editor-content blog-article-content article-html-preview"
               dangerouslySetInnerHTML={{ __html: htmlDraft }}
             />
           ) : (

@@ -605,6 +605,7 @@ body {
 /* Tiptap Editor Styles */
 .tiptap-editor-content {
   outline: none;
+  color: var(--foreground);
 }
 .tiptap-editor-content p.is-editor-empty:first-child::before {
   color: var(--muted-foreground);
@@ -695,48 +696,194 @@ body {
   text-decoration: underline;
   cursor: pointer;
 }
+.dark .tiptap-editor-content a {
+  color: #60a5fa;
+}
+.dark .tiptap-editor-content a:hover {
+  color: #93c5fd;
+}
 
-/* Blog article reading experience */
+/* Blog article + admin HTML preview — theme-aware reading experience */
 .blog-article-content {
+  --article-text: color-mix(in oklch, var(--foreground) 88%, transparent);
+  --article-heading: var(--foreground);
+  --article-link: #2563eb;
+  --article-link-hover: #1d4ed8;
+  --article-code-bg: var(--muted);
+  --article-pre-bg: var(--muted);
+  --article-border: var(--border);
+  --article-quote-bg: color-mix(in oklch, #3b82f6 6%, var(--muted));
+  --article-quote-border: color-mix(in oklch, #3b82f6 35%, var(--border));
+  --article-table-head-bg: color-mix(in oklch, var(--muted) 80%, var(--background));
+  --article-table-stripe: color-mix(in oklch, var(--muted) 45%, transparent);
+
   font-size: 1.0625rem;
   line-height: 1.75;
-  color: color-mix(in oklch, var(--foreground) 88%, transparent);
+  color: var(--article-text);
+  overflow-wrap: anywhere;
 }
-.blog-article-content h1,
-.blog-article-content h2,
-.blog-article-content h3 {
-  color: var(--foreground);
+.dark .blog-article-content {
+  --article-link: #60a5fa;
+  --article-link-hover: #93c5fd;
+  --article-quote-bg: color-mix(in oklch, #3b82f6 8%, var(--muted));
 }
+
+.blog-article-content :where(h1, h2, h3, h4, h5, h6) {
+  color: var(--article-heading);
+  font-weight: 600;
+  line-height: 1.3;
+}
+.blog-article-content h1 { font-size: 1.875rem; margin-top: 1.5em; margin-bottom: 0.5em; }
 .blog-article-content h2 {
+  font-size: 1.5rem;
   margin-top: 2em;
+  margin-bottom: 0.5em;
   padding-bottom: 0.35em;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--article-border);
 }
-.blog-article-content strong {
-  color: var(--foreground);
+.blog-article-content h3 { font-size: 1.25rem; margin-top: 1.5em; margin-bottom: 0.4em; }
+.blog-article-content h4 { font-size: 1.125rem; margin-top: 1.25em; margin-bottom: 0.35em; }
+.blog-article-content :where(p, ul, ol, dl, pre, table, figure, blockquote) {
+  margin-bottom: 1em;
+}
+.blog-article-content :where(ul, ol) {
+  padding-left: 1.5em;
+}
+.blog-article-content ul { list-style-type: disc; }
+.blog-article-content ol { list-style-type: decimal; }
+.blog-article-content li { margin-bottom: 0.35em; }
+.blog-article-content li > :where(ul, ol) {
+  margin-top: 0.35em;
+  margin-bottom: 0.35em;
+}
+.blog-article-content strong,
+.blog-article-content b {
+  color: var(--article-heading);
   font-weight: 600;
 }
 .blog-article-content a {
-  color: #2563eb;
+  color: var(--article-link);
+  text-decoration: underline;
   text-underline-offset: 2px;
 }
 .blog-article-content a:hover {
-  color: #1d4ed8;
-}
-.dark .blog-article-content a {
-  color: #60a5fa;
-}
-.dark .blog-article-content a:hover {
-  color: #93c5fd;
+  color: var(--article-link-hover);
 }
 .blog-article-content blockquote {
-  border-left-color: color-mix(in oklch, #3b82f6 35%, var(--border));
-  background: color-mix(in oklch, #3b82f6 6%, var(--muted));
+  border-left: 3px solid var(--article-quote-border);
+  background: var(--article-quote-bg);
   border-radius: 0 0.5rem 0.5rem 0;
   padding: 0.75em 1em;
+  color: var(--article-text);
+  font-style: italic;
 }
-.dark .blog-article-content blockquote {
-  background: color-mix(in oklch, #3b82f6 8%, var(--muted));
+.blog-article-content :where(code, kbd, samp) {
+  background: var(--article-code-bg);
+  border-radius: 0.25rem;
+  padding: 0.15em 0.35em;
+  font-size: 0.9em;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  color: var(--article-heading);
+}
+.blog-article-content pre {
+  background: var(--article-pre-bg);
+  border: 1px solid var(--article-border);
+  border-radius: 0.5rem;
+  padding: 0.85em 1em;
+  overflow-x: auto;
+}
+.blog-article-content pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-size: 0.85em;
+}
+.blog-article-content hr {
+  border: none;
+  border-top: 1px solid var(--article-border);
+  margin: 2em 0;
+}
+.blog-article-content img,
+.blog-article-content video,
+.blog-article-content iframe {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+.blog-article-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95em;
+}
+.blog-article-content :where(th, td) {
+  border: 1px solid var(--article-border);
+  padding: 0.55em 0.75em;
+  text-align: left;
+  vertical-align: top;
+  color: var(--article-text);
+}
+.blog-article-content th {
+  background: var(--article-table-head-bg);
+  color: var(--article-heading);
+  font-weight: 600;
+}
+.blog-article-content tr:nth-child(even) td {
+  background: var(--article-table-stripe);
+}
+.blog-article-content figcaption {
+  margin-top: 0.5em;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+/* Neutralize common light-theme inline styles when site is in dark mode */
+.dark .blog-article-content :where(
+  h1, h2, h3, h4, h5, h6,
+  p, li, span, div, td, th, blockquote, figcaption, label, strong, em, b, i
+) {
+  color: inherit;
+}
+.dark .blog-article-content [style*="color: rgb(0"],
+.dark .blog-article-content [style*="color:rgb(0"],
+.dark .blog-article-content [style*="color:#000"],
+.dark .blog-article-content [style*="color: #000"],
+.dark .blog-article-content [style*="color:#111"],
+.dark .blog-article-content [style*="color: #111"],
+.dark .blog-article-content [style*="color:#222"],
+.dark .blog-article-content [style*="color: #222"],
+.dark .blog-article-content [style*="color:#333"],
+.dark .blog-article-content [style*="color: #333"],
+.dark .blog-article-content [style*="color: black"],
+.dark .blog-article-content [style*="color:black"] {
+  color: var(--article-text) !important;
+}
+.dark .blog-article-content [style*="background-color:#fff"],
+.dark .blog-article-content [style*="background-color: #fff"],
+.dark .blog-article-content [style*="background-color:#ffffff"],
+.dark .blog-article-content [style*="background-color: #ffffff"],
+.dark .blog-article-content [style*="background-color: white"],
+.dark .blog-article-content [style*="background-color:white"],
+.dark .blog-article-content [style*="background:#fff"],
+.dark .blog-article-content [style*="background: #fff"],
+.dark .blog-article-content [style*="background:#ffffff"],
+.dark .blog-article-content [style*="background: #ffffff"],
+.dark .blog-article-content [style*="background: white"],
+.dark .blog-article-content [style*="background:white"],
+.dark .blog-article-content [style*="background-color: rgb(255"],
+.dark .blog-article-content [style*="background: rgb(255"] {
+  background-color: transparent !important;
+}
+.dark .blog-article-content [style*="background-color:#fafafa"],
+.dark .blog-article-content [style*="background-color: #fafafa"],
+.dark .blog-article-content [style*="background-color:#f5f5f5"],
+.dark .blog-article-content [style*="background-color: #f5f5f5"],
+.dark .blog-article-content [style*="background-color:#f8f9fa"],
+.dark .blog-article-content [style*="background-color: #f8f9fa"],
+.dark .blog-article-content [style*="background-color:#f9fafb"],
+.dark .blog-article-content [style*="background-color: #f9fafb"],
+.dark .blog-article-content [style*="background-color:#eeeeee"],
+.dark .blog-article-content [style*="background-color: #eeeeee"] {
+  background-color: color-mix(in oklch, var(--muted) 55%, transparent) !important;
 }
 
 /* Float animation classes defined above */
