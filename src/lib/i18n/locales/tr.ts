@@ -31,6 +31,7 @@ export const tr: Record<string, string> = {
   'header.setupGuide': 'Kurulum Rehberi',
   'header.productionAccess': 'Üretim Erişimi',
   'header.blog': 'Blog',
+  'header.freeTestersCommunity': 'Ücretsiz Testçi Topluluğu',
   'header.compare': 'Karşılaştır',
   'header.caseStudies': 'Başarı Hikayeleri',
 
@@ -47,6 +48,7 @@ export const tr: Record<string, string> = {
   'footer.howItWorks': 'Nasıl Çalışır',
   'footer.pricing': 'Fiyatlandırma',
   'footer.submitApp': 'Uygulama Gönder',
+  'footer.freeTestersCommunity': 'Ücretsiz Testçi Topluluğu',
   'footer.affiliateProgram': 'Bağlı Kuruluş Programı',
   'footer.resources': 'Kaynaklar',
   'footer.faq': 'SSS',
@@ -905,6 +907,13 @@ export const tr: Record<string, string> = {
   'home.successStoriesTitle': 'Gerçek Geliştiricilerden Gerçek Sonuçlar',
   'home.successStoriesReadMore': 'Daha Fazla Oku',
   'home.successStoriesViewAll': 'Tüm Hikayeleri Gör',
+
+  'home.communityBadge': 'Ücretsiz Topluluk',
+  'home.communityTitle': 'Ücretsiz testçi mi arıyorsunuz?',
+  'home.communityDescription': 'Google Play kapalı test gereksinimlerini gerçek katılımla tamamlamak için birbirine yardım eden Android geliştirici topluluğuna katılın.',
+  'home.communityNote': '%100 ücretsiz · Eşler arası · Google Play kapalı test',
+  'home.communityCta': 'Topluluğa Katıl',
+
   'home.successStoriesApp1Name': 'Grosch',
   'home.successStoriesApp1Category': 'Finans',
   'home.successStoriesApp1Developer': 'Madeline Petersen',

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { useRouter } from '@/lib/router';
-import { APP_HOST, APP_URL } from '@/lib/app-urls';
+import { APP_HOST, APP_URL, COMMUNITY_URL } from '@/lib/app-urls';
 import { useLanguage } from '@/lib/i18n/context';
 import { useAnalytics } from '@/lib/analytics';
 import { fetchPublicReviews } from '@/lib/reviews-api';
@@ -1088,6 +1088,56 @@ export default function HomePage() {
                 {t('home.successStoriesViewAll')}
                 <ExternalLink className="h-4 w-4 ml-2" />
               </Button>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          FREE TESTERS COMMUNITY
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-16 sm:py-20 border-t border-border/40 bg-gradient-to-b from-emerald-500/5 via-background to-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 via-card to-card p-8 sm:p-12 lg:p-14">
+              <div className="absolute inset-0 -z-10">
+                <div className="absolute top-0 end-0 h-48 w-48 rounded-full bg-emerald-500/10 blur-3xl" />
+              </div>
+              <div className="flex flex-col items-center text-center lg:flex-row lg:items-center lg:text-start lg:gap-10">
+                <div className="mb-6 flex size-16 shrink-0 items-center justify-center rounded-2xl bg-emerald-500/15 ring-1 ring-emerald-500/20 lg:mb-0">
+                  <Users className="size-8 text-emerald-600 dark:text-emerald-400" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <Badge
+                    variant="outline"
+                    className="mb-4 border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
+                  >
+                    {t('home.communityBadge')}
+                  </Badge>
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 text-foreground">
+                    {t('home.communityTitle')}
+                  </h2>
+                  <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-3">
+                    {t('home.communityDescription')}
+                  </p>
+                  <p className="text-sm text-emerald-700/80 dark:text-emerald-400/80 font-medium">
+                    {t('home.communityNote')}
+                  </p>
+                </div>
+                <div className="mt-8 shrink-0 lg:mt-0">
+                  <Button
+                    size="lg"
+                    onClick={() => {
+                      trackCta('community_join');
+                      navigate(COMMUNITY_URL);
+                    }}
+                    className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 h-12 shadow-lg shadow-emerald-500/20"
+                  >
+                    {t('home.communityCta')}
+                    <ExternalLink className="ml-2 size-4" />
+                  </Button>
+                </div>
+              </div>
             </div>
           </AnimatedSection>
         </div>

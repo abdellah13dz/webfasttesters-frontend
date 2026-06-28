@@ -31,6 +31,7 @@ export const es: Record<string, string> = {
   'header.setupGuide': 'Guía de configuración',
   'header.productionAccess': 'Acceso a producción',
   'header.blog': 'Blog',
+  'header.freeTestersCommunity': 'Comunidad de testers gratis',
   'header.compare': 'Comparar',
   'header.caseStudies': 'Casos de Éxito',
 
@@ -47,6 +48,7 @@ export const es: Record<string, string> = {
   'footer.howItWorks': 'Cómo funciona',
   'footer.pricing': 'Precios',
   'footer.submitApp': 'Enviar aplicación',
+  'footer.freeTestersCommunity': 'Comunidad de testers gratis',
   'footer.affiliateProgram': 'Programa de afiliados',
   'footer.resources': 'Recursos',
   'footer.faq': 'Preguntas frecuentes',
@@ -905,6 +907,13 @@ export const es: Record<string, string> = {
   'home.successStoriesTitle': 'Resultados reales de desarrolladores reales',
   'home.successStoriesReadMore': 'Leer más',
   'home.successStoriesViewAll': 'Ver todas las historias',
+
+  'home.communityBadge': 'Comunidad gratuita',
+  'home.communityTitle': '¿Buscas testers gratis?',
+  'home.communityDescription': 'Únete a una comunidad de desarrolladores Android que se ayudan mutuamente a completar los requisitos de pruebas cerradas de Google Play con participación genuina.',
+  'home.communityNote': '100% gratis · Entre pares · Pruebas cerradas de Google Play',
+  'home.communityCta': 'Unirse a la comunidad',
+
   'home.successStoriesApp1Name': 'Grosch',
   'home.successStoriesApp1Category': 'Finanzas',
   'home.successStoriesApp1Developer': 'Madeline Petersen',

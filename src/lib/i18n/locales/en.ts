@@ -31,6 +31,7 @@ export const en: Record<string, string> = {
   'header.setupGuide': 'Setup Guide',
   'header.productionAccess': 'Production Access',
   'header.blog': 'Blog',
+  'header.freeTestersCommunity': 'Free Testers Community',
   'header.compare': 'Compare',
   'header.caseStudies': 'Case Studies',
 
@@ -47,6 +48,7 @@ export const en: Record<string, string> = {
   'footer.howItWorks': 'How It Works',
   'footer.pricing': 'Pricing',
   'footer.submitApp': 'Submit App',
+  'footer.freeTestersCommunity': 'Free Testers Community',
   'footer.affiliateProgram': 'Affiliate Program',
   'footer.resources': 'Resources',
   'footer.faq': 'FAQ',
@@ -239,6 +241,14 @@ export const en: Record<string, string> = {
   'home.successStoriesTitle': 'Real Results from Real Developers',
   'home.successStoriesReadMore': 'Read More',
   'home.successStoriesViewAll': 'View All Stories',
+
+  // Free testers community
+  'home.communityBadge': 'Free Community',
+  'home.communityTitle': 'Looking for free testers?',
+  'home.communityDescription': 'Join a community of Android developers helping each other complete Google Play Closed Testing requirements through genuine engagement.',
+  'home.communityNote': '100% free · Peer-to-peer · Google Play closed testing',
+  'home.communityCta': 'Join the Community',
+
   'home.successStoriesApp1Name': 'Grosch',
   'home.successStoriesApp1Category': 'Finance',
   'home.successStoriesApp1Developer': 'Madeline Petersen',

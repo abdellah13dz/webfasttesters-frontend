@@ -1,8 +1,13 @@
 /** Main CRM dashboard — use for Get Started / Sign Up CTAs */
 export const APP_URL = 'https://app.fasttesters.com/';
 
+/** Free testers community — peer-to-peer closed testing help */
+export const COMMUNITY_URL = 'https://community.fasttesters.com/';
+
 /** Hostname shown in UI (browser chrome, copy, etc.) */
 export const APP_HOST = 'app.fasttesters.com';
+
+export const COMMUNITY_HOST = 'community.fasttesters.com';
 
 export const APP_LOGIN_URL = 'https://app.fasttesters.com/login';
 
