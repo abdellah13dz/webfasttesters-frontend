@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { fetchSiteSettings, type SiteNavigation } from '@/lib/site-settings';
-import { FALLBACK_NAVIGATION } from '@/lib/navigation';
+import { FALLBACK_NAVIGATION, mergeSiteNavigation } from '@/lib/navigation';
 
 export function useSiteNavigation(): SiteNavigation {
   const [navigation, setNavigation] = useState<SiteNavigation>(FALLBACK_NAVIGATION);
@@ -11,7 +11,7 @@ export function useSiteNavigation(): SiteNavigation {
     (async () => {
       const settings = await fetchSiteSettings();
       if (settings?.navigation) {
-        setNavigation(settings.navigation);
+        setNavigation(mergeSiteNavigation(settings.navigation));
       }
     })();
   }, []);

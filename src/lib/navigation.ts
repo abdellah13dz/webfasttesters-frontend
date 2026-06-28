@@ -1,6 +1,55 @@
 import type { SiteNavigation, NavLink, NavSection } from '@/lib/site-settings';
+import { COMMUNITY_URL } from '@/lib/app-urls';
 
-export const FALLBACK_NAVIGATION: SiteNavigation = {
+const COMMUNITY_HEADER_LINK: NavLink = {
+  labelKey: 'header.freeTestersCommunity',
+  path: COMMUNITY_URL,
+};
+
+const COMMUNITY_FOOTER_LINK: NavLink = {
+  labelKey: 'footer.freeTestersCommunity',
+  path: COMMUNITY_URL,
+};
+
+function isCommunityLink(link: NavLink): boolean {
+  return (
+    link.path === COMMUNITY_URL ||
+    link.labelKey === 'header.freeTestersCommunity' ||
+    link.labelKey === 'footer.freeTestersCommunity'
+  );
+}
+
+function insertLinkAfter(links: NavLink[], link: NavLink, afterPath: string): NavLink[] {
+  if (links.some(isCommunityLink)) return links;
+  const index = links.findIndex((item) => item.path === afterPath);
+  if (index === -1) return [...links, link];
+  return [...links.slice(0, index + 1), link, ...links.slice(index + 1)];
+}
+
+function isProductFooterSection(section: NavSection): boolean {
+  if (section.titleKey === 'footer.product') return true;
+  return section.links.some(
+    (link) => link.path === '/submit-app' || link.labelKey === 'footer.submitApp'
+  );
+}
+
+/** Ensures community links exist when older DB navigation is loaded from the API. */
+export function mergeSiteNavigation(stored: SiteNavigation): SiteNavigation {
+  return {
+    ...stored,
+    headerMain: insertLinkAfter(stored.headerMain ?? [], COMMUNITY_HEADER_LINK, '/blog'),
+    footerSections: (stored.footerSections ?? []).map((section) =>
+      isProductFooterSection(section)
+        ? {
+            ...section,
+            links: insertLinkAfter(section.links ?? [], COMMUNITY_FOOTER_LINK, '/submit-app'),
+          }
+        : section
+    ),
+  };
+}
+
+export const FALLBACK_NAVIGATION: SiteNavigation = mergeSiteNavigation({
   headerMain: [
     { labelKey: 'header.howItWorks', path: '/how-it-works' },
     { labelKey: 'header.reviews', path: '/reviews' },
@@ -78,7 +127,7 @@ export const FALLBACK_NAVIGATION: SiteNavigation = {
     { labelKey: 'footer.accountDeletion', path: '/account-deletion' },
     { labelKey: 'footer.referralPolicy', path: '/referral-policy' },
   ],
-};
+});
 
 export function resolveNavLabel(
   link: NavLink,
