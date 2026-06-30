@@ -80,7 +80,7 @@ export const legalPagesAr: Record<string, string> = {
   'termsPolicy.sections.services.title': 'وصف الخدمات',
   'termsPolicy.sections.services.p1': 'يوفر Fast Testers خدمات اختبار تطبيقات احترافية مصممة لمساعدة المطورين على تلبية متطلبات اختبار Google Play Store للوصول للإنتاج.',
   'termsPolicy.sections.services.p2': 'تتضمن خدمتنا الأساسية تعيين 14 مختبرًا محترفًا لتقييم تطبيقك خلال فترة اختبار 14-16 يومًا. سيقوم المختبرون بتثبيت التطبيق واستخدامه وتقديم ملاحظات.',
-  'termsPolicy.sections.services.p3': 'نسعى لبدء تعيين المختبرين خلال 6 ساعات من تأكيد الدفع، وقد يختلف التوقيت الفعلي حسب الطلب وتعقيد التطبيق.',
+  'termsPolicy.sections.services.p3': 'نسعى لبدء تعيين المختبرين فوراً من تأكيد الدفع، وقد يختلف التوقيت الفعلي حسب الطلب وتعقيد التطبيق.',
   'termsPolicy.sections.services.p4': 'نحتفظ بالحق في رفض الخدمة لأي تطبيق يحتوي على محتوى غير قانوني أو برامج ضارة أو ينتهك سياسات Google Play Store.',
 
   'termsPolicy.sections.userAccounts.title': 'حسابات المستخدمين',
@@ -97,7 +97,7 @@ export const legalPagesAr: Record<string, string> = {
   'termsPolicy.sections.payment.p5': 'جميع الرسوم بالدولار الأمريكي (USD). رسوم تحويل العملة، إن وجدت، تقع على عاتق المستخدم.',
 
   'termsPolicy.sections.cancellation.title': 'سياسة الإلغاء',
-  'termsPolicy.sections.cancellation.p1': 'يمكنك إلغاء طلبك والحصول على استرداد كامل إذا تواصلت معنا قبل تعيين المختبرين لتطبيقك (عادة خلال 6 ساعات من تأكيد الدفع).',
+  'termsPolicy.sections.cancellation.p1': 'يمكنك إلغاء طلبك والحصول على استرداد كامل إذا تواصلت معنا قبل تعيين المختبرين لتطبيقك (عادة فوراً من تأكيد الدفع).',
   'termsPolicy.sections.cancellation.p2': 'بمجرد تعيين المختبرين وبدء فترة الاختبار، تُعتبر الخدمة مُسلَّمة وغير قابلة للإلغاء.',
   'termsPolicy.sections.cancellation.p3': 'لطلب الإلغاء، أرسل بريدًا إلى contact@fasttesters.com مع تفاصيل طلبك. تُسترد المبالغ المعتمدة إلى طريقة الدفع الأصلية خلال 5-10 أيام عمل عبر Stripe.',
   'termsPolicy.sections.cancellation.p4': 'لأهلية الاسترداد بعد إكمال الخدمة، يرجى الرجوع إلى سياسة الاسترداد وضمان الوصول للإنتاج.',

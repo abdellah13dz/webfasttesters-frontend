@@ -17,15 +17,15 @@ const geistMono = Geist_Mono({
 import { SITE_URL } from "@/lib/site-url";
 import { BRAND_ICONS, BRAND_OG_IMAGE_PATH } from "@/lib/brand";
 import { SITE_KEYWORDS } from "@/lib/seo-keywords";
+import { SEO_DEFAULT_TITLE, SEO_DEFAULT_DESCRIPTION } from "@/lib/seo";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Fast Testers - Get 12 Testers for Google Play in 48 Hours",
+    default: SEO_DEFAULT_TITLE,
     template: "%s | Fast Testers",
   },
-  description:
-    "Meet Google Play 12-tester requirement fast. Real Android testers, production access in 48 hours, and guaranteed approval. Trusted by 1,500+ developers.",
+  description: SEO_DEFAULT_DESCRIPTION,
   keywords: [...SITE_KEYWORDS],
   authors: [{ name: "Fast Testers", url: SITE_URL }],
   creator: "Fast Testers",
@@ -48,9 +48,8 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: SITE_URL,
     siteName: "Fast Testers",
-    title: "Fast Testers - Get 12 Testers for Google Play in 48 Hours",
-    description:
-      "Meet Google Play 12-tester requirement fast. Real Android testers, production access in 48 hours, and guaranteed approval. Trusted by 1,500+ developers.",
+    title: SEO_DEFAULT_TITLE,
+    description: SEO_DEFAULT_DESCRIPTION,
     images: [
       {
         url: `${SITE_URL}${BRAND_OG_IMAGE_PATH}`,
@@ -62,9 +61,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fast Testers - Get 12 Testers for Google Play in 48 Hours",
-    description:
-      "Meet Google Play 12-tester requirement fast. Real Android testers, production access in 48 hours, and guaranteed approval. Trusted by 1,500+ developers.",
+    title: SEO_DEFAULT_TITLE,
+    description: SEO_DEFAULT_DESCRIPTION,
     images: [`${SITE_URL}${BRAND_OG_IMAGE_PATH}`],
     creator: "@fasttesters",
   },

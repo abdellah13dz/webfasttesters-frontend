@@ -13,7 +13,7 @@ export function getOrganizationSchema() {
     logo: `${SITE_URL}${BRAND_LOGO_PATH}`,
     image: `${SITE_URL}${BRAND_OG_IMAGE_PATH}`,
     description:
-      'Fast Testers helps Android developers meet the Google Play 12-tester requirement in 48 hours with real testers and guaranteed production access.',
+      'Fast Testers is a professional Google Play Closed Testing service. Get production access with 12 testers for 14 days — 15 quality testers for $15, assigned instantly.',
     sameAs: [...SOCIAL_PROFILES],
     contactPoint: {
       '@type': 'ContactPoint',
@@ -35,7 +35,7 @@ export function getWebSiteSchema() {
     publisher: { '@id': `${SITE_URL}/#organization` },
     inLanguage: ['en', 'es', 'tr', 'ar'],
     description:
-      'Professional Google Play app testing service — 12 real Android testers in 48 hours.',
+      'Google Play Closed Testing service — 15 quality testers for $15, assigned instantly after app submission.',
   };
 }
 
@@ -43,9 +43,9 @@ export function getProductSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: 'Fast Testers - Google Play App Testing Service',
+    name: 'Fast Testers - Google Play Closed Testing Service',
     description:
-      'Get 12+ real Android testers for your app. Meet Google Play 12-tester requirement in 48 hours with guaranteed production access.',
+      'Get Google Play production access with 12 testers for 14 days. Professional Google Play Closed Testing service: 15 quality testers for $15 with production access.',
     brand: { '@type': 'Brand', name: 'Fast Testers' },
     image: `${SITE_URL}${BRAND_OG_IMAGE_PATH}`,
     offers: {
@@ -72,12 +72,12 @@ export function getServiceSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'Google Play 12-Tester Compliance Testing',
+    name: 'Google Play Closed Testing Service',
     provider: { '@id': `${SITE_URL}/#organization` },
     areaServed: 'Worldwide',
-    serviceType: 'Manual Android app beta testing',
+    serviceType: 'Google Play Closed Testing',
     description:
-      'Meet Google Play closed testing and production access requirements with vetted real human testers—manual testing on real devices, feedback reports, and a production access guarantee.',
+      'Professional Google Play Closed Testing service. Get production access with 12 testers for 14 days — 15 quality testers for $15, assigned instantly after submission.',
     offers: {
       '@type': 'Offer',
       price: '15',
@@ -96,7 +96,7 @@ const FAQ_ENTRIES = [
   {
     question: 'How does Fast Testers work?',
     answer:
-      'Pay $15, submit your Google Play closed testing link, and we assign real human testers (manual testing on real devices—no bots). Complete the 14-day period, then apply for production access.',
+      'Pay $15, submit your Google Play closed testing link, and testers are assigned instantly. Complete the 14-day closed testing period, then apply for production access.',
   },
   {
     question: 'What if my app is rejected after testing?',
@@ -106,7 +106,7 @@ const FAQ_ENTRIES = [
   {
     question: 'How fast do testers start?',
     answer:
-      'Testers are typically assigned within 6 hours of payment and begin installing and testing your app immediately.',
+      'Testers are assigned instantly after you submit your app for closed testing. They begin installing and testing your app immediately.',
   },
   {
     question: 'Can I test multiple Android apps?',

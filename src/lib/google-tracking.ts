@@ -1,5 +1,7 @@
-/** Cookie preference key — must match cookie-consent.tsx */
-export const COOKIE_STORAGE_KEY = 'ft-cookies-accepted';
+import { COOKIE_STORAGE_KEY, hasAnalyticsConsent } from '@/lib/analytics-consent';
+import { isFirebaseAnalyticsConfigured } from '@/lib/firebase-analytics';
+
+export { COOKIE_STORAGE_KEY, hasAnalyticsConsent };
 
 export function getGtmId(): string | undefined {
   const id = process.env.NEXT_PUBLIC_GTM_ID?.trim();
@@ -13,11 +15,6 @@ export function getGaMeasurementId(): string | undefined {
 
 export function isGoogleTrackingConfigured(): boolean {
   return Boolean(getGtmId() || getGaMeasurementId());
-}
-
-export function hasAnalyticsConsent(): boolean {
-  if (typeof window === 'undefined') return false;
-  return localStorage.getItem(COOKIE_STORAGE_KEY) === 'accepted';
 }
 
 declare global {
@@ -43,6 +40,9 @@ export function grantAnalyticsConsent(): void {
 
 export function trackPageView(path: string): void {
   if (typeof window === 'undefined' || !hasAnalyticsConsent()) return;
+
+  // Firebase Analytics loads its own GA4 client when configured.
+  if (isFirebaseAnalyticsConfigured()) return;
 
   const gaId = getGaMeasurementId();
   if (gaId && window.gtag) {

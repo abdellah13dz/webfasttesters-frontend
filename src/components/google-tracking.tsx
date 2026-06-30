@@ -11,10 +11,12 @@ import {
   isGoogleTrackingConfigured,
   trackPageView,
 } from '@/lib/google-tracking';
+import { isFirebaseAnalyticsConfigured } from '@/lib/firebase-analytics';
 
 export function GoogleTracking() {
   const gtmId = getGtmId();
   const gaId = getGaMeasurementId();
+  const useStandaloneGa = Boolean(gaId) && !isFirebaseAnalyticsConfigured();
   const { currentPath } = useRouter();
 
   useEffect(() => {
@@ -25,7 +27,7 @@ export function GoogleTracking() {
     }
   }, [currentPath]);
 
-  if (!gtmId && !gaId) return null;
+  if (!gtmId && !useStandaloneGa) return null;
 
   return (
     <>
@@ -55,7 +57,7 @@ export function GoogleTracking() {
         </Script>
       )}
 
-      {gaId && (
+      {useStandaloneGa && (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}

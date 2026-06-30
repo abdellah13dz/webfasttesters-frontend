@@ -18,10 +18,16 @@ export interface PageSeo {
 export { SITE_URL, SITE_NAME };
 export { SITE_KEYWORDS, DEFAULT_KEYWORDS_META, mergeKeywords } from './seo-keywords';
 
+/** Canonical site-wide SEO title and description (Google Play Closed Testing service). */
+export const SEO_DEFAULT_TITLE =
+  'Fast Testers | Google Play Closed Testing Service — 12 Testers for 14 Days';
+
+export const SEO_DEFAULT_DESCRIPTION =
+  'Get Google Play production access with 12 testers for 14 days! Professional Google Play Closed Testing service: 15 quality testers for $15 with production access. Trusted by 1,500+ developers.';
+
 export const defaultSeo: PageSeo = {
-  title: 'Fast Testers - Get 12 Testers for Google Play in 48 Hours',
-  description:
-    'Fast Testers helps Android developers meet Google Play 12-tester requirement in 48 hours. Real testers, fast production access, and guaranteed approval.',
+  title: SEO_DEFAULT_TITLE,
+  description: SEO_DEFAULT_DESCRIPTION,
   keywords: DEFAULT_KEYWORDS_META,
   ogImage: BRAND_OG_IMAGE_PATH,
   type: 'website',
@@ -29,32 +35,31 @@ export const defaultSeo: PageSeo = {
 
 export const pageSeoConfig: Record<string, PageSeo> = {
   '/': {
-    title: 'Fast Testers - Get 12 Testers for Google Play in 48 Hours',
-    description:
-      'Meet Google Play 12-tester requirement fast. Real Android testers, production access in 48 hours, and guaranteed approval. Trusted by 1,500+ developers.',
+    title: SEO_DEFAULT_TITLE,
+    description: SEO_DEFAULT_DESCRIPTION,
     keywords: mergeKeywords(
-      'fast app testing',
-      '12 testers policy',
-      'beta testers',
-      'Get 12 Testers for Google Play in 48 Hours'
+      'Google Play Closed Testing service',
+      '12 testers for 14 days',
+      '15 quality testers for $15',
+      'google play production access'
     ),
     ogImage: BRAND_OG_IMAGE_PATH,
     type: 'website',
   },
 
   '/how-it-works': {
-    title: 'How It Works - Fast Testers | Simple 3-Step App Testing Process',
+    title: 'How It Works - Fast Testers | Google Play Closed Testing Service',
     description:
-      'Submit your app, get matched with 12+ real Android testers, and achieve Google Play production access in just 48 hours. See our simple process.',
+      'Submit your app for Google Play Closed Testing and get 15 quality testers assigned instantly. Complete the 14-day closed testing period with our professional service.',
     keywords: mergeKeywords('how app testing works', 'google play testing process', '12 testers process'),
     ogImage: '/images/illustrations/how-it-works.png',
     type: 'website',
   },
 
   '/pricing': {
-    title: 'Pricing - Fast Testers | $15/App Testing for Google Play Compliance',
+    title: 'Pricing - Fast Testers | Google Play Closed Testing Service — $15/App',
     description:
-      'Simple pricing at $15 per app. Get 12+ real testers, 14-day testing period, detailed reports, and Google Play production access guaranteed.',
+      'Google Play Closed Testing service: 15 quality testers for $15. Meet the 12-tester, 14-day requirement with instant tester assignment and production access guarantee.',
     keywords: mergeKeywords('app testing pricing', 'google play testing cost', '$15 app testing'),
     ogImage: BRAND_OG_IMAGE_PATH,
     type: 'website',
@@ -269,9 +274,9 @@ export const pageSeoConfig: Record<string, PageSeo> = {
 
   '/android-app-testers': {
     title:
-      'Android App Testers - Fast Testers | Real Testers for Google Play Compliance',
+      'Android App Testers - Fast Testers | Google Play Closed Testing Service',
     description:
-      'Get real Android app testers who help you meet Google Play 12-tester requirement. Professional testers with devices, feedback, and 48-hour delivery.',
+      'Google Play Closed Testing service with real Android testers assigned instantly. 15 quality testers for $15 — meet the 12-tester, 14-day requirement with production access.',
     keywords: mergeKeywords('hire android testers', 'real app testers google play'),
     ogImage: '/images/illustrations/app-testing.png',
     type: 'website',
@@ -353,9 +358,9 @@ export const pageSeoConfig: Record<string, PageSeo> = {
 
   '/submit-app': {
     title:
-      'Submit Your App - Fast Testers | Start Google Play Testing Today',
+      'Submit Your App - Fast Testers | Start Google Play Closed Testing Today',
     description:
-      'Submit your Android app for testing with Fast Testers. Get matched with 12+ real testers, receive detailed feedback, and achieve production access.',
+      'Submit your app for Google Play Closed Testing. Testers are assigned instantly after submission — 15 quality testers for $15 with production access guarantee.',
     keywords: DEFAULT_KEYWORDS_META,
     ogImage: '/images/illustrations/app-testing.png',
     type: 'website',

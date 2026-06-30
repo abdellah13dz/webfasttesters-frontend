@@ -198,7 +198,7 @@ export const legalPagesEn: Record<string, string> = {
   'termsPolicy.sections.services.title': 'Services Description',
   'termsPolicy.sections.services.p1': "Fast Testers provides professional app testing services designed to help developers meet Google Play Store's testing requirements for production access.",
   'termsPolicy.sections.services.p2': 'Our core service includes assigning 14 professional testers to evaluate your app over a 14-16 day testing period. Testers will install, use, and provide feedback on your application.',
-  'termsPolicy.sections.services.p3': 'We strive to begin tester assignment within 6 hours of payment confirmation, though actual timing may vary based on demand and app complexity.',
+  'termsPolicy.sections.services.p3': 'Testers are assigned instantly after you submit your app for Google Play Closed Testing, though onboarding may vary slightly based on demand and app complexity.',
   'termsPolicy.sections.services.p4': 'We reserve the right to refuse service to any app that contains illegal content, malware, or violates Google Play Store policies.',
 
   'termsPolicy.sections.eligibility.title': 'Eligibility',
@@ -214,7 +214,7 @@ export const legalPagesEn: Record<string, string> = {
   'termsPolicy.sections.acceptableUse.p5': 'Violation of this Acceptable Use policy may result in immediate termination of your account and forfeiture of any fees paid, without refund.',
 
   'termsPolicy.sections.orderFulfillment.title': 'Order Fulfillment & Delivery',
-  'termsPolicy.sections.orderFulfillment.p1': 'Upon successful payment, you will receive a confirmation email with your order details. Testing services begin once we assign testers to your app, typically within 6 hours of payment.',
+  'termsPolicy.sections.orderFulfillment.p1': 'Upon successful payment, you will receive a confirmation email with your order details. Google Play Closed Testing begins once testers are assigned to your app — instantly after submission.',
   'termsPolicy.sections.orderFulfillment.p2': 'You are responsible for providing a valid Google Play closed testing link and ensuring your app is accessible to testers throughout the testing period.',
   'termsPolicy.sections.orderFulfillment.p3': 'Our service is considered delivered once the full 14–16 day testing period has been completed and testing results have been made available in your account dashboard.',
   'termsPolicy.sections.orderFulfillment.p4': 'We are not responsible for delays caused by incorrect testing links, app unavailability, Google Play policy changes, or factors outside our reasonable control.',
@@ -318,7 +318,7 @@ export const legalPagesEn: Record<string, string> = {
   'refundPolicyPage.toc.chargebacks': 'Chargebacks & Disputes',
 
   'refundPolicyPage.sections.cancellation.title': 'Cancellation Before Delivery',
-  'refundPolicyPage.sections.cancellation.p1': 'You may cancel your order and receive a full refund if you request cancellation before we assign testers to your app (typically within 6 hours of payment). See our Cancellation Policy for full details.',
+  'refundPolicyPage.sections.cancellation.p1': 'You may cancel your order and receive a full refund if you request cancellation before we assign testers to your app. See our Cancellation Policy for full details.',
   'refundPolicyPage.sections.cancellation.p2': 'Once testers have been assigned and the 14–16 day testing period has begun, the digital service is considered delivered and cannot be cancelled. Refunds after delivery are available only under the Production Access Guarantee described below.',
 
   'refundPolicyPage.sections.returnPolicy.title': 'Return Policy (Digital Services)',
@@ -393,7 +393,7 @@ export const legalPagesEn: Record<string, string> = {
   'cancellationPolicyPage.sections.noSubscriptions.p3': 'Because there are no subscriptions, there is nothing to "cancel" in the traditional subscription sense. This policy explains how you can cancel individual orders and close your account.',
 
   'cancellationPolicyPage.sections.beforeTesting.title': 'Order Cancellation Before Testing Begins',
-  'cancellationPolicyPage.sections.beforeTesting.p1': 'You may cancel your order and receive a full refund if you request cancellation before we have assigned testers to your app. We typically begin tester assignment within 6 hours of payment confirmation.',
+  'cancellationPolicyPage.sections.beforeTesting.p1': 'You may cancel your order and receive a full refund if you request cancellation before we have assigned testers to your app. Tester assignment begins instantly after you submit your app for closed testing.',
   'cancellationPolicyPage.sections.beforeTesting.p2': 'To cancel an order before testing begins, email contact@fasttesters.com with the subject line "Order Cancellation" and include your app package name and the email address associated with your {brand} account.',
   'cancellationPolicyPage.sections.beforeTesting.p3': 'If testers have already been assigned to your app, the testing service is considered in progress and the order cannot be cancelled. At that point, our Refund Policy applies only under the conditions described in our Production Access Guarantee.',
   'cancellationPolicyPage.sections.beforeTesting.p4': 'We will confirm your cancellation request within 1–2 business days. Approved cancellations are refunded to your original payment method within 5–7 business days via Stripe.',

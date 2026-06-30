@@ -89,7 +89,7 @@ const steps = [
 
 const stats = [
   { labelKey: 'howItWorks.statSuccessRate', value: '99%', icon: Shield },
-  { labelKey: 'howItWorks.statTesterAssignment', value: '6 Hours', icon: Clock },
+  { labelKey: 'howItWorks.statTesterAssignment', value: 'Instant', icon: Clock },
   { labelKey: 'howItWorks.statTestingPeriod', value: '16 Days', icon: Star },
   { labelKey: 'howItWorks.statProfessionalTesters', value: '14', icon: Users },
 ];

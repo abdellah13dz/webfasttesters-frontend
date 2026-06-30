@@ -3,9 +3,49 @@
 import { useEffect, useCallback, useRef } from 'react';
 import { useRouter } from '@/lib/router';
 import { apiFetch } from '@/lib/api';
+import { hasAnalyticsConsent } from '@/lib/analytics-consent';
+import {
+  isFirebaseAnalyticsConfigured,
+  trackFirebaseEvent,
+  trackFirebasePageView,
+} from '@/lib/firebase-analytics';
+
+function trackFirebaseFromEvent(
+  eventType: string,
+  page: string,
+  element?: string,
+  metadata?: Record<string, string>
+): void {
+  if (!isFirebaseAnalyticsConfigured() || !hasAnalyticsConsent()) return;
+  if (eventType === 'page_view') return;
+
+  const params: Record<string, string> = { page_path: page, ...(metadata ?? {}) };
+  if (element) params.element = element;
+
+  if (eventType === 'cta_click') {
+    void trackFirebaseEvent('select_content', {
+      content_type: 'cta',
+      item_id: element ?? 'unknown',
+      ...params,
+    });
+    return;
+  }
+
+  if (eventType === 'form_submit') {
+    void trackFirebaseEvent('form_submit', {
+      form_id: element ?? 'unknown',
+      ...params,
+    });
+    return;
+  }
+
+  void trackFirebaseEvent(eventType, params);
+}
 
 // Track a single analytics event
 export async function trackEvent(eventType: string, page: string, element?: string, metadata?: Record<string, string>) {
+  trackFirebaseFromEvent(eventType, page, element, metadata);
+
   try {
     await apiFetch('/api/analytics', {
       method: 'POST',
@@ -24,6 +64,9 @@ export async function trackEvent(eventType: string, page: string, element?: stri
 
 // Track page view
 export function trackPageView(page: string) {
+  if (hasAnalyticsConsent()) {
+    void trackFirebasePageView(page);
+  }
   return trackEvent('page_view', page);
 }
 

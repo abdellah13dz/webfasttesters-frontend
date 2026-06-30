@@ -82,7 +82,7 @@ export const legalPagesTr: Record<string, string> = {
   'termsPolicy.sections.services.title': 'Hizmet Açıklaması',
   'termsPolicy.sections.services.p1': 'Fast Testers, geliştiricilerin Google Play Store\'un üretim erişimi için test gereksinimlerini karşılamalarına yardımcı olmak üzere tasarlanmış profesyonel uygulama test hizmetleri sunar.',
   'termsPolicy.sections.services.p2': 'Temel hizmetimiz, uygulamanızı 14-16 günlük bir test dönemi boyunca değerlendirmek için 14 profesyonel testçi atamayı içerir. Testçiler uygulamanızı yükleyecek, kullanacak ve geri bildirim sağlayacaktır.',
-  'termsPolicy.sections.services.p3': 'Ödeme onayından sonra 6 saat içinde testçi atamasına başlamaya çalışırız, ancak gerçek zamanlama talep ve uygulama karmaşıklığına göre değişebilir.',
+  'termsPolicy.sections.services.p3': 'Ödeme onayından sonra aninda içinde testçi atamasına başlamaya çalışırız, ancak gerçek zamanlama talep ve uygulama karmaşıklığına göre değişebilir.',
   'termsPolicy.sections.services.p4': 'Yasadışı içerik, kötü amaçlı yazılım içeren veya Google Play Store politikalarını ihlal eden herhangi bir uygulamaya hizmet vermeyi reddetme hakkını saklı tutarız.',
 
   'termsPolicy.sections.userAccounts.title': 'Kullanıcı Hesapları',
@@ -99,7 +99,7 @@ export const legalPagesTr: Record<string, string> = {
   'termsPolicy.sections.payment.p5': 'Tüm ücretler ABD Doları (USD) cinsinden belirtilir. Varsa döviz çevrim ücretleri kullanıcının sorumluluğundadır.',
 
   'termsPolicy.sections.cancellation.title': 'İptal Politikası',
-  'termsPolicy.sections.cancellation.p1': 'Uygulamanıza testçiler atanmadan önce (genellikle ödeme onayından sonraki 6 saat içinde) bizimle iletişime geçerseniz siparişinizi iptal edebilir ve tam geri ödeme alabilirsiniz.',
+  'termsPolicy.sections.cancellation.p1': 'Uygulamanıza testçiler atanmadan önce (genellikle ödeme onayından sonraki aninda içinde) bizimle iletişime geçerseniz siparişinizi iptal edebilir ve tam geri ödeme alabilirsiniz.',
   'termsPolicy.sections.cancellation.p2': 'Testçiler atandıktan ve test dönemi başladıktan sonra hizmet teslim edilmiş sayılır ve iptal edilemez.',
   'termsPolicy.sections.cancellation.p3': 'İptal talep etmek için sipariş detaylarınızla birlikte contact@fasttesters.com adresine e-posta gönderin. Onaylanan iptaller, Stripe aracılığıyla 5-10 iş günü içinde orijinal ödeme yönteminize iade edilir.',
   'termsPolicy.sections.cancellation.p4': 'Hizmet tamamlandıktan sonra geri ödeme uygunluğu için lütfen Geri Ödeme Politikamıza ve Üretim Erişimi Garantimize bakın.',

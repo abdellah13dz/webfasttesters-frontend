@@ -344,7 +344,7 @@ function InstructionsPanel() {
           </p>
           <div className="space-y-2 mb-4">
             {[
-              { icon: Zap, text: '12 testers within 6 hours' },
+              { icon: Zap, text: '15 testers assigned instantly' },
               { icon: Clock, text: 'Full 14-day managed cycle' },
               { icon: RotateCcw, text: '100% refund if rejected' },
             ].map(({ icon: Icon, text }) => (

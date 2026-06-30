@@ -82,7 +82,7 @@ export const legalPagesEs: Record<string, string> = {
   'termsPolicy.sections.services.title': 'Descripción de los Servicios',
   'termsPolicy.sections.services.p1': 'Fast Testers proporciona servicios profesionales de pruebas de aplicaciones diseñados para ayudar a los desarrolladores a cumplir los requisitos de pruebas de Google Play Store para el acceso a producción.',
   'termsPolicy.sections.services.p2': 'Nuestro servicio principal incluye asignar 14 testers profesionales para evaluar su aplicación durante un período de pruebas de 14-16 días. Los testers instalarán, usarán y proporcionarán comentarios sobre su aplicación.',
-  'termsPolicy.sections.services.p3': 'Nos esforzamos por comenzar la asignación de testers en un plazo de 6 horas tras la confirmación del pago, aunque el tiempo real puede variar según la demanda y la complejidad de la aplicación.',
+  'termsPolicy.sections.services.p3': 'Nos esforzamos por comenzar la asignación de testers inmediatamente tras el envio tras la confirmación del pago, aunque el tiempo real puede variar según la demanda y la complejidad de la aplicación.',
   'termsPolicy.sections.services.p4': 'Nos reservamos el derecho de rechazar el servicio a cualquier aplicación que contenga contenido ilegal, malware o que viole las políticas de Google Play Store.',
 
   'termsPolicy.sections.userAccounts.title': 'Cuentas de Usuario',
@@ -99,7 +99,7 @@ export const legalPagesEs: Record<string, string> = {
   'termsPolicy.sections.payment.p5': 'Todas las tarifas se cotizan en dólares estadounidenses (USD). Los cargos por conversión de moneda, si aplican, son responsabilidad del usuario.',
 
   'termsPolicy.sections.cancellation.title': 'Política de Cancelación',
-  'termsPolicy.sections.cancellation.p1': 'Puede cancelar su pedido y recibir un reembolso completo si nos contacta antes de que se asignen testers a su aplicación (normalmente en un plazo de 6 horas tras la confirmación del pago).',
+  'termsPolicy.sections.cancellation.p1': 'Puede cancelar su pedido y recibir un reembolso completo si nos contacta antes de que se asignen testers a su aplicación (normalmente inmediatamente tras el envio tras la confirmación del pago).',
   'termsPolicy.sections.cancellation.p2': 'Una vez que se hayan asignado testers y haya comenzado el período de pruebas, el servicio se considera entregado y no es cancelable.',
   'termsPolicy.sections.cancellation.p3': 'Para solicitar una cancelación, envíe un correo a contact@fasttesters.com con los detalles de su pedido. Las cancelaciones aprobadas se reembolsan al método de pago original en un plazo de 5 a 10 días hábiles a través de Stripe.',
   'termsPolicy.sections.cancellation.p4': 'Para la elegibilidad de reembolso tras la finalización del servicio, consulte nuestra Política de Reembolso y la Garantía de Acceso a Producción.',

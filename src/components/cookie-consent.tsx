@@ -5,7 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useLanguage } from '@/lib/i18n/context';
 import { useRouter } from '@/lib/router';
-import { grantAnalyticsConsent, trackPageView } from '@/lib/google-tracking';
+import { grantAnalyticsConsent, trackPageView as trackGooglePageView } from '@/lib/google-tracking';
+import { trackPageView } from '@/lib/analytics';
 
 const STORAGE_KEY = 'ft-cookies-accepted';
 
@@ -46,6 +47,7 @@ export function CookieConsent() {
   const handleAccept = () => {
     localStorage.setItem(STORAGE_KEY, 'accepted');
     grantAnalyticsConsent();
+    trackGooglePageView(window.location.pathname);
     trackPageView(window.location.pathname);
     setVisible(false);
   };

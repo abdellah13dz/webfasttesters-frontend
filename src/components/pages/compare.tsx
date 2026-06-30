@@ -353,7 +353,7 @@ export default function ComparePage() {
                 <Clock className="h-5 w-5 text-blue-400" />
               </div>
               <div className="text-left">
-                <p className="text-lg font-bold text-foreground">6h</p>
+                <p className="text-lg font-bold text-foreground">Instant</p>
                 <p className="text-xs text-muted-foreground">{t('compare.statAssignment')}</p>
               </div>
             </div>
