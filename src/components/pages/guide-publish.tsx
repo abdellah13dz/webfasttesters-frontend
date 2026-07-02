@@ -24,6 +24,7 @@ import {
   TestTube,
   Send,
 } from 'lucide-react';
+import { AppSetupGuideCta } from '@/components/app-setup-guide-cta';
 
 const steps = [
   {
@@ -305,6 +306,8 @@ export default function GuidePublishPage() {
           </div>
         </div>
       </section>
+
+      <AppSetupGuideCta trackingId="guide_publish_setup_guide" />
 
       <section className="border-t border-border bg-background">
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">

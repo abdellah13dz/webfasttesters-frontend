@@ -9,6 +9,7 @@ import { usePricingPlans } from '@/lib/hooks/use-pricing-plans';
 import { formatPlanPrice, parsePlanFeatures } from '@/lib/pricing';
 import { StripePoweredBadge } from '@/components/stripe-powered-badge';
 import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
+import { FullDemoCta } from '@/components/full-demo-cta';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -539,6 +540,8 @@ export default function Pricing() {
           </div>
         </section>
       </AnimatedSection>
+
+      <FullDemoCta trackingId="pricing_full_demo" />
 
       {/* Bottom CTA */}
       <AnimatedSection>

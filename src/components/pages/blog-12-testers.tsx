@@ -24,6 +24,7 @@ import {
   AlertTriangle,
   Sparkles,
 } from 'lucide-react';
+import { AppSetupGuideCta } from '@/components/app-setup-guide-cta';
 
 const relatedPosts = [
   {
@@ -537,6 +538,8 @@ export default function Blog12TestersPage() {
           </div>
         </div>
       </section>
+
+      <AppSetupGuideCta trackingId="blog_12_testers_setup_guide" />
 
       <section className="border-t border-border bg-background">
         <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">

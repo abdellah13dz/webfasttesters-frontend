@@ -20,6 +20,7 @@ import {
   UserX,
   Timer,
 } from 'lucide-react'
+import { AppSetupGuideCta } from '@/components/app-setup-guide-cta'
 
 export default function AndroidAppTestersPage() {
   const { navigate } = useRouter()
@@ -263,6 +264,8 @@ export default function AndroidAppTestersPage() {
           </div>
         </div>
       </section>
+
+      <AppSetupGuideCta trackingId="android_app_testers_setup_guide" />
 
       {/* CTA Section */}
       <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">

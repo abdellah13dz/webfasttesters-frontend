@@ -47,6 +47,8 @@ import {
 } from 'lucide-react';
 import { ClientOnly } from '@/components/client-only';
 import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
+import { FullDemoCta } from '@/components/full-demo-cta';
+import { AppSetupGuideCta } from '@/components/app-setup-guide-cta';
 
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '';
 
@@ -354,6 +356,10 @@ export default function SubmitAppPage() {
           </div>
         </div>
       </section>
+
+      <AppSetupGuideCta trackingId="submit_app_setup_guide" />
+
+      <FullDemoCta trackingId="submit_app_full_demo" />
 
       {/* ═══════════════════════════════════════════════════════════════════
           REQUIREMENTS CHECKLIST SECTION

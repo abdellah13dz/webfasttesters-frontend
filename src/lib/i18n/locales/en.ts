@@ -166,6 +166,34 @@ export const en: Record<string, string> = {
   'home.seeTestingInAction': 'See Our Testing in Action',
   'home.viewDemo': 'View Demo',
 
+  // Full interactive dashboard demo (app.fasttesters.com/demo)
+  'fullDemo.badge': 'Full Dashboard Demo',
+  'fullDemo.title': 'Try the Complete Close Testing Dashboard',
+  'fullDemo.subtitle':
+    'Open our full-screen interactive demo — the same dashboard layout you get after submitting your app. Explore progress, testers, reports, and instructions with no sign-up.',
+  'fullDemo.note':
+    'Sample app: Meal Chaos — 10 days of testing completed, 15 active testers, and production access reports ready.',
+  'fullDemo.feature1': 'Real dashboard layout with overview, fixes, progress & instructions',
+  'fullDemo.feature2': '15 active testers and live engagement stats',
+  'fullDemo.feature3': '16-day testing timeline with day-by-day progress',
+  'fullDemo.feature4': 'Sample feedback reports and production access Q&A',
+  'fullDemo.cta': 'Open Full Demo',
+  'fullDemo.ctaHint': 'Opens in a new tab — no account required',
+
+  // Play Console setup guide (app.fasttesters.com/guide/app-setup)
+  'appSetupGuide.badge': 'Play Console Setup Guide',
+  'appSetupGuide.title': 'Google Play Console Setup for Closed Testing',
+  'appSetupGuide.subtitle':
+    'Follow these Play Console steps before submitting your app to Fast Testers. Screenshots, video walkthrough, and step-by-step instructions included.',
+  'appSetupGuide.note':
+    'Free apps use the closed testing guide. Paid apps and in-app purchases also need license testing.',
+  'appSetupGuide.feature1': 'Add our testers Google Group to your closed testing track',
+  'appSetupGuide.feature2': 'Enable global testing so international testers can access your app',
+  'appSetupGuide.feature3': 'Submit your changes to Google for review (usually 30–60 minutes)',
+  'appSetupGuide.feature4': 'Activate testing after approval to start the 16-day period',
+  'appSetupGuide.cta': 'Open Setup Guide',
+  'appSetupGuide.ctaHint': 'Opens on app.fasttesters.com in a new tab',
+
   // Comparison table
   'home.whyDevelopersChoose': 'Why Developers Choose Fast Testers',
   'home.comparisonFeature': 'Feature',

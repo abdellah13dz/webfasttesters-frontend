@@ -26,6 +26,7 @@ import {
   BookOpen,
   TrendingUp,
 } from 'lucide-react';
+import { AppSetupGuideCta } from '@/components/app-setup-guide-cta';
 
 function AnimatedSection({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -406,6 +407,8 @@ export default function SupportPage() {
       </AnimatedSection>
 
       <Separator className="mx-auto max-w-7xl" />
+
+      <AppSetupGuideCta trackingId="support_setup_guide" />
 
       {/* CTA Section */}
       <AnimatedSection delay={400}>

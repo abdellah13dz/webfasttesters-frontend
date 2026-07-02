@@ -1,7 +1,10 @@
 'use client'
 
 import { useRouter } from '@/lib/router'
+import { openAppDemo } from '@/lib/app-urls'
 import { useLanguage } from '@/lib/i18n/context'
+import { useAnalytics } from '@/lib/analytics'
+import { FullDemoCta } from '@/components/full-demo-cta'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -21,6 +24,7 @@ import {
   BarChart3,
   Circle,
   CheckCircle2,
+  ExternalLink,
 } from 'lucide-react'
 
 const timelineSteps = [
@@ -197,6 +201,7 @@ const testingTimelineEntries = [
 export default function SampleAppPage() {
   const { navigate } = useRouter()
   const { t } = useLanguage()
+  const { trackCta } = useAnalytics()
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -236,6 +241,18 @@ export default function SampleAppPage() {
               variant="outline"
               className="border-border text-foreground/80 hover:bg-muted"
               onClick={() => {
+                trackCta('sample_app_full_demo')
+                openAppDemo()
+              }}
+            >
+              <ExternalLink className="mr-2 size-4" />
+              {t('fullDemo.cta')}
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-border text-foreground/80 hover:bg-muted"
+              onClick={() => {
                 const el = document.getElementById('timeline-section')
                 el?.scrollIntoView({ behavior: 'smooth' })
               }}
@@ -246,6 +263,8 @@ export default function SampleAppPage() {
           </div>
         </div>
       </section>
+
+      <FullDemoCta trackingId="sample_app_full_demo" />
 
       {/* Sample App Details Section */}
       <section className="mx-auto max-w-5xl px-4 sm:px-6 pb-16">

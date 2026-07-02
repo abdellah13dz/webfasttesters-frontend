@@ -45,6 +45,7 @@ import {
 } from 'lucide-react';
 import { NewsletterSection } from '@/components/newsletter-section';
 import { LiveDemoDashboard } from '@/components/live-demo-dashboard';
+import { FullDemoCta } from '@/components/full-demo-cta';
 import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
 
 // ─── Animated Counter Hook ─────────────────────────────────────────────
@@ -788,6 +789,8 @@ export default function HomePage() {
           </AnimatedSection>
         </div>
       </section>
+
+      <FullDemoCta trackingId="home_full_demo" />
 
       {/* ═══════════════════════════════════════════════════════════════════
           DASHBOARD PREVIEW

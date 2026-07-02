@@ -166,6 +166,32 @@ export const tr: Record<string, string> = {
   'home.seeTestingInAction': 'Testlerimizi Aksiyonda Görün',
   'home.viewDemo': 'Demoyu Gör',
 
+  'fullDemo.badge': 'Tam Panel Demosu',
+  'fullDemo.title': 'Tam Kapalı Test Panelini Deneyin',
+  'fullDemo.subtitle':
+    'Tam ekran interaktif demomuzu açın — uygulamanızı gönderdikten sonra aldığınız panel düzeniyle aynı. Kayıt olmadan ilerleme, testçiler, raporlar ve talimatları keşfedin.',
+  'fullDemo.note':
+    'Örnek uygulama: Meal Chaos — 10 gün test tamamlandı, 15 aktif testçi ve production access raporları hazır.',
+  'fullDemo.feature1': 'Genel bakış, düzeltmeler, ilerleme ve talimatlarla gerçek panel düzeni',
+  'fullDemo.feature2': '15 aktif testçi ve canlı katılım istatistikleri',
+  'fullDemo.feature3': 'Günlük ilerlemeli 16 günlük test zaman çizelgesi',
+  'fullDemo.feature4': 'Örnek geri bildirim raporları ve production access S&C',
+  'fullDemo.cta': 'Tam Demoyu Aç',
+  'fullDemo.ctaHint': 'Yeni sekmede açılır — hesap gerekmez',
+
+  'appSetupGuide.badge': 'Play Console Kurulum Rehberi',
+  'appSetupGuide.title': 'Kapalı Test için Google Play Console Kurulumu',
+  'appSetupGuide.subtitle':
+    'Uygulamanızı Fast Testers\'a göndermeden önce bu Play Console adımlarını izleyin. Ekran görüntüleri, video ve adım adım talimatlar dahildir.',
+  'appSetupGuide.note':
+    'Ücretsiz uygulamalar kapalı test rehberini kullanır. Ücretli uygulamalar ve uygulama içi satın almalar için lisans testi de gerekir.',
+  'appSetupGuide.feature1': 'Kapalı test kanalınıza testçi Google Grubumuzu ekleyin',
+  'appSetupGuide.feature2': 'Uluslararası testçilerin uygulamanıza erişmesi için global testi etkinleştirin',
+  'appSetupGuide.feature3': 'Değişikliklerinizi Google incelemesine gönderin (genellikle 30–60 dakika)',
+  'appSetupGuide.feature4': 'Onaydan sonra testi etkinleştirerek 16 günlük süreyi başlatın',
+  'appSetupGuide.cta': 'Kurulum Rehberini Aç',
+  'appSetupGuide.ctaHint': 'app.fasttesters.com\'da yeni sekmede açılır',
+
   // Comparison table
   'home.whyDevelopersChoose': 'Geliştiriciler Neden Fast Testers\'ı Seçiyor',
   'home.comparisonFeature': 'Özellik',

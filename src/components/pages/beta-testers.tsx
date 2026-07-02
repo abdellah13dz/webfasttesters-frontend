@@ -22,6 +22,7 @@ import {
   ChevronRight,
   Shield,
 } from 'lucide-react'
+import { AppSetupGuideCta } from '@/components/app-setup-guide-cta'
 
 const methods = [
   {
@@ -488,6 +489,8 @@ export default function BetaTestersPage() {
           </div>
         </div>
       </section>
+
+      <AppSetupGuideCta trackingId="beta_testers_setup_guide" />
 
       {/* CTA Section */}
       <section className="border-t border-border bg-background">

@@ -5,6 +5,7 @@ import { useRouter } from '@/lib/router';
 import { APP_URL } from '@/lib/app-urls';
 import { useLanguage } from '@/lib/i18n/context';
 import { useAnalytics } from '@/lib/analytics';
+import { FullDemoCta } from '@/components/full-demo-cta';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -794,6 +795,8 @@ export default function ComparePage() {
           </div>
         </div>
       </section>
+
+      <FullDemoCta trackingId="compare_full_demo" />
 
       {/* ═══════════════════════════════════════════════════════════════════
           CTA SECTION

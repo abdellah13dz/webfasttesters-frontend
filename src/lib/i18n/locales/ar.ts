@@ -167,6 +167,32 @@ export const ar: Record<string, string> = {
   'home.seeTestingInAction': 'شاهد اختبارنا في العمل',
   'home.viewDemo': 'عرض التجريبي',
 
+  'fullDemo.badge': 'عرض لوحة التحكم الكامل',
+  'fullDemo.title': 'جرّب لوحة الاختبار المغلق الكاملة',
+  'fullDemo.subtitle':
+    'افتح العرض التفاعلي بملء الشاشة — نفس تصميم لوحة التحكم التي تحصل عليها بعد إرسال تطبيقك. استكشف التقدم والمختبرين والتقارير والتعليمات دون تسجيل.',
+  'fullDemo.note':
+    'تطبيق تجريبي: Meal Chaos — 10 أيام اختبار مكتملة، 15 مختبراً نشطاً وتقارير الوصول للإنتاج جاهزة.',
+  'fullDemo.feature1': 'تصميم لوحة حقيقي مع نظرة عامة وإصلاحات وتقدم وتعليمات',
+  'fullDemo.feature2': '15 مختبراً نشطاً وإحصائيات مشاركة مباشرة',
+  'fullDemo.feature3': 'جدول اختبار 16 يوماً مع تقدم يومي',
+  'fullDemo.feature4': 'تقارير ملاحظات نموذجية وأسئلة وأجوبة الوصول للإنتاج',
+  'fullDemo.cta': 'فتح العرض الكامل',
+  'fullDemo.ctaHint': 'يفتح في تبويب جديد — لا حاجة لحساب',
+
+  'appSetupGuide.badge': 'دليل إعداد Play Console',
+  'appSetupGuide.title': 'إعداد Google Play Console للاختبار المغلق',
+  'appSetupGuide.subtitle':
+    'اتبع خطوات Play Console هذه قبل إرسال تطبيقك إلى Fast Testers. يتضمن لقطات شاشة وفيديو وتعليمات خطوة بخطوة.',
+  'appSetupGuide.note':
+    'التطبيقات المجانية تستخدم دليل الاختبار المغلق. التطبيقات المدفوعة والمشتريات داخل التطبيق تحتاج أيضاً إلى اختبار الترخيص.',
+  'appSetupGuide.feature1': 'أضف مجموعة Google الخاصة بمختبرينا إلى مسار الاختبار المغلق',
+  'appSetupGuide.feature2': 'فعّل الاختبار العالمي ليتمكن المختبرون الدوليون من الوصول إلى تطبيقك',
+  'appSetupGuide.feature3': 'أرسل تغييراتك إلى Google للمراجعة (عادة 30–60 دقيقة)',
+  'appSetupGuide.feature4': 'فعّل الاختبار بعد الموافقة لبدء فترة الـ16 يوماً',
+  'appSetupGuide.cta': 'فتح دليل الإعداد',
+  'appSetupGuide.ctaHint': 'يفتح على app.fasttesters.com في تبويب جديد',
+
   // Comparison table
   'home.whyDevelopersChoose': 'لماذا يختار المطورون Fast Testers',
   'home.comparisonFeature': 'الميزة',

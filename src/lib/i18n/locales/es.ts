@@ -166,6 +166,32 @@ export const es: Record<string, string> = {
   'home.seeTestingInAction': 'Ve nuestras pruebas en acción',
   'home.viewDemo': 'Ver Demo',
 
+  'fullDemo.badge': 'Demo Completo del Panel',
+  'fullDemo.title': 'Prueba el Panel Completo de Pruebas Cerradas',
+  'fullDemo.subtitle':
+    'Abre nuestra demo interactiva a pantalla completa — el mismo diseño del panel que obtienes después de enviar tu app. Explora progreso, testers, informes e instrucciones sin registrarte.',
+  'fullDemo.note':
+    'App de ejemplo: Meal Chaos — 10 días de pruebas completados, 15 testers activos e informes de acceso a producción listos.',
+  'fullDemo.feature1': 'Diseño real del panel con resumen, correcciones, progreso e instrucciones',
+  'fullDemo.feature2': '15 testers activos y estadísticas de participación en vivo',
+  'fullDemo.feature3': 'Cronograma de 16 días con progreso día a día',
+  'fullDemo.feature4': 'Informes de feedback de ejemplo y Q&A de acceso a producción',
+  'fullDemo.cta': 'Abrir Demo Completo',
+  'fullDemo.ctaHint': 'Se abre en una nueva pestaña — no requiere cuenta',
+
+  'appSetupGuide.badge': 'Guía de configuración de Play Console',
+  'appSetupGuide.title': 'Configuración de Google Play Console para pruebas cerradas',
+  'appSetupGuide.subtitle':
+    'Sigue estos pasos en Play Console antes de enviar tu app a Fast Testers. Incluye capturas, video y instrucciones paso a paso.',
+  'appSetupGuide.note':
+    'Las apps gratuitas usan la guía de pruebas cerradas. Las apps de pago y con compras integradas también necesitan pruebas de licencia.',
+  'appSetupGuide.feature1': 'Añade nuestro grupo de Google de testers a tu pista de pruebas cerradas',
+  'appSetupGuide.feature2': 'Habilita pruebas globales para que testers internacionales accedan a tu app',
+  'appSetupGuide.feature3': 'Envía tus cambios a Google para revisión (normalmente 30–60 minutos)',
+  'appSetupGuide.feature4': 'Activa las pruebas tras la aprobación para iniciar el periodo de 16 días',
+  'appSetupGuide.cta': 'Abrir guía de configuración',
+  'appSetupGuide.ctaHint': 'Se abre en app.fasttesters.com en una nueva pestaña',
+
   // Comparison table
   'home.whyDevelopersChoose': 'Por qué los desarrolladores eligen Fast Testers',
   'home.comparisonFeature': 'Característica',

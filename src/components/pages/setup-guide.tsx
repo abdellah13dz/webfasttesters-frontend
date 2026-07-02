@@ -20,6 +20,7 @@ import {
   BookOpen,
   XCircle,
 } from 'lucide-react'
+import { AppSetupGuideCta } from '@/components/app-setup-guide-cta'
 
 const steps = [
   {
@@ -296,6 +297,8 @@ export default function SetupGuidePage() {
           </Card>
         </div>
       </section>
+
+      <AppSetupGuideCta trackingId="setup_guide_setup_guide" />
 
       {/* CTA */}
       <section className="border-t border-border bg-background">

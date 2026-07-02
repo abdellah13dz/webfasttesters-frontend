@@ -1,6 +1,22 @@
 /** Main CRM dashboard — use for Get Started / Sign Up CTAs */
 export const APP_URL = 'https://app.fasttesters.com/';
 
+/** Interactive full-screen close testing dashboard demo */
+export const APP_DEMO_URL = 'https://app.fasttesters.com/demo';
+
+/** Play Console closed-testing setup guide with screenshots and video */
+export const APP_SETUP_GUIDE_URL = 'https://app.fasttesters.com/guide/app-setup';
+
+export function openAppDemo(): void {
+  if (typeof window === 'undefined') return;
+  window.open(APP_DEMO_URL, '_blank', 'noopener,noreferrer');
+}
+
+export function openAppSetupGuide(): void {
+  if (typeof window === 'undefined') return;
+  window.open(APP_SETUP_GUIDE_URL, '_blank', 'noopener,noreferrer');
+}
+
 /** Free testers community — peer-to-peer closed testing help */
 export const COMMUNITY_URL = 'https://community.fasttesters.com/';
 

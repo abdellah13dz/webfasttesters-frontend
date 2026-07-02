@@ -20,6 +20,8 @@ import {
   Star,
 } from 'lucide-react';
 import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
+import { FullDemoCta } from '@/components/full-demo-cta';
+import { AppSetupGuideCta } from '@/components/app-setup-guide-cta';
 
 function AnimatedSection({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -204,6 +206,10 @@ export default function HowItWorks() {
           })}
         </div>
       </section>
+
+      <AppSetupGuideCta trackingId="how_it_works_setup_guide" />
+
+      <FullDemoCta trackingId="how_it_works_full_demo" />
 
       {/* Stats Bar */}
       <AnimatedSection>
