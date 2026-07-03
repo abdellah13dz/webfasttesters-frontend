@@ -10,6 +10,46 @@ import {
   trackFirebasePageView,
 } from '@/lib/firebase-analytics';
 
+const VISITOR_KEY = 'ft_vid';
+const SESSION_KEY = 'ft_sid';
+
+function createId(): string {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+    return crypto.randomUUID();
+  }
+  return `ft_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
+}
+
+function getOrCreateStorageId(storage: Storage, key: string): string {
+  try {
+    const existing = storage.getItem(key);
+    if (existing) return existing;
+    const id = createId();
+    storage.setItem(key, id);
+    return id;
+  } catch {
+    return createId();
+  }
+}
+
+function getVisitorContext() {
+  if (typeof window === 'undefined') {
+    return {
+      visitorId: null as string | null,
+      sessionId: null as string | null,
+      referrer: null as string | null,
+      language: null as string | null,
+    };
+  }
+
+  return {
+    visitorId: getOrCreateStorageId(window.localStorage, VISITOR_KEY),
+    sessionId: getOrCreateStorageId(window.sessionStorage, SESSION_KEY),
+    referrer: document.referrer || null,
+    language: navigator.language || null,
+  };
+}
+
 function trackFirebaseFromEvent(
   eventType: string,
   page: string,
@@ -43,10 +83,16 @@ function trackFirebaseFromEvent(
 }
 
 // Track a single analytics event
-export async function trackEvent(eventType: string, page: string, element?: string, metadata?: Record<string, string>) {
+export async function trackEvent(
+  eventType: string,
+  page: string,
+  element?: string,
+  metadata?: Record<string, string>
+) {
   trackFirebaseFromEvent(eventType, page, element, metadata);
 
   try {
+    const context = getVisitorContext();
     await apiFetch('/api/analytics', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -54,7 +100,11 @@ export async function trackEvent(eventType: string, page: string, element?: stri
         eventType,
         page,
         element: element || null,
-        metadata: metadata ? JSON.stringify(metadata) : null,
+        metadata: metadata || null,
+        visitorId: context.visitorId,
+        sessionId: context.sessionId,
+        referrer: context.referrer,
+        language: context.language,
       }),
     });
   } catch {
@@ -96,13 +146,19 @@ export function useAnalytics() {
     }
   }, [currentPath]);
 
-  const trackCta = useCallback((element: string, metadata?: Record<string, string>) => {
-    trackCtaClick(currentPath, element, metadata);
-  }, [currentPath]);
+  const trackCta = useCallback(
+    (element: string, metadata?: Record<string, string>) => {
+      trackCtaClick(currentPath, element, metadata);
+    },
+    [currentPath]
+  );
 
-  const trackForm = useCallback((element: string, metadata?: Record<string, string>) => {
-    trackFormSubmit(currentPath, element, metadata);
-  }, [currentPath]);
+  const trackForm = useCallback(
+    (element: string, metadata?: Record<string, string>) => {
+      trackFormSubmit(currentPath, element, metadata);
+    },
+    [currentPath]
+  );
 
   return { trackCta, trackForm, trackEvent };
 }
