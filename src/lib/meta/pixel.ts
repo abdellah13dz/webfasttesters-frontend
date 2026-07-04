@@ -1,5 +1,5 @@
 import { getMetaPixelId } from './config';
-import { metaDebug } from './debug';
+import { metaDebug, metaWarn } from './debug';
 import { buildAdvancedMatchingParams } from './user-data';
 import type { MetaUserDataInput } from './types';
 
@@ -40,13 +40,29 @@ export function initMetaPixel(userData?: MetaUserDataInput | null): boolean {
   return true;
 }
 
+/** Attempt init before each track — fbq stub queues calls before fbevents.js finishes loading. */
+function ensurePixelReady(userData?: MetaUserDataInput | null): boolean {
+  if (!getMetaPixelId()) return false;
+  if (initialized) return true;
+  return initMetaPixel(userData ?? undefined);
+}
+
 export function trackMetaPixelEvent(
   eventName: string,
   customData?: Record<string, unknown>,
   eventId?: string,
-): void {
+  userData?: MetaUserDataInput | null,
+): boolean {
+  if (!ensurePixelReady(userData)) {
+    metaWarn('Pixel not ready — browser event skipped', { eventName, eventId });
+    return false;
+  }
+
   const fbq = getFbq();
-  if (!fbq || !initialized) return;
+  if (!fbq) {
+    metaWarn('fbq unavailable — browser event skipped', { eventName, eventId });
+    return false;
+  }
 
   const payload = customData && Object.keys(customData).length > 0 ? customData : undefined;
   const options = eventId ? { eventID: eventId } : undefined;
@@ -62,8 +78,9 @@ export function trackMetaPixelEvent(
   }
 
   metaDebug('Pixel event', { eventName, eventId });
+  return true;
 }
 
-export function trackMetaPixelPageView(eventId?: string): void {
-  trackMetaPixelEvent('PageView', undefined, eventId);
+export function trackMetaPixelPageView(eventId?: string, userData?: MetaUserDataInput | null): boolean {
+  return trackMetaPixelEvent('PageView', undefined, eventId, userData);
 }

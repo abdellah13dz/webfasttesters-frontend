@@ -1,7 +1,7 @@
 'use client';
 
 import Script from 'next/script';
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   getMetaPixelId,
   isMetaPixelConfigured,
@@ -21,14 +21,38 @@ interface MetaPixelProps {
   requireConsent?: boolean;
 }
 
+function MetaPageViewTracker({
+  currentPath,
+  pixelReady,
+  userData,
+  requireConsent,
+}: {
+  currentPath?: string;
+  pixelReady: boolean;
+  userData?: MetaUserDataInput | null;
+  requireConsent: boolean;
+}) {
+  const lastTrackedPathRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!pixelReady || !isMetaPixelConfigured()) return;
+    if (requireConsent && !hasMetaTrackingConsent()) return;
+    if (!currentPath || lastTrackedPathRef.current === currentPath) return;
+    lastTrackedPathRef.current = currentPath;
+    trackMetaPageView(userData ?? undefined);
+  }, [currentPath, pixelReady, userData, requireConsent]);
+
+  return null;
+}
+
 export function MetaPixel({
   currentPath,
   userData,
   requireConsent = false,
 }: MetaPixelProps) {
   const pixelId = getMetaPixelId();
-  const scriptReadyRef = useRef(false);
-  const lastPathRef = useRef<string | null>(null);
+  const [pixelReady, setPixelReady] = useState(false);
+  const [consentTick, setConsentTick] = useState(0);
 
   useEffect(() => {
     captureFbclidFromUrl();
@@ -36,22 +60,32 @@ export function MetaPixel({
   }, []);
 
   useEffect(() => {
-    if (!isMetaPixelConfigured() || !scriptReadyRef.current) return;
-    if (requireConsent && !hasMetaTrackingConsent()) return;
-    updateMetaUserData(userData);
-  }, [userData, requireConsent]);
-
-  useEffect(() => {
-    if (!isMetaPixelConfigured() || !scriptReadyRef.current) return;
-    if (requireConsent && !hasMetaTrackingConsent()) return;
-    if (!currentPath || lastPathRef.current === currentPath) return;
-    lastPathRef.current = currentPath;
-    trackMetaPageView(userData ?? undefined);
-  }, [currentPath, userData, requireConsent]);
-
-  if (!pixelId) return null;
+    if (!requireConsent) return;
+    const refresh = () => setConsentTick((n) => n + 1);
+    window.addEventListener('ft-meta-consent', refresh);
+    window.addEventListener('storage', refresh);
+    return () => {
+      window.removeEventListener('ft-meta-consent', refresh);
+      window.removeEventListener('storage', refresh);
+    };
+  }, [requireConsent]);
 
   const canLoad = !requireConsent || hasMetaTrackingConsent();
+  void consentTick;
+
+  useEffect(() => {
+    if (!pixelReady || !isMetaPixelConfigured()) return;
+    if (requireConsent && !hasMetaTrackingConsent()) return;
+    updateMetaUserData(userData);
+  }, [userData, pixelReady, requireConsent]);
+
+  const handlePixelReady = useCallback(() => {
+    if (requireConsent && !hasMetaTrackingConsent()) return;
+    initMetaPixel(userData ?? undefined);
+    setPixelReady(true);
+  }, [userData, requireConsent]);
+
+  if (!pixelId) return null;
 
   return (
     <>
@@ -68,18 +102,19 @@ export function MetaPixel({
             id="meta-pixel"
             strategy="afterInteractive"
             src="https://connect.facebook.net/en_US/fbevents.js"
-            onLoad={() => {
-              scriptReadyRef.current = true;
-              if (requireConsent && !hasMetaTrackingConsent()) return;
-              initMetaPixel(userData ?? undefined);
-              if (currentPath) {
-                lastPathRef.current = currentPath;
-                trackMetaPageView(userData ?? undefined);
-              }
-            }}
+            onReady={handlePixelReady}
+            onLoad={handlePixelReady}
           />
         </>
       )}
+      {canLoad && pixelReady ? (
+        <MetaPageViewTracker
+          currentPath={currentPath}
+          pixelReady={pixelReady}
+          userData={userData}
+          requireConsent={requireConsent}
+        />
+      ) : null}
       {canLoad && (
         <noscript>
           <img
@@ -95,6 +130,23 @@ export function MetaPixel({
   );
 }
 
+function installFbqBootstrap(): void {
+  if (typeof window === 'undefined' || window.fbq) return;
+  const stub = function (...args: unknown[]) {
+    if (stub.callMethod) {
+      stub.callMethod(...args);
+    } else {
+      stub.queue.push(args);
+    }
+  } as Window['fbq'] & { callMethod?: (...args: unknown[]) => void; queue: unknown[]; loaded?: boolean; version?: string; push?: Window['fbq'] };
+  stub.queue = [];
+  stub.loaded = true;
+  stub.version = '2.0';
+  stub.push = stub;
+  window.fbq = stub;
+  window._fbq = stub;
+}
+
 /** Re-initialize pixel after cookie consent is granted (marketing site). */
 export function activateMetaPixelAfterConsent(
   userData?: MetaUserDataInput | null,
@@ -102,7 +154,9 @@ export function activateMetaPixelAfterConsent(
 ): void {
   if (!isMetaPixelConfigured() || !hasMetaTrackingConsent()) return;
 
-  if (typeof window !== 'undefined' && !window.fbq) {
+  installFbqBootstrap();
+
+  if (typeof window !== 'undefined' && !document.getElementById('meta-pixel') && !document.getElementById('meta-pixel-deferred')) {
     const script = document.createElement('script');
     script.id = 'meta-pixel-deferred';
     script.async = true;
@@ -117,4 +171,5 @@ export function activateMetaPixelAfterConsent(
 
   initMetaPixel(userData ?? undefined);
   trackMetaPageView(userData ?? undefined);
+  window.dispatchEvent(new Event('ft-meta-consent'));
 }

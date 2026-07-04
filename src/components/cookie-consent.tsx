@@ -51,6 +51,7 @@ export function CookieConsent() {
     trackGooglePageView(window.location.pathname);
     trackPageView(window.location.pathname);
     activateMetaPixelAfterConsent(undefined, window.location.pathname);
+    window.dispatchEvent(new Event('ft-meta-consent'));
     setVisible(false);
   };
 

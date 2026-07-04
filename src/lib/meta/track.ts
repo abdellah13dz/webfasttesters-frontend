@@ -35,6 +35,24 @@ function sanitizeCustomData(
   return Object.keys(out).length > 0 ? out : undefined;
 }
 
+function mirrorToServer(
+  eventName: MetaEventName,
+  eventId: string,
+  options: MetaTrackOptions,
+  customData?: Record<string, string | number | boolean>,
+): void {
+  if (options.serverMirror === false) return;
+
+  void sendMetaServerEvent({
+    eventName,
+    eventId,
+    userData: options.userData,
+    customData,
+    fbp: getFbp(),
+    fbc: getFbc(),
+  });
+}
+
 export function ensureMetaReady(userData?: MetaUserDataInput | null): boolean {
   if (!hasMetaTrackingConsent()) return false;
   return initMetaPixel(userData);
@@ -49,30 +67,20 @@ export function trackMetaEvent(
   const eventId = options.eventId ?? createMetaEventId(eventName.toLowerCase());
   const customData = sanitizeCustomData(options.customData);
 
-  if (!ensureMetaReady(options.userData)) return null;
-
-  trackMetaPixelEvent(eventName, customData, eventId);
-
-  if (options.serverMirror !== false) {
-    void sendMetaServerEvent({
-      eventName,
-      eventId,
-      userData: options.userData,
-      customData,
-      fbp: getFbp(),
-      fbc: getFbc(),
-    });
-  }
+  trackMetaPixelEvent(eventName, customData, eventId, options.userData);
+  mirrorToServer(eventName, eventId, options, customData);
 
   metaDebug('Tracked event', { eventName, eventId });
   return eventId;
 }
 
-export function trackMetaPageView(userData?: MetaUserDataInput | null): void {
-  if (!hasMetaTrackingConsent()) return;
+export function trackMetaPageView(userData?: MetaUserDataInput | null): string | null {
+  if (!hasMetaTrackingConsent()) return null;
+
   const eventId = createMetaEventId('pageview');
-  if (!ensureMetaReady(userData)) return;
-  trackMetaPixelEvent('PageView', undefined, eventId);
+
+  trackMetaPixelEvent('PageView', undefined, eventId, userData ?? undefined);
+
   void sendMetaServerEvent({
     eventName: 'PageView',
     eventId,
@@ -80,11 +88,14 @@ export function trackMetaPageView(userData?: MetaUserDataInput | null): void {
     fbp: getFbp(),
     fbc: getFbc(),
   });
+
+  metaDebug('PageView tracked', { eventId });
+  return eventId;
 }
 
 export function updateMetaUserData(userData?: MetaUserDataInput | null): void {
   if (!userData || !hasMetaTrackingConsent()) return;
-  ensureMetaReady(userData);
+  initMetaPixel(userData);
 }
 
 export function trackMetaViewContent(
