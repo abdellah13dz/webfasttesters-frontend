@@ -26,9 +26,6 @@
     "paths": {
       "@/*": [
         "./src/*"
-      ],
-      "@meta-tracking/*": [
-        "../../shared/meta-tracking/browser/*"
       ]
     }
   },
@@ -36,6 +33,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.js",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],

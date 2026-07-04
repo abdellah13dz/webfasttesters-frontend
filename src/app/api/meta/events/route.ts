@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { sendMetaEvent } from '../../../../../../../shared/meta-tracking/server';
+import { sendMetaEvent } from '@/lib/meta/capi-client';
 
 export const runtime = 'nodejs';
 

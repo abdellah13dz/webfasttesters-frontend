@@ -12,7 +12,7 @@ import {
   captureMetaParamsFromUrl,
   hasMetaTrackingConsent,
 } from '@/lib/meta';
-import type { MetaUserDataInput } from '@meta-tracking/types';
+import type { MetaUserDataInput } from '@/lib/meta';
 
 interface MetaPixelProps {
   currentPath?: string;

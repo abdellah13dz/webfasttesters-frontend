@@ -1,6 +1,7 @@
 import { hasAnalyticsConsent } from '@/lib/analytics-consent';
-import { setMetaConsentChecker } from '@meta-tracking/track';
+import { setMetaConsentChecker } from './track';
 
 setMetaConsentChecker({ hasConsent: hasAnalyticsConsent });
 
-export * from '@meta-tracking/track';
+export * from './track';
+export type * from './types';
