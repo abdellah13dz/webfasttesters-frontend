@@ -6,6 +6,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from '@/lib/router';
 import { useLanguage } from '@/lib/i18n/context';
 import { useAnalytics } from '@/lib/analytics';
+import { trackMetaLead } from '@/lib/meta';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -144,6 +145,9 @@ export default function FeedbackPage() {
       }
 
       trackForm('feedback_form', { rating });
+      trackMetaLead('Feedback Form', {
+        customData: { content_name: 'Feedback Form', rating: String(rating) },
+      });
       setSubmitted(true);
     } catch {
       setSubmitError(t('feedback.submitError'));

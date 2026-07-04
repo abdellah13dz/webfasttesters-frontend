@@ -7,6 +7,7 @@ import { useLanguage } from '@/lib/i18n/context';
 import { useRouter } from '@/lib/router';
 import { grantAnalyticsConsent, trackPageView as trackGooglePageView } from '@/lib/google-tracking';
 import { trackPageView } from '@/lib/analytics';
+import { activateMetaPixelAfterConsent } from '@/components/meta-pixel';
 
 const STORAGE_KEY = 'ft-cookies-accepted';
 
@@ -49,6 +50,7 @@ export function CookieConsent() {
     grantAnalyticsConsent();
     trackGooglePageView(window.location.pathname);
     trackPageView(window.location.pathname);
+    activateMetaPixelAfterConsent(undefined, window.location.pathname);
     setVisible(false);
   };
 

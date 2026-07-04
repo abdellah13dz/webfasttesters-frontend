@@ -8,6 +8,7 @@ import { usePricingPlans } from '@/lib/hooks/use-pricing-plans';
 import { formatPlanPrice } from '@/lib/pricing';
 import { apiFetch } from '@/lib/api';
 import { useAnalytics } from '@/lib/analytics';
+import { trackMetaLead } from '@/lib/meta';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -279,6 +280,10 @@ export default function SubmitAppPage() {
       }
 
       trackForm('submit_app');
+      trackMetaLead('Submit App Form', {
+        userData: { email: email.trim(), firstName: name.trim() },
+        customData: { content_name: 'Submit App Form', plan: selectedPlanData?.label },
+      });
       setSubmitStatus('success');
       setSubmitMessage('App submitted successfully! Our team will review your submission within 2 hours.');
       setName('');

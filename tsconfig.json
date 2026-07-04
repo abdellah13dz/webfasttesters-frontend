@@ -26,6 +26,9 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "@meta-tracking/*": [
+        "../../shared/meta-tracking/browser/*"
       ]
     }
   },

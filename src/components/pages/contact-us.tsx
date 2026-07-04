@@ -15,6 +15,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from '@/lib/router';
 import { useLanguage } from '@/lib/i18n/context';
 import { useAnalytics } from '@/lib/analytics';
+import { trackMetaLead } from '@/lib/meta';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -193,6 +194,10 @@ export default function ContactUsPage() {
       }
 
       trackForm('contact_form', { subject: formData.subject });
+      trackMetaLead('Contact Form', {
+        userData: { email: formData.email, firstName: formData.name },
+        customData: { content_name: 'Contact Form', subject: formData.subject },
+      });
       setSubmitted(true);
       setTimeout(() => setSubmitted(false), 3000);
     } catch {
