@@ -33,7 +33,9 @@ import {
   MapPin,
   RefreshCw,
   CalendarRange,
+  Download,
 } from 'lucide-react';
+import { downloadAnalyticsCsv } from '@/lib/analytics-csv-export';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -160,6 +162,11 @@ export default function AdminAnalytics() {
   useEffect(() => {
     void fetchAnalytics();
   }, [fetchAnalytics]);
+
+  const handleExportCsv = useCallback(() => {
+    if (!data) return;
+    downloadAnalyticsCsv(data);
+  }, [data]);
 
   const dailyChartData = useMemo(
     () =>
@@ -439,6 +446,16 @@ export default function AdminAnalytics() {
                 >
                   <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
                   Refresh
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="default"
+                  onClick={handleExportCsv}
+                  disabled={loading || !data}
+                >
+                  <Download className="h-4 w-4" />
+                  Export CSV
                 </Button>
               </div>
             </div>
