@@ -89,6 +89,36 @@ export function getServiceSchema() {
 
 const FAQ_ENTRIES = [
   {
+    question: 'Will Google accept this?',
+    answer:
+      'Yes. Fast Testers provides real Android users who install your app through Google Play closed testing — exactly what Google requires for the 14-day, 12-tester production access rule.',
+  },
+  {
+    question: 'Are testers real?',
+    answer:
+      'Yes. Every tester is a real person with a genuine Android device and Google account. They install your app from the Play Store closed testing track.',
+  },
+  {
+    question: 'Do testers install my app?',
+    answer:
+      'Yes. Testers join your closed testing track and install your app from Google Play — the same flow Google monitors when reviewing your production access request.',
+  },
+  {
+    question: 'Can I publish immediately?',
+    answer:
+      'You must complete 14 consecutive days of closed testing with at least 12 testers before requesting production access. Fast Testers assigns testers in about one hour.',
+  },
+  {
+    question: 'Do I need to invite testers?',
+    answer:
+      'No manual recruiting. Submit your closed testing link after payment and professional testers are assigned automatically.',
+  },
+  {
+    question: 'What if production is rejected?',
+    answer:
+      'Fast Testers includes a production access guarantee with a full refund if your app does not achieve production access after our testing period.',
+  },
+  {
     question: 'What is the Google Play 12 testers for 14 days policy?',
     answer:
       'Google Play requires at least 12 real users to test your app for 14 consecutive days before personal developer accounts (created after November 13, 2023) can request production access.',
@@ -97,11 +127,6 @@ const FAQ_ENTRIES = [
     question: 'How does Fast Testers work?',
     answer:
       'Pay $15, submit your Google Play closed testing link, and testers are assigned instantly. Complete the 14-day closed testing period, then apply for production access.',
-  },
-  {
-    question: 'What if my app is rejected after testing?',
-    answer:
-      'Fast Testers offers a production access guarantee with a full refund if your app does not achieve production access after our testing period.',
   },
   {
     question: 'How fast do testers start?',

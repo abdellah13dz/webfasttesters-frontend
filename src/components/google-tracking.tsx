@@ -69,7 +69,13 @@ export function GoogleTracking() {
               function gtag(){dataLayer.push(arguments);}
               window.gtag = gtag;
               gtag('js', new Date());
-              gtag('config', '${gaId}', { send_page_view: false });
+              gtag('config', '${gaId}', {
+                send_page_view: false,
+                linker: {
+                  domains: ['fasttesters.com', 'www.fasttesters.com', 'app.fasttesters.com'],
+                  accept_incoming: true
+                }
+              });
             `}
           </Script>
         </>

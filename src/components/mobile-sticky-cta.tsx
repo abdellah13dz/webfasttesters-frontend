@@ -7,6 +7,7 @@ import { useLanguage } from '@/lib/i18n/context';
 import { useRouter } from '@/lib/router';
 import { useAnalytics } from '@/lib/analytics';
 import { APP_URL } from '@/lib/app-urls';
+import { appendCrossDomainParams } from '@/lib/cross-domain';
 
 export function MobileStickyCta() {
   const { t } = useLanguage();
@@ -37,8 +38,10 @@ export function MobileStickyCta() {
   if (shouldHide || footerVisible) return null;
 
   const handleGetStarted = () => {
-    trackCta('mobile_sticky_cta');
+    trackCta('mobile_sticky_cta', undefined, 'sticky_cta_click');
   };
+
+  const appUrlWithAttribution = appendCrossDomainParams(APP_URL);
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-30 md:hidden">
@@ -61,7 +64,7 @@ export function MobileStickyCta() {
             className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold h-10 shadow-lg shadow-blue-500/20 transition-all active:scale-[0.98]"
           >
             <a
-              href={APP_URL}
+              href={appUrlWithAttribution}
               onClick={handleGetStarted}
               rel="noopener noreferrer"
             >

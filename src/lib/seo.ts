@@ -346,6 +346,69 @@ export const pageSeoConfig: Record<string, PageSeo> = {
     type: 'article',
   },
 
+  '/google-play-12-testers': {
+    title: 'Google Play 12 Testers Requirement — Complete Guide | Fast Testers',
+    description:
+      'Google Play requires 12 testers for 14 days before production access. Learn the exact requirement and how Fast Testers assigns real testers in ~1 hour.',
+    keywords: mergeKeywords('google play 12 testers', '12 testers requirement'),
+    ogImage: '/images/illustrations/app-testing.png',
+    type: 'article',
+  },
+
+  '/google-play-14-day-testing': {
+    title: 'Google Play 14 Day Testing Requirement — Full Guide | Fast Testers',
+    description:
+      'Understand Google Play\'s mandatory 14-day closed testing period and how to complete it with 12+ real testers.',
+    keywords: mergeKeywords('google play 14 day testing', '14 day closed testing'),
+    ogImage: '/images/blog/closed-testing.png',
+    type: 'article',
+  },
+
+  '/google-play-personal-developer-account': {
+    title: 'Google Play Personal Developer Account Testing Rules | Fast Testers',
+    description:
+      'New personal Google Play developer accounts must complete 12 testers for 14 days before production.',
+    keywords: mergeKeywords('personal developer account google play', 'play console personal account'),
+    ogImage: '/images/blog/guide-publish.png',
+    type: 'article',
+  },
+
+  '/google-play-testing-service': {
+    title: 'Google Play Testing Service — Professional Closed Testing | Fast Testers',
+    description:
+      'Professional Google Play testing service: 15 real Android testers, production access guarantee. One-time $15.',
+    keywords: mergeKeywords('google play testing service', 'professional app testers'),
+    ogImage: '/images/illustrations/app-testing.png',
+    type: 'website',
+  },
+
+  '/google-play-requirement': {
+    title: 'Google Play Requirement for New Developers — 2026 Guide | Fast Testers',
+    description:
+      'All Google Play requirements for new personal developer accounts: 12 testers, 14 days, closed testing, production access.',
+    keywords: mergeKeywords('google play requirement', 'play store publishing requirements'),
+    ogImage: '/images/illustrations/success-approved.png',
+    type: 'article',
+  },
+
+  '/android-closed-testing': {
+    title: 'Android Closed Testing — Complete Guide for Google Play | Fast Testers',
+    description:
+      'Learn Android closed testing on Google Play: setup, tester management, and how to graduate to production.',
+    keywords: mergeKeywords('android closed testing', 'google play closed test'),
+    ogImage: '/images/blog/closed-testing.png',
+    type: 'article',
+  },
+
+  '/resources/google-play-checklist': {
+    title: 'Google Play Publishing Checklist (Free PDF) | Fast Testers',
+    description:
+      'Free Google Play publishing checklist: closed testing, 12 testers, 14 days, production access steps for indie developers.',
+    keywords: mergeKeywords('google play checklist', 'play store publishing checklist'),
+    ogImage: '/images/blog/guide-publish.png',
+    type: 'website',
+  },
+
   '/sample-app': {
     title:
       'Sample App - Fast Testers | Try Our Demo App Testing Experience',

@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useCallback } from 'react';
 import { usePathname, useRouter as useNextRouter } from 'next/navigation';
 import { isExternalUrl } from '@/lib/app-urls';
-import { appendMetaCrossDomainParams } from '@/lib/meta';
+import { appendCrossDomainParams } from '@/lib/cross-domain';
 
 interface RouterContextType {
   currentPath: string;
@@ -26,7 +26,7 @@ export function RouterProvider({ children }: { children: React.ReactNode }) {
   const navigate = useCallback(
     (path: string) => {
       if (isExternalUrl(path)) {
-        window.location.assign(appendMetaCrossDomainParams(path));
+        window.location.assign(appendCrossDomainParams(path));
         return;
       }
       if (pathname === path) {

@@ -1,9 +1,10 @@
 'use client';
 
-import { apiFetch } from '@/lib/api';
-
 import React, { useState } from 'react';
+import { apiFetch } from '@/lib/api';
 import { useLanguage } from '@/lib/i18n/context';
+import { useRouter } from '@/lib/router';
+import { useAnalytics, trackGa4Event } from '@/lib/analytics';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, Mail, AlertCircle, Loader2 } from 'lucide-react';
@@ -26,6 +27,8 @@ export function NewsletterSection({
   className = '',
 }: NewsletterSectionProps) {
   const { t } = useLanguage();
+  const { currentPath } = useRouter();
+  const { trackForm } = useAnalytics();
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
@@ -63,6 +66,8 @@ export function NewsletterSection({
         setStatus('success');
         setMessage(t('newsletter.success'));
         setEmail('');
+        trackGa4Event('newsletter_signup', currentPath);
+        trackForm('newsletter_signup');
       } else if (res.status === 409) {
         setStatus('error');
         setMessage(t('newsletter.alreadySubscribed'));

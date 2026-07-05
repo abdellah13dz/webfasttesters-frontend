@@ -15,6 +15,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from '@/lib/router';
 import { useLanguage } from '@/lib/i18n/context';
 import { useAnalytics } from '@/lib/analytics';
+import { trackGa4Event } from '@/lib/ga4-events';
 import { trackMetaLead } from '@/lib/meta';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -88,7 +89,8 @@ function AnimatedSection({ children, className = '', delay = 0 }: { children: Re
 export default function ContactUsPage() {
   const { navigate } = useRouter();
   const { t } = useLanguage();
-  const { trackForm } = useAnalytics();
+  const { trackForm, trackFormInteractionStart } = useAnalytics();
+  const formStarted = useRef(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -155,6 +157,12 @@ export default function ContactUsPage() {
       return null;
     }
   }, [recaptchaLoaded]);
+
+  const handleFormStart = () => {
+    if (formStarted.current) return;
+    formStarted.current = true;
+    trackFormInteractionStart('contact_form');
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -314,6 +322,7 @@ export default function ContactUsPage() {
                             id="name"
                             placeholder={t('contact.namePlaceholder')}
                             value={formData.name}
+                            onFocus={handleFormStart}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             className="bg-muted/30 border-border/50"
                           />

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from '@/lib/router';
+import { useAnalytics } from '@/lib/analytics';
 import { APP_LOGIN_URL, APP_URL } from '@/lib/app-urls';
 import { BrandLogo } from '@/components/brand-logo';
 import { useLanguage } from '@/lib/i18n/context';
@@ -28,6 +29,7 @@ const languages = [
 
 export function Header() {
   const { currentPath, navigate } = useRouter();
+  const { trackCta } = useAnalytics();
   const { theme, setTheme } = useTheme();
   const { language, setLanguage, t, isRtl } = useLanguage();
   const navigation = useSiteNavigation();
@@ -156,14 +158,14 @@ export function Header() {
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => handleNav(APP_LOGIN_URL)}
+            onClick={() => { trackCta('login', undefined, 'login_click'); handleNav(APP_LOGIN_URL); }}
             className="text-muted-foreground hover:text-foreground"
           >
             {t('header.login')}
           </Button>
           <Button
             size="sm"
-            onClick={() => handleNav(APP_URL)}
+            onClick={() => { trackCta('signup', undefined, 'signup_click'); handleNav(APP_URL); }}
             className="bg-blue-500 hover:bg-blue-600 text-white font-semibold"
           >
             {t('header.getStarted')}
@@ -311,13 +313,13 @@ export function Header() {
                       <button
                         type="button"
                         suppressHydrationWarning
-                        onClick={() => handleNav(APP_LOGIN_URL)}
+                        onClick={() => { trackCta('login', undefined, 'login_click'); handleNav(APP_LOGIN_URL); }}
                         className="min-h-11 w-full px-3 py-2.5 text-sm font-medium rounded-lg text-left text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
                       >
                         {t('header.login')}
                       </button>
                       <Button
-                        onClick={() => handleNav(APP_URL)}
+                        onClick={() => { trackCta('signup', undefined, 'signup_click'); handleNav(APP_URL); }}
                         className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold"
                       >
                         {t('header.getStarted')}

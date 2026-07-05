@@ -47,6 +47,10 @@ import { NewsletterSection } from '@/components/newsletter-section';
 import { LiveDemoDashboard } from '@/components/live-demo-dashboard';
 import { FullDemoCta } from '@/components/full-demo-cta';
 import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
+import { CroHero } from '@/components/home/cro-hero';
+import { HomeTrustBar } from '@/components/home/home-trust-bar';
+import { HomeFaqSection } from '@/components/home/home-faq-section';
+import { useSectionViewTracking } from '@/hooks/use-section-view-tracking';
 
 // ─── Animated Counter Hook ─────────────────────────────────────────────
 function useAnimatedCounter(
@@ -181,6 +185,9 @@ export default function HomePage() {
     whenVisible: true,
   });
   const [dashboardProgress, setDashboardProgress] = useState(0);
+  const pricingSectionRef = useSectionViewTracking('pricing_view', '/');
+  const reviewsSectionRef = useSectionViewTracking('reviews_view', '/');
+  const caseStudiesSectionRef = useSectionViewTracking('case_studies_view', '/');
 
   useEffect(() => {
     (async () => {
@@ -230,7 +237,13 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* ═══════════════════════════════════════════════════════════════════
-          HERO SECTION
+          CRO HERO — Primary conversion section
+      ═══════════════════════════════════════════════════════════════════ */}
+      <CroHero />
+      <HomeTrustBar />
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          ORIGINAL HERO — Platform overview (moved below primary CRO hero)
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="relative overflow-x-hidden hero-y">
         {/* Background image with overlay */}
@@ -279,13 +292,16 @@ export default function HomePage() {
               </AnimatedSection>
 
               <AnimatedSection delay={100}>
-                <h1 className="text-display mb-4 sm:mb-6">
+                <Badge variant="outline" className="mb-4 border-blue-500/30 text-blue-400 bg-blue-500/10">
+                  {t('home.legacyHeroBadge')}
+                </Badge>
+                <h2 className="text-display mb-4 sm:mb-6">
                   Get{' '}
                   <span className="gradient-text">12 Testers</span>
                   <br />
                   for{' '}
                   <span className="gradient-text">14 Days</span>
-                </h1>
+                </h2>
               </AnimatedSection>
 
               <AnimatedSection delay={200}>
@@ -907,7 +923,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════════════════
           PRICING SECTION
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="relative py-16 sm:py-20 border-t border-border/40 gradient-bg-section overflow-hidden">
+      <section ref={pricingSectionRef as React.RefObject<HTMLElement>} className="relative py-16 sm:py-20 border-t border-border/40 gradient-bg-section overflow-hidden">
         {/* Sparkle decorations */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <svg className="absolute top-[15%] left-[8%] animate-sparkle" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 0L7.41 4.59L12 6L7.41 7.41L6 12L4.59 7.41L0 6L4.59 4.59L6 0Z" fill="rgba(59,130,246,0.15)" /></svg>
@@ -928,6 +944,13 @@ export default function HomePage() {
               <p className="text-muted-foreground max-w-xl mx-auto">
                 {t('home.noHiddenFees')}
               </p>
+              <div className="flex flex-wrap items-center justify-center gap-3 mt-5">
+                {[t('home.oneTimePayment'), t('home.startInOneHour'), t('home.realTestersHighlight'), t('home.productionAccessGuarantee')].map((label) => (
+                  <Badge key={label} variant="secondary" className="text-xs font-medium">
+                    {label}
+                  </Badge>
+                ))}
+              </div>
             </div>
           </AnimatedSection>
 
@@ -989,7 +1012,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════════════════
           REVIEWS / TESTIMONIALS
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-16 sm:py-20 border-t border-border/40">
+      <section ref={reviewsSectionRef as React.RefObject<HTMLElement>} className="py-16 sm:py-20 border-t border-border/40">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <div className="text-center mb-10">
@@ -1045,7 +1068,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════════════════
           SUCCESS STORIES PREVIEW
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-16 sm:py-20 border-t border-border/40">
+      <section ref={caseStudiesSectionRef as React.RefObject<HTMLElement>} className="py-16 sm:py-20 border-t border-border/40">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <div className="text-center mb-10">
@@ -1145,6 +1168,8 @@ export default function HomePage() {
           </AnimatedSection>
         </div>
       </section>
+
+      <HomeFaqSection />
 
       {/* ═══════════════════════════════════════════════════════════════════
           NEWSLETTER SECTION

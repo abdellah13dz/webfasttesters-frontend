@@ -16,6 +16,8 @@ import { MobileStickyCta } from '@/components/mobile-sticky-cta';
 import { PageProgress } from '@/components/page-progress';
 import { RouteLoadingBar } from '@/components/route-loading-bar';
 import { useSeo } from '@/lib/hooks/use-seo';
+import { useUtmInit } from '@/hooks/use-utm-init';
+import { ExitIntentPopup } from '@/components/exit-intent-popup';
 
 function SiteShellInner({ children }: { children: React.ReactNode }) {
   const { dir } = useLanguage();
@@ -24,6 +26,7 @@ function SiteShellInner({ children }: { children: React.ReactNode }) {
   useSeo();
   useAnalytics();
   useMetaPageEvents();
+  useUtmInit();
 
   return (
     <div className="min-h-screen flex flex-col" dir={dir} suppressHydrationWarning>
@@ -38,6 +41,7 @@ function SiteShellInner({ children }: { children: React.ReactNode }) {
       <FloatingChat />
       <CookieConsent />
       <MobileStickyCta />
+      <ExitIntentPopup />
     </div>
   );
 }

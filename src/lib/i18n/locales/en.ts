@@ -165,6 +165,41 @@ export const en: Record<string, string> = {
   'home.liveDemo': 'Live Demo',
   'home.seeTestingInAction': 'See Our Testing in Action',
   'home.viewDemo': 'View Demo',
+  'home.oneTimePayment': 'One-time payment — no subscription',
+  'home.startInOneHour': 'Testers assigned in ~1 hour',
+  'home.realTestersHighlight': 'Real Android testers on Play Store',
+  'home.legacyHeroBadge': 'Platform Overview',
+
+  // CRO Hero
+  'croHero.badge': 'Google Play Closed Testing',
+  'croHero.headline': 'Get 12 Real Android Testers in ~1 Hour',
+  'croHero.subheadline': "Complete Google's 14-Day Closed Testing Requirement",
+  'croHero.paymentNote': 'One-Time Payment • No Subscription',
+  'croHero.cta': 'Start Closed Testing',
+  'croHero.videoTitle': '1-Minute Explainer: How Fast Testers Works',
+  'croHero.videoDuration': 'Watch the setup walkthrough',
+
+  // Home trust bar
+  'homeTrust.stripeSecure': 'Stripe Secure Checkout',
+  'homeTrust.developers': '1,500+ developers',
+  'homeTrust.guarantee': 'Production access guarantee',
+  'homeTrust.rating': '4.9★ on Trustpilot',
+
+  // Home FAQ
+  'homeFaq.badge': 'FAQ',
+  'homeFaq.title': 'Common Questions Before You Start',
+  'homeFaq.subtitle': 'Everything you need to know about Google Play closed testing with Fast Testers.',
+  'homeFaq.viewAll': 'View all FAQ',
+
+  // Exit intent
+  'exitIntent.badge': 'Wait — before you go',
+  'exitIntent.title': 'Get your Google Play checklist free',
+  'exitIntent.description': 'Most rejections happen because of testing setup mistakes. Grab our checklist or start closed testing today.',
+  'exitIntent.item1': '12 real testers assigned in ~1 hour',
+  'exitIntent.item2': 'One-time $15 — no subscription',
+  'exitIntent.item3': 'Production access guarantee included',
+  'exitIntent.cta': 'Start Closed Testing',
+  'exitIntent.checklist': 'Free Checklist PDF',
 
   // Full interactive dashboard demo (app.fasttesters.com/demo)
   'fullDemo.badge': 'Full Dashboard Demo',
