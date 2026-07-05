@@ -236,12 +236,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* ═══════════════════════════════════════════════════════════════════
-          CRO HERO — Primary conversion section
-      ═══════════════════════════════════════════════════════════════════ */}
-      
-      
-
+     
       {/* ═══════════════════════════════════════════════════════════════════
           ORIGINAL HERO — Platform overview (moved below primary CRO hero)
       ═══════════════════════════════════════════════════════════════════ */}
@@ -509,6 +504,10 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ═══════════════════════════════════════════════════════════════════
+          CRO HERO — Primary conversion section
+      ═══════════════════════════════════════════════════════════════════ */}
+      
       <CroHero />
 
       {/* ═══════════════════════════════════════════════════════════════════
@@ -938,19 +937,24 @@ export default function HomePage() {
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
           <AnimatedSection>
-            <div className="text-center mb-10">
-              <Badge variant="outline" className="mb-4 border-blue-500/30 text-blue-400 bg-blue-500/10">
+            <div className="relative mx-auto max-w-3xl text-center mb-10 sm:mb-12 rounded-2xl border border-blue-500/20 bg-gradient-to-b from-blue-500/[0.08] via-card/40 to-transparent px-5 py-8 sm:px-8 sm:py-10 shadow-[0_8px_30px_rgba(59,130,246,0.08)]">
+              <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/50 to-transparent" />
+              <Badge className="mb-5 border-0 bg-blue-500 px-4 py-1.5 text-sm font-semibold text-white shadow-md shadow-blue-500/25">
                 {t('home.simplePricing')}
               </Badge>
-              <h2 className="text-3xl sm:text-4xl font-bold mb-3">
+              <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] font-bold mb-3 leading-tight tracking-tight">
                 <span className="gradient-text">{t('home.onePlanEverythingIncluded')}</span>
               </h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">
+              <p className="text-muted-foreground max-w-xl mx-auto text-base sm:text-lg leading-relaxed">
                 {t('home.noHiddenFees')}
               </p>
-              <div className="flex flex-wrap items-center justify-center gap-3 mt-5">
+              <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mt-6 sm:mt-7">
                 {[t('home.oneTimePayment'), t('home.startInOneHour'), t('home.realTestersHighlight'), t('home.productionAccessGuarantee')].map((label) => (
-                  <Badge key={label} variant="secondary" className="text-xs font-medium">
+                  <Badge
+                    key={label}
+                    className="inline-flex items-center gap-1.5 border-0 bg-blue-500 px-3 py-1.5 text-xs sm:text-sm font-semibold text-white shadow-sm shadow-blue-500/20 hover:bg-blue-600 transition-colors"
+                  >
+                    <CheckCircle className="h-3.5 w-3.5 shrink-0 text-white/90" />
                     {label}
                   </Badge>
                 ))}
@@ -1178,11 +1182,11 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════════════════
           NEWSLETTER SECTION
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-16 sm:py-20 border-t border-border/40">
+      <section className="py-16 sm:py-24 border-t border-border/40">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-lg mx-auto">
-            <NewsletterSection />
-          </div>
+          <AnimatedSection direction="scale-in">
+            <NewsletterSection wide className="w-full" />
+          </AnimatedSection>
         </div>
       </section>
 

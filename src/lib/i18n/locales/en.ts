@@ -172,12 +172,21 @@ export const en: Record<string, string> = {
 
   // CRO Hero
   'croHero.badge': 'Google Play Closed Testing',
+  'croHero.headlineGet': 'Get',
+  'croHero.headlineHighlight1': '12 Real Android Testers',
+  'croHero.headlineConnector': 'in',
+  'croHero.headlineHighlight2': '~1 Hour',
+  'croHero.subheadlinePrefix': "Complete Google's",
+  'croHero.subheadlineHighlight': '14-Day Closed Testing',
+  'croHero.subheadlineSuffix': 'Requirement',
   'croHero.headline': 'Get 12 Real Android Testers in ~1 Hour',
   'croHero.subheadline': "Complete Google's 14-Day Closed Testing Requirement",
   'croHero.paymentNote': 'One-Time Payment • No Subscription',
   'croHero.cta': 'Start Closed Testing',
   'croHero.videoTitle': '1-Minute Explainer: How Fast Testers Works',
   'croHero.videoDuration': 'Watch the setup walkthrough',
+  'croHero.badgeApproved': 'Approved',
+  'croHero.badgeTesters': '12 Testers',
 
   // Home trust bar
   'homeTrust.stripeSecure': 'Stripe Secure Checkout',

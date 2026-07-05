@@ -16,6 +16,8 @@ interface NewsletterSectionProps {
   description?: string;
   /** Variant: "card" wraps in a Card with gradient bg; "inline" is bare (for footer etc.) */
   variant?: 'card' | 'inline';
+  /** Full-width homepage layout (matches bottom CTA section) */
+  wide?: boolean;
   /** Extra class names for the wrapper */
   className?: string;
 }
@@ -24,6 +26,7 @@ export function NewsletterSection({
   title,
   description,
   variant = 'card',
+  wide = false,
   className = '',
 }: NewsletterSectionProps) {
   const { t } = useLanguage();
@@ -142,24 +145,27 @@ export function NewsletterSection({
   /* ─── Card variant (pages) ─────────────────────────────────────────── */
   return (
     <Card
-      className={`relative overflow-hidden border-blue-500/20 bg-gradient-to-br from-blue-500/5 via-card to-card ${className}`}
+      className={`relative overflow-hidden border-blue-500/20 bg-gradient-to-br from-blue-500/10 via-blue-500/5 to-card ${wide ? 'w-full rounded-2xl' : ''} ${className}`}
     >
       {/* Subtle background glow */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 h-48 w-72 rounded-full bg-blue-500/10 blur-3xl" />
+        {wide && (
+          <div className="absolute bottom-0 right-1/4 h-48 w-48 rounded-full bg-blue-500/5 blur-3xl" />
+        )}
       </div>
 
-      <CardContent className="p-6 sm:p-8 text-center">
+      <CardContent className={`text-center ${wide ? 'p-8 sm:p-12 lg:p-16' : 'p-6 sm:p-8'}`}>
         <div className="flex items-center justify-center gap-2 mb-3">
           <Mail className="h-5 w-5 text-blue-400" />
           <span className="text-sm font-medium text-blue-400">{t('newsletter.title')}</span>
         </div>
 
-        <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
+        <h3 className={`font-bold text-foreground mb-2 ${wide ? 'text-2xl sm:text-3xl lg:text-4xl' : 'text-xl sm:text-2xl'}`}>
           {title || t('newsletter.title')}
         </h3>
 
-        <p className="text-sm sm:text-base text-muted-foreground max-w-md mx-auto mb-6">
+        <p className={`text-muted-foreground mx-auto mb-6 leading-relaxed ${wide ? 'max-w-2xl text-base sm:text-lg' : 'max-w-md text-sm sm:text-base'}`}>
           {description || t('newsletter.description')}
         </p>
 
@@ -171,7 +177,7 @@ export function NewsletterSection({
         ) : (
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto"
+            className={`flex flex-col sm:flex-row items-center justify-center gap-3 mx-auto ${wide ? 'max-w-xl w-full' : 'max-w-md'}`}
           >
             <input
               type="email"
@@ -194,7 +200,7 @@ export function NewsletterSection({
             <Button
               type="submit"
               disabled={status === 'loading'}
-              className="h-11 bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 shrink-0 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 transition-all"
+              className={`h-11 bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 shrink-0 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 transition-all ${wide ? 'sm:min-w-[140px]' : ''}`}
             >
               {status === 'loading' ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
