@@ -18,6 +18,7 @@ export interface ChecklistPdfContent {
 
 const BRAND_BLUE: [number, number, number] = [37, 99, 235];
 const BRAND_BLUE_LIGHT: [number, number, number] = [239, 246, 255];
+const HEADER_GRAY: [number, number, number] = [75, 85, 99];
 const TEXT_DARK: [number, number, number] = [15, 23, 42];
 const TEXT_MUTED: [number, number, number] = [100, 116, 139];
 const BORDER: [number, number, number] = [226, 232, 240];
@@ -73,7 +74,7 @@ function drawPageFooter(doc: jsPDF, pageNum: number, totalPages: number, tagline
 }
 
 function drawHeaderBand(doc: jsPDF, logoData: string | null, isRtl: boolean) {
-  doc.setFillColor(...BRAND_BLUE);
+  doc.setFillColor(...HEADER_GRAY);
   doc.rect(0, 0, PAGE_W, 32, 'F');
 
   if (logoData) {
