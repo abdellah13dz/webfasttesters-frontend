@@ -8,6 +8,8 @@ export const FACEBOOK_URL =
 
 export const INSTAGRAM_URL = 'https://www.instagram.com/testers.12/';
 
+export const YOUTUBE_URL = 'https://www.youtube.com/@FastTesters';
+
 export const CONTACT_MAILTO = `mailto:${CONTACT_EMAIL}`;
 
-export const SOCIAL_PROFILES = [FACEBOOK_URL, INSTAGRAM_URL] as const;
+export const SOCIAL_PROFILES = [FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL] as const;

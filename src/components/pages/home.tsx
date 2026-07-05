@@ -50,6 +50,7 @@ import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
 import { CroHero } from '@/components/home/cro-hero';
 import { HomeTrustBar } from '@/components/home/home-trust-bar';
 import { HomeFaqSection } from '@/components/home/home-faq-section';
+import { HeroVideoEmbed } from '@/components/home/hero-video-embed';
 import { useSectionViewTracking } from '@/hooks/use-section-view-tracking';
 
 // ─── Animated Counter Hook ─────────────────────────────────────────────
@@ -241,38 +242,7 @@ export default function HomePage() {
           ORIGINAL HERO — Platform overview (moved below primary CRO hero)
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="relative overflow-x-hidden hero-y">
-        {/* Background image with overlay */}
-        <div className="absolute inset-0 -z-20">
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
-          <img
-            src="/images/hero/hero-bg.png"
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover opacity-[0.07]"
-            aria-hidden="true"
-          />
-        </div>
-
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 -z-10 hero-grid-pattern opacity-50" />
-
-        {/* Background decoration blobs */}
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 h-[500px] w-[800px] rounded-full bg-blue-500/5 blur-3xl" />
-          <div className="absolute top-1/3 left-1/4 h-[300px] w-[300px] rounded-full bg-blue-500/3 blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 h-[250px] w-[250px] rounded-full bg-blue-500/3 blur-3xl" />
-        </div>
-
-        {/* Floating decorative SVG elements */}
-        <div className="absolute inset-0 -z-5 pointer-events-none overflow-hidden">
-          <svg className="absolute top-[15%] left-[8%] animate-float" width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="4" fill="rgba(59,130,246,0.12)" /></svg>
-          <svg className="absolute top-[25%] right-[12%] animate-float-delay" width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="3" fill="rgba(59,130,246,0.1)" /></svg>
-          <svg className="absolute top-[60%] left-[5%] animate-float-slow" width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="5" fill="rgba(59,130,246,0.08)" /></svg>
-          <svg className="absolute top-[45%] right-[6%] animate-float" width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="2.5" fill="rgba(59,130,246,0.1)" /></svg>
-          <svg className="absolute top-[80%] left-[15%] animate-float-delay" width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="3" y="3" width="8" height="8" rx="2" fill="rgba(59,130,246,0.08)" /></svg>
-          <svg className="absolute top-[10%] right-[25%] animate-float-slow" width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="2" fill="rgba(34,211,238,0.1)" /></svg>
-        </div>
-
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             {/* Left: Text content */}
             <div className="flex-1 text-center lg:text-left">
@@ -340,33 +310,13 @@ export default function HomePage() {
               </AnimatedSection>
             </div>
 
-            {/* Hero illustration — visible on all screen sizes */}
+            {/* Explainer video — from CRO hero (replaces illustration) */}
             <AnimatedSection
               delay={300}
               direction="fade-right"
               className="flex w-full flex-1 justify-center mt-8 sm:mt-10 lg:mt-0"
             >
-              <div className="relative mx-auto w-full max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg px-2 sm:px-0">
-                <div className="absolute -inset-4 bg-blue-500/5 rounded-3xl blur-2xl" />
-                <img
-                  src="/images/illustrations/app-testing.png"
-                  alt="App Testing Illustration"
-                  className="relative mx-auto w-full h-auto animate-float-slow drop-shadow-2xl"
-                />
-                {/* Floating badges around illustration */}
-                <div className="absolute -top-2 end-0 sm:-top-4 sm:-end-4 bg-card border border-border/60 rounded-xl px-2.5 py-1.5 sm:px-3 sm:py-2 shadow-lg animate-float">
-                  <div className="flex items-center gap-1.5 sm:gap-2">
-                    <CheckCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-green-400" />
-                    <span className="text-[10px] sm:text-xs font-semibold text-foreground">Approved</span>
-                  </div>
-                </div>
-                <div className="absolute -bottom-1 start-0 sm:-bottom-2 sm:-start-4 bg-card border border-border/60 rounded-xl px-2.5 py-1.5 sm:px-3 sm:py-2 shadow-lg animate-float-delay">
-                  <div className="flex items-center gap-1.5 sm:gap-2">
-                    <Users className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-400" />
-                    <span className="text-[10px] sm:text-xs font-semibold text-foreground">12 Testers</span>
-                  </div>
-                </div>
-              </div>
+              <HeroVideoEmbed analyticsLocation="legacy_hero_video" />
             </AnimatedSection>
           </div>
         </div>

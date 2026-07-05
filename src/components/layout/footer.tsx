@@ -6,11 +6,11 @@ import { useLanguage } from '@/lib/i18n/context';
 import { NewsletterSection } from '@/components/newsletter-section';
 import { useSiteNavigation } from '@/lib/hooks/use-site-navigation';
 import { resolveNavLabel, resolveSectionTitle, FALLBACK_NAVIGATION } from '@/lib/navigation';
-import { FACEBOOK_URL, INSTAGRAM_URL } from '@/lib/contact';
+import { FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from '@/lib/contact';
 import { BrandLogo } from '@/components/brand-logo';
 import { BusinessLegalNotice } from '@/components/business-legal-notice';
 import { LEGAL_ENTITY_NAME } from '@/lib/business';
-import { Facebook, Instagram } from 'lucide-react';
+import { Facebook, Instagram, Youtube } from 'lucide-react';
 import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
 import { SubmitAppTestingCta } from '@/components/submit-app-testing-cta';
 import { shouldShowFooterSubmitCta } from '@/lib/page-has-dashboard-cta';
@@ -60,6 +60,9 @@ export function Footer() {
               </a>
               <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Instagram">
                 <Instagram className="h-4 w-4" />
+              </a>
+              <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="YouTube">
+                <Youtube className="h-4 w-4" />
               </a>
             </div>
             
