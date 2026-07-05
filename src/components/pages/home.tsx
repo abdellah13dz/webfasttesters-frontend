@@ -239,8 +239,8 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════════════════
           CRO HERO — Primary conversion section
       ═══════════════════════════════════════════════════════════════════ */}
-      <CroHero />
-      <HomeTrustBar />
+      
+      
 
       {/* ═══════════════════════════════════════════════════════════════════
           ORIGINAL HERO — Platform overview (moved below primary CRO hero)
@@ -377,6 +377,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      <HomeTrustBar />
+
       {/* ═══════════════════════════════════════════════════════════════════
           GLOBAL IMPACT STATS
       ═══════════════════════════════════════════════════════════════════ */}
@@ -506,6 +508,8 @@ export default function HomePage() {
           </AnimatedSection>
         </div>
       </section>
+
+      <CroHero />
 
       {/* ═══════════════════════════════════════════════════════════════════
           HOW IT WORKS

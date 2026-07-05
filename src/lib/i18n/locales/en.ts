@@ -190,6 +190,24 @@ export const en: Record<string, string> = {
   'homeFaq.title': 'Common Questions Before You Start',
   'homeFaq.subtitle': 'Everything you need to know about Google Play closed testing with Fast Testers.',
   'homeFaq.viewAll': 'View all FAQ',
+  'homeFaq.fallback1Q': 'Will Google accept this?',
+  'homeFaq.fallback1A':
+    'Yes. Fast Testers provides real Android users who install your app through Google Play closed testing — exactly what Google requires for the 14-day, 12-tester production access rule for personal developer accounts.',
+  'homeFaq.fallback2Q': 'Are testers real?',
+  'homeFaq.fallback2A':
+    'Yes. Every tester is a real person with a genuine Android device and Google account. They install your app from the Play Store closed testing track and use it during the 14-day period.',
+  'homeFaq.fallback3Q': 'Do testers install my app?',
+  'homeFaq.fallback3A':
+    'Yes. Testers join your closed testing track and install your app from Google Play — the same flow Google monitors when reviewing your production access request.',
+  'homeFaq.fallback4Q': 'Can I publish immediately?',
+  'homeFaq.fallback4A':
+    'You must complete 14 consecutive days of closed testing with at least 12 testers before requesting production access. Fast Testers assigns testers in about one hour so you can start the clock immediately.',
+  'homeFaq.fallback5Q': 'Do I need to invite testers?',
+  'homeFaq.fallback5A':
+    'No manual recruiting. Submit your closed testing link after payment and our team assigns professional testers to your track automatically.',
+  'homeFaq.fallback6Q': 'What if production is rejected?',
+  'homeFaq.fallback6A':
+    'Fast Testers includes a production access guarantee. If your app does not reach production after our testing period, you receive a full refund per our refund policy.',
 
   // Exit intent
   'exitIntent.badge': 'Wait — before you go',
@@ -200,6 +218,50 @@ export const en: Record<string, string> = {
   'exitIntent.item3': 'Production access guarantee included',
   'exitIntent.cta': 'Start Closed Testing',
   'exitIntent.checklist': 'Free Checklist PDF',
+
+  // SEO landing page UI
+  'seoLanding.badge': 'Google Play Guide',
+  'seoLanding.faqTitle': 'Frequently Asked Questions',
+  'seoLanding.relatedTitle': 'Related Guides',
+  'seoLanding.ctaTitle': 'Get 12 Real Testers in ~1 Hour',
+  'seoLanding.ctaSubtitle': 'One-time $15 · No subscription · Production access guarantee',
+  'seoLanding.bullet1': 'Real Android testers',
+  'seoLanding.bullet2': '14-day compliance',
+  'seoLanding.bullet3': 'Stripe secure checkout',
+  'seoLanding.bullet4': '1,500+ developers',
+
+  // Google Play checklist
+  'checklist.title': 'Google Play Publishing Checklist',
+  'checklist.description':
+    'Free checklist for indie developers publishing their first Android app. Covers closed testing, 12 testers, 14 days, and production access.',
+  'checklist.download': 'Download PDF',
+  'checklist.downloading': 'Generating PDF…',
+  'checklist.pdfSectionSetup': 'Account & store setup',
+  'checklist.pdfSectionTesting': 'Closed testing (12 testers · 14 days)',
+  'checklist.pdfSectionLaunch': 'Production launch',
+  'checklist.pdfCtaTitle': 'Skip steps 8–10 with Fast Testers',
+  'checklist.pdfCtaBody':
+    'Get 15 real Android testers assigned in ~1 hour. One-time $15 per app — no subscription. Production access guarantee included.',
+  'checklist.pdfFooterTagline': 'Google Play Closed Testing Service',
+  'checklist.pdfFilename': 'fasttesters-google-play-checklist',
+  'checklist.skipTitle': 'Skip the hardest step',
+  'checklist.skipDescription':
+    'Steps 8–10 are where most developers get stuck. Fast Testers assigns 15 real testers in ~1 hour for a one-time $15 fee.',
+  'checklist.guideLink': 'Read the 12 testers guide →',
+  'checklist.item1': 'Create Google Play Developer account ($25 one-time fee)',
+  'checklist.item2': 'Prepare privacy policy URL hosted on your domain',
+  'checklist.item3': 'Complete IARC content rating questionnaire',
+  'checklist.item4': 'Upload signed AAB to Closed testing track (not internal)',
+  'checklist.item5': 'Add store listing: title, description, screenshots, feature graphic',
+  'checklist.item6': 'Fill out Data safety form accurately',
+  'checklist.item7': 'Generate closed testing opt-in URL from Play Console',
+  'checklist.item8': 'Recruit minimum 12 testers (15 recommended for buffer)',
+  'checklist.item9': 'Verify testers installed app from Play Store link',
+  'checklist.item10': 'Monitor tester count daily for 14 consecutive days',
+  'checklist.item11': 'Fix crashes and ANRs before production request',
+  'checklist.item12': 'Screenshot Play Console testing metrics on day 14',
+  'checklist.item13': 'Apply for production access with testing evidence',
+  'checklist.item14': 'Promote tested build to production track after approval',
 
   // Full interactive dashboard demo (app.fasttesters.com/demo)
   'fullDemo.badge': 'Full Dashboard Demo',

@@ -62,7 +62,7 @@ export function SeoLandingPage({ config }: SeoLandingPageProps) {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <Badge variant="outline" className="mb-4 border-blue-500/30 text-blue-400 bg-blue-500/10">
             <BookOpen className="h-3.5 w-3.5 mr-1" />
-            Google Play Guide
+            {t('seoLanding.badge')}
           </Badge>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-5 leading-tight">{config.h1}</h1>
           <div className="text-lg text-muted-foreground mb-8">{renderMarkdown(config.intro)}</div>
@@ -71,7 +71,7 @@ export function SeoLandingPage({ config }: SeoLandingPageProps) {
             onClick={() => { trackCta('hero_cta', undefined, 'signup_click'); navigate(APP_URL); }}
             className="bg-blue-500 hover:bg-blue-600 text-white font-semibold h-12 px-8"
           >
-            Start Closed Testing
+            {t('croHero.cta')}
             <ArrowRight className="h-4 w-4 ml-1" />
           </Button>
         </div>
@@ -90,7 +90,7 @@ export function SeoLandingPage({ config }: SeoLandingPageProps) {
 
       <section className="py-12 border-t border-border/40 bg-muted/20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+          <h2 className="text-2xl font-bold mb-6">{t('seoLanding.faqTitle')}</h2>
           <Accordion type="single" collapsible className="space-y-3">
             {config.faq.map((item, idx) => (
               <AccordionItem key={item.question} value={`faq-${idx}`} className="border border-border/60 rounded-lg px-4 bg-card/50">
@@ -110,7 +110,7 @@ export function SeoLandingPage({ config }: SeoLandingPageProps) {
       {config.relatedSlugs.length > 0 && (
         <section className="py-12 border-t border-border/40">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xl font-bold mb-4">Related Guides</h2>
+            <h2 className="text-xl font-bold mb-4">{t('seoLanding.relatedTitle')}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {config.relatedSlugs.map((slug) => (
                 <Card key={slug} className="card-hover cursor-pointer border-border/60" onClick={() => navigate(`/${slug}`)}>
@@ -134,13 +134,13 @@ export function SeoLandingPage({ config }: SeoLandingPageProps) {
       <section className="py-12 border-t border-border/40">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
           <div className="rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-500/10 to-card p-8">
-            <h2 className="text-2xl font-bold mb-3">Get 12 Real Testers in ~1 Hour</h2>
-            <p className="text-muted-foreground mb-6">One-time $15 · No subscription · Production access guarantee</p>
+            <h2 className="text-2xl font-bold mb-3">{t('seoLanding.ctaTitle')}</h2>
+            <p className="text-muted-foreground mb-6">{t('seoLanding.ctaSubtitle')}</p>
             <ul className="flex flex-wrap justify-center gap-4 mb-6 text-sm">
-              {['Real Android testers', '14-day compliance', 'Stripe secure checkout', '1,500+ developers'].map((item) => (
-                <li key={item} className="flex items-center gap-1.5">
+              {(['seoLanding.bullet1', 'seoLanding.bullet2', 'seoLanding.bullet3', 'seoLanding.bullet4'] as const).map((key) => (
+                <li key={key} className="flex items-center gap-1.5">
                   <CheckCircle2 className="h-4 w-4 text-green-400" />
-                  {item}
+                  {t(key)}
                 </li>
               ))}
             </ul>

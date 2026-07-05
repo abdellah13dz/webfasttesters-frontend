@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import {
   Accordion,
   AccordionContent,
@@ -25,46 +25,18 @@ const PRIORITY_QUESTIONS = [
   'What if production is rejected?',
 ];
 
-const FALLBACK_FAQ = [
-  {
-    id: 'home-faq-1',
-    question: 'Will Google accept this?',
-    answer:
-      'Yes. Fast Testers provides real Android users who install your app through Google Play closed testing — exactly what Google requires for the 14-day, 12-tester production access rule for personal developer accounts.',
-  },
-  {
-    id: 'home-faq-2',
-    question: 'Are testers real?',
-    answer:
-      'Yes. Every tester is a real person with a genuine Android device and Google account. They install your app from the Play Store closed testing track and use it during the 14-day period.',
-  },
-  {
-    id: 'home-faq-3',
-    question: 'Do testers install my app?',
-    answer:
-      'Yes. Testers join your closed testing track and install your app from Google Play — the same flow Google monitors when reviewing your production access request.',
-  },
-  {
-    id: 'home-faq-4',
-    question: 'Can I publish immediately?',
-    answer:
-      'You must complete 14 consecutive days of closed testing with at least 12 testers before requesting production access. Fast Testers assigns testers in about one hour so you can start the clock immediately.',
-  },
-  {
-    id: 'home-faq-5',
-    question: 'Do I need to invite testers?',
-    answer:
-      'No manual recruiting. Submit your closed testing link after payment and our team assigns professional testers to your track automatically.',
-  },
-  {
-    id: 'home-faq-6',
-    question: 'What if production is rejected?',
-    answer:
-      'Fast Testers includes a production access guarantee. If your app does not reach production after our testing period, you receive a full refund per our refund policy.',
-  },
-];
+function buildFallbackFaq(t: (key: string) => string) {
+  return [1, 2, 3, 4, 5, 6].map((i) => ({
+    id: `home-faq-${i}`,
+    question: t(`homeFaq.fallback${i}Q`),
+    answer: t(`homeFaq.fallback${i}A`),
+  }));
+}
 
-function pickHomeFaqItems(cmsItems: FaqItem[]): { id: string; question: string; answer: string }[] {
+function pickHomeFaqItems(
+  cmsItems: FaqItem[],
+  fallback: { id: string; question: string; answer: string }[]
+): { id: string; question: string; answer: string }[] {
   const matched: { id: string; question: string; answer: string }[] = [];
 
   for (const priority of PRIORITY_QUESTIONS) {
@@ -87,7 +59,7 @@ function pickHomeFaqItems(cmsItems: FaqItem[]): { id: string; question: string; 
 
   if (matched.length >= 4) return matched;
 
-  for (const item of FALLBACK_FAQ) {
+  for (const item of fallback) {
     if (matched.some((m) => m.question === item.question)) continue;
     matched.push(item);
     if (matched.length >= 8) break;
@@ -97,23 +69,26 @@ function pickHomeFaqItems(cmsItems: FaqItem[]): { id: string; question: string; 
 }
 
 export function HomeFaqSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { navigate } = useRouter();
   const { trackFaq } = useAnalytics();
-  const [items, setItems] = useState(FALLBACK_FAQ);
+  const fallbackFaq = useMemo(() => buildFallbackFaq(t), [t, language]);
+  const [items, setItems] = useState(fallbackFaq);
 
   useEffect(() => {
     (async () => {
       try {
         const cms = await fetchPublicFaq();
         if (cms.length > 0) {
-          setItems(pickHomeFaqItems(cms));
+          setItems(pickHomeFaqItems(cms, fallbackFaq));
+        } else {
+          setItems(fallbackFaq);
         }
       } catch {
-        /* use fallback */
+        setItems(fallbackFaq);
       }
     })();
-  }, []);
+  }, [fallbackFaq]);
 
   return (
     <section className="py-16 sm:py-20 border-t border-border/40">
