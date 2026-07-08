@@ -242,7 +242,7 @@ export default function HomePage() {
           ORIGINAL HERO — Platform overview (moved below primary CRO hero)
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="relative overflow-x-hidden hero-y">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-8 sm:pb-10 lg:pb-12">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             {/* Left: Text content */}
             <div className="flex-1 text-center lg:text-left">
