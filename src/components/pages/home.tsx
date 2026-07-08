@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 import { useRouter } from '@/lib/router';
 import { APP_HOST, APP_URL, COMMUNITY_URL } from '@/lib/app-urls';
 import { useLanguage } from '@/lib/i18n/context';
@@ -437,9 +438,13 @@ export default function HomePage() {
                 >
                   <Card className="bg-card/60 border-border/40 hover:border-border/80 hover:shadow-md transition-all scale-hover h-full min-h-[120px] sm:min-h-[140px]">
                     <CardContent className="p-5 sm:p-8 flex flex-col items-center justify-center gap-3 sm:gap-4">
-                      <img
+                      <Image
                         src={brand.icon}
                         alt={t(brand.nameKey)}
+                        width={140}
+                        height={140}
+                        loading="lazy"
+                        sizes="140px"
                         className="h-12 sm:h-16 w-auto max-w-[120px] sm:max-w-[140px] object-contain"
                       />
                       <span className="text-sm sm:text-base font-semibold text-muted-foreground/80 whitespace-nowrap">
@@ -466,10 +471,14 @@ export default function HomePage() {
       <section className="relative py-16 sm:py-20 border-t border-border/40 overflow-hidden">
         {/* Side illustration — subtle on mobile, stronger on desktop */}
         <div className="absolute inset-0 sm:inset-auto sm:right-0 sm:top-0 sm:bottom-0 sm:w-2/5 lg:w-1/3 pointer-events-none opacity-[0.05] sm:opacity-[0.06]">
-          <img
+          <Image
             src="/images/illustrations/how-it-works.png"
             alt=""
-            className="w-full h-full object-contain object-center sm:object-right"
+            fill
+            loading="lazy"
+            quality={45}
+            sizes="(max-width: 640px) 100vw, 40vw"
+            className="object-contain object-center sm:object-right"
             aria-hidden="true"
           />
         </div>
@@ -1149,10 +1158,14 @@ export default function HomePage() {
             <div className="relative rounded-2xl bg-gradient-to-br from-blue-500/10 via-blue-500/5 to-card border border-blue-500/20 p-8 sm:p-12 lg:p-16 text-center overflow-hidden">
               {/* Background illustration — visible on mobile at lower opacity */}
               <div className="absolute end-0 bottom-0 w-1/2 sm:w-2/5 lg:w-1/3 h-full pointer-events-none opacity-[0.06] sm:opacity-[0.07] lg:opacity-[0.08]">
-                <img
+                <Image
                   src="/images/illustrations/success-approved.png"
                   alt=""
-                  className="w-full h-full object-contain object-right-bottom"
+                  fill
+                  loading="lazy"
+                  quality={45}
+                  sizes="(max-width: 640px) 50vw, 33vw"
+                  className="object-contain object-right-bottom"
                   aria-hidden="true"
                 />
               </div>

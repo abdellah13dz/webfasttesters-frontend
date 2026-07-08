@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { ArrowRight, CheckCircle, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -43,9 +44,12 @@ export function CroHero({ onSecondaryAction }: CroHeroProps) {
           <div className="order-2 flex w-full min-w-0 justify-center lg:order-1">
             <div className="relative mx-auto w-full max-w-[280px] px-2 sm:max-w-xs sm:px-0 md:max-w-sm lg:max-w-md xl:max-w-lg">
               <div className="absolute -inset-4 rounded-3xl bg-blue-500/5 blur-2xl" />
-              <img
+              <Image
                 src="/images/illustrations/app-testing.png"
                 alt="App Testing Illustration"
+                width={1077}
+                height={737}
+                sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 384px, 512px"
                 className="relative mx-auto h-auto w-full animate-float-slow drop-shadow-2xl"
               />
               <div className="absolute -top-2 end-0 animate-float rounded-xl border border-border/60 bg-card px-2.5 py-1.5 shadow-lg sm:-top-4 sm:-end-4 sm:px-3 sm:py-2">

@@ -836,6 +836,53 @@ body {
   color: var(--muted-foreground);
 }
 
+/* Blog table of contents */
+.blog-article-content .blog-toc {
+  border: 1px solid var(--article-border, var(--border));
+  border-radius: 0.75rem;
+  background: var(--article-table-head-bg, var(--muted));
+  padding: 1rem 1.25rem;
+  margin: 1.5em 0;
+}
+.blog-article-content .blog-toc h2 {
+  font-size: 1rem;
+  margin: 0 0 0.5em;
+  padding: 0;
+  border: 0;
+}
+.blog-article-content .blog-toc ul {
+  margin: 0;
+}
+
+/* Blog callouts: tip / warning / info */
+.blog-article-content .callout {
+  border-left: 4px solid var(--primary, #1a73e8);
+  border-radius: 0.5rem;
+  background: color-mix(in oklch, var(--primary, #1a73e8) 8%, var(--card));
+  padding: 0.85em 1.1em;
+  margin: 1.5em 0;
+}
+.blog-article-content .callout > :first-child {
+  margin-top: 0;
+}
+.blog-article-content .callout > :last-child {
+  margin-bottom: 0;
+}
+.blog-article-content .callout-tip {
+  border-left-color: #137333;
+  background: color-mix(in oklch, #137333 10%, var(--card));
+}
+.blog-article-content .callout-warning {
+  border-left-color: #b06000;
+  background: color-mix(in oklch, #f4b400 14%, var(--card));
+}
+.dark .blog-article-content .callout-tip {
+  border-left-color: #81c995;
+}
+.dark .blog-article-content .callout-warning {
+  border-left-color: #fdd663;
+}
+
 /* Shared HTML article preview surface (admin + public) */
 .article-html-surface {
   border-radius: 0.5rem;

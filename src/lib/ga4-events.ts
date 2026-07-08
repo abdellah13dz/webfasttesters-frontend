@@ -1,6 +1,4 @@
 import { hasAnalyticsConsent } from '@/lib/analytics-consent';
-import { getGaMeasurementId } from '@/lib/google-tracking';
-import { isFirebaseAnalyticsConfigured } from '@/lib/firebase-analytics';
 import { utmToMetadata } from '@/lib/utm-tracking';
 
 export const GA4_EVENTS = [
@@ -93,10 +91,7 @@ export function trackGa4Event(
 
   pushDataLayer(eventName, params);
 
-  const gaId = getGaMeasurementId();
-  if (gaId && window.gtag && !isFirebaseAnalyticsConfigured()) {
-    window.gtag('event', eventName, params);
-  } else if (window.gtag) {
+  if (window.gtag) {
     window.gtag('event', eventName, params);
   }
 }

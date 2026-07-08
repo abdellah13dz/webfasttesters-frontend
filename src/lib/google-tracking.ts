@@ -1,5 +1,4 @@
 import { COOKIE_STORAGE_KEY, hasAnalyticsConsent } from '@/lib/analytics-consent';
-import { isFirebaseAnalyticsConfigured } from '@/lib/firebase-analytics';
 
 export { COOKIE_STORAGE_KEY, hasAnalyticsConsent };
 
@@ -8,8 +7,15 @@ export function getGtmId(): string | undefined {
   return id || undefined;
 }
 
+/**
+ * GA4 measurement ID for the site. Prefer the explicit GA id, but fall back to
+ * the Firebase measurement ID so the website reports to the same GA4 stream as
+ * the User Dashboard (enables unified realtime + cross-domain user stitching).
+ */
 export function getGaMeasurementId(): string | undefined {
-  const id = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
+  const id =
+    process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim() ||
+    process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID?.trim();
   return id || undefined;
 }
 
@@ -40,9 +46,6 @@ export function grantAnalyticsConsent(): void {
 
 export function trackPageView(path: string): void {
   if (typeof window === 'undefined' || !hasAnalyticsConsent()) return;
-
-  // Firebase Analytics loads its own GA4 client when configured.
-  if (isFirebaseAnalyticsConfigured()) return;
 
   const gaId = getGaMeasurementId();
   if (gaId && window.gtag) {

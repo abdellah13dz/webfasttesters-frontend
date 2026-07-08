@@ -4,11 +4,6 @@ import { useEffect, useCallback, useRef } from 'react';
 import { useRouter } from '@/lib/router';
 import { apiFetch } from '@/lib/api';
 import { hasAnalyticsConsent } from '@/lib/analytics-consent';
-import {
-  isFirebaseAnalyticsConfigured,
-  trackFirebaseEvent,
-  trackFirebasePageView,
-} from '@/lib/firebase-analytics';
 import { trackGa4Event, mapCtaToGa4Event, type Ga4EventName } from '@/lib/ga4-events';
 import { utmToMetadata } from '@/lib/utm-tracking';
 import { trackPageView as trackGaPageView } from '@/lib/google-tracking';
@@ -51,38 +46,6 @@ function getVisitorContext() {
     referrer: document.referrer || null,
     language: navigator.language || null,
   };
-}
-
-function trackFirebaseFromEvent(
-  eventType: string,
-  page: string,
-  element?: string,
-  metadata?: Record<string, string>
-): void {
-  if (!isFirebaseAnalyticsConfigured() || !hasAnalyticsConsent()) return;
-  if (eventType === 'page_view') return;
-
-  const params: Record<string, string> = { page_path: page, ...(metadata ?? {}), ...utmToMetadata() };
-  if (element) params.element = element;
-
-  if (eventType === 'cta_click') {
-    void trackFirebaseEvent('select_content', {
-      content_type: 'cta',
-      item_id: element ?? 'unknown',
-      ...params,
-    });
-    return;
-  }
-
-  if (eventType === 'form_submit') {
-    void trackFirebaseEvent('form_submit', {
-      form_id: element ?? 'unknown',
-      ...params,
-    });
-    return;
-  }
-
-  void trackFirebaseEvent(eventType, params);
 }
 
 function forwardToGa4(
@@ -134,7 +97,6 @@ export async function trackEvent(
   metadata?: Record<string, string>
 ) {
   forwardToGa4(eventType, page, element, metadata);
-  trackFirebaseFromEvent(eventType, page, element, metadata);
 
   try {
     const context = getVisitorContext();
@@ -159,9 +121,6 @@ export async function trackEvent(
 
 // Track page view
 export function trackPageView(page: string) {
-  if (hasAnalyticsConsent()) {
-    void trackFirebasePageView(page);
-  }
   return trackEvent('page_view', page);
 }
 

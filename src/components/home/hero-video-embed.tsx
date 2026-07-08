@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+import Image from 'next/image';
 import { CheckCircle, Play, Users } from 'lucide-react';
 import { APP_SETUP_GUIDE_URL } from '@/lib/app-urls';
 import { useLanguage } from '@/lib/i18n/context';
@@ -21,24 +23,54 @@ export function HeroVideoEmbed({
 }: HeroVideoEmbedProps) {
   const { t } = useLanguage();
   const { currentPath } = useRouter();
+  // Facade: render only a lightweight thumbnail until the user interacts.
+  // This avoids loading YouTube's heavy player JS on initial page load,
+  // which drastically cuts Total Blocking Time and improves LCP.
+  const [activated, setActivated] = useState(false);
 
   const handleVideoClick = () => {
     trackGa4Event('youtube_click', currentPath, { location: analyticsLocation });
     window.open(APP_SETUP_GUIDE_URL, '_blank', 'noopener,noreferrer');
   };
 
+  const activateVideo = () => {
+    trackGa4Event('youtube_click', currentPath, { location: analyticsLocation });
+    setActivated(true);
+  };
+
   return (
     <div className={`relative mx-auto w-full max-w-xl lg:max-w-none ${className}`}>
       {VIDEO_ID ? (
         <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border/60 bg-black shadow-xl">
-          <iframe
-            src={`https://www.youtube-nocookie.com/embed/${VIDEO_ID}?rel=0`}
-            title={t('croHero.videoTitle')}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            loading="lazy"
-            className="absolute inset-0 h-full w-full"
-          />
+          {activated ? (
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${VIDEO_ID}?rel=0&autoplay=1`}
+              title={t('croHero.videoTitle')}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 h-full w-full"
+            />
+          ) : (
+            <button
+              type="button"
+              onClick={activateVideo}
+              aria-label={t('croHero.videoTitle')}
+              className="group absolute inset-0 h-full w-full"
+            >
+              <Image
+                src={`https://i.ytimg.com/vi/${VIDEO_ID}/hqdefault.jpg`}
+                alt={t('croHero.videoTitle')}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+              <span className="absolute inset-0 bg-black/20 transition-colors group-hover:bg-black/30" />
+              <span className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg transition-transform group-hover:scale-105">
+                <Play className="h-7 w-7 ms-1" />
+              </span>
+            </button>
+          )}
           <div className="pointer-events-none absolute top-2 end-2 sm:top-3 sm:end-3 rounded-xl border border-border/60 bg-card/95 px-2.5 py-1.5 shadow-lg backdrop-blur-sm sm:px-3 sm:py-2">
             <div className="flex items-center gap-1.5 sm:gap-2">
               <CheckCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-green-400" />
@@ -77,10 +109,13 @@ export function HeroDecorBackground() {
       {/* Background image with overlay */}
       <div className="absolute inset-0 -z-20">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
-        <img
+        <Image
           src="/images/hero/hero-bg.png"
           alt=""
-          className="absolute inset-0 w-full h-full object-cover opacity-[0.07]"
+          fill
+          sizes="100vw"
+          quality={40}
+          className="object-cover opacity-[0.07]"
           aria-hidden="true"
         />
       </div>

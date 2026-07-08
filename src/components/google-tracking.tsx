@@ -11,12 +11,13 @@ import {
   isGoogleTrackingConfigured,
   trackPageView,
 } from '@/lib/google-tracking';
-import { isFirebaseAnalyticsConfigured } from '@/lib/firebase-analytics';
 
 export function GoogleTracking() {
   const gtmId = getGtmId();
   const gaId = getGaMeasurementId();
-  const useStandaloneGa = Boolean(gaId) && !isFirebaseAnalyticsConfigured();
+  // Always load gtag.js when a GA4 id resolves so window.gtag is defined and
+  // events reach GA4 directly (mirrors the User Dashboard setup).
+  const useGa = Boolean(gaId);
   const { currentPath } = useRouter();
 
   useEffect(() => {
@@ -27,7 +28,7 @@ export function GoogleTracking() {
     }
   }, [currentPath]);
 
-  if (!gtmId && !useStandaloneGa) return null;
+  if (!gtmId && !useGa) return null;
 
   return (
     <>
@@ -57,7 +58,7 @@ export function GoogleTracking() {
         </Script>
       )}
 
-      {useStandaloneGa && (
+      {useGa && (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
