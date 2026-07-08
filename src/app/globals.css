@@ -168,7 +168,7 @@
   }
 
   .hero-y {
-    @apply py-12 sm:py-20 lg:py-28;
+    @apply py-8 sm:py-16 lg:py-24;
   }
 
   .text-display {
@@ -285,7 +285,7 @@ html {
   }
 
   .hero-y {
-    padding-top: 3rem;
+    padding-top: 2.5rem;
     padding-bottom: 3rem;
   }
 }
