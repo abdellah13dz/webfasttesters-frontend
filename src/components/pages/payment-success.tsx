@@ -64,19 +64,19 @@ export function PaymentSuccessPage() {
   }, [searchParams]);
 
   return (
-    <section className="flex min-h-[60vh] items-center justify-center px-4 py-16">
-      <div className="w-full max-w-md rounded-2xl border border-white/10 bg-white/5 p-8 text-center shadow-xl backdrop-blur-sm">
-        <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/15">
-          <CheckCircle2 className="h-9 w-9 text-emerald-400" aria-hidden />
+    <section className="flex min-h-[60vh] items-center justify-center bg-background px-4 py-16">
+      <div className="w-full max-w-md rounded-2xl border border-border bg-card p-8 text-center shadow-lg">
+        <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/10 dark:bg-emerald-500/15">
+          <CheckCircle2 className="h-9 w-9 text-emerald-600 dark:text-emerald-400" aria-hidden />
         </div>
-        <h1 className="text-2xl font-bold text-white">Payment successful</h1>
-        <p className="mt-3 text-sm text-gray-300">
-          Thank you for your purchase. Your credits are ready — we&apos;re taking you to submit
-          your app now.
+        <h1 className="text-2xl font-bold text-foreground">Payment Successful</h1>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+          Thank you for your purchase. Your credits have been added to your account and are ready
+          to use.
         </p>
-        <div className="mt-6 flex items-center justify-center gap-2 text-sm text-gray-400">
-          <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-          <span>Redirecting to submit app...</span>
+        <div className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+          <Loader2 className="h-4 w-4 animate-spin text-primary" aria-hidden />
+          <span>Redirecting you to submit your app...</span>
         </div>
       </div>
     </section>
