@@ -513,4 +513,13 @@ export const pageSeoConfig: Record<string, PageSeo> = {
     type: 'website',
     noindex: true,
   },
+
+  '/payment-success': {
+    title: 'Payment Successful - Fast Testers',
+    description: 'Your payment was successful. Redirecting you to submit your app for Google Play closed testing.',
+    keywords: DEFAULT_KEYWORDS_META,
+    ogImage: BRAND_OG_IMAGE_PATH,
+    type: 'website',
+    noindex: true,
+  },
 };

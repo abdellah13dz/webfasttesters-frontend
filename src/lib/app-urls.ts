@@ -1,6 +1,9 @@
 /** Main CRM dashboard — use for Get Started / Sign Up CTAs */
 export const APP_URL = 'https://app.fasttesters.com/';
 
+/** Dashboard submit-app page — post-payment destination */
+export const APP_SUBMIT_APP_URL = 'https://app.fasttesters.com/dashboard/submit-app';
+
 /** Interactive full-screen close testing dashboard demo */
 export const APP_DEMO_URL = 'https://app.fasttesters.com/demo';
 
