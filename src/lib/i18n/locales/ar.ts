@@ -188,6 +188,12 @@ export const ar: Record<string, string> = {
   'croHero.badgeApproved': 'موافق عليه',
   'croHero.badgeTesters': '12 مختبراً',
 
+  'tutorialVideo.badge': 'فيديو تعليمي',
+  'tutorialVideo.title': 'كيفية استخدام Fast Testers',
+  'tutorialVideo.description':
+    'شاهد جولة سريعة لإرسال تطبيقك وإعداد الاختبار المغلق على Google Play ومتابعة تقدم الاختبار.',
+  'tutorialVideo.viewTutorial': 'عرض الشرح',
+
   'homeTrust.stripeSecure': 'دفع آمن عبر Stripe',
   'homeTrust.developers': '1,500+ مطور',
   'homeTrust.guarantee': 'ضمان الوصول للإنتاج',

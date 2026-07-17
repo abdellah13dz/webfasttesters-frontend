@@ -158,7 +158,7 @@ export function FastTestersTutorial({
             <button
               type="button"
               onClick={openDialog}
-              className="group relative h-28 w-full sm:h-24 sm:w-40 shrink-0 overflow-hidden rounded-xl border border-border/60 bg-black"
+              className="group relative h-28 w-full sm:h-24 sm:w-40 shrink-0 overflow-hidden rounded-xl border border-border/60 bg-black order-1 sm:order-none"
               aria-label={title}
             >
               <Image
@@ -173,18 +173,20 @@ export function FastTestersTutorial({
                 <Play className="h-4 w-4 ms-0.5" />
               </span>
             </button>
-            <div className="flex-1 min-w-0 text-center sm:text-start">
-              <h3 className="text-base font-semibold text-foreground">{title}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">{description}</p>
+            <div className="flex flex-1 min-w-0 flex-col items-center gap-3 text-center sm:items-start sm:text-start order-2 sm:order-none">
+              <div>
+                <h3 className="text-base font-semibold text-foreground">{title}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{description}</p>
+              </div>
+              <Button
+                type="button"
+                onClick={openDialog}
+                className="shrink-0 bg-blue-500 hover:bg-blue-600 text-white gap-2 w-full sm:w-auto"
+              >
+                {ctaLabel}
+                <Play className="h-4 w-4" />
+              </Button>
             </div>
-            <Button
-              type="button"
-              onClick={openDialog}
-              className="shrink-0 bg-blue-500 hover:bg-blue-600 text-white gap-2"
-            >
-              {ctaLabel}
-              <Play className="h-4 w-4" />
-            </Button>
           </CardContent>
         </Card>
         <TutorialPlayerDialog open={dialogOpen} onOpenChange={setDialogOpen} title={title} />

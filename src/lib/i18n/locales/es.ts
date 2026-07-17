@@ -187,6 +187,12 @@ export const es: Record<string, string> = {
   'croHero.badgeApproved': 'Aprobado',
   'croHero.badgeTesters': '12 testers',
 
+  'tutorialVideo.badge': 'Tutorial en video',
+  'tutorialVideo.title': 'Cómo usar Fast Testers',
+  'tutorialVideo.description':
+    'Mira un recorrido rápido para enviar tu app, configurar las pruebas cerradas de Google Play y seguir el progreso del testing.',
+  'tutorialVideo.viewTutorial': 'Ver tutorial',
+
   'homeTrust.stripeSecure': 'Pago seguro con Stripe',
   'homeTrust.developers': '1.500+ desarrolladores',
   'homeTrust.guarantee': 'Garantía de acceso a producción',

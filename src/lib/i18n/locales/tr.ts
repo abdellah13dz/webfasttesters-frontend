@@ -187,6 +187,12 @@ export const tr: Record<string, string> = {
   'croHero.badgeApproved': 'Onaylandı',
   'croHero.badgeTesters': '12 Testçi',
 
+  'tutorialVideo.badge': 'Video Eğitimi',
+  'tutorialVideo.title': 'Fast Testers Nasıl Kullanılır',
+  'tutorialVideo.description':
+    'Uygulamanızı gönderme, Google Play kapalı testini kurma ve test ilerlemenizi takip etme hakkında kısa bir rehberi izleyin.',
+  'tutorialVideo.viewTutorial': 'Eğitimi İzle',
+
   'homeTrust.stripeSecure': 'Stripe Güvenli Ödeme',
   'homeTrust.developers': '1.500+ geliştirici',
   'homeTrust.guarantee': 'Üretim erişimi garantisi',

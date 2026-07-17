@@ -40,8 +40,8 @@ export function CroHero({ onSecondaryAction }: CroHeroProps) {
 
       <div className="relative z-0 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid w-full grid-cols-1 items-center gap-10 md:gap-12 lg:grid-cols-2 lg:gap-14 xl:gap-16">
-          {/* Hero illustration — left on desktop, below text on mobile (original hero visual) */}
-          <div className="order-2 flex w-full min-w-0 justify-center lg:order-1">
+          {/* Hero illustration — right on desktop, below text on mobile */}
+          <div className="order-2 flex w-full min-w-0 justify-center lg:order-2">
             <div className="relative mx-auto w-full max-w-[280px] px-2 sm:max-w-xs sm:px-0 md:max-w-sm lg:max-w-md xl:max-w-lg">
               <div className="absolute -inset-4 rounded-3xl bg-blue-500/5 blur-2xl" />
               <Image
@@ -67,8 +67,8 @@ export function CroHero({ onSecondaryAction }: CroHeroProps) {
             </div>
           </div>
 
-          {/* Text — right on desktop, above illustration on mobile */}
-          <div className="order-1 w-full min-w-0 lg:order-2">
+          {/* Text — left on desktop, above illustration on mobile */}
+          <div className="order-1 w-full min-w-0 lg:order-1">
             <div className="flex w-full flex-col text-center lg:text-start">
               <Badge
                 variant="outline"
