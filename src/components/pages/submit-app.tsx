@@ -50,6 +50,7 @@ import { ClientOnly } from '@/components/client-only';
 import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
 import { FullDemoCta } from '@/components/full-demo-cta';
 import { AppSetupGuideCta } from '@/components/app-setup-guide-cta';
+import { FastTestersTutorial } from '@/components/video-tutorial/fast-testers-tutorial';
 
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '';
 
@@ -360,6 +361,10 @@ export default function SubmitAppPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-5xl px-4 sm:px-6 pb-2">
+        <FastTestersTutorial variant="cta" analyticsLocation="submit_app_tutorial" />
       </section>
 
       <AppSetupGuideCta trackingId="submit_app_setup_guide" />

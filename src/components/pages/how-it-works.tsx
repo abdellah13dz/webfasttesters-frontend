@@ -22,6 +22,7 @@ import {
 import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
 import { FullDemoCta } from '@/components/full-demo-cta';
 import { AppSetupGuideCta } from '@/components/app-setup-guide-cta';
+import { FastTestersTutorial } from '@/components/video-tutorial/fast-testers-tutorial';
 
 function AnimatedSection({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -129,16 +130,9 @@ export default function HowItWorks() {
                 {t('howItWorks.subtitle')}
               </p>
             </div>
-            {/* Hero Illustration */}
-            <div className="flex-1 max-w-md lg:max-w-lg">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-3xl blur-xl opacity-50" />
-                <img
-                  src="/images/illustrations/how-it-works.png"
-                  alt="How it works illustration"
-                  className="relative w-full h-auto rounded-2xl shadow-2xl shadow-blue-500/10"
-                />
-              </div>
+            {/* Hero video tutorial */}
+            <div className="flex-1 max-w-md lg:max-w-lg w-full">
+              <FastTestersTutorial variant="embed" analyticsLocation="how_it_works_hero" />
             </div>
           </div>
         </div>
@@ -205,6 +199,12 @@ export default function HowItWorks() {
             );
           })}
         </div>
+      </section>
+
+      <section className="mx-auto max-w-5xl px-4 sm:px-6 pb-4">
+        <AnimatedSection delay={100}>
+          <FastTestersTutorial variant="cta" analyticsLocation="how_it_works_tutorial_cta" />
+        </AnimatedSection>
       </section>
 
       <AppSetupGuideCta trackingId="how_it_works_setup_guide" />

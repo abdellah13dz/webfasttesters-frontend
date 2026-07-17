@@ -52,6 +52,7 @@ import { CroHero } from '@/components/home/cro-hero';
 import { HomeTrustBar } from '@/components/home/home-trust-bar';
 import { HomeFaqSection } from '@/components/home/home-faq-section';
 import { HeroVideoEmbed } from '@/components/home/hero-video-embed';
+import { FastTestersTutorial } from '@/components/video-tutorial/fast-testers-tutorial';
 import { useSectionViewTracking } from '@/hooks/use-section-view-tracking';
 
 // ─── Animated Counter Hook ─────────────────────────────────────────────
@@ -324,6 +325,16 @@ export default function HomePage() {
       </section>
 
       <HomeTrustBar />
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          VIDEO TUTORIAL
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="relative py-14 sm:py-16 border-t border-border/40 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-blue-500/[0.03] to-transparent" />
+        <AnimatedSection>
+          <FastTestersTutorial variant="section" analyticsLocation="home_tutorial_section" className="py-2" />
+        </AnimatedSection>
+      </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
           GLOBAL IMPACT STATS
