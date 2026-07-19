@@ -131,6 +131,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.youtube-nocookie.com" />
         <link rel="dns-prefetch" href="https://www.youtube-nocookie.com" />
         <meta name="theme-color" content="#6366f1" />
+        <meta name="facebook-domain-verification" content="v21c1ydxk4erpw0gkio4xngp6wyfcb" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Fast Testers" />
