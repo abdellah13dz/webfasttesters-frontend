@@ -200,26 +200,44 @@ export const tr: Record<string, string> = {
 
   'homeFaq.badge': 'SSS',
   'homeFaq.title': 'Başlamadan Önce Sık Sorulan Sorular',
-  'homeFaq.subtitle': 'Fast Testers ile Google Play kapalı testi hakkında bilmeniz gereken her şey.',
+  'homeFaq.subtitle':
+    '12 testçi bulma, 14 günlük kural, fiyatlandırma ve ücretsiz topluluk seçenekleri hakkında net yanıtlar — Google Play\'e göndermeden önce.',
   'homeFaq.viewAll': 'Tüm SSS\'yi görüntüle',
-  'homeFaq.fallback1Q': 'Google bunu kabul eder mi?',
+  'homeFaq.searchPlaceholder': 'Soru ara...',
+  'homeFaq.noResults': 'Aramanızla eşleşen soru yok. Başka bir anahtar kelime deneyin veya tüm SSS sayfasına gidin.',
+  'homeFaq.fallback1Q': 'Uygulamam için 12 testçiyi bulmanın en kolay yolu nedir?',
   'homeFaq.fallback1A':
-    'Evet. Fast Testers, uygulamanızı Google Play kapalı testi üzerinden yükleyen gerçek Android kullanıcıları sağlar — kişisel geliştirici hesapları için Google\'ın 14 gün, 12 testçi üretim erişimi kuralının tam olarak gerektirdiği şey budur.',
-  'homeFaq.fallback2Q': 'Testçiler gerçek mi?',
+    'Tek seferlik $15 ücretini ödeyin, Google Play kapalı test bağlantınızı panelimize gönderin; yaklaşık bir saat içinde gerçek testçileri kanalınıza atarız. Forum veya arkadaş kovalamak yok — işe alım ve onboarding bizde.',
+  'homeFaq.fallback2Q': 'Test aşamasını tamamlamak ne kadar sürer?',
   'homeFaq.fallback2A':
-    'Evet. Her testçi gerçek bir Android cihazı ve Google hesabı olan gerçek bir kişidir. Uygulamanızı Play Store kapalı test kanalından yüklerler.',
-  'homeFaq.fallback3Q': 'Testçiler uygulamamı yüklüyor mu?',
+    'Google en az 12 testçi ile 14 ardışık gün kapalı test ister. Testçiler kanala katıldığında 14 günlük süre Google\'ın takvimine göre işler. Fast Testers testçileri hızla atayarak gereksiz gecikme olmadan başlamanızı sağlar.',
+  'homeFaq.fallback3Q': '$15 yatırım karşılığında ne alırım?',
   'homeFaq.fallback3A':
-    'Evet. Testçiler kapalı test kanalınıza katılır ve uygulamanızı Google Play\'den yükler — Google\'ın üretim erişimi talebinizi incelerken izlediği akışın aynısı.',
-  'homeFaq.fallback4Q': 'Hemen yayınlayabilir miyim?',
+    'Kapalı kanalınızda profesyonel testçiler, tüm test penceresi boyunca koordinasyon, panelde ilerleme görünürlüğü ve üretim erişimi garantimiz — abonelik olmadan tek sabit ödeme.',
+  'homeFaq.fallback4Q': 'Arkadaş ve aile mi yoksa profesyonel testçiler mi kullanmalıyım?',
   'homeFaq.fallback4A':
-    'Üretim erişimi talep etmeden önce en az 12 testçi ile 14 ardışık gün kapalı test tamamlamalısınız. Fast Testers testçileri yaklaşık bir saat içinde atayarak süreci hemen başlatmanızı sağlar.',
-  'homeFaq.fallback5Q': 'Testçileri davet etmem gerekiyor mu?',
+    'Arkadaş ve aile işe yarayabilir ancak toplaması zordur ve 14 gün boyunca aktif kalmayabilirler. Profesyonel testçiler Play kapalı testten yükler, uygulamanızı düzenli kullanır ve Google\'ın beklediği davranışı sağlar — bu yüzden çoğu geliştirici öngörülebilir süre için Fast Testers seçer.',
+  'homeFaq.fallback5Q': 'Kayıt olduktan sonra test ne zaman başlar?',
   'homeFaq.fallback5A':
-    'Manuel işe alım gerekmez. Ödemeden sonra kapalı test bağlantınızı gönderin; ekibimiz profesyonel testçileri otomatik olarak atar.',
-  'homeFaq.fallback6Q': 'Üretim reddedilirse ne olur?',
+    'Ödemeden sonra Google Play Console\'dan kapalı test bağlantınızı gönderin. Testçiler genelde yaklaşık bir saat içinde atanır ve uygulamanızı Google Play\'den hemen yüklemeye başlar.',
+  'homeFaq.fallback6Q': 'Google üretim erişimi talebimi reddederse ne olur?',
   'homeFaq.fallback6A':
-    'Fast Testers üretim erişimi garantisi içerir. Test süremizden sonra uygulamanız üretime ulaşmazsa, iade politikamıza göre tam geri ödeme alırsınız.',
+    'Üretim erişimi garantimiz geçerlidir: yönetilen test süremizden sonra iade politikamız koşullarında üretime ulaşamazsanız tam iade hakkınız vardır. Yeniden başvurmadan önce yaygın red nedenlerini anlamanıza da yardımcı oluruz.',
+  'homeFaq.fallback7Q': 'Her dildeki uygulamaları test edebilir misiniz?',
+  'homeFaq.fallback7A':
+    'Evet. Testçi ağımız 30+ dili kapsar. Gönderirken uygulamanızın birincil dilini belirtin; uygulamanızı anlamlı şekilde kullanıp inceleyebilecek testçiler atarız.',
+  'homeFaq.fallback8Q': 'Ücretli ve ücretsiz test seçenekleriniz arasındaki fark nedir?',
+  'homeFaq.fallback8A':
+    'Ücretsiz: community.fasttesters.com\'daki eşler arası topluluğa katılarak diğer geliştiricilerle test takası yapın — $0, ancak süre karşılıklı müsaitliğe bağlıdır ve genelde daha uzun sürer. Ücretli ($15): Google\'ın 12 testçi, 14 gün kuralı için testçileri hemen atarız ve üretim erişimi garantisi dahildir.',
+  'homeFaq.fallback9Q': 'Test süresince testçiler uygulamamı kaldırırsa ne olur?',
+  'homeFaq.fallback9A':
+    '14 günlük pencere boyunca katılımı izleriz. Düşüş olursa testçileri değiştirerek kapalı kanalınızda süre boyunca aktif kapsam sağlarız.',
+  'homeFaq.fallback10Q': 'Yayınladığım her uygulama için test gerekir mi?',
+  'homeFaq.fallback10A':
+    'Google\'ın kapalı test gereksinimi, 13 Kasım 2023 sonrası oluşturulan kişisel geliştirici hesaplarında uygulama başına geçerlidir. Her yeni uygulama, üretim erişiminden önce en az 12 testçi ile kendi 14 günlük kapalı testine ihtiyaç duyar — uygulama başına bir $15 paket.',
+  'homeFaq.fallback11Q': 'Topluluk üzerinden ücretsiz teste nasıl erişirim?',
+  'homeFaq.fallback11A':
+    'community.fasttesters.com adresini ziyaret edin, ücretsiz hesap oluşturun ve kapalı test yardımı takas eden diğer Android geliştiricilerle bağlantı kurun. Eşler arasıdır — onların uygulamalarını siz, sizinkini onlar test eder — Fast Testers\'a ödeme yok.',
 
   'exitIntent.badge': 'Dur — gitmeden önce',
   'exitIntent.title': 'Google Play kontrol listenizi ücretsiz alın',
@@ -227,7 +245,7 @@ export const tr: Record<string, string> = {
   'exitIntent.item1': '~1 saat içinde 12 gerçek testçi atanır',
   'exitIntent.item2': 'Tek seferlik $15 — abonelik yok',
   'exitIntent.item3': 'Üretim erişimi garantisi dahil',
-  'exitIntent.cta': 'Kapalı Teste Başla',
+  'exitIntent.cta': 'WhatsApp ile sohbet et',
   'exitIntent.checklist': 'Ücretsiz Kontrol Listesi PDF',
 
   'seoLanding.badge': 'Google Play Rehberi',
@@ -962,7 +980,7 @@ export const tr: Record<string, string> = {
 
   // FLOATING CHAT
   'chat.title': 'Fast Testers Support',
-  'chat.whatsapp': 'Chat on WhatsApp',
+  'chat.whatsapp': 'WhatsApp ile sohbet et',
   'chat.email': 'Send Email',
   'chat.faq': 'SSS\'yi Görüntüle',
 

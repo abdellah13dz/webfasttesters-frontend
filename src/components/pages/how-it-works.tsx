@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react';
 import { useRouter } from '@/lib/router';
-import { APP_URL } from '@/lib/app-urls';
+import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 import { useLanguage } from '@/lib/i18n/context';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -98,7 +98,7 @@ const stats = [
 ];
 
 export default function HowItWorks() {
-  const { navigate } = useRouter();
+  const { navigate, currentPath } = useRouter();
   const { t } = useLanguage();
 
   return (
@@ -252,7 +252,7 @@ export default function HowItWorks() {
                 {t('howItWorks.ctaDescription')}
               </p>
               <Button
-                onClick={() => navigate(APP_URL)}
+                onClick={() => goToGetStartedPricing(currentPath, navigate)}
                 size="lg"
                 className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-6 text-base rounded-xl cursor-pointer"
               >

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from '@/lib/router';
-import { APP_URL } from '@/lib/app-urls';
+import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 import { useLanguage } from '@/lib/i18n/context';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -90,7 +90,7 @@ const steps = [
       'guidePublish.step4Detail6',
     ],
     tipKey: 'guidePublish.step4Tip',
-    link: { labelKey: 'guidePublish.step4LinkLabel', url: null, internal: APP_URL },
+    link: { labelKey: 'guidePublish.step4LinkLabel', url: null, internal: '/pricing' },
   },
   {
     number: 5,
@@ -126,7 +126,7 @@ const steps = [
 ];
 
 export default function GuidePublishPage() {
-  const { navigate } = useRouter();
+  const { navigate, currentPath } = useRouter();
   const { t } = useLanguage();
   const [expandedStep, setExpandedStep] = useState<number | null>(0);
 
@@ -176,7 +176,7 @@ export default function GuidePublishPage() {
               <strong className="text-amber-900 dark:text-amber-300">{t('guidePublish.alertTitle')}</strong>{' '}
               {t('guidePublish.alertDescription')}{' '}
               <button
-                onClick={() => navigate(APP_URL)}
+                onClick={() => goToGetStartedPricing(currentPath, navigate)}
                 className="text-amber-700 dark:text-amber-400 underline underline-offset-2 hover:text-amber-900 dark:hover:text-amber-300"
               >
                 {t('guidePublish.alertLink')}
@@ -259,7 +259,7 @@ export default function GuidePublishPage() {
                     <div>
                       {'internal' in step.link && step.link.internal ? (
                         <Button
-                          onClick={() => navigate(step.link!.internal!)}
+                          onClick={() => goToGetStartedPricing(currentPath, navigate)}
                           className="bg-blue-600 text-white hover:bg-blue-700"
                         >
                           {t(step.link.labelKey)}
@@ -320,7 +320,7 @@ export default function GuidePublishPage() {
                 <Button
                   size="lg"
                   className="bg-blue-600 text-white hover:bg-blue-700"
-                  onClick={() => navigate(APP_URL)}
+                  onClick={() => goToGetStartedPricing(currentPath, navigate)}
                 >
                   {t('guidePublish.ctaButton')}
                   <ArrowRight className="ml-2 size-4" />

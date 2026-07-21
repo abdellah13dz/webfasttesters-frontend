@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { useRouter } from '@/lib/router';
-import { APP_URL } from '@/lib/app-urls';
+import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 import { useLanguage } from '@/lib/i18n/context';
 import { fetchPublicReviews } from '@/lib/reviews-api';
 import type { Review } from '@/lib/types/review';
@@ -79,7 +79,7 @@ type StarFilter = 'all' | '5' | '4' | '3';
 type SortOption = 'recent' | 'highest' | 'lowest';
 
 export default function Reviews() {
-  const { navigate } = useRouter();
+  const { navigate, currentPath } = useRouter();
   const { t } = useLanguage();
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
@@ -451,7 +451,7 @@ export default function Reviews() {
                 {t('reviews.ctaDescription')}
               </p>
               <Button
-                onClick={() => navigate(APP_URL)}
+                onClick={() => goToGetStartedPricing(currentPath, navigate)}
                 size="lg"
                 className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-6 text-base rounded-xl cursor-pointer"
               >

@@ -3,8 +3,9 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useLanguage } from '@/lib/i18n/context';
 import { X } from 'lucide-react';
-import { APP_URL } from '@/lib/app-urls';
 import { fetchSiteSettings, DEFAULT_ANNOUNCEMENT_BANNER } from '@/lib/site-settings';
+import { useRouter } from '@/lib/router';
+import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 
 const BANNER_DISMISSED_KEY = 'ft-banner-dismissed';
 const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
@@ -26,6 +27,7 @@ export function AnnouncementBanner() {
   const [dismissed, setDismissed] = useState(false);
   const [enabled, setEnabled] = useState(DEFAULT_ANNOUNCEMENT_BANNER.enabled);
   const { t, dir } = useLanguage();
+  const { currentPath, navigate } = useRouter();
 
   useEffect(() => {
     setVisible(readBannerVisibility());
@@ -76,14 +78,14 @@ export function AnnouncementBanner() {
                 >
                   {t('banner.message')}
                 </p>
-                <a
-                  href={APP_URL}
+                <button
+                  type="button"
+                  onClick={() => goToGetStartedPricing(currentPath, navigate)}
                   className="inline-flex min-h-9 shrink-0 items-center self-start text-xs font-semibold underline underline-offset-2 transition-colors hover:text-blue-100 focus:outline-none focus:ring-2 focus:ring-white/50 rounded sm:self-center sm:text-sm"
-                  rel="noopener noreferrer"
                   suppressHydrationWarning
                 >
                   {t('banner.cta')}
-                </a>
+                </button>
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from '@/lib/router';
-import { APP_URL } from '@/lib/app-urls';
+import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 import { useLanguage } from '@/lib/i18n/context';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -129,7 +129,7 @@ const pricingTiers = [
 ];
 
 export default function GuideEnterprisePage() {
-  const { navigate } = useRouter();
+  const { navigate, currentPath } = useRouter();
   const { t } = useLanguage();
 
   return (
@@ -188,7 +188,7 @@ export default function GuideEnterprisePage() {
             <Button
               size="lg"
               className="bg-blue-600 text-white hover:bg-blue-700"
-              onClick={() => navigate(APP_URL)}
+              onClick={() => goToGetStartedPricing(currentPath, navigate)}
             >
               {t('pricing.getStartedNow')}
               <ArrowRight className="ml-2 size-4" />
@@ -343,7 +343,7 @@ export default function GuideEnterprisePage() {
                     onClick={() =>
                       tier.isCustom
                         ? navigate('/contact-us')
-                        : navigate(APP_URL)
+                        : goToGetStartedPricing(currentPath, navigate)
                     }
                   >
                     {tier.isCustom ? t('guideEnterprise.tier3Cta') : t('common.getStarted')}
@@ -372,7 +372,7 @@ export default function GuideEnterprisePage() {
                 <Button
                   size="lg"
                   className="bg-blue-600 text-white hover:bg-blue-700"
-                  onClick={() => navigate(APP_URL)}
+                  onClick={() => goToGetStartedPricing(currentPath, navigate)}
                 >
                   {t('pricing.getStartedNow')}
                   <ArrowRight className="ml-2 size-4" />

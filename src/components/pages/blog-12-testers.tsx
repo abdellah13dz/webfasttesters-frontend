@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from '@/lib/router';
-import { APP_URL } from '@/lib/app-urls';
+import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 import { useLanguage } from '@/lib/i18n/context';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -145,7 +145,7 @@ const tips = [
 ];
 
 export default function Blog12TestersPage() {
-  const { navigate } = useRouter();
+  const { navigate, currentPath } = useRouter();
   const { t } = useLanguage();
 
   return (
@@ -393,7 +393,7 @@ export default function Blog12TestersPage() {
                     {option.showCta && (
                       <Button
                         className="mt-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold h-8 text-xs"
-                        onClick={() => navigate(APP_URL)}
+                        onClick={() => goToGetStartedPricing(currentPath, navigate)}
                       >
                         {t('blog12Testers.option1Cta')}
                         <ArrowRight className="ml-1 size-3" />
@@ -554,7 +554,7 @@ export default function Blog12TestersPage() {
                 <Button
                   size="lg"
                   className="bg-blue-500 hover:bg-blue-600 text-white font-semibold"
-                  onClick={() => navigate(APP_URL)}
+                  onClick={() => goToGetStartedPricing(currentPath, navigate)}
                 >
                   {t('blog12Testers.ctaButton')}
                   <ArrowRight className="ml-2 size-4" />

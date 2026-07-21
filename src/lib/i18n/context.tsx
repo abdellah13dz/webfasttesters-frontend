@@ -6,6 +6,12 @@ import { es } from './locales/es';
 import { tr } from './locales/tr';
 import { ar } from './locales/ar';
 import { contentPagesEn, contentPagesEs, contentPagesTr, contentPagesAr } from './locales/content-pages';
+import {
+  closedTestingGuideEn,
+  closedTestingGuideEs,
+  closedTestingGuideTr,
+  closedTestingGuideAr,
+} from './locales/closed-testing-guide';
 import { legalPagesEn, legalPagesEs, legalPagesTr, legalPagesAr } from './locales/legal-pages';
 import { seoTranslations } from './seo-translations';
 import { apiFetch } from '@/lib/api';
@@ -21,10 +27,10 @@ interface LanguageContextType {
 }
 
 const allTranslations: Record<Language, Record<string, string>> = {
-  en: { ...en, ...contentPagesEn, ...legalPagesEn, ...seoTranslations.en },
-  es: { ...es, ...contentPagesEs, ...legalPagesEs, ...seoTranslations.es },
-  tr: { ...tr, ...contentPagesTr, ...legalPagesTr, ...seoTranslations.tr },
-  ar: { ...ar, ...contentPagesAr, ...legalPagesAr, ...seoTranslations.ar },
+  en: { ...en, ...contentPagesEn, ...legalPagesEn, ...closedTestingGuideEn, ...seoTranslations.en },
+  es: { ...es, ...contentPagesEs, ...legalPagesEs, ...closedTestingGuideEs, ...seoTranslations.es },
+  tr: { ...tr, ...contentPagesTr, ...legalPagesTr, ...closedTestingGuideTr, ...seoTranslations.tr },
+  ar: { ...ar, ...contentPagesAr, ...legalPagesAr, ...closedTestingGuideAr, ...seoTranslations.ar },
 };
 
 const LanguageContext = createContext<LanguageContextType>({

@@ -7,6 +7,11 @@ import { useLanguage } from '@/lib/i18n/context';
 import { useAnalytics } from '@/lib/analytics';
 import { usePricingPlans } from '@/lib/hooks/use-pricing-plans';
 import { formatPlanPrice, parsePlanFeatures } from '@/lib/pricing';
+import {
+  PRICING_SECTION_ID,
+  scrollToPricingSection,
+  usePricingSectionScroll,
+} from '@/lib/pricing-navigation';
 import { StripePoweredBadge } from '@/components/stripe-powered-badge';
 import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
 import { FullDemoCta } from '@/components/full-demo-cta';
@@ -162,6 +167,7 @@ export default function Pricing() {
   const { t } = useLanguage();
   const { trackCta } = useAnalytics();
   const { primaryPlan } = usePricingPlans();
+  usePricingSectionScroll('pricing');
 
   const planFeatures = primaryPlan ? parsePlanFeatures(primaryPlan.features) : [];
   const featureItems = planFeatures.length > 0
@@ -214,7 +220,10 @@ export default function Pricing() {
       </section>
 
       {/* Pricing Cards */}
-      <section className="relative mx-auto w-full px-4 sm:px-6 py-16 gradient-bg-section">
+      <section
+        id={PRICING_SECTION_ID}
+        className="relative mx-auto w-full px-4 sm:px-6 py-16 gradient-bg-section scroll-mt-20"
+      >
         <div className="max-w-lg mx-auto relative">
           {/* Sparkle decorations */}
           <div className="absolute -top-6 -left-8 text-blue-400/40 animate-sparkle">
@@ -558,7 +567,7 @@ export default function Pricing() {
                 {t('pricing.ctaDescription')}
               </p>
               <Button
-                onClick={() => { trackCta('pricing_bottom_cta'); navigate(APP_URL); }}
+                onClick={() => { trackCta('pricing_bottom_cta'); scrollToPricingSection(); }}
                 size="lg"
                 className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-6 text-base rounded-xl cursor-pointer"
               >

@@ -3,7 +3,7 @@
 import { ArrowRight, Send } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/context';
 import { useRouter } from '@/lib/router';
-import { APP_URL } from '@/lib/app-urls';
+import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
@@ -16,7 +16,7 @@ interface SubmitAppTestingCtaProps {
 
 export function SubmitAppTestingCta({ className, variant = 'card' }: SubmitAppTestingCtaProps) {
   const { t } = useLanguage();
-  const { navigate } = useRouter();
+  const { navigate, currentPath } = useRouter();
 
   if (variant === 'banner') {
     return (
@@ -36,7 +36,7 @@ export function SubmitAppTestingCta({ className, variant = 'card' }: SubmitAppTe
             <p className="text-sm text-muted-foreground">{t('blogArticle.submitAppDesc')}</p>
           </div>
           <Button
-            onClick={() => navigate(APP_URL)}
+            onClick={() => goToGetStartedPricing(currentPath, navigate)}
             className="shrink-0 bg-blue-600 text-white shadow-sm shadow-blue-500/20 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
           >
             {t('blogArticle.getStarted')}
@@ -65,7 +65,7 @@ export function SubmitAppTestingCta({ className, variant = 'card' }: SubmitAppTe
           {t('blogArticle.submitAppDesc')}
         </p>
         <Button
-          onClick={() => navigate(APP_URL)}
+          onClick={() => goToGetStartedPricing(currentPath, navigate)}
           size="lg"
           className="bg-blue-600 text-white shadow-lg shadow-blue-500/20 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
         >

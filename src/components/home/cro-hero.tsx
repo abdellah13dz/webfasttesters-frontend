@@ -4,11 +4,10 @@ import Image from 'next/image';
 import { ArrowRight, CheckCircle, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { APP_URL } from '@/lib/app-urls';
 import { useLanguage } from '@/lib/i18n/context';
 import { useAnalytics } from '@/lib/analytics';
 import { useRouter } from '@/lib/router';
-import { HeroDecorBackground } from '@/components/home/hero-video-embed';
+import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 
 interface CroHeroProps {
   onSecondaryAction?: () => void;
@@ -16,7 +15,7 @@ interface CroHeroProps {
 
 export function CroHero({ onSecondaryAction }: CroHeroProps) {
   const { t } = useLanguage();
-  const { navigate } = useRouter();
+  const { navigate, currentPath } = useRouter();
   const { trackCta } = useAnalytics();
 
   const headlineGet = t('croHero.headlineGet');
@@ -30,19 +29,17 @@ export function CroHero({ onSecondaryAction }: CroHeroProps) {
   const handlePrimaryCta = () => {
     trackCta('hero_cta', undefined, 'hero_cta_click');
     trackCta('hero_cta', undefined, 'signup_click');
-    navigate(APP_URL);
+    goToGetStartedPricing(currentPath, navigate);
     onSecondaryAction?.();
   };
 
   return (
-    <section className="relative overflow-x-hidden hero-y border-b border-border/40">
-      <HeroDecorBackground />
-
+    <>
       <div className="relative z-0 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid w-full grid-cols-1 items-center gap-10 md:gap-12 lg:grid-cols-2 lg:gap-14 xl:gap-16">
+        <div className="grid w-full grid-cols-1 items-center gap-8 sm:gap-10 md:gap-12 lg:grid-cols-2 lg:gap-14 xl:gap-16">
           {/* Hero illustration — right on desktop, below text on mobile */}
-          <div className="order-2 flex w-full min-w-0 justify-center lg:order-2">
-            <div className="relative mx-auto w-full max-w-[280px] px-2 sm:max-w-xs sm:px-0 md:max-w-sm lg:max-w-md xl:max-w-lg">
+          <div className="order-2 flex w-full min-w-0 justify-center py-2 sm:py-4 lg:order-2">
+            <div className="relative mx-auto w-full max-w-[260px] px-2 sm:max-w-xs sm:px-0 md:max-w-sm lg:max-w-md xl:max-w-lg">
               <div className="absolute -inset-4 rounded-3xl bg-blue-500/5 blur-2xl" />
               <Image
                 src="/images/illustrations/app-testing.png"
@@ -112,6 +109,6 @@ export function CroHero({ onSecondaryAction }: CroHeroProps) {
           </div>
         </div>
       </div>
-    </section>
+    </>
   );
 }

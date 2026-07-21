@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from '@/lib/router';
 import { useAnalytics } from '@/lib/analytics';
-import { APP_LOGIN_URL, APP_URL } from '@/lib/app-urls';
+import { APP_LOGIN_URL } from '@/lib/app-urls';
 import { BrandLogo } from '@/components/brand-logo';
 import { useLanguage } from '@/lib/i18n/context';
 import { Button } from '@/components/ui/button';
@@ -19,6 +19,7 @@ import {
 import { useSiteNavigation } from '@/lib/hooks/use-site-navigation';
 import { resolveNavLabel } from '@/lib/navigation';
 import { getCmsIcon } from '@/lib/cms-icons';
+import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 
 const languages = [
   { code: 'en' as const, flag: '🇺🇸', label: 'English', shortLabel: 'EN' },
@@ -51,6 +52,12 @@ export function Header() {
 
   const handleNav = (path: string) => {
     navigate(path);
+    setMobileOpen(false);
+  };
+
+  const handleGetStarted = () => {
+    trackCta('signup', undefined, 'signup_click');
+    goToGetStartedPricing(currentPath, navigate);
     setMobileOpen(false);
   };
 
@@ -165,7 +172,7 @@ export function Header() {
           </Button>
           <Button
             size="sm"
-            onClick={() => { trackCta('signup', undefined, 'signup_click'); handleNav(APP_URL); }}
+            onClick={handleGetStarted}
             className="bg-blue-500 hover:bg-blue-600 text-white font-semibold"
           >
             {t('header.getStarted')}
@@ -319,7 +326,7 @@ export function Header() {
                         {t('header.login')}
                       </button>
                       <Button
-                        onClick={() => { trackCta('signup', undefined, 'signup_click'); handleNav(APP_URL); }}
+                        onClick={handleGetStarted}
                         className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold"
                       >
                         {t('header.getStarted')}

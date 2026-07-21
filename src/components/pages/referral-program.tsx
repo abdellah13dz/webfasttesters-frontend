@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useRouter } from '@/lib/router';
-import { APP_URL } from '@/lib/app-urls';
+import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 import { useLanguage } from '@/lib/i18n/context';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -125,7 +125,7 @@ const whoItsFor = [
 ];
 
 export default function ReferralProgramPage() {
-  const { navigate } = useRouter();
+  const { navigate, currentPath } = useRouter();
   const { t } = useLanguage();
 
   return (
@@ -156,7 +156,7 @@ export default function ReferralProgramPage() {
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
-                onClick={() => navigate(APP_URL)}
+                onClick={() => goToGetStartedPricing(currentPath, navigate)}
                 className="bg-blue-500 hover:bg-blue-600 text-white font-semibold h-12 px-8 text-base cursor-pointer"
               >
                 {t('referralProgram.ctaGetReferralLink')}
@@ -340,7 +340,7 @@ export default function ReferralProgramPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
-                onClick={() => navigate(APP_URL)}
+                onClick={() => goToGetStartedPricing(currentPath, navigate)}
                 className="bg-blue-500 hover:bg-blue-600 text-white font-semibold h-12 px-8 text-base cursor-pointer"
               >
                 {t('referralProgram.ctaGetReferralLink')}

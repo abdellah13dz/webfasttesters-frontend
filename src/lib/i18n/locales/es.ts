@@ -200,26 +200,44 @@ export const es: Record<string, string> = {
 
   'homeFaq.badge': 'Preguntas frecuentes',
   'homeFaq.title': 'Preguntas comunes antes de empezar',
-  'homeFaq.subtitle': 'Todo lo que necesitas saber sobre las pruebas cerradas de Google Play con Fast Testers.',
-  'homeFaq.viewAll': 'Ver todas las FAQ',
-  'homeFaq.fallback1Q': '¿Google aceptará esto?',
+  'homeFaq.subtitle':
+    'Respuestas claras sobre cómo conseguir 12 probadores, la regla de 14 días, precios y opciones gratuitas en la comunidad — antes de enviar a Google Play.',
+  'homeFaq.viewAll': 'Ver todas las preguntas frecuentes',
+  'homeFaq.searchPlaceholder': 'Buscar preguntas...',
+  'homeFaq.noResults': 'Ninguna pregunta coincide con tu búsqueda. Prueba otra palabra clave o visita la página completa de preguntas frecuentes.',
+  'homeFaq.fallback1Q': '¿Cuál es la forma más fácil de conseguir 12 probadores para mi app?',
   'homeFaq.fallback1A':
-    'Sí. Fast Testers proporciona usuarios Android reales que instalan tu app mediante las pruebas cerradas de Google Play — exactamente lo que Google exige para la regla de 12 testers durante 14 días antes del acceso a producción.',
-  'homeFaq.fallback2Q': '¿Los testers son reales?',
+    'Paga la tarifa única de $15, envía tu enlace de pruebas cerradas de Google Play en nuestro panel y asignamos probadores reales a tu pista en aproximadamente una hora. Sin foros ni perseguir amigos — nosotros gestionamos el reclutamiento.',
+  'homeFaq.fallback2Q': '¿Cuánto tarda en completarse la fase de pruebas?',
   'homeFaq.fallback2A':
-    'Sí. Cada tester es una persona real con un dispositivo Android y cuenta de Google genuinos. Instalan tu app desde la pista de pruebas cerradas de Play Store.',
-  'homeFaq.fallback3Q': '¿Los testers instalan mi app?',
+    'Google exige al menos 14 días consecutivos de pruebas cerradas con un mínimo de 12 probadores. Cuando se unen a tu pista, ese periodo de 14 días corre según el calendario de Google. Fast Testers asigna probadores rápido para que empieces sin retrasos innecesarios.',
+  'homeFaq.fallback3Q': '¿Qué obtengo por la inversión de $15?',
   'homeFaq.fallback3A':
-    'Sí. Los testers se unen a tu pista de pruebas cerradas e instalan tu app desde Google Play — el mismo flujo que Google supervisa al revisar tu solicitud de acceso a producción.',
-  'homeFaq.fallback4Q': '¿Puedo publicar de inmediato?',
+    'Probadores profesionales en tu pista cerrada, coordinación durante toda la ventana de pruebas, visibilidad del progreso en tu panel y nuestra garantía de acceso a producción — un pago único sin suscripción.',
+  'homeFaq.fallback4Q': '¿Debo usar amigos y familia o probadores profesionales?',
   'homeFaq.fallback4A':
-    'Debes completar 14 días consecutivos de pruebas cerradas con al menos 12 testers antes de solicitar acceso a producción. Fast Testers asigna testers en aproximadamente una hora para que puedas empezar de inmediato.',
-  'homeFaq.fallback5Q': '¿Necesito invitar testers?',
+    'Amigos y familia pueden servir, pero cuesta reunirlos y puede que no permanezcan activos los 14 días. Los probadores profesionales instalan desde pruebas cerradas de Play, usan tu app de forma constante y cumplen lo que Google espera — por eso muchos desarrolladores eligen Fast Testers.',
+  'homeFaq.fallback5Q': '¿Cuándo empiezan las pruebas después de registrarme?',
   'homeFaq.fallback5A':
-    'No hace falta reclutar manualmente. Envía tu enlace de pruebas cerradas después del pago y nuestro equipo asigna testers profesionales automáticamente.',
-  'homeFaq.fallback6Q': '¿Qué pasa si rechazan la producción?',
+    'Tras el pago, envía tu enlace de pruebas cerradas desde Google Play Console. Los probadores suelen asignarse en aproximadamente una hora e instalan tu app desde Google Play de inmediato.',
+  'homeFaq.fallback6Q': '¿Qué pasa si Google rechaza mi solicitud de acceso a producción?',
   'homeFaq.fallback6A':
-    'Fast Testers incluye garantía de acceso a producción. Si tu app no llega a producción tras nuestro periodo de pruebas, recibes un reembolso completo según nuestra política de reembolso.',
+    'Aplica nuestra garantía de acceso a producción: si no llegas a producción tras nuestro periodo de pruebas gestionado, según nuestra política de reembolso, tienes derecho a reembolso completo. También te ayudamos a entender motivos habituales de rechazo antes de volver a solicitar.',
+  'homeFaq.fallback7Q': '¿Pueden probar apps en cualquier idioma?',
+  'homeFaq.fallback7A':
+    'Sí. Nuestra red cubre más de 30 idiomas. Indica el idioma principal de tu app al enviar y asignamos testers que puedan usar y revisar tu app con sentido.',
+  'homeFaq.fallback8Q': '¿Cuál es la diferencia entre las opciones de prueba de pago y gratuitas?',
+  'homeFaq.fallback8A':
+    'Gratis: únete a nuestra comunidad entre pares en community.fasttesters.com para intercambiar pruebas con otros desarrolladores — $0, pero el tiempo depende de la disponibilidad mutua y suele tardar más. De pago ($15): asignamos probadores al instante con cobertura para la regla de 12 probadores y 14 días de Google e incluimos garantía de acceso a producción.',
+  'homeFaq.fallback9Q': '¿Qué pasa si los probadores desinstalan mi app durante el periodo de pruebas?',
+  'homeFaq.fallback9A':
+    'Supervisamos la participación durante los 14 días. Si hay bajas, reemplazamos probadores para mantener cobertura activa en tu pista cerrada durante todo el periodo.',
+  'homeFaq.fallback10Q': '¿Necesito pruebas para cada app que publico?',
+  'homeFaq.fallback10A':
+    'El requisito de pruebas cerradas de Google aplica por app en cuentas personales creadas después del 13 de noviembre de 2023. Cada app nueva necesita su propia prueba cerrada de 14 días con al menos 12 probadores antes del acceso a producción — un paquete de $15 por app.',
+  'homeFaq.fallback11Q': '¿Cómo accedo a las pruebas gratuitas a través de la comunidad?',
+  'homeFaq.fallback11A':
+    'Visita community.fasttesters.com, crea una cuenta gratuita y conecta con otros desarrolladores Android que intercambian ayuda en pruebas cerradas. Es entre pares — pruebas sus apps y ellos las tuyas — sin pago a Fast Testers.',
 
   'exitIntent.badge': 'Espera — antes de irte',
   'exitIntent.title': 'Obtén gratis la checklist de Google Play',
@@ -227,7 +245,7 @@ export const es: Record<string, string> = {
   'exitIntent.item1': '12 testers reales asignados en ~1 hora',
   'exitIntent.item2': '$15 único — sin suscripción',
   'exitIntent.item3': 'Garantía de acceso a producción incluida',
-  'exitIntent.cta': 'Iniciar pruebas cerradas',
+  'exitIntent.cta': 'Chatear por WhatsApp',
   'exitIntent.checklist': 'Checklist PDF gratis',
 
   'seoLanding.badge': 'Guía de Google Play',
@@ -962,7 +980,7 @@ export const es: Record<string, string> = {
 
   // FLOATING CHAT
   'chat.title': 'Fast Testers Support',
-  'chat.whatsapp': 'Chat on WhatsApp',
+  'chat.whatsapp': 'Chatear por WhatsApp',
   'chat.email': 'Send Email',
   'chat.faq': 'Ver preguntas frecuentes',
 

@@ -5,7 +5,7 @@ import { Download, CheckCircle2, ArrowRight, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useRouter } from '@/lib/router';
-import { APP_URL } from '@/lib/app-urls';
+import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 import { useAnalytics } from '@/lib/analytics';
 import { trackGa4Event } from '@/lib/ga4-events';
 import { useLanguage } from '@/lib/i18n/context';
@@ -98,7 +98,7 @@ export default function GooglePlayChecklistPage() {
             {downloading ? t('checklist.downloading') : t('checklist.download')}
           </Button>
           <Button
-            onClick={() => { trackCta('hero_cta', undefined, 'signup_click'); navigate(APP_URL); }}
+            onClick={() => { trackCta('hero_cta', undefined, 'signup_click'); goToGetStartedPricing(currentPath, navigate); }}
             className="flex-1 bg-blue-500 hover:bg-blue-600 text-white h-11"
           >
             {t('croHero.cta')}

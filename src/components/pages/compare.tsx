@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from '@/lib/router';
-import { APP_URL } from '@/lib/app-urls';
+import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 import { useLanguage } from '@/lib/i18n/context';
 import { useAnalytics } from '@/lib/analytics';
 import { FullDemoCta } from '@/components/full-demo-cta';
@@ -307,7 +307,7 @@ function CellRenderer({ cell, t, isFT }: { cell: CellValue; t: (k: string) => st
 // ──────────────────────────────────────────────
 
 export default function ComparePage() {
-  const { navigate } = useRouter();
+  const { navigate, currentPath } = useRouter();
   const { t } = useLanguage();
   const { trackCta } = useAnalytics();
   const [expandedCost, setExpandedCost] = useState(false);
@@ -825,7 +825,7 @@ export default function ComparePage() {
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button
-                  onClick={() => { trackCta('compare_get_started'); navigate(APP_URL); }}
+                  onClick={() => { trackCta('compare_get_started'); goToGetStartedPricing(currentPath, navigate); }}
                   size="lg"
                   className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-6 text-base rounded-xl cursor-pointer w-full sm:w-auto"
                 >

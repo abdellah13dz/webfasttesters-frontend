@@ -6,12 +6,11 @@ import { ArrowRight, Shield, Zap } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/context';
 import { useRouter } from '@/lib/router';
 import { useAnalytics } from '@/lib/analytics';
-import { APP_URL } from '@/lib/app-urls';
-import { appendCrossDomainParams } from '@/lib/cross-domain';
+import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 
 export function MobileStickyCta() {
   const { t } = useLanguage();
-  const { currentPath } = useRouter();
+  const { currentPath, navigate } = useRouter();
   const { trackCta } = useAnalytics();
   const [footerVisible, setFooterVisible] = useState(false);
 
@@ -39,9 +38,8 @@ export function MobileStickyCta() {
 
   const handleGetStarted = () => {
     trackCta('mobile_sticky_cta', undefined, 'sticky_cta_click');
+    goToGetStartedPricing(currentPath, navigate);
   };
-
-  const appUrlWithAttribution = appendCrossDomainParams(APP_URL);
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-30 md:hidden">
@@ -60,18 +58,12 @@ export function MobileStickyCta() {
           </div>
           {/* Right: CTA Button */}
           <Button
-            asChild
+            onClick={handleGetStarted}
             className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold h-10 shadow-lg shadow-blue-500/20 transition-all active:scale-[0.98]"
           >
-            <a
-              href={appUrlWithAttribution}
-              onClick={handleGetStarted}
-              rel="noopener noreferrer"
-            >
-              <Zap className="mr-1.5 h-4 w-4" />
-              {t('mobileCta.getStarted')}
-              <ArrowRight className="ml-1.5 h-4 w-4" />
-            </a>
+            <Zap className="mr-1.5 h-4 w-4" />
+            {t('mobileCta.getStarted')}
+            <ArrowRight className="ml-1.5 h-4 w-4" />
           </Button>
         </div>
       </div>

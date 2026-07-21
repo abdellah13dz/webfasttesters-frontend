@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from '@/lib/router';
-import { APP_URL } from '@/lib/app-urls';
+import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 import { useLanguage } from '@/lib/i18n/context';
 import { apiFetch } from '@/lib/api';
 import {
@@ -302,7 +302,7 @@ export default function BlogArticlePage({
                 </div>
                 <p className="text-xs text-muted-foreground mb-4">{t('blogArticle.submitAppDesc')}</p>
                 <Button
-                  onClick={() => navigate(APP_URL)}
+                  onClick={() => goToGetStartedPricing(currentPath, navigate)}
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white shadow-sm shadow-blue-500/20 dark:bg-blue-500 dark:hover:bg-blue-600 dark:shadow-blue-500/20"
                   size="sm"
                 >

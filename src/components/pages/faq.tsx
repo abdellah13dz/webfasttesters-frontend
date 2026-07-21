@@ -1,11 +1,12 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useMemo } from 'react';
 import { useRouter } from '@/lib/router';
 import { useLanguage } from '@/lib/i18n/context';
 import { fetchPublicFaq } from '@/lib/cms';
 import { getCmsIcon } from '@/lib/cms-icons';
 import type { FaqItem } from '@/lib/cms';
+import { getFullFaqI18nItems } from '@/lib/faq-i18n-items';
 import {
   Accordion,
   AccordionContent,
@@ -20,14 +21,6 @@ import {
   ArrowRight,
   HelpCircle,
   MessageSquare,
-  Clock,
-  Shield,
-  Users,
-  Globe,
-  CreditCard,
-  Smartphone,
-  CheckCircle2,
-  Lock,
 } from 'lucide-react';
 
 function AnimatedSection({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
@@ -57,60 +50,11 @@ function AnimatedSection({ children, className = '', delay = 0 }: { children: Re
   );
 }
 
-const faqItems = [
-  {
-    id: 'faq-1',
-    questionKey: 'faq.q1',
-    answerKey: 'faq.a1',
-    icon: Smartphone,
-  },
-  {
-    id: 'faq-2',
-    questionKey: 'faq.q2',
-    answerKey: 'faq.a2',
-    icon: Users,
-  },
-  {
-    id: 'faq-3',
-    questionKey: 'faq.q3',
-    answerKey: 'faq.a3',
-    icon: CreditCard,
-  },
-  {
-    id: 'faq-4',
-    questionKey: 'faq.q4',
-    answerKey: 'faq.a4',
-    icon: Shield,
-  },
-  {
-    id: 'faq-5',
-    questionKey: 'faq.q5',
-    answerKey: 'faq.a5',
-    icon: Clock,
-  },
-  {
-    id: 'faq-6',
-    questionKey: 'faq.q6',
-    answerKey: 'faq.a6',
-    icon: CheckCircle2,
-  },
-  {
-    id: 'faq-7',
-    questionKey: 'faq.q7',
-    answerKey: 'faq.a7',
-    icon: Globe,
-  },
-  {
-    id: 'faq-8',
-    questionKey: 'faq.q8',
-    answerKey: 'faq.a8',
-    icon: Lock,
-  },
-];
+const faqItems = getFullFaqI18nItems();
 
 export default function FAQ() {
   const { navigate } = useRouter();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [cmsItems, setCmsItems] = useState<FaqItem[]>([]);
 
   useEffect(() => {
@@ -120,19 +64,22 @@ export default function FAQ() {
     })();
   }, []);
 
-  const displayItems = cmsItems.length > 0
-    ? cmsItems.map((item) => ({
+  const displayItems = useMemo(() => {
+    if (cmsItems.length > 0 && language === 'en') {
+      return cmsItems.map((item) => ({
         id: item.id,
         question: item.question,
         answer: item.answer,
         icon: getCmsIcon(item.icon),
-      }))
-    : faqItems.map((faq) => ({
-        id: faq.id,
-        question: t(faq.questionKey),
-        answer: t(faq.answerKey),
-        icon: faq.icon,
       }));
+    }
+    return faqItems.map((faq) => ({
+      id: faq.id,
+      question: t(faq.questionKey),
+      answer: t(faq.answerKey),
+      icon: faq.icon,
+    }));
+  }, [cmsItems, language, t]);
 
   return (
     <div className="min-h-screen bg-background text-foreground">

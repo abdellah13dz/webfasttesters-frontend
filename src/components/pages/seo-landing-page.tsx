@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from '@/lib/router';
-import { APP_URL } from '@/lib/app-urls';
+import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 import { useAnalytics } from '@/lib/analytics';
 import { useLanguage } from '@/lib/i18n/context';
 import type { SeoLandingPageConfig } from '@/lib/seo-landing-pages';
@@ -52,7 +52,7 @@ interface SeoLandingPageProps {
 }
 
 export function SeoLandingPage({ config }: SeoLandingPageProps) {
-  const { navigate } = useRouter();
+  const { navigate, currentPath } = useRouter();
   const { trackCta, trackFaq } = useAnalytics();
   const { t } = useLanguage();
 
@@ -68,7 +68,7 @@ export function SeoLandingPage({ config }: SeoLandingPageProps) {
           <div className="text-lg text-muted-foreground mb-8">{renderMarkdown(config.intro)}</div>
           <Button
             size="lg"
-            onClick={() => { trackCta('hero_cta', undefined, 'signup_click'); navigate(APP_URL); }}
+            onClick={() => { trackCta('hero_cta', undefined, 'signup_click'); goToGetStartedPricing(currentPath, navigate); }}
             className="bg-blue-500 hover:bg-blue-600 text-white font-semibold h-12 px-8"
           >
             {t('croHero.cta')}
@@ -146,7 +146,7 @@ export function SeoLandingPage({ config }: SeoLandingPageProps) {
             </ul>
             <Button
               size="lg"
-              onClick={() => { trackCta('pricing_cta', undefined, 'pricing_cta_click'); navigate(APP_URL); }}
+              onClick={() => { trackCta('pricing_cta', undefined, 'pricing_cta_click'); goToGetStartedPricing(currentPath, navigate); }}
               className="bg-blue-500 hover:bg-blue-600 text-white font-semibold"
             >
               {t('croHero.cta')}

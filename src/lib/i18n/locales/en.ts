@@ -204,26 +204,44 @@ export const en: Record<string, string> = {
   // Home FAQ
   'homeFaq.badge': 'FAQ',
   'homeFaq.title': 'Common Questions Before You Start',
-  'homeFaq.subtitle': 'Everything you need to know about Google Play closed testing with Fast Testers.',
+  'homeFaq.subtitle':
+    'Clear answers on getting 12 testers, the 14-day rule, pricing, and free community options — before you submit to Google Play.',
   'homeFaq.viewAll': 'View all FAQ',
-  'homeFaq.fallback1Q': 'Will Google accept this?',
+  'homeFaq.searchPlaceholder': 'Search questions...',
+  'homeFaq.noResults': 'No questions match your search. Try another keyword or view the full FAQ page.',
+  'homeFaq.fallback1Q': "What's the easiest way to get 12 testers for my app?",
   'homeFaq.fallback1A':
-    'Yes. Fast Testers provides real Android users who install your app through Google Play closed testing — exactly what Google requires for the 14-day, 12-tester production access rule for personal developer accounts.',
-  'homeFaq.fallback2Q': 'Are testers real?',
+    'Pay the one-time $15 fee, submit your Google Play closed testing link in our dashboard, and we assign real testers to your track in about one hour. No forum posts or chasing friends — we handle recruiting and onboarding.',
+  'homeFaq.fallback2Q': 'How long does it take to complete the testing phase?',
   'homeFaq.fallback2A':
-    'Yes. Every tester is a real person with a genuine Android device and Google account. They install your app from the Play Store closed testing track and use it during the 14-day period.',
-  'homeFaq.fallback3Q': 'Do testers install my app?',
+    'Google requires at least 14 consecutive days of closed testing with a minimum of 12 testers. Once testers join your track, that 14-day period runs on Google\'s timeline. Fast Testers assigns testers quickly so you can start without unnecessary delays.',
+  'homeFaq.fallback3Q': 'What do I get for the $15 investment?',
   'homeFaq.fallback3A':
-    'Yes. Testers join your closed testing track and install your app from Google Play — the same flow Google monitors when reviewing your production access request.',
-  'homeFaq.fallback4Q': 'Can I publish immediately?',
+    'Professional testers on your closed track, coordination for the full testing window, progress visibility in your dashboard, and our production access guarantee — one flat payment with no subscription.',
+  'homeFaq.fallback4Q': 'Should I use friends and family or professional testers?',
   'homeFaq.fallback4A':
-    'You must complete 14 consecutive days of closed testing with at least 12 testers before requesting production access. Fast Testers assigns testers in about one hour so you can start the clock immediately.',
-  'homeFaq.fallback5Q': 'Do I need to invite testers?',
+    'Friends and family can work but are hard to gather and may not stay active for all 14 days. Professional testers install from Play closed testing, use your app consistently, and match what Google expects — which is why most developers use Fast Testers for a predictable timeline.',
+  'homeFaq.fallback5Q': 'When does testing begin after I sign up?',
   'homeFaq.fallback5A':
-    'No manual recruiting. Submit your closed testing link after payment and our team assigns professional testers to your track automatically.',
-  'homeFaq.fallback6Q': 'What if production is rejected?',
+    'After payment, submit your closed testing link from Google Play Console. Testers are typically assigned within about one hour and begin installing your app from Google Play right away.',
+  'homeFaq.fallback6Q': 'What happens if Google rejects my production access request?',
   'homeFaq.fallback6A':
-    'Fast Testers includes a production access guarantee. If your app does not reach production after our testing period, you receive a full refund per our refund policy.',
+    'Our production access guarantee applies: if you do not reach production after our managed testing period under the terms of our refund policy, you are eligible for a full refund. We also help you understand common rejection reasons before you reapply.',
+  'homeFaq.fallback7Q': 'Can you test apps in any language?',
+  'homeFaq.fallback7A':
+    'Yes. Our tester network covers 30+ languages. Note your app\'s primary language when you submit and we assign testers who can meaningfully use and review your app.',
+  'homeFaq.fallback8Q': "What's the difference between your paid and free testing options?",
+  'homeFaq.fallback8A':
+    'Free: join our peer community at community.fasttesters.com to swap testing with other developers — $0, but timing depends on mutual availability and often takes longer. Paid ($15): we assign testers immediately with coverage for Google\'s 12-tester, 14-day rule and include our production access guarantee.',
+  'homeFaq.fallback9Q': 'What if testers uninstall my app during the testing period?',
+  'homeFaq.fallback9A':
+    'We monitor participation throughout the 14-day window. If drop-offs occur, we replace testers so you maintain active coverage on your closed track through the testing period.',
+  'homeFaq.fallback10Q': 'Do I need testing for every app I publish?',
+  'homeFaq.fallback10A':
+    'Google\'s closed testing requirement applies per app for personal developer accounts created after November 13, 2023. Each new app needs its own 14-day closed test with at least 12 testers before production access — one $15 package per app.',
+  'homeFaq.fallback11Q': 'How do I access free testing through the community?',
+  'homeFaq.fallback11A':
+    'Visit community.fasttesters.com, create a free account, and connect with other Android developers who exchange closed testing help. It is peer-to-peer — you test their apps and they test yours — with no payment to Fast Testers.',
 
   // Exit intent
   'exitIntent.badge': 'Wait — before you go',
@@ -232,7 +250,7 @@ export const en: Record<string, string> = {
   'exitIntent.item1': '12 real testers assigned in ~1 hour',
   'exitIntent.item2': 'One-time $15 — no subscription',
   'exitIntent.item3': 'Production access guarantee included',
-  'exitIntent.cta': 'Start Closed Testing',
+  'exitIntent.cta': 'Chat on WhatsApp',
   'exitIntent.checklist': 'Free Checklist PDF',
 
   // SEO landing page UI

@@ -1,14 +1,13 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { X, Download, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { X, Download, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/lib/i18n/context';
 import { useRouter } from '@/lib/router';
-import { APP_URL } from '@/lib/app-urls';
+import { WHATSAPP_URL } from '@/lib/contact';
 import { trackGa4Event } from '@/lib/ga4-events';
-import { useAnalytics } from '@/lib/analytics';
 
 const DISMISS_KEY = 'ft_exit_intent_dismissed';
 const DISMISS_DAYS = 7;
@@ -35,7 +34,6 @@ function markDismissed(): void {
 export function ExitIntentPopup() {
   const { t } = useLanguage();
   const { currentPath, navigate } = useRouter();
-  const { trackCta } = useAnalytics();
   const [visible, setVisible] = useState(false);
 
   const dismiss = useCallback(() => {
@@ -66,11 +64,9 @@ export function ExitIntentPopup() {
 
   if (!visible) return null;
 
-  const handleCta = () => {
+  const handleWhatsAppCta = () => {
     trackGa4Event('exit_intent_cta', currentPath);
-    trackCta('hero_cta', undefined, 'signup_click');
     dismiss();
-    navigate(APP_URL);
   };
 
   const handleChecklist = () => {
@@ -111,11 +107,17 @@ export function ExitIntentPopup() {
           </ul>
           <div className="flex flex-col sm:flex-row gap-3">
             <Button
-              onClick={handleCta}
-              className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold h-11"
+              asChild
+              className="flex-1 bg-[#25D366] hover:bg-[#20BD5A] text-white font-semibold h-11"
             >
-              {t('exitIntent.cta')}
-              <ArrowRight className="h-4 w-4 ml-1" />
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleWhatsAppCta}
+              >
+                {t('exitIntent.cta')}
+              </a>
             </Button>
             <Button
               variant="outline"

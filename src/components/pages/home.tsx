@@ -49,11 +49,18 @@ import { LiveDemoDashboard } from '@/components/live-demo-dashboard';
 import { FullDemoCta } from '@/components/full-demo-cta';
 import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
 import { CroHero } from '@/components/home/cro-hero';
+import { HeroDecorBackground } from '@/components/home/hero-video-embed';
 import { HomeTrustBar } from '@/components/home/home-trust-bar';
 import { HomeFaqSection } from '@/components/home/home-faq-section';
+import { HomeClosedTestingExplained } from '@/components/home/home-closed-testing-explained';
 import { HeroVideoEmbed } from '@/components/home/hero-video-embed';
 import { FastTestersTutorial } from '@/components/video-tutorial/fast-testers-tutorial';
 import { useSectionViewTracking } from '@/hooks/use-section-view-tracking';
+import {
+  goToGetStartedPricing,
+  PRICING_SECTION_ID,
+  usePricingSectionScroll,
+} from '@/lib/pricing-navigation';
 
 // ─── Animated Counter Hook ─────────────────────────────────────────────
 function useAnimatedCounter(
@@ -171,7 +178,7 @@ const androidFeatures = [
 
 // ─── Main Component ────────────────────────────────────────────────────
 export default function HomePage() {
-  const { navigate } = useRouter();
+  const { navigate, currentPath } = useRouter();
   const { t } = useLanguage();
   const { trackCta } = useAnalytics();
   const { primaryPlan } = usePricingPlans();
@@ -191,6 +198,7 @@ export default function HomePage() {
   const pricingSectionRef = useSectionViewTracking('pricing_view', '/');
   const reviewsSectionRef = useSectionViewTracking('reviews_view', '/');
   const caseStudiesSectionRef = useSectionViewTracking('case_studies_view', '/');
+  usePricingSectionScroll('home');
 
   useEffect(() => {
     (async () => {
@@ -283,7 +291,7 @@ export default function HomePage() {
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-8 sm:mb-12 w-full sm:w-auto">
                   <Button
                     size="lg"
-                    onClick={() => { trackCta('hero_cta'); navigate(APP_URL); }}
+                    onClick={() => { trackCta('hero_cta'); goToGetStartedPricing(currentPath, navigate); }}
                     className="w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white font-semibold text-base px-6 sm:px-8 h-12 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all"
                   >
                     {t('home.seeWhatYouGet')}
@@ -473,8 +481,10 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════════════════
           CRO HERO — Primary conversion section
       ═══════════════════════════════════════════════════════════════════ */}
-      
-      <CroHero />
+      <section className="relative overflow-x-clip border-b border-border/40 hero-y">
+        <HeroDecorBackground />
+        <CroHero />
+      </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
           HOW IT WORKS
@@ -896,7 +906,11 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════════════════
           PRICING SECTION
       ═══════════════════════════════════════════════════════════════════ */}
-      <section ref={pricingSectionRef as React.RefObject<HTMLElement>} className="relative py-16 sm:py-20 border-t border-border/40 gradient-bg-section overflow-hidden">
+      <section
+        id={PRICING_SECTION_ID}
+        ref={pricingSectionRef as React.RefObject<HTMLElement>}
+        className="relative py-16 sm:py-20 border-t border-border/40 gradient-bg-section overflow-hidden scroll-mt-20"
+      >
         {/* Sparkle decorations */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <svg className="absolute top-[15%] left-[8%] animate-sparkle" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 0L7.41 4.59L12 6L7.41 7.41L6 12L4.59 7.41L0 6L4.59 4.59L6 0Z" fill="rgba(59,130,246,0.15)" /></svg>
@@ -1149,6 +1163,8 @@ export default function HomePage() {
 
       <HomeFaqSection />
 
+      <HomeClosedTestingExplained />
+
       {/* ═══════════════════════════════════════════════════════════════════
           NEWSLETTER SECTION
       ═══════════════════════════════════════════════════════════════════ */}
@@ -1203,7 +1219,7 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button
                   size="lg"
-                  onClick={() => { trackCta('bottom_cta'); navigate(APP_URL); }}
+                  onClick={() => { trackCta('bottom_cta'); goToGetStartedPricing(currentPath, navigate); }}
                   className="bg-blue-500 hover:bg-blue-600 text-white font-semibold text-base px-8 h-12 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all"
                 >
                   {t('home.startTestingNow')}

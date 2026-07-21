@@ -1,7 +1,7 @@
 /** Public contact channels for the marketing site */
 export const CONTACT_EMAIL = 'contact@fasttesters.com';
 
-export const WHATSAPP_URL = 'https://wa.me/+213549179303';
+export const WHATSAPP_URL = 'https://wa.me/14028286367';
 
 export const FACEBOOK_URL =
   'https://www.facebook.com/profile.php?id=61570546142568';
