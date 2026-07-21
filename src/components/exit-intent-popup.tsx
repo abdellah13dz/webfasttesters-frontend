@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/lib/i18n/context';
 import { useRouter } from '@/lib/router';
-import { WHATSAPP_URL } from '@/lib/contact';
+import { getWhatsAppUrl } from '@/lib/contact';
 import { trackGa4Event } from '@/lib/ga4-events';
 
 const DISMISS_KEY = 'ft_exit_intent_dismissed';
@@ -111,7 +111,9 @@ export function ExitIntentPopup() {
               className="flex-1 bg-[#25D366] hover:bg-[#20BD5A] text-white font-semibold h-11"
             >
               <a
-                href={WHATSAPP_URL}
+                href={getWhatsAppUrl(
+                  'Hi Fast Testers, I would like help getting started with Google Play closed testing.',
+                )}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleWhatsAppCta}
