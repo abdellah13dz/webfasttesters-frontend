@@ -1,6 +1,9 @@
 import { apiUrl } from '@/lib/api';
 import { mergeKeywords } from '@/lib/seo-keywords';
 
+/** ISR / server fetch cache for public CMS reads (seconds). */
+export const BLOG_REVALIDATE_SECONDS = 3600;
+
 export function blogArticlePath(slug: string): string {
   return `/blog/${slug}`;
 }
@@ -25,9 +28,13 @@ export function blogArticleKeywords(article: ApiArticle): string {
 }
 
 export async function fetchPublishedArticles(): Promise<ApiArticle[]> {
+  return fetchPublishedArticleSummaries();
+}
+
+export async function fetchPublishedArticleSummaries(): Promise<ApiArticle[]> {
   try {
     const res = await fetch(apiUrl('/api/articles'), {
-      next: { revalidate: 300 },
+      next: { revalidate: BLOG_REVALIDATE_SECONDS },
     });
     if (!res.ok) return [];
     const articles = (await res.json()) as ApiArticle[];
@@ -38,8 +45,17 @@ export async function fetchPublishedArticles(): Promise<ApiArticle[]> {
 }
 
 export async function fetchArticleBySlug(slug: string): Promise<ApiArticle | null> {
-  const articles = await fetchPublishedArticles();
-  return articles.find((a) => a.slug === slug) ?? null;
+  try {
+    const res = await fetch(apiUrl(`/api/articles?slug=${encodeURIComponent(slug)}`), {
+      next: { revalidate: BLOG_REVALIDATE_SECONDS },
+    });
+    if (!res.ok) return null;
+    const articles = (await res.json()) as ApiArticle[];
+    const article = articles.find((a) => a.slug === slug && a.status === 'published');
+    return article ?? null;
+  } catch {
+    return null;
+  }
 }
 
 export interface ApiArticle {
@@ -47,7 +63,7 @@ export interface ApiArticle {
   slug: string;
   title: string;
   description: string;
-  content: string;
+  content?: string;
   coverImage: string | null;
   category: string;
   status: string;
@@ -71,7 +87,7 @@ export function mapApiArticle(article: ApiArticle) {
     readTime: article.readTime,
     categories: [article.category],
     image: article.coverImage || '/images/blog/default.png',
-    content: article.content,
+    content: article.content ?? '',
     featured: article.featured,
   };
 }

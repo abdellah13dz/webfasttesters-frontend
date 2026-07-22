@@ -21,12 +21,16 @@ export async function POST(req: NextRequest) {
       req.headers.get('cf-region') ||
       req.headers.get('x-region');
 
-    const payload = {
-      ...body,
-      country: body.country || country || null,
-      city: body.city || (city ? decodeURIComponent(city) : null),
-      region: body.region || region || null,
-    };
+    const enrichEvent = (event: Record<string, unknown>) => ({
+      ...event,
+      country: event.country || country || null,
+      city: event.city || (city ? decodeURIComponent(city) : null),
+      region: event.region || region || null,
+    });
+
+    const events = Array.isArray(body.events)
+      ? (body.events as Record<string, unknown>[]).map(enrichEvent)
+      : [enrichEvent(body)];
 
     const upstream = await fetch(`${API_BASE}/api/analytics`, {
       method: 'POST',
@@ -38,7 +42,7 @@ export async function POST(req: NextRequest) {
         ...(city ? { 'x-vercel-ip-city': city } : {}),
         ...(region ? { 'x-vercel-ip-country-region': region } : {}),
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({ events }),
       cache: 'no-store',
     });
 

@@ -85,24 +85,36 @@ export default function BlogArticlePage({
       setError(false);
 
       try {
-        const response = await apiFetch('/api/articles');
-        if (!response.ok) {
+        const [articleRes, listRes] = await Promise.all([
+          apiFetch(`/api/articles?slug=${encodeURIComponent(slug)}`),
+          apiFetch('/api/articles'),
+        ]);
+
+        if (!articleRes.ok) {
           setError(true);
           return;
         }
 
-        const apiArticles = (await response.json()) as ApiArticle[];
-        const mapped = apiArticles.map(mapApiArticle);
-        const current = apiArticles.find((a) => a.slug === slug);
+        const articlePayload = (await articleRes.json()) as ApiArticle[];
+        const current = articlePayload.find((a) => a.slug === slug);
 
         if (!current) {
           setError(true);
           return;
         }
 
+        let related: ReturnType<typeof mapApiArticle>[] = [];
+        if (listRes.ok) {
+          const summaries = (await listRes.json()) as ApiArticle[];
+          related = summaries
+            .filter((a) => a.slug !== slug)
+            .slice(0, 3)
+            .map(mapApiArticle);
+        }
+
         setRawArticle(current);
         setArticle(mapApiArticle(current));
-        setRelatedArticles(mapped.filter((a) => a.slug !== slug).slice(0, 3));
+        setRelatedArticles(related);
       } catch {
         setError(true);
       } finally {

@@ -10,6 +10,25 @@ import { trackPageView as trackGaPageView } from '@/lib/google-tracking';
 
 const VISITOR_KEY = 'ft_vid';
 const SESSION_KEY = 'ft_sid';
+const PAGE_VIEW_DEDUPE_PREFIX = 'ft_pv:';
+
+const ANALYTICS_FLUSH_MS = 8000;
+const ANALYTICS_MAX_BATCH = 20;
+
+type QueuedAnalyticsEvent = {
+  eventType: string;
+  page: string;
+  element: string | null;
+  metadata: Record<string, string> | null;
+  visitorId: string | null;
+  sessionId: string | null;
+  referrer: string | null;
+  language: string | null;
+};
+
+const analyticsQueue: QueuedAnalyticsEvent[] = [];
+let analyticsFlushTimer: ReturnType<typeof setTimeout> | null = null;
+let analyticsFlushInFlight = false;
 
 function createId(): string {
   if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
@@ -46,6 +65,112 @@ function getVisitorContext() {
     referrer: document.referrer || null,
     language: navigator.language || null,
   };
+}
+
+function isLikelyBot(): boolean {
+  if (typeof navigator === 'undefined') return true;
+  return /bot|crawl|spider|slurp|bingpreview|facebookexternalhit|headless|lighthouse|pagespeed/i.test(
+    navigator.userAgent
+  );
+}
+
+function shouldSendPageViewToBackend(page: string): boolean {
+  try {
+    const key = `${PAGE_VIEW_DEDUPE_PREFIX}${page}`;
+    if (sessionStorage.getItem(key)) return false;
+    sessionStorage.setItem(key, '1');
+    return true;
+  } catch {
+    return true;
+  }
+}
+
+function scheduleAnalyticsFlush(): void {
+  if (analyticsFlushTimer !== null) return;
+  analyticsFlushTimer = setTimeout(() => {
+    analyticsFlushTimer = null;
+    void flushAnalyticsQueue();
+  }, ANALYTICS_FLUSH_MS);
+}
+
+async function flushAnalyticsQueue(): Promise<void> {
+  if (analyticsFlushInFlight || analyticsQueue.length === 0) return;
+  analyticsFlushInFlight = true;
+
+  const batch = analyticsQueue.splice(0, ANALYTICS_MAX_BATCH);
+  try {
+    await apiFetch('/api/analytics', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ events: batch }),
+      keepalive: true,
+    });
+  } catch {
+    // Silently fail - analytics should never break the site
+  } finally {
+    analyticsFlushInFlight = false;
+    if (analyticsQueue.length > 0) {
+      scheduleAnalyticsFlush();
+    }
+  }
+}
+
+function enqueueBackendAnalytics(
+  eventType: string,
+  page: string,
+  element?: string,
+  metadata?: Record<string, string>
+): void {
+  if (typeof window === 'undefined' || isLikelyBot()) return;
+
+  if (eventType === 'page_view' && !shouldSendPageViewToBackend(page)) {
+    return;
+  }
+
+  const context = getVisitorContext();
+  analyticsQueue.push({
+    eventType,
+    page,
+    element: element || null,
+    metadata: { ...(metadata || {}), ...utmToMetadata() },
+    visitorId: context.visitorId,
+    sessionId: context.sessionId,
+    referrer: context.referrer,
+    language: context.language,
+  });
+
+  if (analyticsQueue.length >= ANALYTICS_MAX_BATCH) {
+    if (analyticsFlushTimer !== null) {
+      clearTimeout(analyticsFlushTimer);
+      analyticsFlushTimer = null;
+    }
+    void flushAnalyticsQueue();
+    return;
+  }
+
+  scheduleAnalyticsFlush();
+}
+
+if (typeof window !== 'undefined') {
+  window.addEventListener('pagehide', () => {
+    if (analyticsQueue.length === 0) return;
+    const batch = analyticsQueue.splice(0, ANALYTICS_MAX_BATCH);
+    try {
+      const body = JSON.stringify({ events: batch });
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon('/api/analytics', new Blob([body], { type: 'application/json' }));
+      } else {
+        void apiFetch('/api/analytics', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body,
+          keepalive: true,
+        });
+      }
+    } catch {
+      // ignore
+    }
+  });
 }
 
 function forwardToGa4(
@@ -97,26 +222,7 @@ export async function trackEvent(
   metadata?: Record<string, string>
 ) {
   forwardToGa4(eventType, page, element, metadata);
-
-  try {
-    const context = getVisitorContext();
-    await apiFetch('/api/analytics', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        eventType,
-        page,
-        element: element || null,
-        metadata: { ...(metadata || null), ...utmToMetadata() },
-        visitorId: context.visitorId,
-        sessionId: context.sessionId,
-        referrer: context.referrer,
-        language: context.language,
-      }),
-    });
-  } catch {
-    // Silently fail - analytics should never break the site
-  }
+  enqueueBackendAnalytics(eventType, page, element, metadata);
 }
 
 // Track page view

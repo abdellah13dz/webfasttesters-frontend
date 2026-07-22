@@ -11,10 +11,35 @@ export interface AdminSession {
   token: string;
 }
 
-export function apiUrl(path: string): string {
+const PUBLIC_READ_GET_PREFIXES = [
+  '/api/articles',
+  '/api/translations',
+  '/api/site-settings',
+  '/api/reviews',
+  '/api/pricing',
+  '/api/faq',
+  '/api/changelog',
+  '/api/status',
+  '/api/pages/',
+];
+
+function shouldUseDirectApi(path: string, init?: RequestInit): boolean {
+  const method = (init?.method || 'GET').toUpperCase();
+  if (method !== 'GET') return false;
   const normalized = path.startsWith('/') ? path : `/${path}`;
-  // Browser: same-origin /api/* proxied by Next.js (avoids CORS + mixed content).
+  const pathWithoutQuery = normalized.split('?')[0] ?? normalized;
+  return PUBLIC_READ_GET_PREFIXES.some(
+    (prefix) => pathWithoutQuery === prefix || pathWithoutQuery.startsWith(prefix)
+  );
+}
+
+export function apiUrl(path: string, init?: RequestInit): string {
+  const normalized = path.startsWith('/') ? path : `/${path}`;
+  // Browser: cacheable public GETs go straight to the API (skips Vercel proxy bandwidth).
   if (typeof window !== 'undefined') {
+    if (shouldUseDirectApi(normalized, init)) {
+      return `${API_BASE}${normalized}`;
+    }
     return normalized;
   }
   return `${API_BASE}${normalized}`;
@@ -51,7 +76,7 @@ export async function apiFetch(path: string, init?: RequestInit): Promise<Respon
     }
   }
 
-  const response = await fetch(apiUrl(path), { ...init, headers });
+  const response = await fetch(apiUrl(path, init), { ...init, headers });
 
   if (typeof window !== 'undefined' && response.status === 401 && isAdminApiPath(path)) {
     localStorage.removeItem(ADMIN_SESSION_KEY);

@@ -5,14 +5,15 @@ import { JsonLdForPath } from '@/components/site-json-ld';
 import {
   blogArticleKeywords,
   fetchArticleBySlug,
-  fetchPublishedArticles,
+  fetchPublishedArticleSummaries,
+  BLOG_REVALIDATE_SECONDS,
 } from '@/lib/blog';
 import { buildBlogArticleMetadata, buildMetadataForPath } from '@/lib/page-metadata';
 
 type Props = { params: Promise<{ slug: string }> };
 
-/** ISR: re-fetch articles from API every 5 minutes */
-export const revalidate = 300;
+/** ISR: re-fetch articles from API every hour */
+export const revalidate = BLOG_REVALIDATE_SECONDS;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -37,8 +38,7 @@ export default async function BlogSlugPage({ params }: Props) {
     notFound();
   }
 
-  const allArticles = await fetchPublishedArticles();
-  const relatedArticles = allArticles
+  const relatedArticles = (await fetchPublishedArticleSummaries())
     .filter((a) => a.slug !== slug)
     .slice(0, 3);
 

@@ -62,6 +62,39 @@ function getTranslation(
   return key;
 }
 
+const TRANSLATIONS_CACHE_KEY = 'ft_tr_overrides_v1';
+const TRANSLATIONS_CACHE_TTL_MS = 24 * 60 * 60 * 1000;
+
+async function loadLocaleOverrides(locale: Language): Promise<Record<string, string>> {
+  const res = await apiFetch(`/api/translations?locale=${locale}`);
+  if (!res.ok) return {};
+  const data = await res.json();
+  return data.overrides || {};
+}
+
+function readTranslationsCache(): Record<string, Record<string, string>> | null {
+  try {
+    const raw = sessionStorage.getItem(TRANSLATIONS_CACHE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { at: number; data: Record<string, Record<string, string>> };
+    if (Date.now() - parsed.at > TRANSLATIONS_CACHE_TTL_MS) return null;
+    return parsed.data;
+  } catch {
+    return null;
+  }
+}
+
+function writeTranslationsCache(data: Record<string, Record<string, string>>): void {
+  try {
+    sessionStorage.setItem(
+      TRANSLATIONS_CACHE_KEY,
+      JSON.stringify({ at: Date.now(), data })
+    );
+  } catch {
+    // ignore quota errors
+  }
+}
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<Language>('en');
   const [overrides, setOverrides] = useState<Record<string, Record<string, string>>>({});
@@ -79,27 +112,40 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   }, [language]);
 
   useEffect(() => {
+    const cached = readTranslationsCache();
+    if (cached) {
+      setOverrides(cached);
+    }
+
     (async () => {
       try {
-        const results = await Promise.all(
-          (['en', 'es', 'tr', 'ar'] as Language[]).map(async (locale) => {
-            const res = await apiFetch(`/api/translations?locale=${locale}`);
-            if (!res.ok) return [locale, {}] as const;
-            const data = await res.json();
-            return [locale, data.overrides || {}] as const;
-          })
-        );
-        setOverrides(Object.fromEntries(results));
+        if (cached?.[language]) {
+          return;
+        }
+        const localeOverrides = await loadLocaleOverrides(language);
+        setOverrides((prev) => {
+          const next = { ...prev, [language]: localeOverrides };
+          writeTranslationsCache(next);
+          return next;
+        });
       } catch {
         // Locale files remain the source of truth when API is unavailable
       }
     })();
-  }, []);
+  }, [language]);
 
   const setLanguage = useCallback((lang: Language) => {
     setLanguageState(lang);
     localStorage.setItem('ft-lang', lang);
-  }, []);
+    if (overrides[lang]) return;
+    void loadLocaleOverrides(lang).then((localeOverrides) => {
+      setOverrides((prev) => {
+        const next = { ...prev, [lang]: localeOverrides };
+        writeTranslationsCache(next);
+        return next;
+      });
+    });
+  }, [overrides]);
 
   const t = useCallback((key: string): string => {
     return getTranslation(language, key, overrides);

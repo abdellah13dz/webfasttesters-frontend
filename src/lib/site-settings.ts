@@ -68,11 +68,43 @@ export const DEFAULT_HERO_STATS: HeroStatsSetting = {
 
 let cachedSettings: SiteSettings | null = null;
 let cacheTime = 0;
-const CACHE_MS = 60_000;
+const CACHE_MS = 15 * 60 * 1000;
+const SITE_SETTINGS_SESSION_KEY = 'ft_site_settings_v1';
+
+function readSessionSiteSettings(): SiteSettings | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    const raw = sessionStorage.getItem(SITE_SETTINGS_SESSION_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { at: number; data: SiteSettings };
+    if (Date.now() - parsed.at > CACHE_MS) return null;
+    return parsed.data;
+  } catch {
+    return null;
+  }
+}
+
+function writeSessionSiteSettings(data: SiteSettings): void {
+  if (typeof window === 'undefined') return;
+  try {
+    sessionStorage.setItem(SITE_SETTINGS_SESSION_KEY, JSON.stringify({ at: Date.now(), data }));
+  } catch {
+    // ignore
+  }
+}
 
 export async function fetchSiteSettings(force = false): Promise<SiteSettings | null> {
   if (!force && cachedSettings && Date.now() - cacheTime < CACHE_MS) {
     return cachedSettings;
+  }
+
+  if (!force && typeof window !== 'undefined') {
+    const sessionCached = readSessionSiteSettings();
+    if (sessionCached) {
+      cachedSettings = sessionCached;
+      cacheTime = Date.now();
+      return sessionCached;
+    }
   }
 
   try {
@@ -81,6 +113,7 @@ export async function fetchSiteSettings(force = false): Promise<SiteSettings | n
     const data = await res.json();
     cachedSettings = data;
     cacheTime = Date.now();
+    writeSessionSiteSettings(data);
     return data;
   } catch {
     return null;
@@ -90,6 +123,13 @@ export async function fetchSiteSettings(force = false): Promise<SiteSettings | n
 export function invalidateSiteSettingsCache() {
   cachedSettings = null;
   cacheTime = 0;
+  if (typeof window !== 'undefined') {
+    try {
+      sessionStorage.removeItem(SITE_SETTINGS_SESSION_KEY);
+    } catch {
+      // ignore
+    }
+  }
 }
 
 export function pageSeoFromCmsPage(page: {

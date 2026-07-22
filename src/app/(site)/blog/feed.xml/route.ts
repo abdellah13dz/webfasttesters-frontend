@@ -1,7 +1,7 @@
-import { fetchPublishedArticles } from '@/lib/blog';
+import { fetchPublishedArticles, BLOG_REVALIDATE_SECONDS } from '@/lib/blog';
 import { buildBlogRssXml, toBlogFeedItems } from '@/lib/blog-feed';
 
-export const revalidate = 300;
+export const revalidate = BLOG_REVALIDATE_SECONDS;
 
 export async function GET() {
   const articles = await fetchPublishedArticles();
@@ -10,7 +10,7 @@ export async function GET() {
   return new Response(xml, {
     headers: {
       'Content-Type': 'application/rss+xml; charset=utf-8',
-      'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+      'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
     },
   });
 }
