@@ -1,7 +1,7 @@
-import { fetchPublishedArticles, BLOG_REVALIDATE_SECONDS } from '@/lib/blog';
+import { fetchPublishedArticles } from '@/lib/blog';
 import { buildBlogRssXml, toBlogFeedItems } from '@/lib/blog-feed';
 
-export const revalidate = BLOG_REVALIDATE_SECONDS;
+export const revalidate = 3600;
 
 export async function GET() {
   const articles = await fetchPublishedArticles();

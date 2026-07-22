@@ -157,3 +157,5 @@ export function SeoLandingPage({ config }: SeoLandingPageProps) {
     </div>
   );
 }
+
+export default SeoLandingPage;

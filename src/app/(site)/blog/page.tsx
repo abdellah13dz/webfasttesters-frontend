@@ -1,7 +1,7 @@
 ﻿import type { Metadata } from 'next';
 import Page from '@/components/pages/blog';
 import { JsonLdForPath } from '@/components/site-json-ld';
-import { fetchPublishedArticles, BLOG_REVALIDATE_SECONDS } from '@/lib/blog';
+import { fetchPublishedArticles } from '@/lib/blog';
 import { buildMetadataForPath } from '@/lib/page-metadata';
 import { SITE_URL } from '@/lib/site-url';
 
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = BLOG_REVALIDATE_SECONDS;
+export const revalidate = 3600;
 
 export default async function RoutePage() {
   const articles = await fetchPublishedArticles();

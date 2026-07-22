@@ -6,14 +6,13 @@ import {
   blogArticleKeywords,
   fetchArticleBySlug,
   fetchPublishedArticleSummaries,
-  BLOG_REVALIDATE_SECONDS,
 } from '@/lib/blog';
 import { buildBlogArticleMetadata, buildMetadataForPath } from '@/lib/page-metadata';
 
 type Props = { params: Promise<{ slug: string }> };
 
 /** ISR: re-fetch articles from API every hour */
-export const revalidate = BLOG_REVALIDATE_SECONDS;
+export const revalidate = 3600;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
