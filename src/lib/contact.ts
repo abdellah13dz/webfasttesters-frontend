@@ -1,7 +1,7 @@
 /** Public contact channels for the marketing site */
 
 /** WhatsApp business line — used for wa.me links and displayed support phone */
-export const WHATSAPP_PHONE_E164 = '+213674799807';
+export const WHATSAPP_PHONE_E164 = '+213549179303';
 
 /** Default pre-filled message for marketing-site WhatsApp CTAs */
 export const DEFAULT_WHATSAPP_MESSAGE =
