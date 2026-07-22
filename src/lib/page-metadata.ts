@@ -162,10 +162,10 @@ export function buildBlogArticleMetadata(
 ): Metadata {
   const path = `/blog/${article.slug}`;
   const title =
-    article.seoTitle?.trim() || `${article.title} - Fast Testers Blog`;
+    article.seoTitle?.trim() || `${article.title?.trim() || 'Article'} - Fast Testers Blog`;
   const description = (
     article.seoDescription?.trim() ||
-    article.description ||
+    article.description?.trim() ||
     'Expert guide on Google Play testing and Android app publishing from Fast Testers.'
   ).slice(0, 160);
 

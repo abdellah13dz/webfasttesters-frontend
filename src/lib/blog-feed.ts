@@ -31,8 +31,8 @@ export function toBlogFeedItems(articles: ApiArticle[]): BlogFeedItem[] {
   return articles
     .map((article) => ({
       slug: article.slug,
-      title: article.seoTitle?.trim() || article.title,
-      description: article.seoDescription?.trim() || article.description,
+      title: article.seoTitle?.trim() || article.title?.trim() || 'Blog post',
+      description: article.seoDescription?.trim() || article.description?.trim() || '',
       url: `${SITE_URL}${blogArticlePath(article.slug)}`,
       datePublished: article.createdAt,
       category: article.category,

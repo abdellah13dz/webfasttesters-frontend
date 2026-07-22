@@ -20,10 +20,11 @@ const CATEGORY_KEYWORDS: Record<string, string> = {
 };
 
 export function blogArticleKeywords(article: ApiArticle): string {
+  const category = article.category?.trim() || 'APP TESTING';
   return mergeKeywords(
-    CATEGORY_KEYWORDS[article.category] || article.category,
-    article.title,
-    article.seoTitle || ''
+    CATEGORY_KEYWORDS[category] || category,
+    article.title?.trim() || '',
+    article.seoTitle?.trim() || ''
   );
 }
 
@@ -77,17 +78,17 @@ export interface ApiArticle {
 export function mapApiArticle(article: ApiArticle) {
   return {
     slug: article.slug,
-    title: article.title,
-    description: article.description,
+    title: article.title?.trim() || 'Untitled',
+    description: article.description?.trim() || '',
     date: new Date(article.createdAt).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
     }),
-    readTime: article.readTime,
-    categories: [article.category],
+    readTime: article.readTime?.trim() || '',
+    categories: [article.category?.trim() || 'APP TESTING'],
     image: article.coverImage || '/images/blog/default.png',
     content: article.content ?? '',
-    featured: article.featured,
+    featured: Boolean(article.featured),
   };
 }

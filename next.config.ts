@@ -4,6 +4,39 @@ const API_BASE = (
   process.env.NEXT_PUBLIC_API_URL || "https://webapi.fasttesters.com"
 ).replace(/\/$/, "");
 
+/** Proxied to Render — excludes `/api/analytics` and `/api/meta/*` (handled on Vercel). */
+const BACKEND_API_PREFIXES = [
+  "articles",
+  "reviews",
+  "pricing",
+  "contact",
+  "feedback",
+  "submissions",
+  "newsletter",
+  "pages",
+  "faq",
+  "changelog",
+  "status",
+  "site-settings",
+  "translations",
+  "admin",
+] as const;
+
+function backendApiRewrites() {
+  const rules: { source: string; destination: string }[] = [];
+  for (const prefix of BACKEND_API_PREFIXES) {
+    rules.push({
+      source: `/api/${prefix}`,
+      destination: `${API_BASE}/api/${prefix}`,
+    });
+    rules.push({
+      source: `/api/${prefix}/:path*`,
+      destination: `${API_BASE}/api/${prefix}/:path*`,
+    });
+  }
+  return rules;
+}
+
 const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
@@ -27,10 +60,7 @@ const nextConfig: NextConfig = {
   },
   async rewrites() {
     return [
-      {
-        source: "/api/:path*",
-        destination: `${API_BASE}/api/:path*`,
-      },
+      ...backendApiRewrites(),
       {
         source: "/uploads/:path*",
         destination: `${API_BASE}/uploads/:path*`,

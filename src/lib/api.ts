@@ -3,6 +3,10 @@ const API_BASE = (
 ).replace(/\/$/, '');
 const ADMIN_SESSION_KEY = 'ft-admin';
 
+export function getPublicApiBase(): string {
+  return API_BASE;
+}
+
 export interface AdminSession {
   id: string;
   name: string;

@@ -2,7 +2,7 @@
 
 import { useEffect, useCallback, useRef } from 'react';
 import { useRouter } from '@/lib/router';
-import { apiFetch } from '@/lib/api';
+import { getPublicApiBase } from '@/lib/api';
 import { hasAnalyticsConsent } from '@/lib/analytics-consent';
 import { trackGa4Event, mapCtaToGa4Event, type Ga4EventName } from '@/lib/ga4-events';
 import { utmToMetadata } from '@/lib/utm-tracking';
@@ -93,18 +93,36 @@ function scheduleAnalyticsFlush(): void {
   }, ANALYTICS_FLUSH_MS);
 }
 
+async function postAnalyticsPayload(body: string): Promise<void> {
+  const init: RequestInit = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body,
+    keepalive: true,
+  };
+
+  try {
+    const sameOrigin = await fetch('/api/analytics', init);
+    if (sameOrigin.ok || sameOrigin.status === 429) return;
+    if (sameOrigin.status !== 404) return;
+  } catch {
+    // try direct API below
+  }
+
+  try {
+    await fetch(`${getPublicApiBase()}/api/analytics`, init);
+  } catch {
+    // Silently fail
+  }
+}
+
 async function flushAnalyticsQueue(): Promise<void> {
   if (analyticsFlushInFlight || analyticsQueue.length === 0) return;
   analyticsFlushInFlight = true;
 
   const batch = analyticsQueue.splice(0, ANALYTICS_MAX_BATCH);
   try {
-    await apiFetch('/api/analytics', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ events: batch }),
-      keepalive: true,
-    });
+    await postAnalyticsPayload(JSON.stringify({ events: batch }));
   } catch {
     // Silently fail - analytics should never break the site
   } finally {
@@ -155,18 +173,16 @@ if (typeof window !== 'undefined') {
   window.addEventListener('pagehide', () => {
     if (analyticsQueue.length === 0) return;
     const batch = analyticsQueue.splice(0, ANALYTICS_MAX_BATCH);
+    const body = JSON.stringify({ events: batch });
     try {
-      const body = JSON.stringify({ events: batch });
       if (navigator.sendBeacon) {
-        navigator.sendBeacon('/api/analytics', new Blob([body], { type: 'application/json' }));
-      } else {
-        void apiFetch('/api/analytics', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body,
-          keepalive: true,
-        });
+        const sent = navigator.sendBeacon(
+          '/api/analytics',
+          new Blob([body], { type: 'application/json' })
+        );
+        if (sent) return;
       }
+      void postAnalyticsPayload(body);
     } catch {
       // ignore
     }

@@ -93,6 +93,7 @@ export function keywordsToMetaString(
   const unique: string[] = [];
 
   for (const phrase of keywords) {
+    if (phrase == null || typeof phrase !== 'string') continue;
     const trimmed = phrase.trim();
     if (!trimmed) continue;
     const key = trimmed.toLowerCase();
@@ -111,8 +112,9 @@ export function keywordsToMetaString(
 }
 
 /** Merge global keywords with page-specific phrases (deduped). */
-export function mergeKeywords(...additional: string[]): string {
-  return keywordsToMetaString([...SITE_KEYWORDS, ...additional]);
+export function mergeKeywords(...additional: Array<string | null | undefined>): string {
+  const extras = additional.filter((s): s is string => typeof s === 'string' && s.trim().length > 0);
+  return keywordsToMetaString([...SITE_KEYWORDS, ...extras]);
 }
 
 export const DEFAULT_KEYWORDS_META = keywordsToMetaString();

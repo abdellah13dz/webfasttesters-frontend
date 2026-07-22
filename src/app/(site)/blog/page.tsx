@@ -21,8 +21,8 @@ export default async function RoutePage() {
   const articles = await fetchPublishedArticles();
   const blogArticles = articles.map((article) => ({
     slug: article.slug,
-    title: article.seoTitle?.trim() || article.title,
-    description: article.seoDescription?.trim() || article.description,
+    title: article.seoTitle?.trim() || article.title?.trim() || 'Blog',
+    description: article.seoDescription?.trim() || article.description?.trim() || '',
     datePublished: article.createdAt,
   }));
 
