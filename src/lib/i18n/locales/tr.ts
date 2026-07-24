@@ -8,6 +8,7 @@ export const tr: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   'banner.message': '🚀 Sınırlı süre: Sadece $15/uygulama ile 14 profesyonel test uzmanı — %99.9 başarı!',
   'banner.cta': 'Başla →',
+  'banner.dashboardCta': 'Panele Git →',
   'banner.dismiss': 'Duyuruyu kapat',
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -20,6 +21,7 @@ export const tr: Record<string, string> = {
   'header.resources': 'Kaynaklar',
   'header.login': 'Giriş Yap',
   'header.getStarted': 'Başla',
+  'header.dashboard': 'Panel',
   'header.language': 'Dil',
   'header.menu': 'Menü',
   'header.androidAppTesters': 'Android Uygulama Testçileri',

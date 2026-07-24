@@ -121,7 +121,7 @@ export default function AdminPages() {
               </div>
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" onClick={() => openEdit(page)}><Pencil className="h-4 w-4" /></Button>
-                <Button variant="outline" size="sm" className="text-destructive" onClick={async () => { if (confirm('Delete page?')) { await apiFetch(`/api/admin/pages/${page.id}`, { method: 'DELETE' }); load(); } }}><Trash2 className="h-4 w-4" /></Button>
+                <Button variant="outline" size="sm" className="text-destructive" onClick={async () => { if (!confirm('Delete page?')) return; try { await apiFetch(`/api/admin/pages/${page.id}`, { method: 'DELETE' }); await load(); } catch { /* ignore */ } }}><Trash2 className="h-4 w-4" /></Button>
               </div>
             </CardContent>
           </Card>

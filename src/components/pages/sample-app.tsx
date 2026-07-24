@@ -4,6 +4,7 @@ import { useRouter } from '@/lib/router'
 import { openAppDemo } from '@/lib/app-urls'
 import { useLanguage } from '@/lib/i18n/context'
 import { useAnalytics } from '@/lib/analytics'
+import { goToGetStartedPricing } from '@/lib/pricing-navigation'
 import { FullDemoCta } from '@/components/full-demo-cta'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -199,7 +200,7 @@ const testingTimelineEntries = [
 ]
 
 export default function SampleAppPage() {
-  const { navigate } = useRouter()
+  const { navigate, currentPath } = useRouter()
   const { t } = useLanguage()
   const { trackCta } = useAnalytics()
 
@@ -231,7 +232,7 @@ export default function SampleAppPage() {
             <Button
               size="lg"
               className="bg-blue-600 text-white hover:bg-blue-700"
-              onClick={() => navigate('/pricing')}
+              onClick={() => goToGetStartedPricing(currentPath, navigate)}
             >
               Start Your Testing
               <ArrowRight className="ml-2 size-4" />
@@ -672,7 +673,7 @@ export default function SampleAppPage() {
             </p>
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Button
-                onClick={() => navigate('/pricing')}
+                onClick={() => goToGetStartedPricing(currentPath, navigate)}
                 size="lg"
                 className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-6 text-base rounded-xl cursor-pointer"
               >

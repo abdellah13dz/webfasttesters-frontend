@@ -251,9 +251,12 @@ export default function BlogArticlePage({
               </div>
               <button
                 onClick={() => {
-                  if (navigator.share) {
-                    navigator.share({ title: article.title, url: window.location.href });
-                  }
+                  if (!navigator.share) return;
+                  void navigator
+                    .share({ title: article.title, url: window.location.href })
+                    .catch(() => {
+                      // User cancelled share or share is unavailable
+                    });
                 }}
                 className="flex items-center gap-1.5 ml-auto text-muted-foreground hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               >

@@ -105,7 +105,7 @@ export default function AdminStatus() {
               <div><p className="font-medium">{s.name}</p><p className="text-sm text-muted-foreground">Uptime: {s.uptime30Day} · {s.status}</p></div>
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" onClick={() => { setEditingService(s); setServiceForm({ name: s.name, icon: s.icon, uptime30Day: s.uptime30Day, status: s.status, sortOrder: s.sortOrder, active: s.active }); setDialogType('service'); }}><Pencil className="h-4 w-4" /></Button>
-                <Button variant="outline" size="sm" className="text-destructive" onClick={async () => { if (confirm('Delete service?')) { await apiFetch(`/api/admin/status/services/${s.id}`, { method: 'DELETE' }); load(); } }}><Trash2 className="h-4 w-4" /></Button>
+                <Button variant="outline" size="sm" className="text-destructive" onClick={async () => { if (!confirm('Delete service?')) return; try { await apiFetch(`/api/admin/status/services/${s.id}`, { method: 'DELETE' }); await load(); } catch { /* ignore */ } }}><Trash2 className="h-4 w-4" /></Button>
               </div>
             </CardContent></Card>
           ))}
@@ -118,7 +118,7 @@ export default function AdminStatus() {
               <div><div className="flex gap-2 mb-1"><Badge variant="outline">{i.status}</Badge></div><p className="font-medium">{i.title}</p><p className="text-sm text-muted-foreground line-clamp-2">{i.description}</p></div>
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" onClick={() => { setEditingIncident(i); setIncidentForm({ title: i.title, description: i.description, status: i.status, occurredAt: i.occurredAt.slice(0, 10), duration: i.duration || '', sortOrder: i.sortOrder, published: i.published }); setDialogType('incident'); }}><Pencil className="h-4 w-4" /></Button>
-                <Button variant="outline" size="sm" className="text-destructive" onClick={async () => { if (confirm('Delete incident?')) { await apiFetch(`/api/admin/status/incidents/${i.id}`, { method: 'DELETE' }); load(); } }}><Trash2 className="h-4 w-4" /></Button>
+                <Button variant="outline" size="sm" className="text-destructive" onClick={async () => { if (!confirm('Delete incident?')) return; try { await apiFetch(`/api/admin/status/incidents/${i.id}`, { method: 'DELETE' }); await load(); } catch { /* ignore */ } }}><Trash2 className="h-4 w-4" /></Button>
               </div>
             </CardContent></Card>
           ))}

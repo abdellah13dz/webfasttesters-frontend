@@ -907,9 +907,8 @@ export default function HomePage() {
           PRICING SECTION
       ═══════════════════════════════════════════════════════════════════ */}
       <section
-        id={PRICING_SECTION_ID}
         ref={pricingSectionRef as React.RefObject<HTMLElement>}
-        className="relative py-16 sm:py-20 border-t border-border/40 gradient-bg-section overflow-hidden scroll-mt-20"
+        className="relative py-16 sm:py-20 border-t border-border/40 gradient-bg-section overflow-hidden"
       >
         {/* Sparkle decorations */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -946,8 +945,8 @@ export default function HomePage() {
             </div>
           </AnimatedSection>
 
-          <div className="max-w-lg mx-auto">
-            {/* Android Plan */}
+          <div id={PRICING_SECTION_ID} className="max-w-lg mx-auto scroll-mt-0">
+            {/* Android Plan — Get Started CTAs scroll here, centered in the viewport */}
             <AnimatedSection delay={0}>
               <Card className="card-hover glow-blue bg-card/90 border-blue-500/30 relative overflow-hidden h-full flex flex-col">
                 {/* Popular badge */}

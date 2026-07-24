@@ -8,6 +8,7 @@ export const en: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   'banner.message': '🚀 Google Play Closed Testing service — 15 quality testers for $15/app with instant assignment!',
   'banner.cta': 'Get Started →',
+  'banner.dashboardCta': 'Go to Dashboard →',
   'banner.dismiss': 'Dismiss announcement',
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -20,6 +21,7 @@ export const en: Record<string, string> = {
   'header.resources': 'Resources',
   'header.login': 'Log In',
   'header.getStarted': 'Get Started',
+  'header.dashboard': 'Dashboard',
   'header.language': 'Language',
   'header.menu': 'Menu',
   'header.androidAppTesters': 'Android App Testers',

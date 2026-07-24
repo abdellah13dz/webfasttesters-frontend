@@ -9,6 +9,7 @@ export const ar: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   'banner.message': '🚀 عرض محدود: احصل على 14 مختبرًا محترفًا مقابل 15 دولارًا فقط لكل تطبيق — نسبة نجاح 99.9٪!',
   'banner.cta': 'ابدأ الآن →',
+  'banner.dashboardCta': 'انتقل إلى لوحة التحكم →',
   'banner.dismiss': 'إغلاق الإعلان',
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -21,6 +22,7 @@ export const ar: Record<string, string> = {
   'header.resources': 'الموارد',
   'header.login': 'تسجيل الدخول',
   'header.getStarted': 'ابدأ الآن',
+  'header.dashboard': 'لوحة التحكم',
   'header.language': 'اللغة',
   'header.menu': 'القائمة',
   'header.androidAppTesters': 'مختبرو تطبيقات أندرويد',

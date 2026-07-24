@@ -6,6 +6,8 @@ import { X } from 'lucide-react';
 import { fetchSiteSettings, DEFAULT_ANNOUNCEMENT_BANNER } from '@/lib/site-settings';
 import { useRouter } from '@/lib/router';
 import { goToGetStartedPricing } from '@/lib/pricing-navigation';
+import { APP_DASHBOARD_URL } from '@/lib/app-urls';
+import { useAppLoggedIn } from '@/lib/hooks/use-app-logged-in';
 
 const BANNER_DISMISSED_KEY = 'ft-banner-dismissed';
 const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
@@ -28,6 +30,7 @@ export function AnnouncementBanner() {
   const [enabled, setEnabled] = useState(DEFAULT_ANNOUNCEMENT_BANNER.enabled);
   const { t, dir } = useLanguage();
   const { currentPath, navigate } = useRouter();
+  const isLoggedIn = useAppLoggedIn();
 
   useEffect(() => {
     setVisible(readBannerVisibility());
@@ -47,6 +50,14 @@ export function AnnouncementBanner() {
       setVisible(false);
     }, 300);
   }, []);
+
+  const handleCta = useCallback(() => {
+    if (isLoggedIn) {
+      navigate(APP_DASHBOARD_URL);
+      return;
+    }
+    goToGetStartedPricing(currentPath, navigate);
+  }, [isLoggedIn, currentPath, navigate]);
 
   if (!visible || !enabled) return null;
 
@@ -80,11 +91,11 @@ export function AnnouncementBanner() {
                 </p>
                 <button
                   type="button"
-                  onClick={() => goToGetStartedPricing(currentPath, navigate)}
+                  onClick={handleCta}
                   className="inline-flex min-h-9 shrink-0 items-center self-start text-xs font-semibold underline underline-offset-2 transition-colors hover:text-blue-100 focus:outline-none focus:ring-2 focus:ring-white/50 rounded sm:self-center sm:text-sm"
                   suppressHydrationWarning
                 >
-                  {t('banner.cta')}
+                  {isLoggedIn ? t('banner.dashboardCta') : t('banner.cta')}
                 </button>
               </div>
             </div>

@@ -8,6 +8,7 @@ export const es: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   'banner.message': '🚀 Tiempo limitado: Obtén 14 testers profesionales por solo $15/app — ¡99.9% de éxito!',
   'banner.cta': 'Comenzar →',
+  'banner.dashboardCta': 'Ir al panel →',
   'banner.dismiss': 'Cerrar anuncio',
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -20,6 +21,7 @@ export const es: Record<string, string> = {
   'header.resources': 'Recursos',
   'header.login': 'Iniciar sesión',
   'header.getStarted': 'Comenzar',
+  'header.dashboard': 'Panel',
   'header.language': 'Idioma',
   'header.menu': 'Menú',
   'header.androidAppTesters': 'Testers de Apps Android',

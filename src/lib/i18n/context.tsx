@@ -66,10 +66,14 @@ const TRANSLATIONS_CACHE_KEY = 'ft_tr_overrides_v1';
 const TRANSLATIONS_CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 
 async function loadLocaleOverrides(locale: Language): Promise<Record<string, string>> {
-  const res = await apiFetch(`/api/translations?locale=${locale}`);
-  if (!res.ok) return {};
-  const data = await res.json();
-  return data.overrides || {};
+  try {
+    const res = await apiFetch(`/api/translations?locale=${locale}`);
+    if (!res.ok) return {};
+    const data = await res.json();
+    return data.overrides || {};
+  } catch {
+    return {};
+  }
 }
 
 function readTranslationsCache(): Record<string, Record<string, string>> | null {
@@ -138,13 +142,17 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     setLanguageState(lang);
     localStorage.setItem('ft-lang', lang);
     if (overrides[lang]) return;
-    void loadLocaleOverrides(lang).then((localeOverrides) => {
-      setOverrides((prev) => {
-        const next = { ...prev, [lang]: localeOverrides };
-        writeTranslationsCache(next);
-        return next;
+    void loadLocaleOverrides(lang)
+      .then((localeOverrides) => {
+        setOverrides((prev) => {
+          const next = { ...prev, [lang]: localeOverrides };
+          writeTranslationsCache(next);
+          return next;
+        });
+      })
+      .catch(() => {
+        // Locale files remain the source of truth when API is unavailable
       });
-    });
   }, [overrides]);
 
   const t = useCallback((key: string): string => {

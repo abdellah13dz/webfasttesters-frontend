@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from '@/lib/router';
 import { useAnalytics } from '@/lib/analytics';
-import { APP_LOGIN_URL } from '@/lib/app-urls';
+import { APP_DASHBOARD_URL, APP_LOGIN_URL } from '@/lib/app-urls';
 import { BrandLogo } from '@/components/brand-logo';
 import { useLanguage } from '@/lib/i18n/context';
 import { Button } from '@/components/ui/button';
@@ -17,6 +17,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useSiteNavigation } from '@/lib/hooks/use-site-navigation';
+import { useAppLoggedIn } from '@/lib/hooks/use-app-logged-in';
 import { resolveNavLabel } from '@/lib/navigation';
 import { getCmsIcon } from '@/lib/cms-icons';
 import { goToGetStartedPricing } from '@/lib/pricing-navigation';
@@ -34,6 +35,7 @@ export function Header() {
   const { theme, setTheme } = useTheme();
   const { language, setLanguage, t, isRtl } = useLanguage();
   const navigation = useSiteNavigation();
+  const isLoggedIn = useAppLoggedIn();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -59,6 +61,11 @@ export function Header() {
     trackCta('signup', undefined, 'signup_click');
     goToGetStartedPricing(currentPath, navigate);
     setMobileOpen(false);
+  };
+
+  const handleDashboard = () => {
+    trackCta('dashboard');
+    handleNav(APP_DASHBOARD_URL);
   };
 
   const handleLogoClick = () => {
@@ -162,21 +169,33 @@ export function Header() {
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex items-center gap-3">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => { trackCta('login', undefined, 'login_click'); handleNav(APP_LOGIN_URL); }}
-            className="text-muted-foreground hover:text-foreground"
-          >
-            {t('header.login')}
-          </Button>
-          <Button
-            size="sm"
-            onClick={handleGetStarted}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold"
-          >
-            {t('header.getStarted')}
-          </Button>
+          {isLoggedIn ? (
+            <Button
+              size="sm"
+              onClick={handleDashboard}
+              className="bg-blue-500 hover:bg-blue-600 text-white font-semibold"
+            >
+              {t('header.dashboard')}
+            </Button>
+          ) : (
+            <>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => { trackCta('login', undefined, 'login_click'); handleNav(APP_LOGIN_URL); }}
+                className="text-muted-foreground hover:text-foreground"
+              >
+                {t('header.login')}
+              </Button>
+              <Button
+                size="sm"
+                onClick={handleGetStarted}
+                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold"
+              >
+                {t('header.getStarted')}
+              </Button>
+            </>
+          )}
         </div>
 
         {/* Mobile Controls */}
@@ -317,20 +336,31 @@ export function Header() {
 
                     {/* Auth Buttons */}
                     <div className="mt-3 pt-3 border-t border-border/40 space-y-2 px-1 pb-2">
-                      <button
-                        type="button"
-                        suppressHydrationWarning
-                        onClick={() => { trackCta('login', undefined, 'login_click'); handleNav(APP_LOGIN_URL); }}
-                        className="min-h-11 w-full px-3 py-2.5 text-sm font-medium rounded-lg text-left text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
-                      >
-                        {t('header.login')}
-                      </button>
-                      <Button
-                        onClick={handleGetStarted}
-                        className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold"
-                      >
-                        {t('header.getStarted')}
-                      </Button>
+                      {isLoggedIn ? (
+                        <Button
+                          onClick={handleDashboard}
+                          className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold"
+                        >
+                          {t('header.dashboard')}
+                        </Button>
+                      ) : (
+                        <>
+                          <button
+                            type="button"
+                            suppressHydrationWarning
+                            onClick={() => { trackCta('login', undefined, 'login_click'); handleNav(APP_LOGIN_URL); }}
+                            className="min-h-11 w-full px-3 py-2.5 text-sm font-medium rounded-lg text-left text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
+                          >
+                            {t('header.login')}
+                          </button>
+                          <Button
+                            onClick={handleGetStarted}
+                            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold"
+                          >
+                            {t('header.getStarted')}
+                          </Button>
+                        </>
+                      )}
                     </div>
                   </nav>
                 </div>

@@ -98,7 +98,7 @@ export default function AdminTranslations() {
               </div>
               <div className="flex gap-2 shrink-0">
                 <Button variant="outline" size="sm" onClick={() => { setEditing(item); setForm({ locale: item.locale, key: item.key, value: item.value }); setOpen(true); }}><Pencil className="h-4 w-4" /></Button>
-                <Button variant="outline" size="sm" className="text-destructive" onClick={async () => { if (confirm('Delete?')) { await apiFetch(`/api/admin/translations/${item.id}`, { method: 'DELETE' }); load(); } }}><Trash2 className="h-4 w-4" /></Button>
+                <Button variant="outline" size="sm" className="text-destructive" onClick={async () => { if (!confirm('Delete?')) return; try { await apiFetch(`/api/admin/translations/${item.id}`, { method: 'DELETE' }); await load(); } catch { /* ignore */ } }}><Trash2 className="h-4 w-4" /></Button>
               </div>
             </CardContent></Card>
           ))}

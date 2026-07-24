@@ -219,12 +219,9 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* Pricing Cards */}
-      <section
-        id={PRICING_SECTION_ID}
-        className="relative mx-auto w-full px-4 sm:px-6 py-16 gradient-bg-section scroll-mt-20"
-      >
-        <div className="max-w-lg mx-auto relative">
+      {/* Pricing Cards — Get Started CTAs scroll here, centered in the viewport */}
+      <section className="relative mx-auto w-full px-4 sm:px-6 py-16 gradient-bg-section">
+        <div id={PRICING_SECTION_ID} className="max-w-lg mx-auto relative scroll-mt-0">
           {/* Sparkle decorations */}
           <div className="absolute -top-6 -left-8 text-blue-400/40 animate-sparkle">
             <Sparkles className="h-6 w-6" />
