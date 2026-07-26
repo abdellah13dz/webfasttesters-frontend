@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { CheckCircle2, Loader2 } from 'lucide-react';
 import { APP_SUBMIT_APP_URL } from '@/lib/app-urls';
@@ -12,21 +12,49 @@ import {
 
 /** Brief pause so Google Ads / GTM conversion tags can fire before redirect. */
 const REDIRECT_DELAY_MS = 2000;
+const PURCHASE_TRACKED_PREFIX = 'ft_mkt_purchase_tracked_';
 
+function hasPurchaseBeenTracked(transactionId: string): boolean {
+  if (typeof window === 'undefined' || !transactionId) return false;
+  try {
+    return sessionStorage.getItem(`${PURCHASE_TRACKED_PREFIX}${transactionId}`) === '1';
+  } catch {
+    return false;
+  }
+}
+
+function markPurchaseTracked(transactionId: string): void {
+  if (typeof window === 'undefined' || !transactionId) return;
+  try {
+    sessionStorage.setItem(`${PURCHASE_TRACKED_PREFIX}${transactionId}`, '1');
+  } catch {
+    /* ignore quota / private mode */
+  }
+}
+
+/**
+ * Marketing-site conversion beacon for Ads/GTM.
+ * Only fires when transaction_id + value are present (completed checkout redirect).
+ * Deduped per transaction so React Strict Mode / reloads cannot double-count.
+ */
 function trackPurchaseConversion(
   transactionId: string | null,
   value: number | null,
   currency: string,
 ): void {
   if (typeof window === 'undefined' || !hasAnalyticsConsent()) return;
+  if (!transactionId || value === null || value <= 0) return;
+  if (hasPurchaseBeenTracked(transactionId)) return;
+
+  markPurchaseTracked(transactionId);
 
   const page = '/payment-success';
   const params: Record<string, string | number> = {
     page_path: page,
     page_location: window.location.href,
     currency,
-    ...(transactionId ? { transaction_id: transactionId } : {}),
-    ...(value !== null && value > 0 ? { value } : {}),
+    transaction_id: transactionId,
+    value,
   };
 
   window.dataLayer = window.dataLayer || [];
@@ -39,8 +67,12 @@ function trackPurchaseConversion(
 
 export function PaymentSuccessPage() {
   const searchParams = useSearchParams();
+  const handledRef = useRef(false);
 
   useEffect(() => {
+    if (handledRef.current) return;
+    handledRef.current = true;
+
     const transactionId = searchParams.get('transaction_id');
     const valueRaw = searchParams.get('value');
     const currency = (searchParams.get('currency') || 'USD').toUpperCase();
