@@ -25,31 +25,51 @@ export function isGoogleTrackingConfigured(): boolean {
 
 declare global {
   interface Window {
-    dataLayer?: Record<string, unknown>[];
+    dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
   }
 }
 
-function gtag(...args: unknown[]) {
+export type Gtag = (...args: unknown[]) => void;
+
+/** Ensure window.gtag exists and queues to dataLayer (same pattern as the dashboard). */
+export function ensureGtag(): Gtag | null {
+  if (typeof window === 'undefined') return null;
   window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push(args as unknown as Record<string, unknown>);
+  if (!window.gtag) {
+    window.gtag = (...args: unknown[]) => {
+      window.dataLayer!.push(args);
+    };
+  }
+  return window.gtag;
 }
 
 /** Call after user accepts cookies or on return visit with stored consent */
 export function grantAnalyticsConsent(): void {
-  if (typeof window === 'undefined') return;
+  const gtag = ensureGtag();
+  if (!gtag) return;
   gtag('consent', 'update', {
     analytics_storage: 'granted',
     ad_storage: 'granted',
+    ad_user_data: 'granted',
+    ad_personalization: 'granted',
   });
 }
 
+/**
+ * Send a GA4 page_view. Always fires when gtag is available — Consent Mode
+ * (default denied until accept) decides whether cookies are used. Gating this
+ * on cookie accept was why marketing-site visits never appeared in GA while
+ * the dashboard (no consent gate) did.
+ */
 export function trackPageView(path: string): void {
-  if (typeof window === 'undefined' || !hasAnalyticsConsent()) return;
+  if (typeof window === 'undefined') return;
 
   const gaId = getGaMeasurementId();
-  if (gaId && window.gtag) {
-    window.gtag('event', 'page_view', {
+  const gtag = ensureGtag();
+  if (gaId && gtag) {
+    gtag('event', 'page_view', {
+      send_to: gaId,
       page_path: path,
       page_location: window.location.href,
       page_title: document.title,
@@ -60,7 +80,7 @@ export function trackPageView(path: string): void {
   window.dataLayer.push({
     event: 'page_view',
     page_path: path,
-    page_location: typeof window !== 'undefined' ? window.location.href : path,
-    page_title: typeof document !== 'undefined' ? document.title : '',
+    page_location: window.location.href,
+    page_title: document.title,
   });
 }

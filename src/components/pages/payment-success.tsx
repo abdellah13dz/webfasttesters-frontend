@@ -84,7 +84,9 @@ export function PaymentSuccessPage() {
 
     if (hasAnalyticsConsent()) {
       grantAnalyticsConsent();
-      trackPageView('/payment-success');
+    }
+    trackPageView('/payment-success');
+    if (hasAnalyticsConsent()) {
       trackPurchaseConversion(transactionId, value, currency);
     }
 

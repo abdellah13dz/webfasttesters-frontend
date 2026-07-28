@@ -1,7 +1,7 @@
 'use client';
 
 import Script from 'next/script';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from '@/lib/router';
 import {
   getGaMeasurementId,
@@ -12,21 +12,33 @@ import {
   trackPageView,
 } from '@/lib/google-tracking';
 
-export function GoogleTracking() {
-  const gtmId = getGtmId();
-  const gaId = getGaMeasurementId();
-  // Always load gtag.js when a GA4 id resolves so window.gtag is defined and
-  // events reach GA4 directly (mirrors the User Dashboard setup).
-  const useGa = Boolean(gaId);
+function PageViewTracker({ gaReady }: { gaReady: boolean }) {
   const { currentPath } = useRouter();
 
   useEffect(() => {
     if (!isGoogleTrackingConfigured()) return;
+    if (!gaReady && getGaMeasurementId()) return;
+
     if (hasAnalyticsConsent()) {
       grantAnalyticsConsent();
-      trackPageView(currentPath);
     }
-  }, [currentPath]);
+
+    trackPageView(currentPath);
+  }, [currentPath, gaReady]);
+
+  return null;
+}
+
+/**
+ * Loads GTM + GA4 gtag and logs page_view on route changes.
+ * Mirrors the User Dashboard FirebaseAnalytics provider so marketing-site
+ * visits appear in the same GA4 property.
+ */
+export function GoogleTracking() {
+  const gtmId = getGtmId();
+  const gaId = getGaMeasurementId();
+  const useGa = Boolean(gaId);
+  const [gaReady, setGaReady] = useState(!useGa);
 
   if (!gtmId && !useGa) return null;
 
@@ -36,6 +48,7 @@ export function GoogleTracking() {
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
           gtag('consent', 'default', {
             analytics_storage: 'denied',
             ad_storage: 'denied',
@@ -43,6 +56,16 @@ export function GoogleTracking() {
             ad_personalization: 'denied',
             wait_for_update: 500
           });
+          try {
+            if (localStorage.getItem('ft-cookies-accepted') === 'accepted') {
+              gtag('consent', 'update', {
+                analytics_storage: 'granted',
+                ad_storage: 'granted',
+                ad_user_data: 'granted',
+                ad_personalization: 'granted'
+              });
+            }
+          } catch (e) {}
         `}
       </Script>
 
@@ -64,7 +87,11 @@ export function GoogleTracking() {
             src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
             strategy="afterInteractive"
           />
-          <Script id="google-analytics-4" strategy="afterInteractive">
+          <Script
+            id="google-analytics-4"
+            strategy="afterInteractive"
+            onReady={() => setGaReady(true)}
+          >
             {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
@@ -81,6 +108,8 @@ export function GoogleTracking() {
           </Script>
         </>
       )}
+
+      <PageViewTracker gaReady={gaReady} />
 
       {gtmId && (
         <noscript>

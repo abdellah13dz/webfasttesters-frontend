@@ -6,7 +6,6 @@ import { getPublicApiBase } from '@/lib/api';
 import { hasAnalyticsConsent } from '@/lib/analytics-consent';
 import { trackGa4Event, mapCtaToGa4Event, type Ga4EventName } from '@/lib/ga4-events';
 import { utmToMetadata } from '@/lib/utm-tracking';
-import { trackPageView as trackGaPageView } from '@/lib/google-tracking';
 
 const VISITOR_KEY = 'ft_vid';
 const SESSION_KEY = 'ft_sid';
@@ -198,8 +197,8 @@ function forwardToGa4(
   if (!hasAnalyticsConsent()) return;
 
   if (eventType === 'page_view') {
-    trackGa4Event('page_view', page, metadata);
-    trackGaPageView(page);
+    // GA4 page_view is owned by GoogleTracking (avoids double-counting and
+    // matches the dashboard: hits fire even before cookie accept via Consent Mode).
     return;
   }
 
