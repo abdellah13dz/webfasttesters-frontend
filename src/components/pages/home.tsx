@@ -259,16 +259,16 @@ export default function HomePage() {
       <HomeTrustBar />
 
       {/* ═══════════════════════════════════════════════════════════════════
-          PLATFORM OVERVIEW — SEO copy + explainer video (not a second hero)
+          PLATFORM OVERVIEW — SEO copy + explainer video (single column)
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="relative overflow-x-hidden border-t border-border/40 bg-muted/25">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/[0.02] to-transparent" />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
-            {/* Copy — secondary hierarchy vs CRO hero */}
-            <div className="lg:col-span-5 text-center lg:text-start">
+        <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+          <div className="flex flex-col items-center text-center gap-8 sm:gap-10">
+            {/* Copy */}
+            <div className="w-full max-w-2xl">
               <AnimatedSection>
-                <div className="mb-5 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+                <div className="mb-5 flex flex-wrap items-center justify-center gap-2">
                   <Badge
                     variant="outline"
                     className="border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground"
@@ -283,7 +283,7 @@ export default function HomePage() {
               </AnimatedSection>
 
               <AnimatedSection delay={80}>
-                <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-bold tracking-tight text-foreground leading-snug mb-4">
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground leading-snug mb-4">
                   {t('home.overviewTitlePrefix')}{' '}
                   <span className="text-blue-500 dark:text-blue-400">15</span>{' '}
                   {t('home.overviewTitleTesters')}{' '}
@@ -294,14 +294,14 @@ export default function HomePage() {
               </AnimatedSection>
 
               <AnimatedSection delay={140}>
-                <p className="mx-auto lg:mx-0 max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed mb-6">
+                <p className="mx-auto max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed mb-6">
                   {t('home.heroDescription')}{' '}
                   {t('home.heroDescriptionJoin')}
                 </p>
               </AnimatedSection>
 
               <AnimatedSection delay={180}>
-                <ul className="mb-7 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+                <ul className="mb-7 flex flex-wrap items-center justify-center gap-2">
                   {[
                     { icon: Users, label: t('home.overviewChipTesters') },
                     { icon: Clock, label: t('home.overviewChipDays') },
@@ -319,7 +319,7 @@ export default function HomePage() {
               </AnimatedSection>
 
               <AnimatedSection delay={220}>
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
                   <Button
                     size="lg"
                     variant="outline"
@@ -348,7 +348,7 @@ export default function HomePage() {
               </AnimatedSection>
 
               <AnimatedSection delay={280}>
-                <p className="mt-6 flex items-center justify-center lg:justify-start gap-2 text-sm text-muted-foreground">
+                <p className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground">
                   <span className="h-2 w-2 rounded-full bg-blue-400 animate-pulse-blue" aria-hidden />
                   <span className="font-semibold text-foreground">
                     +{heroCount.toLocaleString()}
@@ -358,12 +358,8 @@ export default function HomePage() {
               </AnimatedSection>
             </div>
 
-            {/* Explainer video — visual focus of this band */}
-            <AnimatedSection
-              delay={160}
-              direction="fade-right"
-              className="lg:col-span-7 w-full"
-            >
+            {/* Explainer video — below copy */}
+            <AnimatedSection delay={160} className="w-full max-w-2xl">
               <div className="rounded-2xl border border-border/50 bg-background/60 p-2 sm:p-3 shadow-sm">
                 <div className="mb-2.5 flex items-center justify-between gap-3 px-1">
                   <p className="text-xs sm:text-sm font-medium text-muted-foreground">
