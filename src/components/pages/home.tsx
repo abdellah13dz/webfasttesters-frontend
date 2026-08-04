@@ -259,84 +259,122 @@ export default function HomePage() {
       <HomeTrustBar />
 
       {/* ═══════════════════════════════════════════════════════════════════
-          ORIGINAL HERO — Platform overview (SEO + video; secondary CTA path)
+          PLATFORM OVERVIEW — SEO copy + explainer video (not a second hero)
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-x-hidden hero-y border-t border-border/40">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-8 sm:pb-10 lg:pb-12 pt-10 sm:pt-12">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-            {/* Left: Text content */}
-            <div className="flex-1 text-center lg:text-left">
+      <section className="relative overflow-x-hidden border-t border-border/40 bg-muted/25">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/[0.02] to-transparent" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
+            {/* Copy — secondary hierarchy vs CRO hero */}
+            <div className="lg:col-span-5 text-center lg:text-start">
               <AnimatedSection>
-                <Badge
-                  variant="outline"
-                  className="mb-6 px-4 py-1.5 text-sm font-medium border-blue-500/30 text-blue-400 bg-gradient-to-r from-blue-500/10 via-blue-500/15 to-cyan-500/10 animate-shimmer hover:from-blue-500/15 hover:via-blue-500/20 hover:to-cyan-500/15 transition-colors"
-                >
-                  <CheckCircle className="h-3.5 w-3.5 mr-1.5" />
-                  {t('home.productionGuarantee')}
-                </Badge>
+                <div className="mb-5 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+                  <Badge
+                    variant="outline"
+                    className="border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground"
+                  >
+                    {t('home.legacyHeroBadge')}
+                  </Badge>
+                  <span className="inline-flex items-center gap-1.5 text-xs font-medium text-blue-400">
+                    <CheckCircle className="h-3.5 w-3.5" />
+                    {t('home.productionGuarantee')}
+                  </span>
+                </div>
               </AnimatedSection>
 
-              <AnimatedSection delay={100}>
-                <Badge variant="outline" className="mb-4 border-blue-500/30 text-blue-400 bg-blue-500/10">
-                  {t('home.legacyHeroBadge')}
-                </Badge>
-                <h2 className="text-display mb-4 sm:mb-6">
-                  Get{' '}
-                  <span className="gradient-text">15 Testers</span>
-                  <br />
-                  for{' '}
-                  <span className="gradient-text">14 Days</span>
+              <AnimatedSection delay={80}>
+                <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-bold tracking-tight text-foreground leading-snug mb-4">
+                  {t('home.overviewTitlePrefix')}{' '}
+                  <span className="text-blue-500 dark:text-blue-400">15</span>{' '}
+                  {t('home.overviewTitleTesters')}{' '}
+                  <span className="text-muted-foreground font-medium">{t('home.overviewTitleFor')}</span>{' '}
+                  <span className="text-blue-500 dark:text-blue-400">14</span>{' '}
+                  {t('home.overviewTitleDays')}
                 </h2>
               </AnimatedSection>
 
-              <AnimatedSection delay={200}>
-                <p className="mx-auto lg:mx-0 max-w-2xl text-subheading mb-6 sm:mb-8">
-                  {t('home.heroDescription')}
-                  <br className="hidden sm:block" />
+              <AnimatedSection delay={140}>
+                <p className="mx-auto lg:mx-0 max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed mb-6">
+                  {t('home.heroDescription')}{' '}
                   {t('home.heroDescriptionJoin')}
                 </p>
               </AnimatedSection>
 
-              <AnimatedSection delay={300}>
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-8 sm:mb-12 w-full sm:w-auto">
+              <AnimatedSection delay={180}>
+                <ul className="mb-7 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+                  {[
+                    { icon: Users, label: t('home.overviewChipTesters') },
+                    { icon: Clock, label: t('home.overviewChipDays') },
+                    { icon: Shield, label: t('home.overviewChipGuarantee') },
+                  ].map(({ icon: Icon, label }) => (
+                    <li
+                      key={label}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-background/70 px-3 py-1.5 text-xs font-medium text-foreground/80"
+                    >
+                      <Icon className="h-3.5 w-3.5 text-blue-400" aria-hidden />
+                      {label}
+                    </li>
+                  ))}
+                </ul>
+              </AnimatedSection>
+
+              <AnimatedSection delay={220}>
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3">
                   <Button
                     size="lg"
-                    onClick={() => { trackCta('hero_cta'); goToGetStartedPricing(currentPath, navigate); }}
-                    className="w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white font-semibold text-base px-6 sm:px-8 h-12 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all"
+                    variant="outline"
+                    onClick={() => {
+                      trackCta('overview_pricing');
+                      goToGetStartedPricing(currentPath, navigate);
+                    }}
+                    className="w-full sm:w-auto border-border/70 bg-background hover:bg-muted font-semibold h-11 px-6"
                   >
                     {t('home.seeWhatYouGet')}
-                    <ArrowRight className="h-4 w-4 ml-1" />
+                    <ArrowRight className="h-4 w-4 ms-1" />
                   </Button>
                   <Button
-                    variant="outline"
+                    variant="ghost"
                     size="lg"
-                    onClick={() => { trackCta('hero_reviews'); navigate('/reviews'); }}
-                    className="w-full sm:w-auto border-border/60 text-foreground hover:bg-muted font-semibold text-base px-6 sm:px-8 h-12"
+                    onClick={() => {
+                      trackCta('overview_reviews');
+                      navigate('/reviews');
+                    }}
+                    className="w-full sm:w-auto text-muted-foreground hover:text-foreground font-medium h-11 px-4"
                   >
                     {t('home.joinDevelopers')}
-                    <ChevronRight className="h-4 w-4 ml-1" />
+                    <ChevronRight className="h-4 w-4 ms-0.5" />
                   </Button>
                 </div>
               </AnimatedSection>
 
-              <AnimatedSection delay={400}>
-                <div className="flex items-center justify-center lg:justify-start gap-2">
-                  <span className="h-2.5 w-2.5 rounded-full bg-blue-400 animate-pulse-blue" />
-                  <span className="text-3xl sm:text-4xl font-bold text-foreground">
+              <AnimatedSection delay={280}>
+                <p className="mt-6 flex items-center justify-center lg:justify-start gap-2 text-sm text-muted-foreground">
+                  <span className="h-2 w-2 rounded-full bg-blue-400 animate-pulse-blue" aria-hidden />
+                  <span className="font-semibold text-foreground">
                     +{heroCount.toLocaleString()}
                   </span>
-                  <span className="text-muted-foreground text-sm sm:text-base">{t('home.developersTrustUs')}</span>
-                </div>
+                  {t('home.developersTrustUs')}
+                </p>
               </AnimatedSection>
             </div>
 
-            {/* Explainer video — from CRO hero (replaces illustration) */}
+            {/* Explainer video — visual focus of this band */}
             <AnimatedSection
-              delay={300}
+              delay={160}
               direction="fade-right"
-              className="flex w-full flex-1 justify-center mt-8 sm:mt-10 lg:mt-0"
+              className="lg:col-span-7 w-full"
             >
-              <HeroVideoEmbed analyticsLocation="legacy_hero_video" />
+              <div className="rounded-2xl border border-border/50 bg-background/60 p-2 sm:p-3 shadow-sm">
+                <div className="mb-2.5 flex items-center justify-between gap-3 px-1">
+                  <p className="text-xs sm:text-sm font-medium text-muted-foreground">
+                    {t('croHero.videoTitle')}
+                  </p>
+                  <span className="shrink-0 text-[10px] sm:text-xs text-muted-foreground/80">
+                    {t('croHero.videoDuration')}
+                  </span>
+                </div>
+                <HeroVideoEmbed analyticsLocation="overview_video" />
+              </div>
             </AnimatedSection>
           </div>
         </div>

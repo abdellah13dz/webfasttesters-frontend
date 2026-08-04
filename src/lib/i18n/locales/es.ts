@@ -171,6 +171,13 @@ export const es: Record<string, string> = {
   'home.startInOneHour': 'Testers asignados en ~1 hora',
   'home.realTestersHighlight': 'Testers Android reales en Play Store',
   'home.legacyHeroBadge': 'Resumen de la plataforma',
+  'home.overviewTitlePrefix': 'Cumple el requisito de Google con',
+  'home.overviewTitleTesters': 'testers',
+  'home.overviewTitleFor': 'durante',
+  'home.overviewTitleDays': 'días',
+  'home.overviewChipTesters': '15 testers reales',
+  'home.overviewChipDays': 'Ventana de 14 días',
+  'home.overviewChipGuarantee': 'Garantía de acceso a producción',
 
   'croHero.badge': 'Pruebas cerradas de Google Play',
   'croHero.headlineGet': 'Obtén',

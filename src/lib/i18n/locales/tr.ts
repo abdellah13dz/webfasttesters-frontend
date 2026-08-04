@@ -171,6 +171,13 @@ export const tr: Record<string, string> = {
   'home.startInOneHour': 'Testçiler ~1 saat içinde atanır',
   'home.realTestersHighlight': 'Play Store\'da gerçek Android testçileri',
   'home.legacyHeroBadge': 'Platforma Genel Bakış',
+  'home.overviewTitlePrefix': "Google'ın gereksinimini karşılayın:",
+  'home.overviewTitleTesters': 'testçi',
+  'home.overviewTitleFor': '/',
+  'home.overviewTitleDays': 'gün',
+  'home.overviewChipTesters': '15 gerçek testçi',
+  'home.overviewChipDays': '14 günlük pencere',
+  'home.overviewChipGuarantee': 'Üretim erişimi garantisi',
 
   'croHero.badge': 'Google Play Kapalı Test',
   'croHero.headlineGet': '~1 Saatte',

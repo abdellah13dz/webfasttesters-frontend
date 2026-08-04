@@ -100,6 +100,8 @@ export function trackGa4Event(
 /** Map legacy cta_click element ids to GA4 event names. */
 export function mapCtaToGa4Event(element: string): Ga4EventName | null {
   const map: Record<string, Ga4EventName> = {
+    overview_pricing: 'pricing_cta_click',
+    overview_reviews: 'reviews_cta_click',
     hero_cta: 'hero_cta_click',
     hero_reviews: 'reviews_cta_click',
     hero_how_it_works: 'funnel_cta_click',

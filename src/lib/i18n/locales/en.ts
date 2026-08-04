@@ -171,6 +171,13 @@ export const en: Record<string, string> = {
   'home.startInOneHour': 'Testers assigned in ~1 hour',
   'home.realTestersHighlight': 'Real Android testers on Play Store',
   'home.legacyHeroBadge': 'Platform Overview',
+  'home.overviewTitlePrefix': 'Meet Google’s requirement with',
+  'home.overviewTitleTesters': 'testers',
+  'home.overviewTitleFor': 'for',
+  'home.overviewTitleDays': 'days',
+  'home.overviewChipTesters': '15 real testers',
+  'home.overviewChipDays': '14-day window',
+  'home.overviewChipGuarantee': 'Production access guarantee',
 
   // CRO Hero
   'croHero.badge': 'Google Play Closed Testing',

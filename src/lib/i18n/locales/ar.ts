@@ -172,6 +172,13 @@ export const ar: Record<string, string> = {
   'home.startInOneHour': 'تعيين المختبرين في ~ساعة واحدة',
   'home.realTestersHighlight': 'مختبرون Android حقيقيون على Play Store',
   'home.legacyHeroBadge': 'نظرة عامة على المنصة',
+  'home.overviewTitlePrefix': 'استوفِ متطلب Google مع',
+  'home.overviewTitleTesters': 'مختبر',
+  'home.overviewTitleFor': 'لمدة',
+  'home.overviewTitleDays': 'يوماً',
+  'home.overviewChipTesters': '15 مختبراً حقيقياً',
+  'home.overviewChipDays': 'نافذة 14 يوماً',
+  'home.overviewChipGuarantee': 'ضمان الوصول للإنتاج',
 
   'croHero.badge': 'الاختبار المغلق على Google Play',
   'croHero.headlineGet': 'احصل على',
