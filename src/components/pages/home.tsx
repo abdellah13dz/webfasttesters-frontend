@@ -377,16 +377,6 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          VIDEO TUTORIAL
-      ═══════════════════════════════════════════════════════════════════ */}
-      <section className="relative py-14 sm:py-16 border-t border-border/40 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-blue-500/[0.03] to-transparent" />
-        <AnimatedSection>
-          <FastTestersTutorial variant="section" analyticsLocation="home_tutorial_section" className="py-2" />
-        </AnimatedSection>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════════
           GLOBAL IMPACT STATS
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="relative py-16 sm:py-20 border-t border-border/40 gradient-bg-section overflow-hidden">
@@ -588,6 +578,16 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          VIDEO TUTORIAL
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="relative py-14 sm:py-16 border-t border-border/40 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-blue-500/[0.03] to-transparent" />
+        <AnimatedSection>
+          <FastTestersTutorial variant="section" analyticsLocation="home_tutorial_section" className="py-2" />
+        </AnimatedSection>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
