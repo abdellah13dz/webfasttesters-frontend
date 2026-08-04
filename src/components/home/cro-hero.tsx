@@ -1,5 +1,17 @@
 'use client';
 
+/**
+ * CRO primary hero (above the fold).
+ *
+ * A/B test candidates (do not ship experiments automatically):
+ * - Headline: "15 Real Android Testers" vs outcome-led "Get Production Access Faster"
+ * - Primary CTA: "Start Closed Testing" vs "Get Real Android Testers" vs "Start for $15"
+ * - Trust line placement: under CTAs (current) vs above CTAs
+ * - Secondary CTA: How it works vs Reviews / Trustpilot
+ *
+ * Analytics: hero_cta → hero_cta_click + funnel_* ; hero_how_it_works → funnel_cta_click
+ */
+
 import Image from 'next/image';
 import { ArrowRight, CheckCircle, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -27,10 +39,14 @@ export function CroHero({ onSecondaryAction }: CroHeroProps) {
   const subSuffix = t('croHero.subheadlineSuffix');
 
   const handlePrimaryCta = () => {
-    trackCta('hero_cta', undefined, 'hero_cta_click');
-    trackCta('hero_cta', undefined, 'signup_click');
+    trackCta('hero_cta');
     goToGetStartedPricing(currentPath, navigate);
     onSecondaryAction?.();
+  };
+
+  const handleSecondaryCta = () => {
+    trackCta('hero_how_it_works');
+    navigate('/how-it-works');
   };
 
   return (
@@ -43,11 +59,14 @@ export function CroHero({ onSecondaryAction }: CroHeroProps) {
               <div className="absolute -inset-4 rounded-3xl bg-blue-500/5 blur-2xl" />
               <Image
                 src="/images/illustrations/app-testing.png"
-                alt="App Testing Illustration"
+                alt="Google Play closed testing — Fast Testers assigns real Android app testers"
                 width={1077}
                 height={737}
                 sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 384px, 512px"
                 className="relative mx-auto h-auto w-full animate-float-slow drop-shadow-2xl"
+                priority
+                fetchPriority="high"
+                decoding="async"
               />
               <div className="absolute -top-2 end-0 animate-float rounded-xl border border-border/60 bg-card px-2.5 py-1.5 shadow-lg sm:-top-4 sm:-end-4 sm:px-3 sm:py-2">
                 <div className="flex items-center gap-1.5 sm:gap-2">
@@ -95,16 +114,30 @@ export function CroHero({ onSecondaryAction }: CroHeroProps) {
                 {subSuffix ? <> {subSuffix}</> : null}
               </p>
 
-              <p className="text-subheading mx-auto mb-8 max-w-xl lg:mx-0">{t('croHero.paymentNote')}</p>
+              <p className="text-subheading mx-auto mb-6 max-w-xl lg:mx-0">{t('croHero.paymentNote')}</p>
 
-              <Button
-                size="lg"
-                onClick={handlePrimaryCta}
-                className="h-12 w-full self-center bg-blue-500 px-6 text-base font-semibold text-white shadow-lg shadow-blue-500/25 hover:bg-blue-600 hover:shadow-blue-500/40 sm:w-auto sm:px-8 lg:self-start"
-              >
-                {t('croHero.cta')}
-                <ArrowRight className="h-4 w-4 ms-1" />
-              </Button>
+              <div className="mb-4 flex w-full flex-col items-stretch gap-3 self-center sm:w-auto sm:flex-row sm:items-center lg:self-start">
+                <Button
+                  size="lg"
+                  onClick={handlePrimaryCta}
+                  className="h-12 w-full bg-blue-500 px-6 text-base font-semibold text-white shadow-lg shadow-blue-500/25 hover:bg-blue-600 hover:shadow-blue-500/40 sm:w-auto sm:px-8"
+                >
+                  {t('croHero.cta')}
+                  <ArrowRight className="h-4 w-4 ms-1" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={handleSecondaryCta}
+                  className="h-12 w-full border-border/60 px-6 text-base font-semibold text-foreground hover:bg-muted sm:w-auto sm:px-8"
+                >
+                  {t('croHero.secondaryCta')}
+                </Button>
+              </div>
+
+              <p className="mx-auto max-w-xl text-sm text-muted-foreground lg:mx-0">
+                {t('croHero.trustLine')}
+              </p>
             </div>
           </div>
         </div>

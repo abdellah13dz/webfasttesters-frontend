@@ -203,14 +203,25 @@ function forwardToGa4(
   }
 
   if (eventType === 'cta_click' && element) {
+    if (metadata?.ga4_handled === '1') {
+      const cleanMeta = { ...metadata };
+      delete cleanMeta.ga4_handled;
+      if (element.includes('signup') || element.includes('get_started') || element === 'hero_cta' || element === 'bottom_cta' || element === 'mobile_sticky_cta' || element === 'pricing_cta' || element === 'pricing_get_started' || element === 'pricing_bottom_cta' || element === 'compare_get_started' || element === 'compare_hero_cta' || element === 'exit_intent_pricing' || element === 'how_it_works_cta') {
+        trackGa4Event('funnel_cta_click', page, { element, ...cleanMeta });
+      }
+      if (element.includes('signup') || element === 'hero_cta' || element === 'bottom_cta' || element === 'pricing_cta' || element === 'mobile_sticky_cta' || element === 'pricing_get_started' || element === 'pricing_bottom_cta' || element === 'compare_get_started' || element === 'compare_hero_cta' || element === 'exit_intent_pricing' || element === 'how_it_works_cta') {
+        trackGa4Event('funnel_signup_click', page, { element, ...cleanMeta });
+      }
+      return;
+    }
     const ga4Event = mapCtaToGa4Event(element);
     if (ga4Event) {
       trackGa4Event(ga4Event, page, { element, ...metadata });
     }
-    if (element.includes('signup') || element.includes('get_started') || element === 'hero_cta' || element === 'bottom_cta') {
+    if (element.includes('signup') || element.includes('get_started') || element === 'hero_cta' || element === 'bottom_cta' || element === 'mobile_sticky_cta' || element === 'compare_hero_cta' || element === 'exit_intent_pricing' || element === 'how_it_works_cta') {
       trackGa4Event('funnel_cta_click', page, { element, ...metadata });
     }
-    if (element.includes('signup') || element === 'hero_cta' || element === 'bottom_cta' || element === 'pricing_cta') {
+    if (element.includes('signup') || element === 'hero_cta' || element === 'bottom_cta' || element === 'pricing_cta' || element === 'mobile_sticky_cta' || element === 'compare_hero_cta' || element === 'exit_intent_pricing' || element === 'how_it_works_cta') {
       trackGa4Event('funnel_signup_click', page, { element, ...metadata });
     }
     return;
@@ -284,6 +295,8 @@ export function useAnalytics() {
     (element: string, metadata?: Record<string, string>, ga4Override?: Ga4EventName) => {
       if (ga4Override && hasAnalyticsConsent()) {
         trackGa4Event(ga4Override, currentPath, { element, ...metadata });
+        trackCtaClick(currentPath, element, { ...metadata, ga4_handled: '1' });
+        return;
       }
       trackCtaClick(currentPath, element, metadata);
     },

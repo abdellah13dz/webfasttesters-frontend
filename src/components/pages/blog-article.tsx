@@ -10,6 +10,7 @@ import {
   blogArticleKeywords,
   blogArticlePath,
   mapApiArticle,
+  pickRelatedArticles,
   type ApiArticle,
 } from '@/lib/blog';
 import { applyClientSeo } from '@/lib/hooks/use-seo';
@@ -106,10 +107,7 @@ export default function BlogArticlePage({
         let related: ReturnType<typeof mapApiArticle>[] = [];
         if (listRes.ok) {
           const summaries = (await listRes.json()) as ApiArticle[];
-          related = summaries
-            .filter((a) => a.slug !== slug)
-            .slice(0, 3)
-            .map(mapApiArticle);
+          related = pickRelatedArticles(current, summaries, 6).map(mapApiArticle);
         }
 
         setRawArticle(current);
@@ -235,7 +233,7 @@ export default function BlogArticlePage({
             </h1>
             <meta itemProp="description" content={rawArticle?.description || ''} />
 
-            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-8 pb-8 border-b border-border">
+            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
               <div className="flex items-center gap-1.5">
                 <Calendar className="size-3.5" />
                 <time
@@ -245,6 +243,26 @@ export default function BlogArticlePage({
                   {article.date}
                 </time>
               </div>
+              {rawArticle?.updatedAt && rawArticle.updatedAt !== rawArticle.createdAt ? (
+                <div className="flex items-center gap-1.5">
+                  <span>{t('blogArticle.lastUpdated')}</span>
+                  <time
+                    dateTime={toIsoDate(rawArticle.updatedAt)}
+                    itemProp="dateModified"
+                  >
+                    {new Date(rawArticle.updatedAt).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </time>
+                </div>
+              ) : rawArticle ? (
+                <meta
+                  itemProp="dateModified"
+                  content={toIsoDate(rawArticle.updatedAt || rawArticle.createdAt)}
+                />
+              ) : null}
               <div className="flex items-center gap-1.5">
                 <Clock className="size-3.5" />
                 {article.readTime}
@@ -264,6 +282,24 @@ export default function BlogArticlePage({
                 Share
               </button>
             </div>
+
+            <div
+              className="mb-8 flex items-start gap-3 rounded-xl border border-border/60 bg-muted/20 p-4"
+              itemProp="author"
+              itemScope
+              itemType="https://schema.org/Organization"
+            >
+              <div className="min-w-0">
+                <p className="text-xs text-muted-foreground">{t('aiSeo.authorBy')}</p>
+                <p className="text-sm font-semibold text-foreground" itemProp="name">
+                  {t('aiSeo.authorOrg')}
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{t('aiSeo.authorBio')}</p>
+                <link itemProp="url" href="https://fasttesters.com" />
+              </div>
+            </div>
+
+            <div className="mb-8 border-b border-border pb-8" />
 
             <div itemProp="articleBody">
               {isHtmlArticleContent(article.content) ? (

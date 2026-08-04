@@ -6,6 +6,7 @@ import {
   blogArticleKeywords,
   fetchArticleBySlug,
   fetchPublishedArticleSummaries,
+  pickRelatedArticles,
 } from '@/lib/blog';
 import { buildBlogArticleMetadata, buildMetadataForPath } from '@/lib/page-metadata';
 
@@ -37,9 +38,8 @@ export default async function BlogSlugPage({ params }: Props) {
     notFound();
   }
 
-  const relatedArticles = (await fetchPublishedArticleSummaries())
-    .filter((a) => a.slug !== slug)
-    .slice(0, 3);
+  const allArticles = await fetchPublishedArticleSummaries();
+  const relatedArticles = pickRelatedArticles(article, allArticles, 6);
 
   const path = `/blog/${slug}`;
   const title = article.seoTitle?.trim() || article.title;
@@ -57,7 +57,7 @@ export default async function BlogSlugPage({ params }: Props) {
           description,
           image: article.coverImage || undefined,
           datePublished: article.createdAt,
-          dateModified: article.createdAt,
+          dateModified: article.updatedAt || article.createdAt,
           section: article.category,
           keywords: blogArticleKeywords(article),
         }}

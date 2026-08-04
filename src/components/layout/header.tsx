@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from '@/lib/router';
 import { useAnalytics } from '@/lib/analytics';
 import { APP_DASHBOARD_URL, APP_LOGIN_URL } from '@/lib/app-urls';
@@ -68,47 +69,41 @@ export function Header() {
     handleNav(APP_DASHBOARD_URL);
   };
 
-  const handleLogoClick = () => {
-    setMobileOpen(false);
-    if (currentPath === '/') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-    navigate('/');
-  };
-
   const currentLang = languages.find(l => l.code === language) || languages[0];
 
   return (
     <header className="relative w-full shadow-sm min-w-0 max-w-full border-b border-border/40 bg-background/95 backdrop-blur-xl supports-[backdrop-filter]:bg-background/80 safe-area-top safe-area-x">
       <div className="mx-auto flex h-14 sm:h-16 w-full max-w-7xl items-center justify-between gap-2 px-3 sm:px-6 lg:px-8">
         {/* Logo */}
-        <button
-          type="button"
-          suppressHydrationWarning
-          onClick={handleLogoClick}
+        <Link
+          href="/"
+          onClick={(e) => {
+            if (currentPath === '/') {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            setMobileOpen(false);
+          }}
           className="flex min-w-0 items-center gap-2 text-foreground hover:opacity-80 transition-opacity shrink"
         >
           <BrandLogo size="lg" priority />
           <span className="truncate text-base bg-gradient-to-r from-cyan-500 to-blue-400 bg-clip-text text-transparent font-bold sm:text-lg max-w-[9rem] min-[400px]:max-w-none">{t('header.brandName')}</span>
-        </button>
+        </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
           {navigation.headerMain.map((link) => (
-            <button
-              type="button"
-              suppressHydrationWarning
+            <Link
               key={link.path}
-              onClick={() => handleNav(link.path)}
-              className={`px-3 py-2 text-sm font-medium rounded-md transition-colors cursor-pointer ${
+              href={link.path}
+              className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                 currentPath === link.path
                   ? 'text-blue-500 bg-blue-500/10'
                   : 'text-muted-foreground hover:text-foreground hover:bg-muted'
               }`}
             >
               {resolveNavLabel(link, t)}
-            </button>
+            </Link>
           ))}
 
           {/* Resources Dropdown */}
@@ -121,12 +116,8 @@ export function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56 bg-card border-border">
               {navigation.headerResources.map((link) => (
-                <DropdownMenuItem
-                  key={link.path}
-                  onClick={() => handleNav(link.path)}
-                  className="cursor-pointer"
-                >
-                  {resolveNavLabel(link, t)}
+                <DropdownMenuItem key={link.path} asChild className="cursor-pointer">
+                  <Link href={link.path}>{resolveNavLabel(link, t)}</Link>
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
@@ -239,19 +230,18 @@ export function Header() {
                   <nav className="flex flex-col px-3 py-2">
                     {/* Main Navigation */}
                     {navigation.headerMain.map((link) => (
-                      <button
-                        type="button"
-                        suppressHydrationWarning
+                      <Link
                         key={link.path}
-                        onClick={() => handleNav(link.path)}
-                        className={`min-h-11 px-3 py-2.5 text-sm font-medium rounded-lg transition-colors cursor-pointer ${
+                        href={link.path}
+                        onClick={() => setMobileOpen(false)}
+                        className={`min-h-11 px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
                           currentPath === link.path
                             ? 'text-blue-500 bg-blue-500/10'
                             : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                         }`}
                       >
                         {resolveNavLabel(link, t)}
-                      </button>
+                      </Link>
                     ))}
 
                     {/* Resources Section - Collapsible */}
@@ -267,19 +257,18 @@ export function Header() {
                     {resourcesOpen && (
                       <div className="pl-3 border-l-2 border-border ml-3 space-y-0.5 mb-1">
                         {navigation.headerResources.map((link) => (
-                          <button
-                            type="button"
-                            suppressHydrationWarning
+                          <Link
                             key={link.path}
-                            onClick={() => handleNav(link.path)}
-                            className={`min-h-10 w-full px-3 py-2 text-sm rounded-lg text-left transition-colors cursor-pointer ${
+                            href={link.path}
+                            onClick={() => setMobileOpen(false)}
+                            className={`min-h-10 w-full px-3 py-2 text-sm rounded-lg text-left transition-colors block ${
                               currentPath === link.path
                                 ? 'text-blue-500 bg-blue-500/10'
                                 : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                             }`}
                           >
                             {resolveNavLabel(link, t)}
-                          </button>
+                          </Link>
                         ))}
                       </div>
                     )}
@@ -292,12 +281,11 @@ export function Header() {
                       {navigation.headerSupport.map((link) => {
                         const Icon = getCmsIcon(link.icon);
                         return (
-                        <button
-                          type="button"
-                          suppressHydrationWarning
+                        <Link
                           key={link.path}
-                          onClick={() => handleNav(link.path)}
-                          className={`flex min-h-11 items-center gap-2.5 w-full px-3 py-2.5 text-sm rounded-lg transition-colors cursor-pointer ${
+                          href={link.path}
+                          onClick={() => setMobileOpen(false)}
+                          className={`flex min-h-11 items-center gap-2.5 w-full px-3 py-2.5 text-sm rounded-lg transition-colors ${
                             currentPath === link.path
                               ? 'text-blue-500 bg-blue-500/10'
                               : 'text-muted-foreground hover:text-foreground hover:bg-muted'
@@ -305,7 +293,7 @@ export function Header() {
                         >
                           <Icon className="h-4 w-4 shrink-0" />
                           {resolveNavLabel(link, t)}
-                        </button>
+                        </Link>
                         );
                       })}
                     </div>

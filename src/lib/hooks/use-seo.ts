@@ -43,7 +43,22 @@ function updateMetaName(name: string, content: string) {
 }
 
 function setCanonicalUrl(url: string) {
-  getOrCreateLink('canonical', 'seo-canonical').setAttribute('href', url);
+  const existing = Array.from(
+    document.querySelectorAll<HTMLLinkElement>('link[rel="canonical"]')
+  );
+  if (existing.length === 0) {
+    const el = document.createElement('link');
+    el.setAttribute('rel', 'canonical');
+    el.id = 'seo-canonical';
+    el.setAttribute('href', url);
+    document.head.appendChild(el);
+    return;
+  }
+  existing[0].setAttribute('href', url);
+  // Google treats multiple canonicals as a conflict — keep only one.
+  for (let i = 1; i < existing.length; i++) {
+    existing[i].remove();
+  }
 }
 
 function setNoIndex(noindex: boolean) {

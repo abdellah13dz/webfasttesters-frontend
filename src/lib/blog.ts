@@ -71,6 +71,7 @@ export interface ApiArticle {
   readTime: string;
   featured: boolean;
   createdAt: string;
+  updatedAt?: string | null;
   seoTitle?: string | null;
   seoDescription?: string | null;
 }
@@ -91,4 +92,42 @@ export function mapApiArticle(article: ApiArticle) {
     content: article.content ?? '',
     featured: Boolean(article.featured),
   };
+}
+
+/** Score topical similarity for related-article recommendations. */
+export function scoreArticleRelatedness(
+  current: Pick<ApiArticle, 'slug' | 'category' | 'title' | 'featured'>,
+  candidate: Pick<ApiArticle, 'slug' | 'category' | 'title' | 'featured'>
+): number {
+  if (current.slug === candidate.slug) return -1;
+  const tokens = new Set(
+    `${current.slug} ${current.title || ''}`
+      .toLowerCase()
+      .split(/[^a-z0-9]+/)
+      .filter((t) => t.length > 3)
+  );
+  const cand = `${candidate.slug} ${candidate.title || ''}`
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter((t) => t.length > 3);
+  let score = 0;
+  for (const t of cand) if (tokens.has(t)) score += 2;
+  if (current.category && current.category === candidate.category) score += 6;
+  if (candidate.featured) score += 1;
+  return score;
+}
+
+/** Pick the best related articles for sidebar / end-of-post modules. */
+export function pickRelatedArticles(
+  current: ApiArticle,
+  pool: ApiArticle[],
+  limit = 6
+): ApiArticle[] {
+  return pool
+    .filter((a) => a.slug !== current.slug && a.status === 'published')
+    .map((a) => ({ a, score: scoreArticleRelatedness(current, a) }))
+    .filter((x) => x.score > 0)
+    .sort((x, y) => y.score - x.score || x.a.slug.localeCompare(y.a.slug))
+    .slice(0, limit)
+    .map((x) => x.a);
 }

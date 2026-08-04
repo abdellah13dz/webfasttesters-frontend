@@ -16,11 +16,12 @@ interface JsonLdProps {
     keywords?: string;
   };
   blogArticles?: BlogListArticle[];
+  faq?: { question: string; answer: string }[];
 }
 
 /** Sync JSON-LD renderer — safe for ISR/static pages (no headers/cookies). */
-export function JsonLdForPath({ path, article, blogArticles }: JsonLdProps) {
-  const schemas = getSchemasForPath(path, article, blogArticles);
+export function JsonLdForPath({ path, article, blogArticles, faq }: JsonLdProps) {
+  const schemas = getSchemasForPath(path, article, blogArticles, faq);
 
   return (
     <>
@@ -28,7 +29,10 @@ export function JsonLdForPath({ path, article, blogArticles }: JsonLdProps) {
         <script
           key={`jsonld-${index}`}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          // JSON-LD must be raw JSON text for crawlers
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schema).replace(/</g, '\\u003c'),
+          }}
         />
       ))}
     </>
@@ -40,6 +44,7 @@ interface SiteJsonLdProps {
   path?: string;
   article?: JsonLdProps['article'];
   blogArticles?: BlogListArticle[];
+  faq?: JsonLdProps['faq'];
 }
 
 /** Layout helper — reads pathname from middleware header when path not passed. */
@@ -47,6 +52,7 @@ export async function SiteJsonLd({
   path: pathProp,
   article,
   blogArticles,
+  faq,
 }: SiteJsonLdProps = {}) {
   if (pathProp) {
     return (
@@ -54,6 +60,7 @@ export async function SiteJsonLd({
         path={pathProp}
         article={article}
         blogArticles={blogArticles}
+        faq={faq}
       />
     );
   }
@@ -62,6 +69,11 @@ export async function SiteJsonLd({
   const path = headersList.get('x-pathname') ?? '/';
 
   return (
-    <JsonLdForPath path={path} article={article} blogArticles={blogArticles} />
+    <JsonLdForPath
+      path={path}
+      article={article}
+      blogArticles={blogArticles}
+      faq={faq}
+    />
   );
 }

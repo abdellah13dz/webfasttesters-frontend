@@ -175,20 +175,22 @@ export const en: Record<string, string> = {
   // CRO Hero
   'croHero.badge': 'Google Play Closed Testing',
   'croHero.headlineGet': 'Get',
-  'croHero.headlineHighlight1': '12 Real Android Testers',
+  'croHero.headlineHighlight1': '15 Real Android Testers',
   'croHero.headlineConnector': 'in',
   'croHero.headlineHighlight2': '~1 Hour',
   'croHero.subheadlinePrefix': "Complete Google's",
   'croHero.subheadlineHighlight': '14-Day Closed Testing',
   'croHero.subheadlineSuffix': 'Requirement',
-  'croHero.headline': 'Get 12 Real Android Testers in ~1 Hour',
+  'croHero.headline': 'Get 15 Real Android Testers in ~1 Hour',
   'croHero.subheadline': "Complete Google's 14-Day Closed Testing Requirement",
-  'croHero.paymentNote': 'One-Time Payment • No Subscription',
+  'croHero.paymentNote': 'One-Time $15 • No Subscription',
   'croHero.cta': 'Start Closed Testing',
+  'croHero.secondaryCta': 'See How It Works',
+  'croHero.trustLine': '15 testers (meets Google’s 12+ for 14 days) · Stripe secure checkout · 1,500+ developers',
   'croHero.videoTitle': '1-Minute Explainer: How Fast Testers Works',
   'croHero.videoDuration': 'Watch the setup walkthrough',
   'croHero.badgeApproved': 'Approved',
-  'croHero.badgeTesters': '12 Testers',
+  'croHero.badgeTesters': '15 Testers',
 
   // Video tutorial
   'tutorialVideo.badge': 'Video Tutorial',
@@ -244,23 +246,38 @@ export const en: Record<string, string> = {
   'homeFaq.fallback11Q': 'How do I access free testing through the community?',
   'homeFaq.fallback11A':
     'Visit community.fasttesters.com, create a free account, and connect with other Android developers who exchange closed testing help. It is peer-to-peer — you test their apps and they test yours — with no payment to Fast Testers.',
+  'homeFaq.fallback12Q': 'Is using a closed testing service allowed by Google?',
+  'homeFaq.fallback12A':
+    'Yes. Google requires real testers on a closed testing track — it does not require you to recruit them yourself. Fast Testers assigns real Android users who install from your Play opt-in link and use your app during the testing window, which is how closed testing is designed to work.',
+  'homeFaq.fallback13Q': 'Are the testers real people (not bots)?',
+  'homeFaq.fallback13A':
+    'Yes. Testers are real Android users who install your app from Google Play closed testing, keep it installed for the required window, and actively use it. We monitor participation and replace drop-offs so your track stays compliant.',
+  'homeFaq.fallback14Q': 'Does Fast Testers guarantee Google will approve my app?',
+  'homeFaq.fallback14A':
+    'No service can control Google’s review decisions. We guarantee managed closed testing coverage (15 testers for the 14-day window) and our production access guarantee under our refund policy if you do not reach production after our managed testing period as defined in our terms.',
+  'homeFaq.fallback15Q': 'Can I submit Flutter, React Native, or game apps?',
+  'homeFaq.fallback15A':
+    'Yes. If your app is published on a Google Play closed testing track with a valid opt-in link, we can assign testers — including Flutter, React Native, Unity, and most other Android apps and games that meet Play’s closed testing rules.',
+  'homeFaq.fallback16Q': 'How do payments work?',
+  'homeFaq.fallback16A':
+    'You pay a one-time $15 fee per app via Stripe at app.fasttesters.com. There is no subscription. After payment you submit your closed testing link in the dashboard, and testers are assigned — typically within about one hour.',
 
   // Exit intent
   'exitIntent.badge': 'Wait — before you go',
-  'exitIntent.title': 'Get your Google Play checklist free',
-  'exitIntent.description': 'Most rejections happen because of testing setup mistakes. Grab our checklist or start closed testing today.',
-  'exitIntent.item1': '12 real testers assigned in ~1 hour',
+  'exitIntent.title': 'Ready for Google Play production access?',
+  'exitIntent.description': 'Skip chasing testers in free groups. Start closed testing with 15 real Android testers for $15 — or grab our free publishing checklist first.',
+  'exitIntent.item1': '15 real testers assigned in ~1 hour',
   'exitIntent.item2': 'One-time $15 — no subscription',
   'exitIntent.item3': 'Production access guarantee included',
-  'exitIntent.cta': 'Chat on WhatsApp',
+  'exitIntent.cta': 'Start Closed Testing — $15',
   'exitIntent.checklist': 'Free Checklist PDF',
 
   // SEO landing page UI
   'seoLanding.badge': 'Google Play Guide',
   'seoLanding.faqTitle': 'Frequently Asked Questions',
   'seoLanding.relatedTitle': 'Related Guides',
-  'seoLanding.ctaTitle': 'Get 12 Real Testers in ~1 Hour',
-  'seoLanding.ctaSubtitle': 'One-time $15 · No subscription · Production access guarantee',
+  'seoLanding.ctaTitle': 'Get 15 Real Testers in ~1 Hour',
+  'seoLanding.ctaSubtitle': 'One-time $15 · Meets Google’s 12+ for 14 days · Production access guarantee',
   'seoLanding.bullet1': 'Real Android testers',
   'seoLanding.bullet2': '14-day compliance',
   'seoLanding.bullet3': 'Stripe secure checkout',
@@ -442,6 +459,29 @@ export const en: Record<string, string> = {
   'howItWorks.statTestingPeriod': 'Testing Period',
   'howItWorks.statProfessionalTesters': 'Professional Testers',
   'howItWorks.readyToStart': 'Ready to Get Started?',
+  'howItWorks.faqBadge': 'FAQ',
+  'howItWorks.faqTitle': 'Closed Testing Process Questions',
+  'howItWorks.faqSubtitle':
+    'Direct answers about steps, timeline, and what happens after you start with Fast Testers.',
+  'howItWorks.faq1Q': 'What is Google Play Closed Testing?',
+  'howItWorks.faq1A':
+    'Closed Testing is a Google Play Console testing track where invited testers install your app from Google Play. For many personal developer accounts created after November 13, 2023, Google requires closed testing with at least 12 testers for 14 consecutive days before you can request production access.',
+  'howItWorks.faq2Q': 'How many steps does Fast Testers take?',
+  'howItWorks.faq2A':
+    'Four steps: pay $15 once, submit your closed testing opt-in link, receive 15 assigned testers who install from Play, then request production access after the 14-day window. Fast Testers coordinates tester assignment and participation.',
+  'howItWorks.faq3Q': 'How long until testers are assigned?',
+  'howItWorks.faq3A':
+    'After payment and a valid closed testing link submission, testers are typically assigned within about one hour and begin installing from Google Play.',
+  'howItWorks.faq4Q': 'Does Fast Testers control Google’s production approval?',
+  'howItWorks.faq4A':
+    'No. Google alone decides production access. Fast Testers provides managed closed testing coverage and a production access guarantee under the terms of the refund policy.',
+  'howItWorks.faq5Q': 'What do I need before starting?',
+  'howItWorks.faq5A':
+    'A Google Play Console app with a closed testing track and a shareable opt-in / testing link. You submit that link in the Fast Testers dashboard after checkout.',
+  'howItWorks.faq6Q': 'Can Flutter, React Native, or games use this flow?',
+  'howItWorks.faq6A':
+    'Yes. Any Android app on a Google Play closed testing track with a valid opt-in link can use Fast Testers, including Flutter, React Native, Unity, and most games that meet Play closed testing rules.',
+
   'howItWorks.ctaDescription': 'Join 1,500+ developers who have successfully published their apps on Google Play Store with our professional testing service.',
   'howItWorks.startJourney': 'Start Your Testing Journey',
 
@@ -452,6 +492,7 @@ export const en: Record<string, string> = {
   'pricing.title': 'Google Play Closed Testing Service',
   'pricing.subtitle': 'Get 15 quality testers for the 14-day closed testing period. Join 1,500+ developers who achieved production access with our Google Play Closed Testing service.',
   'pricing.onGooglePlayStore': 'on Google Play Store',
+  'pricing.onTrustpilot': 'on Trustpilot',
   'pricing.mostPopular': 'Most Popular',
   'pricing.androidApps': 'Android Apps',
   'pricing.fastestWay': 'Professional Google Play Closed Testing service',
@@ -1009,6 +1050,17 @@ export const en: Record<string, string> = {
   'common.readMore': 'Read More',
   'common.relatedArticles': 'Related Articles',
   'common.keyTakeaway': 'Key Takeaway',
+  'aiSeo.lastReviewed': 'Last reviewed',
+  'aiSeo.entityLabel': 'About Fast Testers',
+  'aiSeo.entityTitle': 'Fast Testers — Google Play Closed Testing',
+  'aiSeo.entityBody':
+    'Fast Testers (Hassil LLC) assigns 15 real Android testers for a one-time $15 fee so developers can complete Google’s 12-tester, 14-day closed testing requirement before requesting production access. Google alone decides approval.',
+  'aiSeo.authorBy': 'Written by',
+  'aiSeo.authorOrg': 'Fast Testers Editorial Team',
+  'aiSeo.authorBio':
+    'Practical guides on Google Play Console closed testing, production access, and Android publishing — reviewed for factual accuracy against current Play requirements.',
+  'blogArticle.lastUpdated': 'Updated',
+
   'common.popular': 'POPULAR',
   'common.free': 'FREE',
   'common.guaranteed': 'GUARANTEED',
@@ -1028,13 +1080,6 @@ export const en: Record<string, string> = {
   'newsletter.success': 'Successfully subscribed! Check your inbox.',
   'newsletter.alreadySubscribed': 'This email is already subscribed.',
   'newsletter.invalidEmail': 'Please enter a valid email address.',
-
-  // ═══════════════════════════════════════════════════════════════════════
-  // FOOTER NEWSLETTER
-  // ═══════════════════════════════════════════════════════════════════════
-  'footer.newsletterTitle': 'Subscribe to our newsletter',
-  'footer.newsletterDesc': 'Get the latest updates delivered to your inbox.',
-  'footer.subscribe': 'Subscribe',
 
   // ═══════════════════════════════════════════════════════════════════════
   // COOKIES
@@ -1108,8 +1153,8 @@ export const en: Record<string, string> = {
   // MOBILE CTA
   // ═══════════════════════════════════════════════════════════════════════
 
-  'mobileCta.getStarted': 'Get Started',
-  'mobileCta.subtitle': '14 testers • 14 days • Guaranteed',
+  'mobileCta.getStarted': 'Start Testing',
+  'mobileCta.subtitle': '15 testers • 14 days • Guaranteed',
   'mobileCta.guarantee': 'Guaranteed',
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -1454,6 +1499,29 @@ export const en: Record<string, string> = {
 
   // CTA
   'compare.ctaTitle': 'Ready to Choose the Smart Way?',
+  'compare.faqBadge': 'FAQ',
+  'compare.faqTitle': 'Fast Testers vs Free Tester Groups',
+  'compare.faqSubtitle':
+    'Clear answers for developers comparing managed closed testing with Facebook, Telegram, Reddit, and DIY recruiting.',
+  'compare.faq1Q': 'Why not use free Facebook or Telegram tester groups?',
+  'compare.faq1A':
+    'Free groups can work, but timing is unpredictable, drop-off is common during the 14-day window, and coordination falls on you. Fast Testers assigns 15 real testers quickly with dashboard tracking and a documented production access guarantee.',
+  'compare.faq2Q': 'Is Fast Testers allowed under Google Play rules?',
+  'compare.faq2A':
+    'Yes. Google requires real testers on a closed testing track — it does not require you to recruit them yourself. Fast Testers assigns real Android users who install from your Play opt-in link.',
+  'compare.faq3Q': 'How is managed testing different from DIY friends and family?',
+  'compare.faq3A':
+    'Friends and family are free but often uninstall early or forget to stay active for 14 consecutive days. Managed testing focuses on consistent Play Store installs and participation through the required window.',
+  'compare.faq4Q': 'What does $15 include compared with free communities?',
+  'compare.faq4A':
+    'The $15 package includes 15 testers, coordination for the closed testing period, dashboard visibility, and the production access guarantee. The free peer community at community.fasttesters.com is $0 but slower and has no guarantee.',
+  'compare.faq5Q': 'When should I choose Fast Testers over free options?',
+  'compare.faq5A':
+    'Choose Fast Testers when you need a predictable timeline, have already been rejected for insufficient testing, or cannot reliably keep 12+ testers active for 14 days on your own.',
+  'compare.faq6Q': 'Will using Fast Testers guarantee Google approval?',
+  'compare.faq6A':
+    'No service can guarantee Google’s review decision. Fast Testers guarantees managed closed testing coverage meeting the 12-tester / 14-day requirement and refund terms stated in the refund policy.',
+
   'compare.ctaDescription': 'Join 1,500+ developers who chose Fast Testers for guaranteed production access at the best price.',
   'compare.ctaButton': 'Get Started for $15',
   'compare.ctaSecondary': 'See How It Works',

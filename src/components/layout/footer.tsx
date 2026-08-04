@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useRouter } from '@/lib/router';
 import { useLanguage } from '@/lib/i18n/context';
 import { NewsletterSection } from '@/components/newsletter-section';
@@ -16,35 +17,26 @@ import { SubmitAppTestingCta } from '@/components/submit-app-testing-cta';
 import { shouldShowFooterSubmitCta } from '@/lib/page-has-dashboard-cta';
 
 export function Footer() {
-  const { navigate, currentPath } = useRouter();
+  const { currentPath } = useRouter();
   const { t } = useLanguage();
   const showSubmitCta = shouldShowFooterSubmitCta(currentPath);
   const navigation = useSiteNavigation();
-  const footerSections = navigation.footerSections?.length ? navigation.footerSections : FALLBACK_NAVIGATION.footerSections;
-  const footerLegal = navigation.footerLegal?.length ? navigation.footerLegal : FALLBACK_NAVIGATION.footerLegal;
-
-  const handleNavClick = (e: React.MouseEvent, path: string) => {
-    e.preventDefault();
-    e.stopPropagation();
-    navigate(path);
-  };
+  const footerSections = navigation.footerSections?.length
+    ? navigation.footerSections
+    : FALLBACK_NAVIGATION.footerSections;
+  const footerLegal = navigation.footerLegal?.length
+    ? navigation.footerLegal
+    : FALLBACK_NAVIGATION.footerLegal;
 
   return (
     <footer className="border-t border-border/40 bg-background mt-auto relative safe-area-x">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-4 md:pb-0">
-        {/* Main Footer */}
         <div className="grid grid-cols-1 gap-8 py-10 sm:grid-cols-2 sm:py-12 md:grid-cols-4 lg:grid-cols-5">
-          {/* Brand Column */}
           <div className="col-span-1 sm:col-span-2 md:col-span-4 lg:col-span-1 mb-2 sm:mb-4 lg:mb-0 min-w-0 w-full">
-            <button
-              type="button"
-              suppressHydrationWarning
-              onClick={(e) => handleNavClick(e, '/')}
-              className="flex items-center gap-2 mb-4 cursor-pointer"
-            >
+            <Link href="/" className="flex items-center gap-2 mb-4">
               <BrandLogo size="md" />
               <span className="text-lg font-bold">{t('footer.brandName')}</span>
-            </button>
+            </Link>
             <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
               {t('footer.helpingDevelopers')} {t('footer.appsPublished')}
             </p>
@@ -55,34 +47,50 @@ export function Footer() {
               </span>
             </div>
             <div className="flex items-center gap-3 mt-4">
-              <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Facebook">
+              <a
+                href={FACEBOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Facebook"
+              >
                 <Facebook className="h-4 w-4" />
               </a>
-              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Instagram">
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Instagram"
+              >
                 <Instagram className="h-4 w-4" />
               </a>
-              <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="YouTube">
+              <a
+                href={YOUTUBE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="YouTube"
+              >
                 <Youtube className="h-4 w-4" />
               </a>
             </div>
-            
           </div>
 
-          {/* Link Columns */}
           {footerSections.map((section, index) => (
             <div key={section.titleKey || section.title || index}>
-              <h3 className="text-sm font-semibold text-foreground mb-3">{resolveSectionTitle(section, t)}</h3>
+              <h3 className="text-sm font-semibold text-foreground mb-3">
+                {resolveSectionTitle(section, t)}
+              </h3>
               <ul className="space-y-0.5">
                 {section.links.map((link) => (
                   <li key={link.path}>
-                    <button
-                      type="button"
-                      suppressHydrationWarning
-                      onClick={(e) => handleNavClick(e, link.path)}
-                      className="text-sm text-muted-foreground hover:text-blue-500 transition-colors cursor-pointer w-full text-left py-2 px-2 -mx-2 rounded-md hover:bg-blue-500/5 active:bg-blue-500/10 min-h-[44px] flex items-center"
+                    <Link
+                      href={link.path}
+                      className="text-sm text-muted-foreground hover:text-blue-500 transition-colors w-full text-left py-2 px-2 -mx-2 rounded-md hover:bg-blue-500/5 active:bg-blue-500/10 min-h-[44px] flex items-center"
                     >
                       {resolveNavLabel(link, t)}
-                    </button>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -90,41 +98,35 @@ export function Footer() {
           ))}
         </div>
 
-        
-
-        {/* Business & customer service (Stripe website verification) */}
         <div className="border-t border-border/40 py-6">
           <BusinessLegalNotice />
         </div>
 
-        {/* Submit app CTA + Newsletter Row */}
         <div className="border-t border-border/40 py-6 space-y-5">
           {showSubmitCta && <SubmitAppTestingCta variant="banner" />}
           <div className="flex flex-col items-center justify-between gap-5 lg:flex-row w-full">
-            <NewsletterSection
-              variant="inline"
-              title={t('footer.newsletterTitle')}
+            <NewsletterSection variant="inline" title={t('footer.newsletterTitle')} />
+            <TrustpilotWidget
+              className="w-full md:max-w-sm lg:max-w-md mx-auto"
+              variant="compact"
+              align="start"
             />
-            <TrustpilotWidget className="w-full md:max-w-sm lg:max-w-md mx-auto" variant="compact" align="start" />
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="border-t border-border/40 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left safe-area-bottom">
           <p className="text-xs text-muted-foreground order-2 sm:order-1">
             © {new Date().getFullYear()} {LEGAL_ENTITY_NAME}. {t('footer.allRightsReserved')}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 order-1 sm:order-2 sm:gap-x-4">
             {footerLegal.map((link) => (
-              <button
-                type="button"
-                suppressHydrationWarning
+              <Link
                 key={link.path}
-                onClick={(e) => handleNavClick(e, link.path)}
-                className="text-xs text-muted-foreground hover:text-blue-500 transition-colors cursor-pointer hover:underline underline-offset-2 min-h-[32px] flex items-center"
+                href={link.path}
+                className="text-xs text-muted-foreground hover:text-blue-500 transition-colors hover:underline underline-offset-2 min-h-[32px] flex items-center"
               >
                 {resolveNavLabel(link, t)}
-              </button>
+              </Link>
             ))}
           </div>
         </div>

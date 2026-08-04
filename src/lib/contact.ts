@@ -27,4 +27,9 @@ export const YOUTUBE_URL = 'https://www.youtube.com/@FastTesters';
 
 export const CONTACT_MAILTO = `mailto:${CONTACT_EMAIL}`;
 
-export const SOCIAL_PROFILES = [FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL] as const;
+export const SOCIAL_PROFILES = [
+  FACEBOOK_URL,
+  INSTAGRAM_URL,
+  YOUTUBE_URL,
+  'https://www.trustpilot.com/review/fasttesters.com',
+] as const;

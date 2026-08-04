@@ -6,7 +6,7 @@ export const es: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   // ANNOUNCEMENT BANNER
   // ═══════════════════════════════════════════════════════════════════════
-  'banner.message': '🚀 Tiempo limitado: Obtén 14 testers profesionales por solo $15/app — ¡99.9% de éxito!',
+  'banner.message': '🚀 Pruebas cerradas de Google Play — 15 testers de calidad por $15/app con asignación instantánea!',
   'banner.cta': 'Comenzar →',
   'banner.dashboardCta': 'Ir al panel →',
   'banner.dismiss': 'Cerrar anuncio',
@@ -174,20 +174,22 @@ export const es: Record<string, string> = {
 
   'croHero.badge': 'Pruebas cerradas de Google Play',
   'croHero.headlineGet': 'Obtén',
-  'croHero.headlineHighlight1': '12 testers Android reales',
+  'croHero.headlineHighlight1': '15 testers Android reales',
   'croHero.headlineConnector': 'en',
   'croHero.headlineHighlight2': '~1 hora',
   'croHero.subheadlinePrefix': 'Cumple el requisito de',
   'croHero.subheadlineHighlight': 'pruebas cerradas de 14 días',
   'croHero.subheadlineSuffix': 'de Google',
-  'croHero.headline': 'Obtén 12 testers Android reales en ~1 hora',
+  'croHero.headline': 'Obtén 15 testers Android reales en ~1 hora',
   'croHero.subheadline': 'Cumple el requisito de pruebas cerradas de 14 días de Google',
-  'croHero.paymentNote': 'Pago único • Sin suscripción',
+  'croHero.paymentNote': 'Pago único de $15 • Sin suscripción',
   'croHero.cta': 'Iniciar pruebas cerradas',
+  'croHero.secondaryCta': 'Ver cómo funciona',
+  'croHero.trustLine': '15 testers (cumple el mínimo de 12+ de Google durante 14 días) · Checkout seguro con Stripe · 1.500+ desarrolladores',
   'croHero.videoTitle': 'Explicación de 1 minuto: cómo funciona Fast Testers',
   'croHero.videoDuration': 'Ver la guía de configuración',
   'croHero.badgeApproved': 'Aprobado',
-  'croHero.badgeTesters': '12 testers',
+  'croHero.badgeTesters': '15 testers',
 
   'tutorialVideo.badge': 'Tutorial en video',
   'tutorialVideo.title': 'Cómo usar Fast Testers',
@@ -241,16 +243,32 @@ export const es: Record<string, string> = {
   'homeFaq.fallback11A':
     'Visita community.fasttesters.com, crea una cuenta gratuita y conecta con otros desarrolladores Android que intercambian ayuda en pruebas cerradas. Es entre pares — pruebas sus apps y ellos las tuyas — sin pago a Fast Testers.',
 
+    'homeFaq.fallback12Q': '¿Google permite usar un servicio de pruebas cerradas?',
+  'homeFaq.fallback12A':
+    'Sí. Google exige testers reales en una pista de pruebas cerradas; no exige que los reclutes tú mismo. Fast Testers asigna usuarios Android reales que instalan desde tu enlace de Play y usan tu app durante la ventana de pruebas.',
+  'homeFaq.fallback13Q': '¿Los testers son personas reales (no bots)?',
+  'homeFaq.fallback13A':
+    'Sí. Son usuarios Android reales que instalan tu app desde las pruebas cerradas de Google Play, la mantienen instalada y la usan activamente. Supervisamos la participación y reemplazamos abandonos.',
+  'homeFaq.fallback14Q': '¿Fast Testers garantiza que Google aprobará mi app?',
+  'homeFaq.fallback14A':
+    'Ningún servicio controla las decisiones de revisión de Google. Garantizamos cobertura de pruebas cerradas gestionadas (15 testers durante 14 días) y nuestra garantía de acceso a producción según la política de reembolso.',
+  'homeFaq.fallback15Q': '¿Puedo enviar apps Flutter, React Native o juegos?',
+  'homeFaq.fallback15A':
+    'Sí. Si tu app está en una pista de pruebas cerradas de Google Play con un enlace de opt-in válido, podemos asignar testers — incluyendo Flutter, React Native, Unity y la mayoría de apps y juegos Android.',
+  'homeFaq.fallback16Q': '¿Cómo funcionan los pagos?',
+  'homeFaq.fallback16A':
+    'Pagas $15 una sola vez por app vía Stripe en app.fasttesters.com. Sin suscripción. Tras el pago envías tu enlace de pruebas cerradas en el panel y los testers se asignan — normalmente en alrededor de una hora.',
+
   'exitIntent.badge': 'Espera — antes de irte',
-  'exitIntent.title': 'Obtén gratis la checklist de Google Play',
-  'exitIntent.description': 'La mayoría de rechazos se deben a errores en la configuración de pruebas. Descarga nuestra checklist o inicia las pruebas cerradas hoy.',
-  'exitIntent.item1': '12 testers reales asignados en ~1 hora',
+  'exitIntent.title': '¿Listo para el acceso a producción de Google Play?',
+  'exitIntent.description': 'Deja de buscar testers en grupos gratis. Empieza las pruebas cerradas con 15 testers Android reales por $15 — o descarga primero nuestra checklist gratis.',
+  'exitIntent.item1': '15 testers reales asignados en ~1 hora',
   'exitIntent.item2': '$15 único — sin suscripción',
   'exitIntent.item3': 'Garantía de acceso a producción incluida',
-  'exitIntent.cta': 'Chatear por WhatsApp',
+  'exitIntent.cta': 'Iniciar pruebas cerradas — $15',
   'exitIntent.checklist': 'Checklist PDF gratis',
 
-  'seoLanding.badge': 'Guía de Google Play',
+'seoLanding.badge': 'Guía de Google Play',
   'seoLanding.faqTitle': 'Preguntas frecuentes',
   'seoLanding.relatedTitle': 'Guías relacionadas',
   'seoLanding.ctaTitle': 'Obtén 12 testers reales en ~1 hora',
@@ -402,6 +420,7 @@ export const es: Record<string, string> = {
   'pricing.badge': 'Precios simples y transparentes',
   'pricing.title': 'Acceso a producción de Google Play',
   'pricing.subtitle': 'Obtén 14 testers profesionales por 14 días para cumplir con los requisitos de Google Play. Únete a más de 15,000 desarrolladores que lograron acceso a producción con nuestro servicio.',
+  'pricing.onTrustpilot': 'en Trustpilot',
   'pricing.onGooglePlayStore': 'en Google Play Store',
   'pricing.mostPopular': 'Más popular',
   'pricing.androidApps': 'Apps Android',
@@ -967,13 +986,6 @@ export const es: Record<string, string> = {
   'newsletter.alreadySubscribed': 'Este correo ya está suscrito.',
   'newsletter.invalidEmail': 'Por favor ingresa un correo electrónico válido.',
 
-  // ═══════════════════════════════════════════════════════════════════════
-  // FOOTER NEWSLETTER
-  // ═══════════════════════════════════════════════════════════════════════
-  'footer.newsletterTitle': 'Suscríbete a nuestro boletín',
-  'footer.newsletterDesc': 'Recibe las últimas actualizaciones en tu correo.',
-  'footer.subscribe': 'Suscribirse',
-
   // COOKIES
   'cookies.message': 'We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.',
   'cookies.learnMore': 'Learn more',
@@ -1037,8 +1049,8 @@ export const es: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   // MOBILE CTA
   // ═══════════════════════════════════════════════════════════════════════
-  'mobileCta.getStarted': 'Comenzar',
-  'mobileCta.subtitle': '14 testers • 14 días • Garantizado',
+  'mobileCta.getStarted': 'Comenzar pruebas',
+  'mobileCta.subtitle': '15 testers • 14 días • Garantizado',
   'mobileCta.guarantee': 'Garantizado',
 
   // Social Proof / As Seen On

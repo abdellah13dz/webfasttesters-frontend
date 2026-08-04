@@ -17,7 +17,7 @@ import {
   HelpCircle,
 } from 'lucide-react';
 
-export const HOME_FAQ_COUNT = 11;
+export const HOME_FAQ_COUNT = 16;
 
 export type FaqI18nItemDef = {
   id: string;
@@ -38,6 +38,11 @@ const homeFaqIcons: LucideIcon[] = [
   RefreshCw,
   Layers,
   HeartHandshake,
+  CheckCircle2,
+  UserCheck,
+  Shield,
+  Smartphone,
+  CreditCard,
 ];
 
 export function getHomeFaqI18nItems(): FaqI18nItemDef[] {

@@ -1,16 +1,19 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
-import { X, Download, CheckCircle2 } from 'lucide-react';
+import { useEffect, useState, useCallback, useRef } from 'react';
+import { X, Download, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/lib/i18n/context';
 import { useRouter } from '@/lib/router';
-import { getWhatsAppUrl } from '@/lib/contact';
+import { useAnalytics } from '@/lib/analytics';
+import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 import { trackGa4Event } from '@/lib/ga4-events';
 
 const DISMISS_KEY = 'ft_exit_intent_dismissed';
 const DISMISS_DAYS = 7;
+const MOBILE_MIN_MS = 45000;
+const MOBILE_MIN_SCROLL = 0.45;
 
 function wasRecentlyDismissed(): boolean {
   try {
@@ -34,42 +37,66 @@ function markDismissed(): void {
 export function ExitIntentPopup() {
   const { t } = useLanguage();
   const { currentPath, navigate } = useRouter();
+  const { trackCta } = useAnalytics();
   const [visible, setVisible] = useState(false);
+  const triggeredRef = useRef(false);
 
   const dismiss = useCallback(() => {
     setVisible(false);
     markDismissed();
   }, []);
 
+  const show = useCallback(() => {
+    if (triggeredRef.current || wasRecentlyDismissed()) return;
+    triggeredRef.current = true;
+    setVisible(true);
+    trackGa4Event('exit_intent_shown', currentPath);
+  }, [currentPath]);
+
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    if (currentPath.startsWith('/admin')) return;
+    if (currentPath.startsWith('/admin') || currentPath.startsWith('/submit-app')) return;
     if (wasRecentlyDismissed()) return;
 
+    triggeredRef.current = false;
     const isDesktop = window.matchMedia('(min-width: 768px)').matches;
-    if (!isDesktop) return;
 
-    let triggered = false;
+    if (isDesktop) {
+      const onMouseLeave = (e: MouseEvent) => {
+        if (e.clientY > 10) return;
+        show();
+      };
+      document.addEventListener('mouseleave', onMouseLeave);
+      return () => document.removeEventListener('mouseleave', onMouseLeave);
+    }
 
-    const onMouseLeave = (e: MouseEvent) => {
-      if (triggered || e.clientY > 10) return;
-      triggered = true;
-      setVisible(true);
-      trackGa4Event('exit_intent_shown', currentPath);
+    // Soft mobile trigger: after meaningful scroll + dwell time (non-intrusive)
+    const startedAt = Date.now();
+    const onScroll = () => {
+      const doc = document.documentElement;
+      const scrollable = doc.scrollHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+      const depth = window.scrollY / scrollable;
+      if (depth >= MOBILE_MIN_SCROLL && Date.now() - startedAt >= MOBILE_MIN_MS) {
+        show();
+        window.removeEventListener('scroll', onScroll);
+      }
     };
-
-    document.addEventListener('mouseleave', onMouseLeave);
-    return () => document.removeEventListener('mouseleave', onMouseLeave);
-  }, [currentPath]);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [currentPath, show]);
 
   if (!visible) return null;
 
-  const handleWhatsAppCta = () => {
-    trackGa4Event('exit_intent_cta', currentPath);
+  const handlePrimaryCta = () => {
+    trackCta('exit_intent_pricing');
+    trackGa4Event('exit_intent_cta', currentPath, { action: 'pricing' });
     dismiss();
+    goToGetStartedPricing(currentPath, navigate);
   };
 
   const handleChecklist = () => {
+    trackCta('exit_intent_checklist');
     trackGa4Event('checklist_download', currentPath);
     dismiss();
     navigate('/resources/google-play-checklist');
@@ -81,6 +108,9 @@ export function ExitIntentPopup() {
       role="dialog"
       aria-modal="true"
       aria-labelledby="exit-intent-title"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) dismiss();
+      }}
     >
       <Card className="relative w-full max-w-lg border-blue-500/30 bg-card shadow-2xl">
         <button
@@ -107,19 +137,11 @@ export function ExitIntentPopup() {
           </ul>
           <div className="flex flex-col sm:flex-row gap-3">
             <Button
-              asChild
-              className="flex-1 bg-[#25D366] hover:bg-[#20BD5A] text-white font-semibold h-11"
+              onClick={handlePrimaryCta}
+              className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold h-11"
             >
-              <a
-                href={getWhatsAppUrl(
-                  'Hi Fast Testers, I would like help getting started with Google Play closed testing.',
-                )}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={handleWhatsAppCta}
-              >
-                {t('exitIntent.cta')}
-              </a>
+              {t('exitIntent.cta')}
+              <ArrowRight className="h-4 w-4 ms-1.5" />
             </Button>
             <Button
               variant="outline"

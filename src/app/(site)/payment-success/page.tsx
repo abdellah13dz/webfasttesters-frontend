@@ -1,6 +1,10 @@
 import { Suspense } from 'react';
 import { Loader2 } from 'lucide-react';
 import { PaymentSuccessPage } from '@/components/pages/payment-success';
+import { PageSeoShell } from '@/components/page-seo-shell';
+import { createPageMetadata } from '@/lib/page-metadata';
+
+export const metadata = createPageMetadata('/payment-success');
 
 function PaymentSuccessFallback() {
   return (
@@ -15,8 +19,10 @@ function PaymentSuccessFallback() {
 
 export default function RoutePage() {
   return (
-    <Suspense fallback={<PaymentSuccessFallback />}>
-      <PaymentSuccessPage />
-    </Suspense>
+    <PageSeoShell path="/payment-success">
+      <Suspense fallback={<PaymentSuccessFallback />}>
+        <PaymentSuccessPage />
+      </Suspense>
+    </PageSeoShell>
   );
 }

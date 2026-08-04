@@ -10,6 +10,10 @@ export interface SeoLandingPageConfig {
   keywords: string[];
   h1: string;
   intro: string;
+  /** Citation-friendly bullets for AI Overviews / LLM extraction */
+  keyTakeaways?: string[];
+  /** ISO date for editorial freshness signal */
+  lastReviewed?: string;
   sections: { heading: string; body: string }[];
   faq: SeoLandingFaq[];
   relatedSlugs: string[];
@@ -19,10 +23,31 @@ export interface SeoLandingPageConfig {
 const SHARED_CTA = `
 ## Ready to Start Closed Testing?
 
-Fast Testers assigns **12 real Android testers in about one hour** for a **one-time $15 payment**. Complete Google's 14-day closed testing requirement and apply for production access with confidence.
+Fast Testers assigns **15 real Android testers in about one hour** for a **one-time $15 payment** (meets Google’s minimum of 12). Complete Google's 14-day closed testing requirement and apply for production access with confidence.
 
 [Start Closed Testing →](https://app.fasttesters.com/)
 `;
+
+const DEFAULT_LAST_REVIEWED = '2026-08-04';
+
+function withAiDefaults(
+  config: Omit<SeoLandingPageConfig, 'keyTakeaways' | 'lastReviewed'> & {
+    keyTakeaways?: string[];
+    lastReviewed?: string;
+  }
+): SeoLandingPageConfig {
+  return {
+    ...config,
+    lastReviewed: config.lastReviewed || DEFAULT_LAST_REVIEWED,
+    keyTakeaways: config.keyTakeaways?.length
+      ? config.keyTakeaways
+      : [
+          'Google Play often requires at least 12 real testers for 14 consecutive days of closed testing before production access (personal accounts after Nov 13, 2023).',
+          'Fast Testers assigns 15 real Android testers for a one-time $15 fee to help meet that requirement.',
+          'Google alone decides production approval; Fast Testers provides managed testing coverage and refund terms on the refund policy page.',
+        ],
+  };
+}
 
 function section(heading: string, body: string) {
   return { heading, body: body.trim() };
@@ -401,7 +426,8 @@ If denied, read rejection reason, fix, and reapply — testing period remains va
 };
 
 export function getSeoLandingPage(slug: string): SeoLandingPageConfig | undefined {
-  return SEO_LANDING_PAGES[slug];
+  const config = SEO_LANDING_PAGES[slug];
+  return config ? withAiDefaults(config) : undefined;
 }
 
 export function getAllSeoLandingSlugs(): string[] {

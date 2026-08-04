@@ -249,10 +249,20 @@ export default function HomePage() {
     <div className="min-h-screen bg-background text-foreground">
      
       {/* ═══════════════════════════════════════════════════════════════════
-          ORIGINAL HERO — Platform overview (moved below primary CRO hero)
+          CRO HERO — Primary conversion section (above the fold)
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-x-hidden hero-y">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-8 sm:pb-10 lg:pb-12">
+      <section className="relative overflow-x-clip border-b border-border/40 hero-y">
+        <HeroDecorBackground />
+        <CroHero />
+      </section>
+
+      <HomeTrustBar />
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          ORIGINAL HERO — Platform overview (SEO + video; secondary CTA path)
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="relative overflow-x-hidden hero-y border-t border-border/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-8 sm:pb-10 lg:pb-12 pt-10 sm:pt-12">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             {/* Left: Text content */}
             <div className="flex-1 text-center lg:text-left">
@@ -272,7 +282,7 @@ export default function HomePage() {
                 </Badge>
                 <h2 className="text-display mb-4 sm:mb-6">
                   Get{' '}
-                  <span className="gradient-text">12 Testers</span>
+                  <span className="gradient-text">15 Testers</span>
                   <br />
                   for{' '}
                   <span className="gradient-text">14 Days</span>
@@ -331,8 +341,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      <HomeTrustBar />
 
       {/* ═══════════════════════════════════════════════════════════════════
           VIDEO TUTORIAL
@@ -476,14 +484,6 @@ export default function HomePage() {
             </div>
           </AnimatedSection>
         </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════════
-          CRO HERO — Primary conversion section
-      ═══════════════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-x-clip border-b border-border/40 hero-y">
-        <HeroDecorBackground />
-        <CroHero />
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════

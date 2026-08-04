@@ -6,6 +6,8 @@ import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 import { useLanguage } from '@/lib/i18n/context';
 import { useAnalytics } from '@/lib/analytics';
 import { FullDemoCta } from '@/components/full-demo-cta';
+import { PageFaqSection } from '@/components/page-faq-section';
+import { AiEntityDefinition } from '@/components/ai-citation-summary';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -367,6 +369,28 @@ export default function ComparePage() {
                 <p className="text-xs text-muted-foreground">{t('compare.statOneTime')}</p>
               </div>
             </div>
+          </div>
+
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Button
+              onClick={() => { trackCta('compare_hero_cta'); goToGetStartedPricing(currentPath, navigate); }}
+              size="lg"
+              className="w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white font-semibold h-12 px-8 shadow-lg shadow-blue-500/25"
+            >
+              {t('compare.ctaButton')}
+              <ArrowRight className="h-4 w-4 ml-1.5" />
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => { trackCta('compare_hero_how'); navigate('/how-it-works'); }}
+              className="w-full sm:w-auto border-border/60 h-12 px-8 font-semibold"
+            >
+              {t('compare.ctaSecondary')}
+            </Button>
+          </div>
+          <div className="mt-8 mx-auto max-w-2xl">
+            <AiEntityDefinition />
           </div>
         </div>
       </section>
@@ -797,6 +821,15 @@ export default function ComparePage() {
       </section>
 
       <FullDemoCta trackingId="compare_full_demo" />
+
+      <PageFaqSection
+        keyPrefix="compare.faq"
+        count={6}
+        titleKey="compare.faqTitle"
+        subtitleKey="compare.faqSubtitle"
+        badgeKey="compare.faqBadge"
+        trackingPrefix="compare-faq"
+      />
 
       {/* ═══════════════════════════════════════════════════════════════════
           CTA SECTION

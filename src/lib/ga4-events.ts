@@ -102,6 +102,7 @@ export function mapCtaToGa4Event(element: string): Ga4EventName | null {
   const map: Record<string, Ga4EventName> = {
     hero_cta: 'hero_cta_click',
     hero_reviews: 'reviews_cta_click',
+    hero_how_it_works: 'funnel_cta_click',
     mobile_sticky_cta: 'sticky_cta_click',
     pricing_cta: 'pricing_cta_click',
     pricing_get_started: 'pricing_cta_click',
@@ -115,6 +116,9 @@ export function mapCtaToGa4Event(element: string): Ga4EventName | null {
     view_all_stories: 'case_studies_view',
     bottom_cta: 'hero_cta_click',
     compare_get_started: 'signup_click',
+    compare_hero_cta: 'signup_click',
+    exit_intent_pricing: 'pricing_cta_click',
+    how_it_works_cta: 'signup_click',
   };
   return map[element] ?? null;
 }

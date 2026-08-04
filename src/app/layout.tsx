@@ -49,6 +49,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
+    alternateLocale: ["es_ES", "tr_TR", "ar"],
     url: SITE_URL,
     siteName: "Fast Testers",
     title: SEO_DEFAULT_TITLE,
@@ -56,9 +57,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${SITE_URL}${BRAND_OG_IMAGE_PATH}`,
-        width: 512,
-        height: 512,
-        alt: "Fast Testers - Professional App Testing Service",
+        width: 1200,
+        height: 630,
+        alt: "Fast Testers - Google Play Closed Testing Service",
       },
     ],
   },
@@ -68,16 +69,19 @@ export const metadata: Metadata = {
     description: SEO_DEFAULT_DESCRIPTION,
     images: [`${SITE_URL}${BRAND_OG_IMAGE_PATH}`],
     creator: "@fasttesters",
+    site: "@fasttesters",
   },
   alternates: {
     canonical: SITE_URL,
     languages: {
       "en-US": SITE_URL,
-      "es": SITE_URL,
-      "tr": SITE_URL,
-      "ar": SITE_URL,
+      "x-default": SITE_URL,
+      es: SITE_URL,
+      tr: SITE_URL,
+      ar: SITE_URL,
     },
   },
+  referrer: "origin-when-cross-origin",
   robots: {
     index: true,
     follow: true,
@@ -130,7 +134,8 @@ export default function RootLayout({
         <link rel="preconnect" href="https://i.ytimg.com" />
         <link rel="preconnect" href="https://www.youtube-nocookie.com" />
         <link rel="dns-prefetch" href="https://www.youtube-nocookie.com" />
-        <meta name="theme-color" content="#6366f1" />
+        <link rel="dns-prefetch" href="https://webapi.fasttesters.com" />
+        <link rel="dns-prefetch" href="https://app.fasttesters.com" />
         <meta name="facebook-domain-verification" content="v21c1ydxk4erpw0gkio4xngp6wyfcb" />
         <meta name="p:domain_verify" content="adbae5ce77a03735673fa9667c3048d8" />
         <meta name="apple-mobile-web-app-capable" content="yes" />

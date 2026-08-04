@@ -1,7 +1,13 @@
 import type { MetadataRoute } from 'next';
 import { fetchPublishedArticles } from '@/lib/blog';
+import { BRAND_OG_IMAGE_PATH } from '@/lib/brand';
+import { pageSeoConfig } from '@/lib/seo';
 import { SITE_URL } from '@/lib/site-url';
 
+/**
+ * Indexable static routes only.
+ * Do NOT include URLs that permanently redirect (wastes crawl budget).
+ */
 const STATIC_ROUTES: {
   path: string;
   priority: number;
@@ -22,7 +28,6 @@ const STATIC_ROUTES: {
   { path: '/blog/app-rejected-google-play', priority: 0.85, changeFrequency: 'monthly' },
   { path: '/blog/multi-language-app-testing', priority: 0.85, changeFrequency: 'monthly' },
   { path: '/blog/publish-app-google-play', priority: 0.85, changeFrequency: 'monthly' },
-  { path: '/google-play-closed-testing', priority: 0.85, changeFrequency: 'monthly' },
   { path: '/google-play-12-testers', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/google-play-14-day-testing', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/google-play-personal-developer-account', priority: 0.85, changeFrequency: 'monthly' },
@@ -52,30 +57,52 @@ const STATIC_ROUTES: {
   { path: '/referral-policy', priority: 0.4, changeFrequency: 'monthly' },
 ];
 
-const STATIC_BLOG_SLUGS = new Set(['google-play-12-testers-policy']);
+const STATIC_BLOG_SLUGS = new Set([
+  'google-play-12-testers-policy',
+  'how-to-find-beta-testers-for-android-apps',
+  'google-play-closed-testing',
+  'app-rejected-google-play',
+  'multi-language-app-testing',
+  'publish-app-google-play',
+]);
+
+function absoluteImage(path?: string): string {
+  const img = path || BRAND_OG_IMAGE_PATH;
+  if (img.startsWith('http')) return img;
+  return `${SITE_URL}${img.startsWith('/') ? img : `/${img}`}`;
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = SITE_URL;
   const now = new Date();
 
-  const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map(({ path, priority, changeFrequency }) => ({
-    url: `${baseUrl}${path}`,
-    lastModified: now,
-    changeFrequency,
-    priority,
-  }));
+  const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map(
+    ({ path, priority, changeFrequency }) => {
+      const seoKey = path === '' ? '/' : path;
+      const ogImage = pageSeoConfig[seoKey]?.ogImage;
+      return {
+        url: `${baseUrl}${path}`,
+        lastModified: now,
+        changeFrequency,
+        priority,
+        images: [absoluteImage(ogImage)],
+      };
+    }
+  );
 
   const articles = await fetchPublishedArticles();
   const articleEntries: MetadataRoute.Sitemap = articles.map((article) => ({
     url: `${baseUrl}/blog/${article.slug}`,
     lastModified: article.createdAt ? new Date(article.createdAt) : now,
-    changeFrequency: 'monthly',
+    changeFrequency: 'monthly' as const,
     priority: article.featured ? 0.8 : 0.7,
+    images: [absoluteImage(article.coverImage || undefined)],
   }));
 
-  const dedupedArticles = articleEntries.filter(
-    (entry) => !STATIC_BLOG_SLUGS.has(entry.url.replace(`${baseUrl}/blog/`, ''))
-  );
+  const dedupedArticles = articleEntries.filter((entry) => {
+    const slug = entry.url.replace(`${baseUrl}/blog/`, '');
+    return !STATIC_BLOG_SLUGS.has(slug);
+  });
 
   return [...staticEntries, ...dedupedArticles];
 }

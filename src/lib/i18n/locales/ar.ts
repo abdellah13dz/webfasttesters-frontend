@@ -7,7 +7,7 @@ export const ar: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   // ANNOUNCEMENT BANNER
   // ═══════════════════════════════════════════════════════════════════════
-  'banner.message': '🚀 عرض محدود: احصل على 14 مختبرًا محترفًا مقابل 15 دولارًا فقط لكل تطبيق — نسبة نجاح 99.9٪!',
+  'banner.message': '🚀 خدمة الاختبار المغلق على Google Play — 15 مختبراً بجودة عالية مقابل 15$/تطبيق مع تعيين فوري!',
   'banner.cta': 'ابدأ الآن →',
   'banner.dashboardCta': 'انتقل إلى لوحة التحكم →',
   'banner.dismiss': 'إغلاق الإعلان',
@@ -175,22 +175,24 @@ export const ar: Record<string, string> = {
 
   'croHero.badge': 'الاختبار المغلق على Google Play',
   'croHero.headlineGet': 'احصل على',
-  'croHero.headlineHighlight1': '12 مختبر Android حقيقي',
+  'croHero.headlineHighlight1': '15 مختبر Android حقيقي',
   'croHero.headlineConnector': 'في',
   'croHero.headlineHighlight2': '~ساعة واحدة',
   'croHero.subheadlinePrefix': 'أكمل متطلب',
   'croHero.subheadlineHighlight': 'الاختبار المغلق لمدة 14 يوماً',
   'croHero.subheadlineSuffix': 'من Google',
-  'croHero.headline': 'احصل على 12 مختبر Android حقيقي في ~ساعة واحدة',
+  'croHero.headline': 'احصل على 15 مختبر Android حقيقي في ~ساعة واحدة',
   'croHero.subheadline': 'أكمل متطلب Google للاختبار المغلق لمدة 14 يوماً',
-  'croHero.paymentNote': 'دفعة واحدة • بدون اشتراك',
+  'croHero.paymentNote': 'دفعة واحدة $15 • بدون اشتراك',
   'croHero.cta': 'ابدأ الاختبار المغلق',
+  'croHero.secondaryCta': 'كيف يعمل',
+  'croHero.trustLine': '15 مختبراً (يلبي حد Google الأدنى 12+ لمدة 14 يوماً) · دفع آمن عبر Stripe · أكثر من 1,500 مطور',
   'croHero.videoTitle': 'شرح مدته دقيقة: كيف يعمل Fast Testers',
   'croHero.videoDuration': 'شاهد دليل الإعداد',
   'croHero.badgeApproved': 'موافق عليه',
-  'croHero.badgeTesters': '12 مختبراً',
+  'croHero.badgeTesters': '15 مختبراً',
 
-  'tutorialVideo.badge': 'فيديو تعليمي',
+'tutorialVideo.badge': 'فيديو تعليمي',
   'tutorialVideo.title': 'كيفية استخدام Fast Testers',
   'tutorialVideo.description':
     'شاهد جولة سريعة لإرسال تطبيقك وإعداد الاختبار المغلق على Google Play ومتابعة تقدم الاختبار.',
@@ -242,16 +244,32 @@ export const ar: Record<string, string> = {
   'homeFaq.fallback11A':
     'زر community.fasttesters.com، أنشئ حساباً مجانياً، وتواصل مع مطوري Android الآخرين الذين يتبادلون مساعدة الاختبار المغلق. بين الأقران — تختبر تطبيقاتهم وهم يختبرون تطبيقك — دون دفع لـ Fast Testers.',
 
+    'homeFaq.fallback12Q': 'هل يسمح Google باستخدام خدمة اختبار مغلق؟',
+  'homeFaq.fallback12A':
+    'نعم. يتطلب Google مختبرين حقيقيين على مسار اختبار مغلق — ولا يشترط أن تجمعهم بنفسك. يعيّن Fast Testers مستخدمي Android حقيقيين يثبتون من رابط Play ويستخدمون تطبيقك خلال نافذة الاختبار.',
+  'homeFaq.fallback13Q': 'هل المختبرون أشخاص حقيقيون (وليسوا روبوتات)؟',
+  'homeFaq.fallback13A':
+    'نعم. المختبرون مستخدمو Android حقيقيون يثبتون تطبيقك من الاختبار المغلق في Google Play ويبقونه مثبتاً ويستخدمونه بنشاط. نراقب المشاركة ونستبدل الانسحابات.',
+  'homeFaq.fallback14Q': 'هل يضمن Fast Testers موافقة Google على تطبيقي؟',
+  'homeFaq.fallback14A':
+    'لا تتحكم أي خدمة في قرارات مراجعة Google. نضمن تغطية الاختبار المغلق المُدار (15 مختبراً لمدة 14 يوماً) وضمان الوصول للإنتاج وفق سياسة الاسترداد.',
+  'homeFaq.fallback15Q': 'هل يمكنني إرسال تطبيقات Flutter أو React Native أو ألعاب؟',
+  'homeFaq.fallback15A':
+    'نعم. إذا كان تطبيقك على مسار اختبار مغلق في Google Play برابط اشتراك صالح، يمكننا تعيين مختبرين — بما في ذلك Flutter وReact Native وUnity ومعظم تطبيقات وألعاب Android.',
+  'homeFaq.fallback16Q': 'كيف تعمل المدفوعات؟',
+  'homeFaq.fallback16A':
+    'تدفع 15 دولاراً مرة واحدة لكل تطبيق عبر Stripe على app.fasttesters.com. لا اشتراك. بعد الدفع ترسل رابط الاختبار المغلق في لوحة التحكم، ويُعيَّن المختبرون عادةً خلال نحو ساعة.',
+
   'exitIntent.badge': 'انتظر — قبل المغادرة',
-  'exitIntent.title': 'احصل على قائمة Google Play مجاناً',
-  'exitIntent.description': 'معظم الرفض يحدث بسبب أخطاء في إعداد الاختبار. احصل على قائمتنا أو ابدأ الاختبار المغلق اليوم.',
-  'exitIntent.item1': '12 مختبراً حقيقياً يُعيَّنون في ~ساعة واحدة',
+  'exitIntent.title': 'هل أنت مستعد لوصول الإنتاج على Google Play؟',
+  'exitIntent.description': 'توقف عن مطاردة المختبرين في المجموعات المجانية. ابدأ الاختبار المغلق مع 15 مختبر Android حقيقي مقابل 15 دولاراً — أو احصل أولاً على قائمتنا المجانية.',
+  'exitIntent.item1': '15 مختبراً حقيقياً يُعيَّنون في ~ساعة واحدة',
   'exitIntent.item2': '$15 دفعة واحدة — بدون اشتراك',
   'exitIntent.item3': 'ضمان الوصول للإنتاج مشمول',
-  'exitIntent.cta': 'تواصل عبر WhatsApp',
+  'exitIntent.cta': 'ابدأ الاختبار المغلق — $15',
   'exitIntent.checklist': 'قائمة PDF مجانية',
 
-  'seoLanding.badge': 'دليل Google Play',
+'seoLanding.badge': 'دليل Google Play',
   'seoLanding.faqTitle': 'الأسئلة الشائعة',
   'seoLanding.relatedTitle': 'أدلة ذات صلة',
   'seoLanding.ctaTitle': 'احصل على 12 مختبراً حقيقياً في ~ساعة واحدة',
@@ -403,6 +421,7 @@ export const ar: Record<string, string> = {
   'pricing.badge': 'أسعار بسيطة وشفافة',
   'pricing.title': 'الوصول للإنتاج في Google Play',
   'pricing.subtitle': 'احصل على 14 مختبر محترف لمدة 14 يوماً لتلبية متطلبات Google Play. انضم إلى أكثر من 15,000 مطور حققوا الوصول للإنتاج مع خدمتنا.',
+  'pricing.onTrustpilot': 'على Trustpilot',
   'pricing.onGooglePlayStore': 'على Google Play Store',
   'pricing.mostPopular': 'الأكثر شعبية',
   'pricing.androidApps': 'تطبيقات أندرويد',
@@ -1031,8 +1050,8 @@ export const ar: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   // MOBILE CTA
   // ═══════════════════════════════════════════════════════════════════════
-  'mobileCta.getStarted': 'ابدأ الآن',
-  'mobileCta.subtitle': '14 مختبر • 14 يوماً • مضمون',
+  'mobileCta.getStarted': 'ابدأ الاختبار',
+  'mobileCta.subtitle': '15 مختبر • 14 يوماً • مضمون',
   'mobileCta.guarantee': 'مضمون',
 
   // ═══════════════════════════════════════════════════════════════════════

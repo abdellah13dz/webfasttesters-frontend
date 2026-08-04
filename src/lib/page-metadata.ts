@@ -72,39 +72,47 @@ export function pageSeoToMetadata(path: string, seo: PageSeo): Metadata {
         },
       };
 
-  const openGraph: Metadata['openGraph'] = {
-    type: seo.type === 'article' ? 'article' : 'website',
-    locale: 'en_US',
-    url,
-    siteName: SITE_NAME,
-    title: seo.title,
-    description: seo.description,
-    images: [
-      {
-        url: ogImage,
-        width: 1200,
-        height: 630,
-        alt: seo.title,
-      },
-    ],
-  };
-
-  if (seo.type === 'article') {
-    openGraph.type = 'article';
-    if (seo.publishedTime) {
-      openGraph.publishedTime = seo.publishedTime;
-    }
-    if (seo.modifiedTime) {
-      openGraph.modifiedTime = seo.modifiedTime;
-    }
-    if (seo.section) {
-      openGraph.section = seo.section;
-    }
-    if (seo.tags?.length) {
-      openGraph.tags = seo.tags;
-    }
-    openGraph.authors = [SITE_URL];
-  }
+  const openGraph: Metadata['openGraph'] =
+    seo.type === 'article'
+      ? {
+          type: 'article',
+          locale: 'en_US',
+          alternateLocale: ['es_ES', 'tr_TR', 'ar'],
+          url,
+          siteName: SITE_NAME,
+          title: seo.title,
+          description: seo.description,
+          images: [
+            {
+              url: ogImage,
+              width: 1200,
+              height: 630,
+              alt: seo.title,
+            },
+          ],
+          publishedTime: seo.publishedTime,
+          modifiedTime: seo.modifiedTime,
+          section: seo.section,
+          tags: seo.tags,
+          authors: [SITE_NAME],
+        }
+      : {
+          type: 'website',
+          locale: 'en_US',
+          alternateLocale: ['es_ES', 'tr_TR', 'ar'],
+          url,
+          siteName: SITE_NAME,
+          title: seo.title,
+          description: seo.description,
+          images: [
+            {
+              url: ogImage,
+              width: 1200,
+              height: 630,
+              alt: seo.title,
+            },
+          ],
+        };
 
   return {
     title: { absolute: seo.title },
@@ -113,8 +121,17 @@ export function pageSeoToMetadata(path: string, seo: PageSeo): Metadata {
     authors: [{ name: SITE_NAME, url: SITE_URL }],
     creator: SITE_NAME,
     publisher: SITE_NAME,
+    referrer: 'origin-when-cross-origin',
     alternates: {
       canonical: url,
+      languages: {
+        'en-US': url,
+        'x-default': url,
+        // Locale UI is client-switched; prepare hreflang architecture without changing URLs.
+        es: url,
+        tr: url,
+        ar: url,
+      },
     },
     openGraph,
     twitter: {
@@ -155,6 +172,7 @@ export function buildBlogArticleMetadata(
     coverImage: string | null;
     category: string;
     createdAt: string;
+    updatedAt?: string | null;
     seoTitle?: string | null;
     seoDescription?: string | null;
   },
@@ -176,7 +194,7 @@ export function buildBlogArticleMetadata(
     ogImage: article.coverImage || BRAND_OG_IMAGE_PATH,
     type: 'article',
     publishedTime: article.createdAt,
-    modifiedTime: article.createdAt,
+    modifiedTime: article.updatedAt || article.createdAt,
     section: article.category,
     tags: [article.category, 'Google Play', 'Android app testing'],
   });

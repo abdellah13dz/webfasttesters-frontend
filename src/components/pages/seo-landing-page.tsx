@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from '@/lib/router';
 import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 import { useAnalytics } from '@/lib/analytics';
@@ -16,6 +17,7 @@ import {
 } from '@/components/ui/accordion';
 import { ArrowRight, CheckCircle2, BookOpen } from 'lucide-react';
 import { FullDemoCta } from '@/components/full-demo-cta';
+import { AiCitationSummary, AiEntityDefinition } from '@/components/ai-citation-summary';
 import ReactMarkdown from 'react-markdown';
 
 function renderMarkdown(text: string) {
@@ -65,7 +67,15 @@ export function SeoLandingPage({ config }: SeoLandingPageProps) {
             {t('seoLanding.badge')}
           </Badge>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-5 leading-tight">{config.h1}</h1>
-          <div className="text-lg text-muted-foreground mb-8">{renderMarkdown(config.intro)}</div>
+          <div className="text-lg text-muted-foreground mb-6">{renderMarkdown(config.intro)}</div>
+          <AiEntityDefinition className="mb-6" />
+          {config.keyTakeaways?.length ? (
+            <AiCitationSummary
+              takeaways={config.keyTakeaways}
+              lastReviewed={config.lastReviewed}
+              className="mb-8"
+            />
+          ) : null}
           <Button
             size="lg"
             onClick={() => { trackCta('hero_cta', undefined, 'signup_click'); goToGetStartedPricing(currentPath, navigate); }}
@@ -113,12 +123,14 @@ export function SeoLandingPage({ config }: SeoLandingPageProps) {
             <h2 className="text-xl font-bold mb-4">{t('seoLanding.relatedTitle')}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {config.relatedSlugs.map((slug) => (
-                <Card key={slug} className="card-hover cursor-pointer border-border/60" onClick={() => navigate(`/${slug}`)}>
-                  <CardContent className="p-4 flex items-center justify-between">
-                    <span className="text-sm font-medium capitalize">{slug.replace(/-/g, ' ')}</span>
-                    <ArrowRight className="h-4 w-4 text-blue-400" />
-                  </CardContent>
-                </Card>
+                <Link key={slug} href={`/${slug}`} className="block">
+                  <Card className="card-hover border-border/60 h-full transition-colors hover:border-blue-500/40">
+                    <CardContent className="p-4 flex items-center justify-between">
+                      <span className="text-sm font-medium capitalize">{slug.replace(/-/g, ' ')}</span>
+                      <ArrowRight className="h-4 w-4 text-blue-400 shrink-0" aria-hidden />
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>

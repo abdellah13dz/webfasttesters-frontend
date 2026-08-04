@@ -48,27 +48,27 @@ export const pageSeoConfig: Record<string, PageSeo> = {
   },
 
   '/how-it-works': {
-    title: 'How It Works - Fast Testers | Google Play Closed Testing Service',
+    title: 'How Fast Testers Works | Google Play Closed Testing in 4 Steps',
     description:
-      'Submit your app for Google Play Closed Testing and get 15 quality testers assigned instantly. Complete the 14-day closed testing period with our professional service.',
+      'Pay $15, submit your closed testing link, get 15 testers assigned instantly, and complete Google’s 14-day requirement. See the exact process.',
     keywords: mergeKeywords('how app testing works', 'google play testing process', '12 testers process'),
     ogImage: '/images/illustrations/how-it-works.png',
     type: 'website',
   },
 
   '/pricing': {
-    title: 'Pricing - Fast Testers | Google Play Closed Testing Service — $15/App',
+    title: 'Pricing — $15 Google Play Closed Testing | Fast Testers',
     description:
-      'Google Play Closed Testing service: 15 quality testers for $15. Meet the 12-tester, 14-day requirement with instant tester assignment and production access guarantee.',
+      'One-time $15 per app: 15 quality testers, ~1-hour assignment, 14-day closed testing coverage, and a production access guarantee. No subscription.',
     keywords: mergeKeywords('app testing pricing', 'google play testing cost', '$15 app testing'),
     ogImage: BRAND_OG_IMAGE_PATH,
     type: 'website',
   },
 
   '/faq': {
-    title: 'FAQ - Fast Testers | Common Questions About Google Play Testing',
+    title: 'FAQ | Google Play 12 Testers, Pricing & Production Access',
     description:
-      'Answers to common questions about Google Play 12-tester requirement, our testing process, pricing, and how to get production access quickly.',
+      'Answers on the 12-tester / 14-day rule, tester quality, refunds, languages, and how Fast Testers gets apps ready for Google Play production access.',
     keywords: mergeKeywords('google play testing FAQ', '12 testers questions', 'production access FAQ'),
     ogImage: '/images/illustrations/support-center.png',
     type: 'website',

@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from 'react';
 import { useRouter } from '@/lib/router';
 import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 import { useLanguage } from '@/lib/i18n/context';
+import { useAnalytics } from '@/lib/analytics';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -23,6 +24,8 @@ import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
 import { FullDemoCta } from '@/components/full-demo-cta';
 import { AppSetupGuideCta } from '@/components/app-setup-guide-cta';
 import { FastTestersTutorial } from '@/components/video-tutorial/fast-testers-tutorial';
+import { PageFaqSection } from '@/components/page-faq-section';
+import { AiEntityDefinition } from '@/components/ai-citation-summary';
 
 function AnimatedSection({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -94,12 +97,13 @@ const stats = [
   { labelKey: 'howItWorks.statSuccessRate', value: '99%', icon: Shield },
   { labelKey: 'howItWorks.statTesterAssignment', value: 'Instant', icon: Clock },
   { labelKey: 'howItWorks.statTestingPeriod', value: '16 Days', icon: Star },
-  { labelKey: 'howItWorks.statProfessionalTesters', value: '14', icon: Users },
+  { labelKey: 'howItWorks.statProfessionalTesters', value: '15', icon: Users },
 ];
 
 export default function HowItWorks() {
   const { navigate, currentPath } = useRouter();
   const { t } = useLanguage();
+  const { trackCta } = useAnalytics();
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -129,6 +133,9 @@ export default function HowItWorks() {
               <p className="mt-6 text-lg text-muted-foreground sm:text-xl max-w-xl">
                 {t('howItWorks.subtitle')}
               </p>
+              <div className="mt-6 max-w-xl mx-auto lg:mx-0">
+                <AiEntityDefinition />
+              </div>
             </div>
             {/* Hero video tutorial */}
             <div className="flex-1 max-w-md lg:max-w-lg w-full">
@@ -238,6 +245,15 @@ export default function HowItWorks() {
       </AnimatedSection>
 
       {/* CTA Section */}
+      <PageFaqSection
+        keyPrefix="howItWorks.faq"
+        count={6}
+        titleKey="howItWorks.faqTitle"
+        subtitleKey="howItWorks.faqSubtitle"
+        badgeKey="howItWorks.faqBadge"
+        trackingPrefix="how-it-works-faq"
+      />
+
       <AnimatedSection>
         <section className="mx-auto max-w-5xl px-4 sm:px-6 py-16 sm:py-24">
           <div className="mb-8 flex justify-center">
@@ -252,7 +268,10 @@ export default function HowItWorks() {
                 {t('howItWorks.ctaDescription')}
               </p>
               <Button
-                onClick={() => goToGetStartedPricing(currentPath, navigate)}
+                onClick={() => {
+                  trackCta('how_it_works_cta');
+                  goToGetStartedPricing(currentPath, navigate);
+                }}
                 size="lg"
                 className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-6 text-base rounded-xl cursor-pointer"
               >

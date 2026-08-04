@@ -6,7 +6,7 @@ export const tr: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   // ANNOUNCEMENT BANNER
   // ═══════════════════════════════════════════════════════════════════════
-  'banner.message': '🚀 Sınırlı süre: Sadece $15/uygulama ile 14 profesyonel test uzmanı — %99.9 başarı!',
+  'banner.message': '🚀 Google Play Kapalı Test — uygulama başına $15\'a 15 kaliteli testçi, anında atama!',
   'banner.cta': 'Başla →',
   'banner.dashboardCta': 'Panele Git →',
   'banner.dismiss': 'Duyuruyu kapat',
@@ -174,22 +174,24 @@ export const tr: Record<string, string> = {
 
   'croHero.badge': 'Google Play Kapalı Test',
   'croHero.headlineGet': '~1 Saatte',
-  'croHero.headlineHighlight1': '12 Gerçek Android Testçi',
+  'croHero.headlineHighlight1': '15 Gerçek Android Testçi',
   'croHero.headlineConnector': '',
   'croHero.headlineHighlight2': 'Edinin',
   'croHero.subheadlinePrefix': "Google'ın",
   'croHero.subheadlineHighlight': '14 Günlük Kapalı Test',
   'croHero.subheadlineSuffix': 'Gereksinimini Tamamlayın',
-  'croHero.headline': '~1 Saatte 12 Gerçek Android Testçi Edinin',
-  'croHero.subheadline': 'Google\'ın 14 Günlük Kapalı Test Gereksinimini Tamamlayın',
-  'croHero.paymentNote': 'Tek Seferlik Ödeme • Abonelik Yok',
+  'croHero.headline': '~1 Saatte 15 Gerçek Android Testçi Edinin',
+  'croHero.subheadline': "Google'ın 14 Günlük Kapalı Test Gereksinimini Tamamlayın",
+  'croHero.paymentNote': 'Tek Seferlik $15 • Abonelik Yok',
   'croHero.cta': 'Kapalı Teste Başla',
+  'croHero.secondaryCta': 'Nasıl Çalışır',
+  'croHero.trustLine': "15 testçi (Google'ın 12+ / 14 gün kuralını karşılar) · Stripe güvenli ödeme · 1.500+ geliştirici",
   'croHero.videoTitle': '1 Dakikalık Açıklama: Fast Testers Nasıl Çalışır',
   'croHero.videoDuration': 'Kurulum rehberini izleyin',
   'croHero.badgeApproved': 'Onaylandı',
-  'croHero.badgeTesters': '12 Testçi',
+  'croHero.badgeTesters': '15 Testçi',
 
-  'tutorialVideo.badge': 'Video Eğitimi',
+'tutorialVideo.badge': 'Video Eğitimi',
   'tutorialVideo.title': 'Fast Testers Nasıl Kullanılır',
   'tutorialVideo.description':
     'Uygulamanızı gönderme, Google Play kapalı testini kurma ve test ilerlemenizi takip etme hakkında kısa bir rehberi izleyin.',
@@ -241,16 +243,32 @@ export const tr: Record<string, string> = {
   'homeFaq.fallback11A':
     'community.fasttesters.com adresini ziyaret edin, ücretsiz hesap oluşturun ve kapalı test yardımı takas eden diğer Android geliştiricilerle bağlantı kurun. Eşler arasıdır — onların uygulamalarını siz, sizinkini onlar test eder — Fast Testers\'a ödeme yok.',
 
+    'homeFaq.fallback12Q': 'Kapalı test hizmeti kullanmak Google tarafından izinli mi?',
+  'homeFaq.fallback12A':
+    "Evet. Google kapalı testte gerçek testçiler ister; onları kendiniz bulmanızı zorunlu kılmaz. Fast Testers, Play opt-in bağlantınızdan yükleyen gerçek Android kullanıcıları atar.",
+  'homeFaq.fallback13Q': 'Testçiler gerçek insanlar mı (bot değil)?',
+  'homeFaq.fallback13A':
+    'Evet. Testçiler uygulamayı Google Play kapalı testten yükleyen, gerekli süre boyunca kurulu tutan ve aktif kullanan gerçek Android kullanıcılarıdır.',
+  'homeFaq.fallback14Q': 'Fast Testers Google onayını garanti eder mi?',
+  'homeFaq.fallback14A':
+    'Hiçbir hizmet Google inceleme kararlarını kontrol edemez. Yönetilen kapalı test kapsamını (14 gün için 15 testçi) ve iade politikamızdaki üretim erişimi garantisini sağlarız.',
+  'homeFaq.fallback15Q': 'Flutter, React Native veya oyun gönderebilir miyim?',
+  'homeFaq.fallback15A':
+    'Evet. Uygulamanız geçerli bir opt-in bağlantısıyla Google Play kapalı testteyse — Flutter, React Native, Unity ve çoğu Android uygulama/oyun dahil — testçi atayabiliriz.',
+  'homeFaq.fallback16Q': 'Ödemeler nasıl çalışır?',
+  'homeFaq.fallback16A':
+    "app.fasttesters.com üzerinden Stripe ile uygulama başına tek seferlik $15 ödersiniz. Abonelik yoktur. Ödeme sonrası kapalı test bağlantınızı panele gönderirsiniz; testçiler genellikle ~1 saatte atanır.",
+
   'exitIntent.badge': 'Dur — gitmeden önce',
-  'exitIntent.title': 'Google Play kontrol listenizi ücretsiz alın',
-  'exitIntent.description': 'Reddedilmelerin çoğu test kurulum hatalarından kaynaklanır. Kontrol listemizi alın veya bugün kapalı teste başlayın.',
-  'exitIntent.item1': '~1 saat içinde 12 gerçek testçi atanır',
+  'exitIntent.title': 'Google Play üretim erişimine hazır mısınız?',
+  'exitIntent.description': 'Ücretsiz gruplarda testçi aramayı bırakın. $15 karşılığında 15 gerçek Android testçiyle kapalı teste başlayın — veya önce ücretsiz kontrol listemizi alın.',
+  'exitIntent.item1': '~1 saat içinde 15 gerçek testçi atanır',
   'exitIntent.item2': 'Tek seferlik $15 — abonelik yok',
   'exitIntent.item3': 'Üretim erişimi garantisi dahil',
-  'exitIntent.cta': 'WhatsApp ile sohbet et',
+  'exitIntent.cta': 'Kapalı Teste Başla — $15',
   'exitIntent.checklist': 'Ücretsiz Kontrol Listesi PDF',
 
-  'seoLanding.badge': 'Google Play Rehberi',
+'seoLanding.badge': 'Google Play Rehberi',
   'seoLanding.faqTitle': 'Sık Sorulan Sorular',
   'seoLanding.relatedTitle': 'İlgili Rehberler',
   'seoLanding.ctaTitle': '~1 Saatte 12 Gerçek Testçi Edinin',
@@ -402,6 +420,7 @@ export const tr: Record<string, string> = {
   'pricing.badge': 'Basit ve Şeffaf Fiyatlandırma',
   'pricing.title': 'Google Play Üretim Erişimi',
   'pricing.subtitle': 'Google Play gereksinimlerini karşılamak için 14 profesyonel testçiye 14 gün boyunca sahip olun. Hizmetimizle üretim erişimine kavuşan 15.000+ geliştiriciye katılın.',
+  'pricing.onTrustpilot': 'Trustpilot\'ta',
   'pricing.onGooglePlayStore': 'Google Play Store\'da',
   'pricing.mostPopular': 'En Popüler',
   'pricing.androidApps': 'Android Uygulamalar',
@@ -967,13 +986,6 @@ export const tr: Record<string, string> = {
   'newsletter.alreadySubscribed': 'Bu e-posta zaten abone.',
   'newsletter.invalidEmail': 'Lütfen geçerli bir e-posta adresi girin.',
 
-  // ═══════════════════════════════════════════════════════════════════════
-  // FOOTER NEWSLETTER
-  // ═══════════════════════════════════════════════════════════════════════
-  'footer.newsletterTitle': 'Bültenimize abone olun',
-  'footer.newsletterDesc': 'En son güncellemeleri gelen kutunuza alın.',
-  'footer.subscribe': 'Abone Ol',
-
   // COOKIES
   'cookies.message': 'We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.',
   'cookies.learnMore': 'Learn more',
@@ -1037,8 +1049,8 @@ export const tr: Record<string, string> = {
   // ═══════════════════════════════════════════════════════════════════════
   // MOBILE CTA
   // ═══════════════════════════════════════════════════════════════════════
-  'mobileCta.getStarted': 'Başlayın',
-  'mobileCta.subtitle': '14 testçi • 14 gün • Garantili',
+  'mobileCta.getStarted': 'Teste Başla',
+  'mobileCta.subtitle': '15 testçi • 14 gün • Garantili',
   'mobileCta.guarantee': 'Garantili',
 
   // Social Proof / As Seen On

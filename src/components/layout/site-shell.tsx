@@ -30,12 +30,20 @@ function SiteShellInner({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col" dir={dir} suppressHydrationWarning>
+      <a
+        href="#main-content"
+        className="absolute left-4 top-0 z-[100] -translate-y-full rounded-md bg-background px-4 py-2 text-sm font-medium shadow-lg outline-none ring-2 ring-blue-500 transition-transform focus:translate-y-4"
+      >
+        Skip to main content
+      </a>
       <GoogleTracking />
       <MetaPixel currentPath={currentPath} requireConsent />
       <RouteLoadingBar />
       <PageProgress />
       <FixedSiteHeader />
-      <main className="flex-1 min-w-0 overflow-x-clip mobile-cta-spacer md:pb-0">{children}</main>
+      <main id="main-content" className="flex-1 min-w-0 overflow-x-clip mobile-cta-spacer md:pb-0" tabIndex={-1}>
+        {children}
+      </main>
       <Footer />
       <BackToTop />
       <FloatingChat />

@@ -9,7 +9,6 @@ import { usePricingPlans } from '@/lib/hooks/use-pricing-plans';
 import { formatPlanPrice, parsePlanFeatures } from '@/lib/pricing';
 import {
   PRICING_SECTION_ID,
-  scrollToPricingSection,
   usePricingSectionScroll,
 } from '@/lib/pricing-navigation';
 import { StripePoweredBadge } from '@/components/stripe-powered-badge';
@@ -202,7 +201,7 @@ export default function Pricing() {
               {t('pricing.subtitle')}
             </p>
 
-            {/* Google Play Rating */}
+            {/* Trustpilot social proof */}
             <div className="mt-8 flex items-center justify-center gap-3">
               <div className="flex items-center gap-1">
                 {[...Array(5)].map((_, i) => (
@@ -212,8 +211,8 @@ export default function Pricing() {
                   />
                 ))}
               </div>
-              <span className="text-foreground font-semibold text-lg">4.6</span>
-              <span className="text-muted-foreground text-sm">{t('pricing.onGooglePlayStore')}</span>
+              <span className="text-foreground font-semibold text-lg">4.9</span>
+              <span className="text-muted-foreground text-sm">{t('pricing.onTrustpilot')}</span>
             </div>
           </AnimatedSection>
         </div>
@@ -564,7 +563,7 @@ export default function Pricing() {
                 {t('pricing.ctaDescription')}
               </p>
               <Button
-                onClick={() => { trackCta('pricing_bottom_cta'); scrollToPricingSection(); }}
+                onClick={() => { trackCta('pricing_bottom_cta'); navigate(APP_URL); }}
                 size="lg"
                 className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-6 text-base rounded-xl cursor-pointer"
               >
