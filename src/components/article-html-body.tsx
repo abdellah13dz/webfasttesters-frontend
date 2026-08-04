@@ -31,9 +31,8 @@ export function ArticleHtmlBody({ html, className, variant = 'default' }: Articl
       <div className={cn('article-html-surface', className)}>
         <div
           className={cn(
-            'article-html-preview',
-            prepared.hasEmbeddedStyles && 'article-html-preview--styled',
-            !prepared.hasEmbeddedStyles && 'tiptap-editor-content blog-article-content'
+            'article-html-preview tiptap-editor-content blog-article-content',
+            prepared.hasEmbeddedStyles && 'article-html-preview--styled'
           )}
         >
           {content}
@@ -45,9 +44,8 @@ export function ArticleHtmlBody({ html, className, variant = 'default' }: Articl
   return (
     <div
       className={cn(
-        'article-html-preview',
+        'article-html-preview tiptap-editor-content blog-article-content',
         prepared.hasEmbeddedStyles && 'article-html-preview--styled',
-        !prepared.hasEmbeddedStyles && 'tiptap-editor-content blog-article-content',
         className
       )}
     >

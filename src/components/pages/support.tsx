@@ -98,7 +98,7 @@ export default function SupportPage() {
       icon: Lock,
       titleKey: 'support.guideClosedTesting',
       descKey: 'support.guideClosedTestingDesc',
-      path: '/google-play-closed-testing',
+      path: '/blog/google-play-closed-testing',
       color: 'text-cyan-400',
       bg: 'bg-cyan-500/10',
       popular: false,

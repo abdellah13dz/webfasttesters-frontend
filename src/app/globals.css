@@ -810,30 +810,108 @@ body {
   height: auto;
   border-radius: 0.5rem;
 }
+
+/* Scrollable tables — markdown + HTML articles */
+.blog-article-content .article-table-scroll,
+.article-html-preview .article-table-scroll,
+.article-html-preview-body .article-table-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1.25em;
+  border: 1px solid var(--article-border, var(--border));
+  border-radius: 0.75rem;
+  background: var(--card);
+}
+
+.blog-article-content .article-table-scroll > table,
+.article-html-preview .article-table-scroll > table,
+.article-html-preview-body .article-table-scroll > table,
 .blog-article-content table {
   width: 100%;
+  min-width: 28rem;
   border-collapse: collapse;
   font-size: 0.95em;
+  margin-bottom: 0;
 }
-.blog-article-content :where(th, td) {
-  border: 1px solid var(--article-border);
-  padding: 0.55em 0.75em;
-  text-align: left;
+
+.blog-article-content .article-table-scroll > table {
+  border: 0;
+  min-width: 32rem;
+}
+
+.blog-article-content :where(th, td),
+.article-html-preview :where(th, td),
+.article-html-preview-body :where(th, td) {
+  border: 1px solid var(--article-border, var(--border));
+  padding: 0.65em 0.85em;
+  text-align: start;
   vertical-align: top;
-  color: var(--article-text);
+  color: var(--article-text, var(--foreground));
+  word-break: break-word;
 }
-.blog-article-content th {
-  background: var(--article-table-head-bg);
-  color: var(--article-heading);
+
+.blog-article-content th,
+.article-html-preview th,
+.article-html-preview-body th {
+  background: var(--article-table-head-bg, var(--muted));
+  color: var(--article-heading, var(--foreground));
   font-weight: 600;
+  white-space: nowrap;
 }
-.blog-article-content tr:nth-child(even) td {
-  background: var(--article-table-stripe);
+
+.blog-article-content tr:nth-child(even) td,
+.article-html-preview tr:nth-child(even) td,
+.article-html-preview-body tr:nth-child(even) td {
+  background: var(--article-table-stripe, color-mix(in oklch, var(--muted) 45%, transparent));
 }
+
+/* Stat / tile cards often used in expanded HTML articles */
+.blog-article-content :where(.tile, .tiles, .stat-card, .stat-grid, .card-grid, .feature-grid, .kpi, .metric),
+.article-html-preview :where(.tile, .tiles, .stat-card, .stat-grid, .card-grid, .feature-grid, .kpi, .metric),
+.article-html-preview-body :where(.tile, .tiles, .stat-card, .stat-grid, .card-grid, .feature-grid, .kpi, .metric) {
+  max-width: 100%;
+}
+
+.blog-article-content :where(.stat-grid, .card-grid, .feature-grid, .tiles, .tile-grid),
+.article-html-preview :where(.stat-grid, .card-grid, .feature-grid, .tiles, .tile-grid),
+.article-html-preview-body :where(.stat-grid, .card-grid, .feature-grid, .tiles, .tile-grid) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+  gap: 0.85rem;
+  margin: 1.25em 0;
+}
+
+.blog-article-content :where(.tile, .stat-card, .kpi, .metric),
+.article-html-preview :where(.tile, .stat-card, .kpi, .metric),
+.article-html-preview-body :where(.tile, .stat-card, .kpi, .metric) {
+  border: 1px solid var(--article-border, var(--border));
+  border-radius: 0.75rem;
+  background: color-mix(in oklch, var(--muted) 35%, var(--card));
+  padding: 1rem 1.1rem;
+  box-sizing: border-box;
+}
+
 .blog-article-content figcaption {
   margin-top: 0.5em;
   font-size: 0.875rem;
   color: var(--muted-foreground);
+}
+
+/* Related-article / sidebar cards stay readable */
+.blog-article-content .related-articles,
+.blog-article-content .article-cards {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1.25em 0;
+}
+
+@media (min-width: 640px) {
+  .blog-article-content .related-articles,
+  .blog-article-content .article-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* Blog table of contents */
@@ -890,6 +968,8 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   padding: 1rem;
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 @media (min-width: 640px) {

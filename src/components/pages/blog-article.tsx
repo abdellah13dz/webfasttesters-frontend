@@ -23,7 +23,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { NewsletterSection } from '@/components/newsletter-section';
 import { SubmitAppTestingCta } from '@/components/submit-app-testing-cta';
 import { ArticleHtmlBody } from '@/components/article-html-body';
-import ReactMarkdown from 'react-markdown';
+import { MarkdownContent } from '@/components/markdown-content';
 import {
   Calendar,
   Clock,
@@ -305,9 +305,7 @@ export default function BlogArticlePage({
               {isHtmlArticleContent(article.content) ? (
                 <ArticleHtmlBody html={article.content} variant="surface" />
               ) : (
-                <div className="tiptap-editor-content blog-article-content">
-                  <ReactMarkdown>{article.content}</ReactMarkdown>
-                </div>
+                <MarkdownContent content={article.content} />
               )}
             </div>
 
@@ -319,11 +317,11 @@ export default function BlogArticlePage({
             </div>
           </article>
 
-          <aside className="lg:w-80 shrink-0 space-y-6 lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100dvh-5rem)] lg:overflow-y-auto">
-            <Card className="border-border bg-card shadow-sm dark:bg-card/50 dark:shadow-none">
+          <aside className="lg:w-80 shrink-0 space-y-6 lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100dvh-5rem)] lg:overflow-y-auto min-w-0">
+            <Card className="border-border bg-card shadow-sm dark:bg-card/50 dark:shadow-none overflow-hidden">
               <CardContent className="p-4">
                 <div className="flex items-center gap-2 mb-4">
-                  <BookOpen className="size-4 text-blue-600 dark:text-blue-400" />
+                  <BookOpen className="size-4 shrink-0 text-blue-600 dark:text-blue-400" />
                   <h3 className="text-sm font-semibold text-foreground">{t('blogArticle.relatedArticles')}</h3>
                 </div>
                 <div className="space-y-3">
@@ -331,13 +329,13 @@ export default function BlogArticlePage({
                     <Link
                       key={related.slug}
                       href={blogArticlePath(related.slug)}
-                      className="w-full text-left group block"
+                      className="w-full text-left group block min-w-0"
                     >
-                      <div className="rounded-lg p-2 hover:bg-blue-50 dark:hover:bg-blue-500/5 transition-colors">
-                        <h4 className="text-sm font-medium text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug line-clamp-2">
+                      <div className="rounded-lg p-2 hover:bg-blue-50 dark:hover:bg-blue-500/5 transition-colors min-w-0">
+                        <h4 className="text-sm font-medium text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug line-clamp-2 break-words">
                           {related.title}
                         </h4>
-                        <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{related.description}</p>
+                        <p className="text-xs text-muted-foreground mt-1 line-clamp-2 break-words">{related.description}</p>
                       </div>
                     </Link>
                   ))}

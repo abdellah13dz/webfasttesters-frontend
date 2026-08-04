@@ -137,7 +137,7 @@ export default function ProductionAccessPage() {
               size="lg"
               variant="outline"
               className="border-border text-foreground/80 hover:bg-muted"
-              onClick={() => navigate('/closed-testing')}
+              onClick={() => navigate('/blog/google-play-closed-testing')}
             >
               {t('productionAccess.ctaLearnClosedTesting')}
             </Button>

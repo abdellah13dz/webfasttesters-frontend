@@ -151,6 +151,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/closed-testing",
+        destination: "/blog/google-play-closed-testing",
+        permanent: true,
+      },
+      {
         source: "/app-rejected-google-play",
         destination: "/blog/app-rejected-google-play",
         permanent: true,

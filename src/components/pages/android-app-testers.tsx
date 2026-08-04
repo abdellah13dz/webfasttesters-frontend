@@ -132,7 +132,7 @@ export default function AndroidAppTestersPage() {
               size="lg"
               variant="outline"
               className="border-border text-foreground hover:bg-muted"
-              onClick={() => navigate('/closed-testing')}
+              onClick={() => navigate('/blog/google-play-closed-testing')}
             >
               {t('androidAppTesters.ctaLearnClosedTesting')}
             </Button>

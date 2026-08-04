@@ -19,10 +19,12 @@ import { ArrowRight, CheckCircle2, BookOpen } from 'lucide-react';
 import { FullDemoCta } from '@/components/full-demo-cta';
 import { AiCitationSummary, AiEntityDefinition } from '@/components/ai-citation-summary';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 function renderMarkdown(text: string) {
   return (
     <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
       components={{
         p: ({ children }) => <p className="mb-4 leading-relaxed text-muted-foreground">{children}</p>,
         h2: ({ children }) => <h2 className="text-xl font-bold text-foreground mt-8 mb-3">{children}</h2>,
@@ -36,12 +38,18 @@ function renderMarkdown(text: string) {
           </a>
         ),
         table: ({ children }) => (
-          <div className="overflow-x-auto mb-6">
-            <table className="w-full text-sm border border-border/60 rounded-lg">{children}</table>
+          <div className="article-table-scroll mb-6">
+            <table className="w-full text-sm border-collapse">{children}</table>
           </div>
         ),
-        th: ({ children }) => <th className="border border-border/60 px-3 py-2 bg-muted/50 text-start font-semibold">{children}</th>,
-        td: ({ children }) => <td className="border border-border/60 px-3 py-2 text-muted-foreground">{children}</td>,
+        th: ({ children }) => (
+          <th className="border border-border/60 px-3 py-2 bg-muted/50 text-start font-semibold text-foreground">
+            {children}
+          </th>
+        ),
+        td: ({ children }) => (
+          <td className="border border-border/60 px-3 py-2 text-muted-foreground">{children}</td>
+        ),
       }}
     >
       {text}

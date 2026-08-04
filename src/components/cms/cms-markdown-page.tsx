@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
+import { MarkdownContent } from '@/components/markdown-content';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Shield } from 'lucide-react';
@@ -31,8 +31,8 @@ export function CmsMarkdownPage({ title, content, badge = 'Legal' }: CmsMarkdown
 
       <section className="mx-auto max-w-4xl px-4 sm:px-6 pb-16">
         <Card className="border border-border bg-card/50 backdrop-blur-sm">
-          <CardContent className="p-6 sm:p-10 prose prose-neutral dark:prose-invert max-w-none">
-            <ReactMarkdown>{content}</ReactMarkdown>
+          <CardContent className="p-6 sm:p-10 max-w-none">
+            <MarkdownContent content={content} />
           </CardContent>
         </Card>
       </section>

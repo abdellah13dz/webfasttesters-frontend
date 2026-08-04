@@ -265,6 +265,16 @@ function sanitizeInlineStyles(html: string): string {
       }
     });
 
+    // Wrap tables for horizontal scroll on mobile without breaking layout
+    doc.body.querySelectorAll('table').forEach((table) => {
+      const parent = table.parentElement;
+      if (parent?.classList.contains('article-table-scroll')) return;
+      const wrapper = doc.createElement('div');
+      wrapper.className = 'article-table-scroll';
+      table.replaceWith(wrapper);
+      wrapper.appendChild(table);
+    });
+
     return doc.body.innerHTML;
   }
 
@@ -281,6 +291,12 @@ function sanitizeInlineStyles(html: string): string {
   );
 
   result = result.replace(/\s(?:color|bgcolor)\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '');
+
+  result = result.replace(/<table\b[\s\S]*?<\/table>/gi, (match, offset, full: string) => {
+    const before = full.slice(Math.max(0, offset - 48), offset);
+    if (before.includes('article-table-scroll')) return match;
+    return `<div class="article-table-scroll">${match}</div>`;
+  });
 
   return result;
 }
