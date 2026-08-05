@@ -324,33 +324,35 @@ export default function HomePage() {
                     ))}
                   </ul>
 
-                  {/* Line 2 — CTAs + trust (single row on mobile) */}
-                  <div className="flex flex-nowrap items-center justify-center gap-x-1.5 overflow-x-auto scrollbar-none sm:flex-wrap sm:gap-3">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => {
-                        trackCta('overview_pricing');
-                        goToGetStartedPricing(currentPath, navigate);
-                      }}
-                      className="h-8 shrink-0 border-border/70 bg-background px-2.5 text-[11px] font-semibold hover:bg-muted sm:h-11 sm:px-6 sm:text-sm"
-                    >
-                      {t('home.seeWhatYouGet')}
-                      <ArrowRight className="ms-0.5 h-3 w-3 sm:ms-1 sm:h-4 sm:w-4" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => {
-                        trackCta('overview_reviews');
-                        navigate('/reviews');
-                      }}
-                      className="h-8 shrink-0 px-1.5 text-[11px] font-medium text-muted-foreground hover:text-foreground sm:h-11 sm:px-4 sm:text-sm"
-                    >
-                      {t('home.joinDevelopers')}
-                      <ChevronRight className="ms-0.5 h-3 w-3 sm:h-4 sm:w-4" />
-                    </Button>
-                    <p className="inline-flex shrink-0 items-center gap-1 text-[10px] text-muted-foreground sm:ms-1 sm:gap-1.5 sm:text-sm">
+                  {/* Line 2 — CTAs; trust sits on its own row on mobile */}
+                  <div className="flex flex-col items-center gap-2 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-3">
+                    <div className="flex flex-nowrap items-center justify-center gap-x-1.5">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => {
+                          trackCta('overview_pricing');
+                          goToGetStartedPricing(currentPath, navigate);
+                        }}
+                        className="h-8 shrink-0 border-border/70 bg-background px-2.5 text-[11px] font-semibold hover:bg-muted sm:h-11 sm:px-6 sm:text-sm"
+                      >
+                        {t('home.seeWhatYouGet')}
+                        <ArrowRight className="ms-0.5 h-3 w-3 sm:ms-1 sm:h-4 sm:w-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => {
+                          trackCta('overview_reviews');
+                          navigate('/reviews');
+                        }}
+                        className="h-8 shrink-0 px-1.5 text-[11px] font-medium text-muted-foreground hover:text-foreground sm:h-11 sm:px-4 sm:text-sm"
+                      >
+                        {t('home.joinDevelopers')}
+                        <ChevronRight className="ms-0.5 h-3 w-3 sm:h-4 sm:w-4" />
+                      </Button>
+                    </div>
+                    <p className="inline-flex items-center gap-1 text-[10px] text-muted-foreground sm:gap-1.5 sm:text-sm">
                       <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse-blue sm:h-2 sm:w-2" aria-hidden />
                       <span className="font-semibold text-foreground">
                         +{heroCount.toLocaleString()}
