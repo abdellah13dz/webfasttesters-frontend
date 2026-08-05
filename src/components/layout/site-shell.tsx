@@ -41,7 +41,7 @@ function SiteShellInner({ children }: { children: React.ReactNode }) {
       <RouteLoadingBar />
       <PageProgress />
       <FixedSiteHeader />
-      <main id="main-content" className="flex-1 min-w-0 overflow-x-clip mobile-cta-spacer md:pb-0" tabIndex={-1}>
+      <main id="main-content" className="flex-1 min-w-0 overflow-x-clip mobile-cta-spacer" tabIndex={-1}>
         {children}
       </main>
       <Footer />

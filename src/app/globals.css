@@ -187,10 +187,17 @@
     padding-bottom: var(--mobile-sticky-offset);
   }
 
+  @media (min-width: 768px) {
+    .mobile-cta-spacer {
+      padding-bottom: 0;
+    }
+  }
+
   .mobile-sticky-cta-bar {
     padding-bottom: env(safe-area-inset-bottom, 0px);
     padding-left: env(safe-area-inset-left, 0px);
     padding-right: env(safe-area-inset-right, 0px);
+    min-height: var(--mobile-cta-bar-height);
   }
 
   .safe-area-top {

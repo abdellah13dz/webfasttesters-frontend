@@ -7,6 +7,7 @@ import { APP_SETUP_GUIDE_URL } from '@/lib/app-urls';
 import { useLanguage } from '@/lib/i18n/context';
 import { useRouter } from '@/lib/router';
 import { trackGa4Event } from '@/lib/ga4-events';
+import { cn } from '@/lib/utils';
 
 const DEFAULT_EXPLAINER_VIDEO_ID = '585wKYGtXAk';
 const VIDEO_ID =
@@ -39,7 +40,7 @@ export function HeroVideoEmbed({
   };
 
   return (
-    <div className={`relative mx-auto w-full max-w-xl lg:max-w-none ${className}`}>
+    <div className={cn('relative mx-auto w-full max-w-xl lg:max-w-none', className)}>
       {VIDEO_ID ? (
         <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border/60 bg-black shadow-xl">
           {activated ? (

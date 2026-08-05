@@ -12,28 +12,44 @@ import { formatPlanPrice } from '@/lib/pricing';
 import { useAppLoggedIn } from '@/lib/hooks/use-app-logged-in';
 import { APP_URL } from '@/lib/app-urls';
 
+/**
+ * Mobile-only purchase CTA fixed to the bottom of the viewport.
+ * Hidden on desktop (md+), admin/auth routes, when logged in, or when the
+ * pricing card / footer is clearly in view (avoids covering the real CTA).
+ */
 export function MobileStickyCta() {
   const { t } = useLanguage();
   const { currentPath, navigate } = useRouter();
   const { trackCta } = useAnalytics();
   const { primaryPlan } = usePricingPlans();
   const isLoggedIn = useAppLoggedIn();
-  const [footerVisible, setFooterVisible] = useState(false);
-  const [pricingInView, setPricingInView] = useState(false);
+  const [hideForFooter, setHideForFooter] = useState(false);
+  const [hideForPricing, setHideForPricing] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   const hiddenRoutes = ['/admin', '/submit-app', '/login', '/signup', '/forgot-password'];
   const isPricingPage = currentPath === '/pricing' || currentPath.startsWith('/pricing/');
   const shouldHideRoute = hiddenRoutes.some((route) => currentPath.startsWith(route));
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Reset hide flags on navigation so a previous page's intersection state
+  // cannot keep the bar invisible after a client-side route change.
+  useEffect(() => {
+    setHideForFooter(false);
+    setHideForPricing(false);
+
     const footer = document.querySelector('footer');
     if (!footer) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setFooterVisible(entry.isIntersecting);
+        // Only hide when a meaningful share of the footer is on screen
+        setHideForFooter(entry.isIntersecting && entry.intersectionRatio >= 0.15);
       },
-      { threshold: 0.1 }
+      { threshold: [0, 0.15, 0.3], rootMargin: '0px 0px -40px 0px' }
     );
 
     observer.observe(footer);
@@ -41,26 +57,26 @@ export function MobileStickyCta() {
   }, [currentPath]);
 
   useEffect(() => {
+    setHideForPricing(false);
+
     const pricingEl =
       document.getElementById(PRICING_SECTION_ID) ||
       document.getElementById('pricing');
-    if (!pricingEl) {
-      setPricingInView(false);
-      return;
-    }
+    if (!pricingEl) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setPricingInView(entry.isIntersecting);
+        setHideForPricing(entry.isIntersecting && entry.intersectionRatio >= 0.25);
       },
-      { threshold: 0.2 }
+      { threshold: [0, 0.25, 0.5], rootMargin: '0px 0px -20% 0px' }
     );
 
     observer.observe(pricingEl);
     return () => observer.disconnect();
   }, [currentPath]);
 
-  if (shouldHideRoute || isLoggedIn || footerVisible || pricingInView) return null;
+  if (!mounted) return null;
+  if (shouldHideRoute || isLoggedIn || hideForFooter || hideForPricing) return null;
 
   const priceLabel = primaryPlan ? formatPlanPrice(primaryPlan) : '$15';
 
@@ -74,28 +90,33 @@ export function MobileStickyCta() {
   };
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-30 md:hidden">
-      <div className="mobile-sticky-cta-bar border-t border-border/40 bg-background/95 backdrop-blur-lg shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+    <div
+      data-mobile-sticky-cta
+      className="pointer-events-none fixed inset-x-0 bottom-0 z-[45] md:hidden"
+      style={{ transform: 'translateZ(0)' }}
+    >
+      <div className="mobile-sticky-cta-bar pointer-events-auto border-t border-border/50 bg-background/95 backdrop-blur-lg shadow-[0_-4px_24px_rgba(0,0,0,0.12)]">
         <div className="flex items-center gap-2 px-3 py-2.5 sm:gap-3 sm:px-4">
-          <div className="flex flex-col shrink-0 min-w-0">
+          <div className="flex min-w-0 shrink-0 flex-col">
             <div className="flex items-center gap-1">
               <span className="text-lg font-bold text-foreground">{priceLabel}</span>
               <span className="text-xs text-muted-foreground">/app</span>
             </div>
             <div className="flex items-center gap-1">
-              <Shield className="h-3 w-3 text-blue-400 shrink-0" />
-              <span className="text-[10px] text-muted-foreground leading-tight truncate">
+              <Shield className="h-3 w-3 shrink-0 text-blue-400" aria-hidden />
+              <span className="truncate text-[10px] leading-tight text-muted-foreground">
                 {t('mobileCta.subtitle')}
               </span>
             </div>
           </div>
           <Button
+            type="button"
             onClick={handleGetStarted}
-            className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold h-11 shadow-lg shadow-blue-500/20 transition-all active:scale-[0.98]"
+            className="h-11 flex-1 bg-blue-500 font-semibold text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-600 active:scale-[0.98]"
           >
-            <Zap className="mr-1.5 h-4 w-4" />
+            <Zap className="mr-1.5 h-4 w-4" aria-hidden />
             {t('mobileCta.getStarted')}
-            <ArrowRight className="ml-1.5 h-4 w-4" />
+            <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden />
           </Button>
         </div>
       </div>

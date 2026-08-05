@@ -263,7 +263,7 @@ export default function HomePage() {
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="relative overflow-x-hidden border-t border-border/40 bg-muted/25">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/[0.02] to-transparent" />
-        <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <div className="relative mx-auto max-w-3xl lg:max-w-4xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
           <div className="flex flex-col items-center text-center gap-8 sm:gap-10">
             {/* Copy */}
             <div className="w-full max-w-2xl">
@@ -294,72 +294,76 @@ export default function HomePage() {
               </AnimatedSection>
 
               <AnimatedSection delay={140}>
-                <p className="mx-auto max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed mb-6">
+                <p className="mx-auto max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed mb-5 sm:mb-6">
                   {t('home.heroDescription')}{' '}
                   {t('home.heroDescriptionJoin')}
                 </p>
               </AnimatedSection>
 
+              {/* Mobile: 2 compact rows — chips, then CTAs + social proof */}
               <AnimatedSection delay={180}>
-                <ul className="mb-7 flex flex-wrap items-center justify-center gap-2">
-                  {[
-                    { icon: Users, label: t('home.overviewChipTesters') },
-                    { icon: Clock, label: t('home.overviewChipDays') },
-                    { icon: Shield, label: t('home.overviewChipGuarantee') },
-                  ].map(({ icon: Icon, label }) => (
-                    <li
-                      key={label}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-background/70 px-3 py-1.5 text-xs font-medium text-foreground/80"
+                <div className="space-y-2.5 sm:space-y-5">
+                  {/* Line 1 — fact chips */}
+                  <ul className="flex flex-nowrap items-center justify-center gap-x-0 overflow-x-auto scrollbar-none text-[10px] leading-tight text-foreground/80 sm:flex-wrap sm:gap-2 sm:text-xs sm:leading-normal">
+                    {[
+                      { icon: Users, label: t('home.overviewChipTesters') },
+                      { icon: Clock, label: t('home.overviewChipDays') },
+                      { icon: Shield, label: t('home.overviewChipGuarantee') },
+                    ].map(({ icon: Icon, label }, index) => (
+                      <li key={label} className="inline-flex items-center shrink-0">
+                        {index > 0 ? (
+                          <span className="mx-1.5 text-muted-foreground/45 sm:hidden" aria-hidden>
+                            ·
+                          </span>
+                        ) : null}
+                        <span className="inline-flex items-center gap-1 font-medium sm:gap-1.5 sm:rounded-full sm:border sm:border-border/60 sm:bg-background/70 sm:px-3 sm:py-1.5">
+                          <Icon className="hidden h-3.5 w-3.5 text-blue-400 sm:block" aria-hidden />
+                          <span className="whitespace-nowrap">{label}</span>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Line 2 — CTAs + trust (single row on mobile) */}
+                  <div className="flex flex-nowrap items-center justify-center gap-x-1.5 overflow-x-auto scrollbar-none sm:flex-wrap sm:gap-3">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => {
+                        trackCta('overview_pricing');
+                        goToGetStartedPricing(currentPath, navigate);
+                      }}
+                      className="h-8 shrink-0 border-border/70 bg-background px-2.5 text-[11px] font-semibold hover:bg-muted sm:h-11 sm:px-6 sm:text-sm"
                     >
-                      <Icon className="h-3.5 w-3.5 text-blue-400" aria-hidden />
-                      {label}
-                    </li>
-                  ))}
-                </ul>
-              </AnimatedSection>
-
-              <AnimatedSection delay={220}>
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    onClick={() => {
-                      trackCta('overview_pricing');
-                      goToGetStartedPricing(currentPath, navigate);
-                    }}
-                    className="w-full sm:w-auto border-border/70 bg-background hover:bg-muted font-semibold h-11 px-6"
-                  >
-                    {t('home.seeWhatYouGet')}
-                    <ArrowRight className="h-4 w-4 ms-1" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="lg"
-                    onClick={() => {
-                      trackCta('overview_reviews');
-                      navigate('/reviews');
-                    }}
-                    className="w-full sm:w-auto text-muted-foreground hover:text-foreground font-medium h-11 px-4"
-                  >
-                    {t('home.joinDevelopers')}
-                    <ChevronRight className="h-4 w-4 ms-0.5" />
-                  </Button>
+                      {t('home.seeWhatYouGet')}
+                      <ArrowRight className="ms-0.5 h-3 w-3 sm:ms-1 sm:h-4 sm:w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => {
+                        trackCta('overview_reviews');
+                        navigate('/reviews');
+                      }}
+                      className="h-8 shrink-0 px-1.5 text-[11px] font-medium text-muted-foreground hover:text-foreground sm:h-11 sm:px-4 sm:text-sm"
+                    >
+                      {t('home.joinDevelopers')}
+                      <ChevronRight className="ms-0.5 h-3 w-3 sm:h-4 sm:w-4" />
+                    </Button>
+                    <p className="inline-flex shrink-0 items-center gap-1 text-[10px] text-muted-foreground sm:ms-1 sm:gap-1.5 sm:text-sm">
+                      <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse-blue sm:h-2 sm:w-2" aria-hidden />
+                      <span className="font-semibold text-foreground">
+                        +{heroCount.toLocaleString()}
+                      </span>
+                      <span className="whitespace-nowrap">{t('home.developersTrustUs')}</span>
+                    </p>
+                  </div>
                 </div>
-              </AnimatedSection>
-
-              <AnimatedSection delay={280}>
-                <p className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground">
-                  <span className="h-2 w-2 rounded-full bg-blue-400 animate-pulse-blue" aria-hidden />
-                  <span className="font-semibold text-foreground">
-                    +{heroCount.toLocaleString()}
-                  </span>
-                  {t('home.developersTrustUs')}
-                </p>
               </AnimatedSection>
             </div>
 
-            {/* Explainer video — below copy */}
-            <AnimatedSection delay={160} className="w-full max-w-2xl">
+            {/* Explainer video — slightly larger on desktop, still not full-bleed */}
+            <AnimatedSection delay={160} className="w-full max-w-2xl lg:max-w-3xl">
               <div className="rounded-2xl border border-border/50 bg-background/60 p-2 sm:p-3 shadow-sm">
                 <div className="mb-2.5 flex items-center justify-between gap-3 px-1">
                   <p className="text-xs sm:text-sm font-medium text-muted-foreground">
@@ -369,7 +373,7 @@ export default function HomePage() {
                     {t('croHero.videoDuration')}
                   </span>
                 </div>
-                <HeroVideoEmbed analyticsLocation="overview_video" />
+                <HeroVideoEmbed analyticsLocation="overview_video" className="max-w-none" />
               </div>
             </AnimatedSection>
           </div>

@@ -69,8 +69,13 @@ export function CookieConsent() {
   if (!visible) return null;
 
   return (
-    <div className={`fixed inset-x-0 z-40 p-3 sm:p-6 transition-all duration-300 ${footerVisible ? 'bottom-16 md:bottom-6' : 'bottom-0'}`}>
-      <Card className="mx-auto max-w-3xl border-border/60 bg-card/95 backdrop-blur-md shadow-xl">
+    <div
+      className={`fixed inset-x-0 z-[46] p-3 sm:p-6 transition-all duration-300 ${
+        footerVisible
+          ? 'bottom-16 md:bottom-6'
+          : 'bottom-[var(--mobile-sticky-offset)] md:bottom-0'
+      }`}
+    >      <Card className="mx-auto max-w-3xl border-border/60 bg-card/95 backdrop-blur-md shadow-xl">
         <div className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:gap-6 sm:p-5">
           {/* Text content */}
           <div className="flex-1 space-y-1">
