@@ -7,7 +7,6 @@ import { APP_SUBMIT_APP_URL } from '@/lib/app-urls';
 import {
   grantAnalyticsConsent,
   hasAnalyticsConsent,
-  trackPageView,
 } from '@/lib/google-tracking';
 
 /** Brief pause so Google Ads / GTM conversion tags can fire before redirect. */
@@ -33,11 +32,14 @@ function markPurchaseTracked(transactionId: string): void {
 }
 
 /**
- * Marketing-site conversion beacon for Ads/GTM.
- * Only fires when transaction_id + value are present (completed checkout redirect).
- * Deduped per transaction so React Strict Mode / reloads cannot double-count.
+ * Google Ads / GTM conversion beacon only.
+ *
+ * Do NOT send GA4 `purchase` from this page. The User Dashboard backend
+ * Measurement Protocol is the single source of truth for ecommerce revenue.
+ * Firing gtag `purchase` here (plus GTM + server MP) is what inflated
+ * purchase count and revenue (e.g. 2 × $15 showing as 9 × $15).
  */
-function trackPurchaseConversion(
+function trackAdsConversion(
   transactionId: string | null,
   value: number | null,
   currency: string,
@@ -48,21 +50,15 @@ function trackPurchaseConversion(
 
   markPurchaseTracked(transactionId);
 
-  const page = '/payment-success';
-  const params: Record<string, string | number> = {
-    page_path: page,
-    page_location: window.location.href,
-    currency,
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'ads_conversion',
     transaction_id: transactionId,
     value,
-  };
-
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event: 'purchase', ...params });
-
-  if (window.gtag) {
-    window.gtag('event', 'purchase', params);
-  }
+    currency,
+    page_path: '/payment-success',
+    page_location: window.location.href,
+  });
 }
 
 export function PaymentSuccessPage() {
@@ -85,9 +81,9 @@ export function PaymentSuccessPage() {
     if (hasAnalyticsConsent()) {
       grantAnalyticsConsent();
     }
-    trackPageView('/payment-success');
+    // page_view is owned by GoogleTracking — do not fire a second one here.
     if (hasAnalyticsConsent()) {
-      trackPurchaseConversion(transactionId, value, currency);
+      trackAdsConversion(transactionId, value, currency);
     }
 
     const timer = window.setTimeout(() => {

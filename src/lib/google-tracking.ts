@@ -57,10 +57,9 @@ export function grantAnalyticsConsent(): void {
 }
 
 /**
- * Send a GA4 page_view. Always fires when gtag is available — Consent Mode
- * (default denied until accept) decides whether cookies are used. Gating this
- * on cookie accept was why marketing-site visits never appeared in GA while
- * the dashboard (no consent gate) did.
+ * Send a GA4 page_view via gtag only.
+ * Do not also push `page_view` to dataLayer — GTM would send a second hit
+ * to the same GA4 property (G-X2WLH2X771).
  */
 export function trackPageView(path: string): void {
   if (typeof window === 'undefined') return;
@@ -75,12 +74,4 @@ export function trackPageView(path: string): void {
       page_title: document.title,
     });
   }
-
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: 'page_view',
-    page_path: path,
-    page_location: window.location.href,
-    page_title: document.title,
-  });
 }
