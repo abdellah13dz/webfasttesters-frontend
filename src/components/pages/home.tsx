@@ -41,15 +41,19 @@ import {
   Wallet,
   Wrench,
   ShoppingBag,
+  XCircle,
 } from 'lucide-react';
 import { NewsletterSection } from '@/components/newsletter-section';
+import { LiveDemoDashboard } from '@/components/live-demo-dashboard';
 import { FullDemoCta } from '@/components/full-demo-cta';
 import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
 import { CroHero } from '@/components/home/cro-hero';
 import { HeroDecorBackground } from '@/components/home/hero-video-embed';
 import { HomeTrustBar } from '@/components/home/home-trust-bar';
 import { HomeFaqSection } from '@/components/home/home-faq-section';
+import { HomeClosedTestingExplained } from '@/components/home/home-closed-testing-explained';
 import { HeroVideoEmbed } from '@/components/home/hero-video-embed';
+import { FastTestersTutorial } from '@/components/video-tutorial/fast-testers-tutorial';
 import { useSectionViewTracking } from '@/hooks/use-section-view-tracking';
 import {
   goToGetStartedPricing,
@@ -138,7 +142,7 @@ export default function HomePage() {
         setReviewsLoading(true);
         const [featured, caseStudies] = await Promise.all([
           fetchPublicReviews({ featured: true, limit: 3 }),
-          fetchPublicReviews({ caseStudy: true, excludeFeatured: true, limit: 1 }),
+          fetchPublicReviews({ caseStudy: true, excludeFeatured: true, limit: 3 }),
         ]);
         setFeaturedReviews(featured);
         setCaseStudyReviews(caseStudies);
@@ -347,6 +351,9 @@ export default function HomePage() {
               </Card>
             </AnimatedSection>
           </div>
+          <p className="mt-6 text-center text-sm text-muted-foreground max-w-2xl mx-auto">
+            {t('home.statsGoogleNote')}
+          </p>
         </div>
       </section>
 
@@ -367,12 +374,27 @@ export default function HomePage() {
           </AnimatedSection>
 
           <AnimatedSection delay={100}>
-            <div className="grid grid-cols-1 sm:grid-cols-1 gap-4 sm:gap-6 max-w-xs mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
               {[
                 {
                   nameKey: 'home.socialProofTrustpilot',
                   icon: '/trusted/trustpilot.png',
                   href: 'https://www.trustpilot.com/review/fasttesters.com',
+                },
+                {
+                  nameKey: 'home.socialProofFiverr',
+                  icon: '/trusted/fiverr.png',
+                  href: 'https://www.fiverr.com/s/wkRj1a8',
+                },
+                {
+                  nameKey: 'home.socialProofUpwork',
+                  icon: '/trusted/upwork.png',
+                  href: 'https://www.upwork.com/freelancers/~0104b635429bb67397?viewMode=1',
+                },
+                {
+                  nameKey: 'home.socialProofKhamsat',
+                  icon: '/trusted/khamsat.png',
+                  href: 'https://khamsat.com/programming/upload-app-to-store/3097656-%D8%B3%D8%A3%D9%82%D9%88%D9%85-%D8%A8%D8%AA%D9%88%D9%81%D9%8A%D8%B1-%D9%85%D8%AE%D8%AA%D8%A8%D8%B1%D8%A7%D8%AA-%D8%AD%D9%82%D9%8A%D9%82%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D8%AE%D8%AA%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%85%D8%BA%D9%84%D9%82-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D9%84%D8%A7%D9%8A-%D8%B3%D8%AA%D9%88%D8%B1',
                 },
               ].map((brand) => (
                 <a
@@ -476,6 +498,16 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
+          VIDEO TUTORIAL
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="relative py-14 sm:py-16 border-t border-border/40 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-blue-500/[0.03] to-transparent" />
+        <AnimatedSection>
+          <FastTestersTutorial variant="section" analyticsLocation="home_tutorial_section" className="py-2" />
+        </AnimatedSection>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
           TRUST BADGES / CERTIFICATIONS
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="py-12 sm:py-16 border-t border-border/40">
@@ -506,6 +538,115 @@ export default function HomePage() {
               ))}
             </div>
           </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          WHY CHOOSE FAST TESTERS (Comparison Table)
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-16 sm:py-20 border-t border-border/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="text-center mb-10">
+              <Badge variant="outline" className="mb-4 border-blue-500/30 text-blue-400 bg-blue-500/10">
+                Why Choose Us
+              </Badge>
+              <h2 className="text-3xl sm:text-4xl font-bold mb-3">
+                <span className="gradient-text">{t('home.whyDevelopersChoose')}</span>
+              </h2>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection delay={100}>
+            <div className="hidden md:block">
+              <Card className="glow-blue bg-card/80 border-border/60 overflow-hidden">
+                <CardContent className="p-0">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b border-border/60">
+                        <th className="text-left py-4 px-6 text-sm font-semibold text-muted-foreground">{t('home.comparisonFeature')}</th>
+                        <th className="text-center py-4 px-4 text-sm font-semibold text-blue-400 bg-blue-500/10">{t('home.comparisonFastTesters')}</th>
+                        <th className="text-center py-4 px-4 text-sm font-semibold text-muted-foreground">{t('home.comparisonManual')}</th>
+                        <th className="text-center py-4 px-4 text-sm font-semibold text-muted-foreground">{t('home.comparisonOther')}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        { feature: 'home.compTesterTime', ft: 'home.compTesterTimeFT', manual: 'home.compTesterTimeManual', other: 'home.compTesterTimeOther' },
+                        { feature: 'home.compNumTesters', ft: 'home.compNumTestersFT', manual: 'home.compNumTestersManual', other: 'home.compNumTestersOther' },
+                        { feature: 'home.compTestingPeriod', ft: 'home.compTestingPeriodFT', manual: 'home.compTestingPeriodManual', other: 'home.compTestingPeriodOther' },
+                        { feature: 'home.compProductionAccess', ft: 'home.compProductionAccessFT', manual: 'home.compProductionAccessManual', other: 'home.compProductionAccessOther' },
+                        { feature: 'home.compReports', ft: 'home.compReportsFT', manual: 'home.compReportsManual', other: 'home.compReportsOther' },
+                        { feature: 'home.compSupport', ft: 'home.compSupportFT', manual: 'home.compSupportManual', other: 'home.compSupportOther' },
+                        { feature: 'home.compPrice', ft: 'home.compPriceFT', manual: 'home.compPriceManual', other: 'home.compPriceOther' },
+                        { feature: 'home.compMoneyBack', isYesNo: true },
+                      ].map((row, idx) => (
+                        <tr key={row.feature} className={idx % 2 === 0 ? 'bg-background/40' : ''}>
+                          <td className="py-3.5 px-6 text-sm font-medium text-foreground">{t(row.feature)}</td>
+                          <td className="py-3.5 px-4 text-center bg-blue-500/5">
+                            <span className="text-sm font-semibold text-blue-400 flex items-center justify-center gap-1.5">
+                              {row.isYesNo ? <CheckCircle className="h-3.5 w-3.5 text-green-400 shrink-0" /> : t(row.ft!)}
+                            </span>
+                          </td>
+                          <td className="py-3.5 px-4 text-center">
+                            <span className="text-sm text-muted-foreground flex items-center justify-center gap-1.5">
+                              {row.isYesNo ? <XCircle className="h-3.5 w-3.5 text-red-400 shrink-0" /> : t(row.manual!)}
+                            </span>
+                          </td>
+                          <td className="py-3.5 px-4 text-center">
+                            <span className="text-sm text-muted-foreground flex items-center justify-center gap-1.5">
+                              {row.isYesNo ? <XCircle className="h-3.5 w-3.5 text-red-400 shrink-0" /> : t(row.other!)}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </CardContent>
+              </Card>
+            </div>
+          </AnimatedSection>
+
+          <div className="md:hidden space-y-3">
+            {[
+              { feature: 'home.compTesterTime', ft: 'home.compTesterTimeFT', manual: 'home.compTesterTimeManual', other: 'home.compTesterTimeOther' },
+              { feature: 'home.compNumTesters', ft: 'home.compNumTestersFT', manual: 'home.compNumTestersManual', other: 'home.compNumTestersOther' },
+              { feature: 'home.compTestingPeriod', ft: 'home.compTestingPeriodFT', manual: 'home.compTestingPeriodManual', other: 'home.compTestingPeriodOther' },
+              { feature: 'home.compProductionAccess', ft: 'home.compProductionAccessFT', manual: 'home.compProductionAccessManual', other: 'home.compProductionAccessOther' },
+              { feature: 'home.compReports', ft: 'home.compReportsFT', manual: 'home.compReportsManual', other: 'home.compReportsOther' },
+              { feature: 'home.compSupport', ft: 'home.compSupportFT', manual: 'home.compSupportManual', other: 'home.compSupportOther' },
+              { feature: 'home.compPrice', ft: 'home.compPriceFT', manual: 'home.compPriceManual', other: 'home.compPriceOther' },
+              { feature: 'home.compMoneyBack', isYesNo: true },
+            ].map((row, idx) => (
+              <AnimatedSection key={row.feature} delay={idx * 60}>
+                <Card className="bg-card/80 border-border/60">
+                  <CardContent className="p-4">
+                    <h4 className="text-sm font-semibold text-foreground mb-3">{t(row.feature)}</h4>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between rounded-lg bg-blue-500/10 px-3 py-2">
+                        <span className="text-xs font-medium text-blue-400">{t('home.comparisonFastTesters')}</span>
+                        <span className="text-sm font-semibold text-blue-400 flex items-center gap-1">
+                          {row.isYesNo ? <CheckCircle className="h-3.5 w-3.5 text-green-400" /> : t(row.ft!)}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between rounded-lg bg-background/60 px-3 py-2">
+                        <span className="text-xs font-medium text-muted-foreground">{t('home.comparisonManual')}</span>
+                        <span className="text-sm text-muted-foreground flex items-center gap-1">
+                          {row.isYesNo ? <XCircle className="h-3.5 w-3.5 text-red-400" /> : t(row.manual!)}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between rounded-lg bg-background/60 px-3 py-2">
+                        <span className="text-xs font-medium text-muted-foreground">{t('home.comparisonOther')}</span>
+                        <span className="text-sm text-muted-foreground flex items-center gap-1">
+                          {row.isYesNo ? <XCircle className="h-3.5 w-3.5 text-red-400" /> : t(row.other!)}
+                        </span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -552,35 +693,122 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Requirement + compare teasers (full pages own the long copy) */}
+      {/* Google Play requirement vs Fast Testers service */}
       <section className="py-16 sm:py-20 border-t border-border/40">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
-            <div className="text-center mb-8">
+            <div className="text-center mb-10">
               <h2 className="text-3xl sm:text-4xl font-bold mb-3">
                 <span className="gradient-text">{t('home.requirementTeaserTitle')}</span>
               </h2>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
                 {t('home.requirementTeaserBody')}
               </p>
-              <div className="mt-6 flex flex-wrap justify-center gap-3">
-                <Button variant="outline" onClick={() => navigate('/google-play-12-testers')}>{t('croHero.requirementLink')}</Button>
-                <Button variant="outline" onClick={() => navigate('/google-play-14-day-testing')}>{t('croHero.fourteenDayLink')}</Button>
-                <Button variant="outline" onClick={() => navigate('/google-play-production-access-12-testers')}>{t('croHero.productionLink')}</Button>
-              </div>
             </div>
           </AnimatedSection>
+
+          <div className="grid gap-4 md:grid-cols-2 mb-8">
+            <AnimatedSection>
+              <Card className="h-full border-border/60 bg-card/80">
+                <CardContent className="p-6 sm:p-8">
+                  <Badge variant="outline" className="mb-4 border-border text-muted-foreground">
+                    {t('home.requirementGoogleLabel')}
+                  </Badge>
+                  <div className="space-y-4">
+                    <div>
+                      <p className="text-2xl font-bold text-foreground">{t('home.requirementGoogleTesters')}</p>
+                      <p className="text-sm text-muted-foreground">{t('home.requirementGoogleTestersNote')}</p>
+                    </div>
+                    <div>
+                      <p className="text-2xl font-bold text-foreground">{t('home.requirementGoogleDays')}</p>
+                      <p className="text-sm text-muted-foreground">{t('home.requirementGoogleDaysNote')}</p>
+                    </div>
+                    <p className="text-sm text-muted-foreground pt-2 border-t border-border/50">
+                      {t('home.requirementGoogleFooter')}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+            <AnimatedSection delay={80}>
+              <Card className="h-full border-blue-500/30 bg-blue-500/5">
+                <CardContent className="p-6 sm:p-8">
+                  <Badge variant="outline" className="mb-4 border-blue-500/30 text-blue-400 bg-blue-500/10">
+                    {t('home.requirementServiceLabel')}
+                  </Badge>
+                  <div className="space-y-4">
+                    <div>
+                      <p className="text-2xl font-bold text-foreground">{t('home.requirementServiceTesters')}</p>
+                      <p className="text-sm text-muted-foreground">{t('home.requirementServiceTestersNote')}</p>
+                    </div>
+                    <div>
+                      <p className="text-2xl font-bold text-foreground">{t('home.requirementServiceDays')}</p>
+                      <p className="text-sm text-muted-foreground">{t('home.requirementServiceDaysNote')}</p>
+                    </div>
+                    <p className="text-sm text-muted-foreground pt-2 border-t border-blue-500/20">
+                      {t('home.requirementServiceFooter')}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
+            <Button variant="outline" onClick={() => navigate('/google-play-12-testers')}>{t('croHero.requirementLink')}</Button>
+            <Button variant="outline" onClick={() => navigate('/google-play-14-day-testing')}>{t('croHero.fourteenDayLink')}</Button>
+            <Button variant="outline" onClick={() => navigate('/google-play-production-access-12-testers')}>{t('croHero.productionLink')}</Button>
+          </div>
+
           <AnimatedSection delay={80}>
             <Card className="bg-card/80 border-border/60">
               <CardContent className="p-6 sm:p-8 text-center">
                 <h3 className="text-xl font-semibold mb-2">{t('home.whyDevelopersChoose')}</h3>
-                <p className="text-sm text-muted-foreground mb-5">15 testers · 16 days · $15 one-time · Google decides production access</p>
+                <p className="text-sm text-muted-foreground mb-5">{t('home.compareTeaserFacts')}</p>
                 <Button onClick={() => { trackCta('home_compare_teaser'); navigate('/compare'); }} className="bg-blue-500 hover:bg-blue-600 text-white">
                   {t('home.compareTeaserCta')}
                   <ArrowRight className="h-4 w-4 ml-1" />
                 </Button>
               </CardContent>
             </Card>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          SAMPLE APP PREVIEW
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-16 sm:py-20 border-t border-border/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="text-center mb-10">
+              <Badge variant="outline" className="mb-4 border-blue-500/30 text-blue-400 bg-blue-500/10">
+                {t('home.liveDemo')}
+              </Badge>
+              <h2 className="text-3xl sm:text-4xl font-bold mb-3">
+                <span className="gradient-text">{t('home.seeTestingInAction')}</span>
+              </h2>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection delay={150}>
+            <div className="relative max-w-5xl mx-auto">
+              <div className="absolute -inset-6 pointer-events-none">
+                <svg className="absolute top-0 left-[15%] animate-particle" width="6" height="6" viewBox="0 0 6 6" fill="none"><circle cx="3" cy="3" r="2" fill="rgba(59,130,246,0.15)" /></svg>
+                <svg className="absolute top-[40%] right-[3%] animate-particle" style={{ animationDelay: '1s' }} width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="2.5" fill="rgba(59,130,246,0.12)" /></svg>
+                <svg className="absolute bottom-[5%] left-[5%] animate-particle" style={{ animationDelay: '2s' }} width="5" height="5" viewBox="0 0 5 5" fill="none"><circle cx="2.5" cy="2.5" r="1.5" fill="rgba(59,130,246,0.1)" /></svg>
+              </div>
+              <LiveDemoDashboard />
+              <div className="mt-6 flex justify-center">
+                <Button
+                  onClick={() => navigate('/sample-app')}
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-semibold shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 transition-all"
+                >
+                  {t('home.viewDemo')}
+                  <ArrowRight className="h-4 w-4 ml-1" />
+                </Button>
+              </div>
+            </div>
           </AnimatedSection>
         </div>
       </section>
@@ -616,9 +844,8 @@ export default function HomePage() {
                 <svg className="absolute top-[60%] right-[15%] animate-particle" style={{ animationDelay: '0.5s' }} width="4" height="4" viewBox="0 0 4 4" fill="none"><circle cx="2" cy="2" r="1" fill="rgba(34,211,238,0.12)" /></svg>
               </div>
 
-              {/* Device frame wrapper */}
-              <div className="device-frame">
-                <Card className="bg-card/90 border-0 max-w-4xl mx-auto overflow-hidden">
+              <div className="device-frame max-w-4xl mx-auto overflow-hidden rounded-xl">
+                <Card className="bg-card/90 border-0 overflow-hidden p-0 gap-0 py-0 shadow-none">
                   {/* Browser-like top bar */}
                   <div className="bg-muted/50 px-4 py-2.5 flex items-center gap-2 border-b border-border/40">
                     <div className="flex gap-1.5">
@@ -957,6 +1184,8 @@ export default function HomePage() {
       </section>
 
       <HomeFaqSection />
+
+      <HomeClosedTestingExplained />
 
       {/* ═══════════════════════════════════════════════════════════════════
           NEWSLETTER SECTION

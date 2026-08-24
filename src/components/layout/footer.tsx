@@ -2,10 +2,18 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from '@/lib/router';
 import { useLanguage } from '@/lib/i18n/context';
 import { NewsletterSection } from '@/components/newsletter-section';
+import { SubmitAppTestingCta } from '@/components/submit-app-testing-cta';
+import { shouldShowFooterSubmitCta } from '@/lib/page-has-dashboard-cta';
 import { useSiteNavigation } from '@/lib/hooks/use-site-navigation';
-import { resolveNavLabel, resolveSectionTitle, FALLBACK_NAVIGATION } from '@/lib/navigation';
+import {
+  resolveNavLabel,
+  resolveSectionTitle,
+  FALLBACK_NAVIGATION,
+  isResourcesFooterSection,
+} from '@/lib/navigation';
 import { FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from '@/lib/contact';
 import { BrandLogo } from '@/components/brand-logo';
 import { BusinessLegalNotice } from '@/components/business-legal-notice';
@@ -14,7 +22,9 @@ import { Facebook, Instagram, Youtube } from 'lucide-react';
 import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
 
 export function Footer() {
+  const { currentPath } = useRouter();
   const { t } = useLanguage();
+  const showSubmitCta = shouldShowFooterSubmitCta(currentPath);
   const navigation = useSiteNavigation();
   const footerSections = navigation.footerSections?.length
     ? navigation.footerSections
@@ -26,7 +36,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border/40 bg-background mt-auto relative safe-area-x">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-4 md:pb-0">
-        <div className="grid grid-cols-1 gap-8 py-10 sm:grid-cols-2 sm:py-12 md:grid-cols-4 lg:grid-cols-5">
+        <div className="grid grid-cols-1 gap-8 py-10 sm:grid-cols-2 sm:py-12 md:grid-cols-4 lg:grid-cols-6">
           <div className="col-span-1 sm:col-span-2 md:col-span-4 lg:col-span-1 mb-2 sm:mb-4 lg:mb-0 min-w-0 w-full">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <BrandLogo size="md" />
@@ -72,25 +82,37 @@ export function Footer() {
             </div>
           </div>
 
-          {footerSections.map((section, index) => (
-            <div key={section.titleKey || section.title || index}>
-              <h3 className="text-sm font-semibold text-foreground mb-3">
-                {resolveSectionTitle(section, t)}
-              </h3>
-              <ul className="space-y-0.5">
-                {section.links.map((link) => (
-                  <li key={link.path}>
-                    <Link
-                      href={link.path}
-                      className="text-sm text-muted-foreground hover:text-blue-500 transition-colors w-full text-left py-2 px-2 -mx-2 rounded-md hover:bg-blue-500/5 active:bg-blue-500/10 min-h-[44px] flex items-center"
-                    >
-                      {resolveNavLabel(link, t)}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {footerSections.map((section, index) => {
+            const isResources = isResourcesFooterSection(section);
+            return (
+              <div
+                key={section.titleKey || section.title || index}
+                className={isResources ? 'lg:col-span-2' : undefined}
+              >
+                <h3 className="text-sm font-semibold text-foreground mb-3">
+                  {resolveSectionTitle(section, t)}
+                </h3>
+                <ul
+                  className={
+                    isResources
+                      ? 'grid grid-cols-1 lg:grid-cols-2 lg:gap-x-6'
+                      : 'space-y-0.5'
+                  }
+                >
+                  {section.links.map((link) => (
+                    <li key={link.path}>
+                      <Link
+                        href={link.path}
+                        className="text-sm text-muted-foreground hover:text-blue-500 transition-colors w-full text-left py-2 px-2 -mx-2 rounded-md hover:bg-blue-500/5 active:bg-blue-500/10 min-h-[44px] flex items-center"
+                      >
+                        {resolveNavLabel(link, t)}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
         </div>
 
         <div className="border-t border-border/40 py-6">
@@ -98,6 +120,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-border/40 py-6 space-y-5">
+          {showSubmitCta && <SubmitAppTestingCta variant="banner" />}
           <div className="flex flex-col items-center justify-between gap-5 lg:flex-row w-full">
             <NewsletterSection variant="inline" title={t('footer.newsletterTitle')} />
             <TrustpilotWidget

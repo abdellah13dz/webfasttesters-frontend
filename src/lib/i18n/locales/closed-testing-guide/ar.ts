@@ -17,6 +17,11 @@ export const closedTestingGuideAr: Record<string, string> = {
   'closedTestingGuide.testersSub': 'مسجلون فعلياً، وليسوا مجرد أسماء على قائمة',
   'closedTestingGuide.daysTitle': '14 يوماً',
   'closedTestingGuide.daysSub': 'فترة متواصلة دون انقطاع',
+  'closedTestingGuide.serviceHeading': 'ما تقدّمه FAST TESTERS',
+  'closedTestingGuide.serviceTestersTitle': '15 مختبراً',
+  'closedTestingGuide.serviceTestersSub': 'هامش فوق متطلب Google البالغ 12+',
+  'closedTestingGuide.serviceDaysTitle': '16 يوماً',
+  'closedTestingGuide.serviceDaysSub': 'تغطي 14 يوماً متتالياً لدى Google',
   'closedTestingGuide.checklistIntro':
     'يتتبع Play Console ذلك كقائمة من ثلاث خطوات في صفحة الإنتاج لتطبيقك:',
   'closedTestingGuide.checklist1': 'نشر إصدار اختبار مغلق',

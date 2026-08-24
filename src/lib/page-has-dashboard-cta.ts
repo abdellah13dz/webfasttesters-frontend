@@ -9,10 +9,20 @@ const PAGE_DASHBOARD_CTA_PATHS = new Set([
   '/compare',
   '/about-us',
   '/referral-program',
+  '/app-testing-referral-program',
   '/changelog',
   '/guides/publish-app-google-play',
   '/guides/enterprise-onboarding',
   '/blog/google-play-12-testers-policy',
+  '/sample-app',
+  '/google-play-closed-testing',
+  '/google-play-production-access-12-testers',
+  '/google-play-12-testers',
+  '/google-play-14-day-testing',
+  '/google-play-testing-service',
+  '/google-play-personal-developer-account',
+  '/android-closed-testing',
+  '/free-testers',
 ]);
 
 function normalizePath(pathname: string): string {

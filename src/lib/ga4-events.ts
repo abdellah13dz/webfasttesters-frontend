@@ -76,8 +76,14 @@ function buildEventParams(
 
 function pushDataLayer(event: string, params: Record<string, string | number>): void {
   if (typeof window === 'undefined') return;
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event, ...params });
+  try {
+    if (!Array.isArray(window.dataLayer)) {
+      window.dataLayer = [];
+    }
+    window.dataLayer.push({ event, ...params });
+  } catch {
+    /* ignore */
+  }
 }
 
 /** Send a GA4 custom event with standard attribution params. */
@@ -86,14 +92,17 @@ export function trackGa4Event(
   page: string,
   extra?: Record<string, string | number | boolean | null | undefined>
 ): void {
-  if (typeof window === 'undefined' || !hasAnalyticsConsent()) return;
+  if (typeof window === 'undefined') return;
 
-  const params = buildEventParams(page, extra);
-
-  pushDataLayer(eventName, params);
-
-  if (window.gtag) {
-    window.gtag('event', eventName, params);
+  try {
+    if (!hasAnalyticsConsent()) return;
+    const params = buildEventParams(page, extra);
+    pushDataLayer(eventName, params);
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', eventName, params);
+    }
+  } catch {
+    /* analytics must never crash the site */
   }
 }
 

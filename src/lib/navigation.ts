@@ -60,7 +60,7 @@ function isProductFooterSection(section: NavSection): boolean {
   );
 }
 
-function isResourcesFooterSection(section: NavSection): boolean {
+export function isResourcesFooterSection(section: NavSection): boolean {
   if (section.titleKey === 'footer.resources') return true;
   if (
     section.titleKey === 'footer.product' ||

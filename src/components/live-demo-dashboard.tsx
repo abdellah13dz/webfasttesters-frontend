@@ -32,8 +32,8 @@ const DEMO = {
   packageName: 'com.cobrother.QRMaker',
   submittedOn: 'April 7, 2026',
   daysCompleted: 9,
-  totalDays: 14,
-  testers: 12,
+  totalDays: 16,
+  testers: 15,
   reportsReady: 2,
   totalReports: 2,
 } as const;
@@ -204,15 +204,15 @@ function ProgressPanel({ animatedProgress }: { animatedProgress: number }) {
 
       <div className="rounded-xl border border-border/60 bg-card p-3 sm:p-4">
         <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-3">
-          14-Day Timeline
+          16-Day Timeline
         </p>
-        <div className="grid grid-cols-7 gap-1.5 sm:gap-2">
+        <div className="grid grid-cols-8 gap-1.5 sm:gap-2">
           {Array.from({ length: DEMO.totalDays }, (_, i) => {
             const day = i + 1;
             const status =
-              day <= DEMO.daysCompleted
+              day < DEMO.daysCompleted
                 ? 'done'
-                : day === DEMO.daysCompleted + 1
+                : day === DEMO.daysCompleted
                   ? 'current'
                   : 'upcoming';
             return <DayCell key={day} day={day} status={status} />;
@@ -345,7 +345,7 @@ function InstructionsPanel() {
           <div className="space-y-2 mb-4">
             {[
               { icon: Zap, text: '15 testers assigned instantly' },
-              { icon: Clock, text: 'Full 14-day managed cycle' },
+              { icon: Clock, text: 'Full 16-day managed cycle' },
               { icon: RotateCcw, text: '100% refund if rejected' },
             ].map(({ icon: Icon, text }) => (
               <div

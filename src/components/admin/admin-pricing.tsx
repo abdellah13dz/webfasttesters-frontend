@@ -11,6 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
 import { DollarSign, Pencil, Check, Loader2, Plus, X, Star, Shield } from 'lucide-react';
+import { parsePlanFeatures } from '@/lib/pricing';
 
 interface PricingPlan {
   id: string;
@@ -69,7 +70,7 @@ export default function AdminPricing() {
       currency: plan.currency,
       period: plan.period,
       description: plan.description || '',
-      features: JSON.parse(plan.features || '[]'),
+      features: parsePlanFeatures(plan.features || '[]'),
       popular: plan.popular,
       active: plan.active,
     });
@@ -227,7 +228,7 @@ export default function AdminPricing() {
                   <Separator className="my-4" />
 
                   <div className="space-y-2">
-                    {JSON.parse(plan.features || '[]').map((feature: string, i: number) => (
+                    {parsePlanFeatures(plan.features || '[]').map((feature: string, i: number) => (
                       <div key={i} className="flex items-center gap-2">
                         <Check className="h-4 w-4 text-blue-500 shrink-0" />
                         <span className="text-sm text-foreground/80">{feature}</span>

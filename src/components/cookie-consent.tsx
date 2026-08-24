@@ -8,8 +8,9 @@ import { useRouter } from '@/lib/router';
 import { grantAnalyticsConsent, trackPageView as trackGooglePageView } from '@/lib/google-tracking';
 import { trackPageView } from '@/lib/analytics';
 import { activateMetaPixelAfterConsent } from '@/components/meta-pixel';
+import { COOKIE_STORAGE_KEY } from '@/lib/analytics-consent';
 
-const STORAGE_KEY = 'ft-cookies-accepted';
+const STORAGE_KEY = COOKIE_STORAGE_KEY;
 
 export function CookieConsent() {
   const [visible, setVisible] = useState(false);
@@ -18,13 +19,17 @@ export function CookieConsent() {
   const { navigate } = useRouter();
 
   useEffect(() => {
-    // Check if user has already accepted/declined cookies
-    const preference = localStorage.getItem(STORAGE_KEY);
-    if (!preference) {
-      // Small delay for smoother appearance after page load
-      const timer = setTimeout(() => {
-        setVisible(true);
-      }, 800);
+    try {
+      const preference = localStorage.getItem(STORAGE_KEY);
+      if (!preference) {
+        const timer = setTimeout(() => {
+          setVisible(true);
+        }, 800);
+        return () => clearTimeout(timer);
+      }
+    } catch {
+      /* storage can throw in private mode — show the banner */
+      const timer = setTimeout(() => setVisible(true), 800);
       return () => clearTimeout(timer);
     }
   }, []);
@@ -46,17 +51,29 @@ export function CookieConsent() {
   }, []);
 
   const handleAccept = () => {
-    localStorage.setItem(STORAGE_KEY, 'accepted');
-    grantAnalyticsConsent();
-    trackGooglePageView(window.location.pathname);
-    trackPageView(window.location.pathname);
-    activateMetaPixelAfterConsent(undefined, window.location.pathname);
-    window.dispatchEvent(new Event('ft-meta-consent'));
+    try {
+      localStorage.setItem(STORAGE_KEY, 'accepted');
+    } catch {
+      /* ignore */
+    }
+    try {
+      grantAnalyticsConsent();
+      trackGooglePageView(window.location.pathname);
+      trackPageView(window.location.pathname);
+      activateMetaPixelAfterConsent(undefined, window.location.pathname);
+      window.dispatchEvent(new Event('ft-meta-consent'));
+    } catch {
+      /* analytics must never crash the site */
+    }
     setVisible(false);
   };
 
   const handleDecline = () => {
-    localStorage.setItem(STORAGE_KEY, 'declined');
+    try {
+      localStorage.setItem(STORAGE_KEY, 'declined');
+    } catch {
+      /* ignore */
+    }
     setVisible(false);
   };
 

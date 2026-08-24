@@ -17,6 +17,11 @@ export const closedTestingGuideTr: Record<string, string> = {
   'closedTestingGuide.testersSub': 'Listeye eklenmiş değil, kayıtlı (opt-in)',
   'closedTestingGuide.daysTitle': '14 gün',
   'closedTestingGuide.daysSub': 'Kesintisiz, aralıksız bir süre',
+  'closedTestingGuide.serviceHeading': 'FAST TESTERS’IN SAĞLADIĞI',
+  'closedTestingGuide.serviceTestersTitle': '15 testçi',
+  'closedTestingGuide.serviceTestersSub': 'Google’ın 12+ şartının üzerinde tampon',
+  'closedTestingGuide.serviceDaysTitle': '16 gün',
+  'closedTestingGuide.serviceDaysSub': 'Google’ın 14 ardışık gününü kapsar',
   'closedTestingGuide.checklistIntro':
     'Play Console bunu uygulamanızın Üretim sayfasında üç adımlı bir kontrol listesi olarak izler:',
   'closedTestingGuide.checklist1': 'Kapalı test sürümü yayınlayın',

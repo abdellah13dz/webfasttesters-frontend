@@ -27,6 +27,7 @@ import {
   BookOpen,
 } from 'lucide-react'
 import { AppSetupGuideCta } from '@/components/app-setup-guide-cta'
+import { FullDemoCta } from '@/components/full-demo-cta'
 
 const tocItems = [
   { textKey: 'closedTesting.tocItem1' },
@@ -493,6 +494,8 @@ export default function ClosedTestingPage() {
       </section>
 
       <AppSetupGuideCta trackingId="closed_testing_setup_guide" />
+
+      <FullDemoCta trackingId="closed_testing_full_demo" />
 
       <section className="border-t border-border bg-background">
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">

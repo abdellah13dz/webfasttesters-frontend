@@ -421,7 +421,7 @@ export default function BlogArticlePage({
       <section className="border-t border-border bg-background">
         <div className="mx-auto max-w-7xl space-y-8 px-4 py-16 sm:px-6 lg:px-8">
           <SubmitAppTestingCta />
-          <NewsletterSection />
+          <NewsletterSection wide className="w-full" />
         </div>
       </section>
     </div>

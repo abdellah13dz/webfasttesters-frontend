@@ -7,6 +7,7 @@ import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 import { useLanguage } from '@/lib/i18n/context';
 import { useAnalytics } from '@/lib/analytics';
 import { PageFaqSection } from '@/components/page-faq-section';
+import { FullDemoCta } from '@/components/full-demo-cta';
 import { AiEntityDefinition } from '@/components/ai-citation-summary';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -836,6 +837,8 @@ export default function ComparePage() {
           </div>
         </div>
       </section>
+
+      <FullDemoCta trackingId="compare_full_demo" />
 
       <PageFaqSection
         keyPrefix="compare.faq"

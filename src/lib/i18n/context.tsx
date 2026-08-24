@@ -104,9 +104,13 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [overrides, setOverrides] = useState<Record<string, Record<string, string>>>({});
 
   useEffect(() => {
-    const saved = localStorage.getItem('ft-lang') as Language | null;
-    if (saved && ['en', 'es', 'tr', 'ar'].includes(saved)) {
-      setLanguageState(saved);
+    try {
+      const saved = localStorage.getItem('ft-lang') as Language | null;
+      if (saved && ['en', 'es', 'tr', 'ar'].includes(saved)) {
+        setLanguageState(saved);
+      }
+    } catch {
+      /* storage can throw in private mode */
     }
   }, []);
 
@@ -140,7 +144,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   const setLanguage = useCallback((lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem('ft-lang', lang);
+    try {
+      localStorage.setItem('ft-lang', lang);
+    } catch {
+      /* storage can throw in private mode */
+    }
     if (overrides[lang]) return;
     void loadLocaleOverrides(lang)
       .then((localeOverrides) => {

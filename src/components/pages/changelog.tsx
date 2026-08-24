@@ -11,7 +11,6 @@ import {
   Sparkles,
   Zap,
   Bug,
-  Mail,
   Rocket,
   Globe,
   Users,
@@ -202,30 +201,10 @@ export default function ChangelogPage() {
         </div>
       </section>
 
-      {/* Newsletter Section */}
       <section className="border-t border-border bg-card/50">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 py-16">
-          <div className="max-w-lg mx-auto mb-8">
-            <SubmitAppTestingCta />
-          </div>
-          <div className="max-w-lg mx-auto text-center mb-8">
-            <Badge
-              variant="outline"
-              className="mb-4 border-blue-400/30 text-blue-400 bg-blue-400/10 px-4 py-1.5 text-sm"
-            >
-              <Mail className="h-4 w-4 mr-1" />
-              {t('changelog.stayUpdatedBadge')}
-            </Badge>
-            <h2 className="text-2xl font-bold text-foreground sm:text-3xl mb-2">
-              {t('changelog.neverMissUpdate')}
-            </h2>
-            <p className="text-muted-foreground">
-              {t('changelog.newsletterDesc')}
-            </p>
-          </div>
-          <div className="max-w-lg mx-auto">
-            <NewsletterSection variant="card" />
-          </div>
+        <div className="mx-auto max-w-7xl space-y-8 px-4 py-16 sm:px-6 lg:px-8">
+          <SubmitAppTestingCta />
+          <NewsletterSection wide className="w-full" />
         </div>
       </section>
     </div>

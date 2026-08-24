@@ -247,8 +247,16 @@ export async function trackEvent(
   element?: string,
   metadata?: Record<string, string>
 ) {
-  forwardToGa4(eventType, page, element, metadata);
-  enqueueBackendAnalytics(eventType, page, element, metadata);
+  try {
+    forwardToGa4(eventType, page, element, metadata);
+  } catch {
+    /* analytics must never crash the site */
+  }
+  try {
+    enqueueBackendAnalytics(eventType, page, element, metadata);
+  } catch {
+    /* analytics must never crash the site */
+  }
 }
 
 // Track page view

@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "next-themes";
+import { COOKIE_STORAGE_KEY } from "@/lib/analytics-consent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -146,6 +148,30 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
+        <Script id="google-consent-default" strategy="beforeInteractive">
+          {`
+            try {
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              window.gtag = window.gtag || gtag;
+              gtag('consent', 'default', {
+                analytics_storage: 'denied',
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied',
+                wait_for_update: 500
+              });
+              if (localStorage.getItem('${COOKIE_STORAGE_KEY}') === 'accepted') {
+                gtag('consent', 'update', {
+                  analytics_storage: 'granted',
+                  ad_storage: 'granted',
+                  ad_user_data: 'granted',
+                  ad_personalization: 'granted'
+                });
+              }
+            } catch (e) {}
+          `}
+        </Script>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

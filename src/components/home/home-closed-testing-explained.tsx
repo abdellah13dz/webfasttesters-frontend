@@ -60,6 +60,42 @@ function RuleAtAGlance({ t }: { t: (key: string) => string }) {
           <p className="text-sm text-muted-foreground">{t('closedTestingGuide.daysSub')}</p>
         </div>
       </div>
+      <div className="mt-6 pt-5 border-t border-blue-200/70 dark:border-blue-500/20">
+        <p className="text-[11px] font-semibold tracking-wider text-muted-foreground mb-3">
+          {t('closedTestingGuide.serviceHeading')}
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+          <div>
+            <div className="flex flex-wrap gap-1.5 mb-3">
+              {Array.from({ length: 15 }).map((_, i) => (
+                <span
+                  key={i}
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-600 text-white"
+                  aria-hidden
+                >
+                  <User className="h-3.5 w-3.5" />
+                </span>
+              ))}
+            </div>
+            <p className="text-lg font-bold text-foreground">{t('closedTestingGuide.serviceTestersTitle')}</p>
+            <p className="text-sm text-muted-foreground">{t('closedTestingGuide.serviceTestersSub')}</p>
+          </div>
+          <div>
+            <div className="grid grid-cols-8 gap-1 mb-3 max-w-[230px]">
+              {Array.from({ length: 16 }).map((_, i) => (
+                <span
+                  key={i}
+                  className="flex h-6 w-6 items-center justify-center rounded bg-blue-600/90 text-[10px] font-semibold text-white"
+                >
+                  {i + 1}
+                </span>
+              ))}
+            </div>
+            <p className="text-lg font-bold text-foreground">{t('closedTestingGuide.serviceDaysTitle')}</p>
+            <p className="text-sm text-muted-foreground">{t('closedTestingGuide.serviceDaysSub')}</p>
+          </div>
+        </div>
+      </div>
       <p className="mt-4 text-sm text-muted-foreground">
         <Link href="/google-play-12-testers" className="text-blue-600 hover:underline dark:text-blue-400">
           {t('header.twelveTesters')}

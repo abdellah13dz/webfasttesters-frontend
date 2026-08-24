@@ -17,6 +17,11 @@ export const closedTestingGuideEs: Record<string, string> = {
   'closedTestingGuide.testersSub': 'Inscritos, no solo añadidos a una lista',
   'closedTestingGuide.daysTitle': '14 días',
   'closedTestingGuide.daysSub': 'Un periodo continuo e ininterrumpido',
+  'closedTestingGuide.serviceHeading': 'LO QUE OFRECE FAST TESTERS',
+  'closedTestingGuide.serviceTestersTitle': '15 testers',
+  'closedTestingGuide.serviceTestersSub': 'Margen por encima de los 12+ de Google',
+  'closedTestingGuide.serviceDaysTitle': '16 días',
+  'closedTestingGuide.serviceDaysSub': 'Cubre los 14 días consecutivos de Google',
   'closedTestingGuide.checklistIntro':
     'Play Console lo registra como una lista de tres pasos en la página de Producción de tu app:',
   'closedTestingGuide.checklist1': 'Publicar una versión de pruebas cerradas',

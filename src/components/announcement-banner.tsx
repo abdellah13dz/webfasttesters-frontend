@@ -13,15 +13,19 @@ const BANNER_DISMISSED_KEY = 'ft-banner-dismissed';
 const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
 
 function readBannerVisibility(): boolean {
-  const dismissedAt = localStorage.getItem(BANNER_DISMISSED_KEY);
-  if (dismissedAt) {
-    const elapsed = Date.now() - parseInt(dismissedAt, 10);
-    if (elapsed < SEVEN_DAYS_MS) {
-      return false;
+  try {
+    const dismissedAt = localStorage.getItem(BANNER_DISMISSED_KEY);
+    if (dismissedAt) {
+      const elapsed = Date.now() - parseInt(dismissedAt, 10);
+      if (elapsed < SEVEN_DAYS_MS) {
+        return false;
+      }
+      localStorage.removeItem(BANNER_DISMISSED_KEY);
     }
-    localStorage.removeItem(BANNER_DISMISSED_KEY);
+    return true;
+  } catch {
+    return true;
   }
-  return true;
 }
 
 export function AnnouncementBanner() {

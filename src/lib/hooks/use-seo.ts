@@ -79,32 +79,37 @@ export function applyClientSeo(
   siteUrl: string = SITE_URL
 ) {
   const fullUrl = `${siteUrl}${path}`;
-  const ogImageUrl = seo.ogImage.startsWith('http')
-    ? seo.ogImage
-    : `${siteUrl}${seo.ogImage.startsWith('/') ? seo.ogImage : `/${seo.ogImage}`}`;
+  const ogImage = seo.ogImage || '/og-image.png';
+  const ogImageUrl = ogImage.startsWith('http')
+    ? ogImage
+    : `${siteUrl}${ogImage.startsWith('/') ? ogImage : `/${ogImage}`}`;
 
-  document.title = seo.title;
-  updateMetaName('description', seo.description);
-  updateMetaName('keywords', seo.keywords);
-  updateMetaName('author', SITE_NAME);
-  updateMetaProperty('og:title', seo.title);
-  updateMetaProperty('og:description', seo.description);
-  updateMetaProperty('og:image', ogImageUrl);
-  updateMetaProperty('og:image:alt', seo.title);
-  updateMetaProperty('og:url', fullUrl);
-  updateMetaProperty('og:type', seo.type);
-  updateMetaProperty('og:site_name', SITE_NAME);
-  updateMetaProperty('og:locale', ogLocaleForLanguage(language));
-  updateMetaName('twitter:card', 'summary_large_image');
-  updateMetaName('twitter:title', seo.title);
-  updateMetaName('twitter:description', seo.description);
-  updateMetaName('twitter:image', ogImageUrl);
-  updateMetaName('twitter:site', '@fasttesters');
-  updateMetaName('twitter:creator', '@fasttesters');
-  setCanonicalUrl(fullUrl);
-  setNoIndex(!!seo.noindex);
+  try {
+    document.title = seo.title;
+    updateMetaName('description', seo.description);
+    updateMetaName('keywords', seo.keywords);
+    updateMetaName('author', SITE_NAME);
+    updateMetaProperty('og:title', seo.title);
+    updateMetaProperty('og:description', seo.description);
+    updateMetaProperty('og:image', ogImageUrl);
+    updateMetaProperty('og:image:alt', seo.title);
+    updateMetaProperty('og:url', fullUrl);
+    updateMetaProperty('og:type', seo.type);
+    updateMetaProperty('og:site_name', SITE_NAME);
+    updateMetaProperty('og:locale', ogLocaleForLanguage(language));
+    updateMetaName('twitter:card', 'summary_large_image');
+    updateMetaName('twitter:title', seo.title);
+    updateMetaName('twitter:description', seo.description);
+    updateMetaName('twitter:image', ogImageUrl);
+    updateMetaName('twitter:site', '@fasttesters');
+    updateMetaName('twitter:creator', '@fasttesters');
+    setCanonicalUrl(fullUrl);
+    setNoIndex(!!seo.noindex);
 
-  document.documentElement.lang = language;
+    document.documentElement.lang = language;
+  } catch {
+    /* SEO updates must never crash the site */
+  }
 }
 
 function mergeSeo(base: PageSeo, override?: Partial<PageSeo>): PageSeo {
@@ -161,7 +166,11 @@ export function useSeo(): PageSeo | null {
 
   useEffect(() => {
     if (isDynamicBlog) return;
-    applyClientSeo(seo, currentPath, language, dynamicSeo?.siteUrl || SITE_URL);
+    try {
+      applyClientSeo(seo, currentPath, language, dynamicSeo?.siteUrl || SITE_URL);
+    } catch {
+      /* SEO updates must never crash the site */
+    }
   }, [seo, currentPath, language, dynamicSeo, isDynamicBlog]);
 
   return isDynamicBlog ? null : seo;

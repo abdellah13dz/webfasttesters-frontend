@@ -35,25 +35,39 @@ export type Gtag = (...args: unknown[]) => void;
 /** Ensure window.gtag exists and queues to dataLayer (same pattern as the dashboard). */
 export function ensureGtag(): Gtag | null {
   if (typeof window === 'undefined') return null;
-  window.dataLayer = window.dataLayer || [];
-  if (!window.gtag) {
-    window.gtag = (...args: unknown[]) => {
-      window.dataLayer!.push(args);
-    };
+  try {
+    if (!Array.isArray(window.dataLayer)) {
+      window.dataLayer = [];
+    }
+    if (typeof window.gtag !== 'function') {
+      window.gtag = (...args: unknown[]) => {
+        try {
+          window.dataLayer!.push(args);
+        } catch {
+          /* analytics must never crash the site */
+        }
+      };
+    }
+    return window.gtag;
+  } catch {
+    return null;
   }
-  return window.gtag;
 }
 
 /** Call after user accepts cookies or on return visit with stored consent */
 export function grantAnalyticsConsent(): void {
-  const gtag = ensureGtag();
-  if (!gtag) return;
-  gtag('consent', 'update', {
-    analytics_storage: 'granted',
-    ad_storage: 'granted',
-    ad_user_data: 'granted',
-    ad_personalization: 'granted',
-  });
+  try {
+    const gtag = ensureGtag();
+    if (!gtag) return;
+    gtag('consent', 'update', {
+      analytics_storage: 'granted',
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+    });
+  } catch {
+    /* analytics must never crash the site */
+  }
 }
 
 /**
@@ -63,15 +77,18 @@ export function grantAnalyticsConsent(): void {
  */
 export function trackPageView(path: string): void {
   if (typeof window === 'undefined') return;
-
-  const gaId = getGaMeasurementId();
-  const gtag = ensureGtag();
-  if (gaId && gtag) {
-    gtag('event', 'page_view', {
-      send_to: gaId,
-      page_path: path,
-      page_location: window.location.href,
-      page_title: document.title,
-    });
+  try {
+    const gaId = getGaMeasurementId();
+    const gtag = ensureGtag();
+    if (gaId && gtag) {
+      gtag('event', 'page_view', {
+        send_to: gaId,
+        page_path: path,
+        page_location: window.location.href,
+        page_title: document.title,
+      });
+    }
+  } catch {
+    /* analytics must never crash the site */
   }
 }

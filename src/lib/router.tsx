@@ -20,7 +20,7 @@ export function useRouter() {
 }
 
 export function RouterProvider({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? '/';
   const nextRouter = useNextRouter();
 
   const navigate = useCallback(
