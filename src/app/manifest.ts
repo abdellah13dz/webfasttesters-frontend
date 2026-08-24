@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: 'Fast Testers - Professional App Testing Service',
     short_name: 'Fast Testers',
     description:
-      'Google Play Closed Testing service — get production access with 12 testers for 14 days. 15 quality testers for $15, assigned instantly. 99.9% success rate.',
+      'Google Play Closed Testing service — 15 testers for 16 days for $15, covering Google’s 12 testers / 14 consecutive days. Google decides production access.',
     start_url: '/',
     display: 'standalone',
     background_color: '#0a0a0a',

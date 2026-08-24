@@ -84,14 +84,48 @@ export function SeoLandingPage({ config }: SeoLandingPageProps) {
               className="mb-8"
             />
           ) : null}
-          <Button
-            size="lg"
-            onClick={() => { trackCta('hero_cta', undefined, 'signup_click'); goToGetStartedPricing(currentPath, navigate); }}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold h-12 px-8"
-          >
-            {t('croHero.cta')}
-            <ArrowRight className="h-4 w-4 ml-1" />
-          </Button>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            {config.heroCta ? (
+              <Button
+                asChild
+                size="lg"
+                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold h-12 px-8"
+              >
+                <a
+                  href={config.heroCta.href}
+                  {...(config.heroCta.href.startsWith('http')
+                    ? { target: '_blank', rel: 'noopener noreferrer' }
+                    : {})}
+                  onClick={() => trackCta('hero_cta', undefined, 'signup_click')}
+                >
+                  {config.heroCta.label}
+                  <ArrowRight className="h-4 w-4 ml-1" />
+                </a>
+              </Button>
+            ) : (
+              <Button
+                size="lg"
+                onClick={() => { trackCta('hero_cta', undefined, 'signup_click'); goToGetStartedPricing(currentPath, navigate); }}
+                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold h-12 px-8"
+              >
+                {t('croHero.cta')}
+                <ArrowRight className="h-4 w-4 ml-1" />
+              </Button>
+            )}
+            {config.heroSecondaryCta ? (
+              <Button asChild variant="outline" size="lg" className="h-12 px-8 font-semibold">
+                <a
+                  href={config.heroSecondaryCta.href}
+                  {...(config.heroSecondaryCta.href.startsWith('http')
+                    ? { target: '_blank', rel: 'noopener noreferrer' }
+                    : {})}
+                  onClick={() => trackCta('hero_secondary')}
+                >
+                  {config.heroSecondaryCta.label}
+                </a>
+              </Button>
+            ) : null}
+          </div>
         </div>
       </section>
 

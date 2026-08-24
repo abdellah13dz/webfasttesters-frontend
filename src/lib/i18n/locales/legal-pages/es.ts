@@ -76,12 +76,12 @@ export const legalPagesEs: Record<string, string> = {
   'termsPolicy.sections.definitions.p1': '"Servicios" se refiere a los servicios de pruebas de aplicaciones y control de calidad proporcionados por {entity} a través de la plataforma {brand}, incluyendo, entre otros, pruebas profesionales de aplicaciones, recopilación de comentarios y soporte para acceso a producción.',
   'termsPolicy.sections.definitions.p2': '"Usuario" se refiere a cualquier individuo o entidad que acceda o utilice los Servicios, incluyendo desarrolladores que envían aplicaciones para pruebas y testers que participan en programas de pruebas.',
   'termsPolicy.sections.definitions.p3': '"Aplicación" se refiere a cualquier aplicación móvil enviada a Fast Testers con fines de prueba.',
-  'termsPolicy.sections.definitions.p4': '"Período de Pruebas" se refiere a la duración de 14-16 días durante la cual los testers asignados evalúan y prueban una aplicación enviada.',
+  'termsPolicy.sections.definitions.p4': '"Período de Pruebas" se refiere a la duración de 16 días durante la cual los testers asignados evalúan y prueban una aplicación enviada.',
   'termsPolicy.sections.definitions.p5': '"Garantía de Acceso a Producción" se refiere a nuestro compromiso de proporcionar un reembolso completo si Google Play rechaza su aplicación después de completar nuestro servicio de pruebas.',
 
   'termsPolicy.sections.services.title': 'Descripción de los Servicios',
   'termsPolicy.sections.services.p1': 'Fast Testers proporciona servicios profesionales de pruebas de aplicaciones diseñados para ayudar a los desarrolladores a cumplir los requisitos de pruebas de Google Play Store para el acceso a producción.',
-  'termsPolicy.sections.services.p2': 'Nuestro servicio principal incluye asignar 14 testers profesionales para evaluar su aplicación durante un período de pruebas de 14-16 días. Los testers instalarán, usarán y proporcionarán comentarios sobre su aplicación.',
+  'termsPolicy.sections.services.p2': 'Nuestro servicio principal incluye asignar 15 testers profesionales para evaluar su aplicación durante un período de pruebas de 16 días. Los testers instalarán, usarán y proporcionarán comentarios sobre su aplicación.',
   'termsPolicy.sections.services.p3': 'Nos esforzamos por comenzar la asignación de testers inmediatamente tras el envio tras la confirmación del pago, aunque el tiempo real puede variar según la demanda y la complejidad de la aplicación.',
   'termsPolicy.sections.services.p4': 'Nos reservamos el derecho de rechazar el servicio a cualquier aplicación que contenga contenido ilegal, malware o que viole las políticas de Google Play Store.',
 

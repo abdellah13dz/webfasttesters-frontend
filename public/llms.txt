@@ -73,7 +73,6 @@ Demo: https://app.fasttesters.com/demo
 - [12 testers requirement](https://fasttesters.com/google-play-12-testers)
 - [14-day testing](https://fasttesters.com/google-play-14-day-testing)
 - [Personal developer account](https://fasttesters.com/google-play-personal-developer-account)
-- [Google Play requirement](https://fasttesters.com/google-play-requirement)
 - [Android closed testing](https://fasttesters.com/android-closed-testing)
 - [Publishing checklist](https://fasttesters.com/resources/google-play-checklist)
 - [Case studies](https://fasttesters.com/case-studies)

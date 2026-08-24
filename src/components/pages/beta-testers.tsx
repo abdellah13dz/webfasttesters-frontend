@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from '@/lib/router'
+import { APP_URL } from '@/lib/app-urls'
 import { useLanguage } from '@/lib/i18n/context'
 import { useStickyAside } from '@/lib/hooks/use-sticky-aside'
 import { Button } from '@/components/ui/button'
@@ -277,7 +278,7 @@ export default function BetaTestersPage() {
             <Button
               size="lg"
               className="bg-blue-600 text-white hover:bg-blue-700"
-              onClick={() => navigate('/production-access')}
+              onClick={() => navigate(APP_URL)}
             >
               {t('betaTesters.ctaGetProfessionalTesters')}
               <ArrowRight className="ml-2 size-4" />
@@ -505,7 +506,7 @@ export default function BetaTestersPage() {
             <Button
               size="lg"
               className="bg-blue-600 text-white hover:bg-blue-700"
-              onClick={() => navigate('/production-access')}
+              onClick={() => navigate(APP_URL)}
             >
               {t('betaTesters.ctaGetProfessionalTesters')}
               <ArrowRight className="ml-2 size-4" />

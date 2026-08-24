@@ -4,8 +4,8 @@ export const closedTestingGuideAr: Record<string, string> = {
   'closedTestingGuide.subtitle':
     'كل ما يسألنا عنه المطورون قبل النشر، بإجابات فصلاً فصلاً—من القاعدة نفسها إلى ما بعد الإطلاق.',
   'closedTestingGuide.pill1': 'أشخاص حقيقيون، أجهزة حقيقية',
-  'closedTestingGuide.pill2': 'أكثر من 1,500 تطبيق على المتجر',
-  'closedTestingGuide.pill3': 'موافقة، أو استرداد كامل',
+  'closedTestingGuide.pill2': '15 مختبراً لمدة 16 يوماً',
+  'closedTestingGuide.pill3': 'Google يقرر؛ تسري سياسة الاسترداد',
   'closedTestingGuide.indexLabel': 'الفهرس · 12 فصلاً',
   'closedTestingGuide.chapterPrefix': 'الفصل',
   'closedTestingGuide.navAriaLabel': 'فصول الاختبار المغلق',
@@ -50,7 +50,7 @@ export const closedTestingGuideAr: Record<string, string> = {
   'closedTestingGuide.ch3.p1':
     'Fast Testers خدمة احترافية لاختبار Google Play المغلق تديرها Hassil LLC. نساعد المطورين المستقلين والفرق الصغيرة على تلبية متطلبات Google للاختبار المغلق دون قضاء أسابيع في البحث عن مختبرين موثوقين في المنتديات ووسائل التواصل.',
   'closedTestingGuide.ch3.p2':
-    'دعمنا أكثر من 1,500 تطبيقاً في طريق الوصول للإنتاج. تركيزنا متعمداً ضيق: اختبار مغلق على Android، أجهزة حقيقية، جداول زمنية واضحة، وضمان وصول للإنتاج مدعوم بسياسة استرداد.',
+    'نساعد مطوّري Android على إكمال الاختبار المغلق في Google Play حتى يتمكنوا من طلب الوصول للإنتاج. تركيزنا متعمّد وضيق: اختبار مغلق على Android، أجهزة حقيقية، دورة 16 يوماً، وشروط الاسترداد في سياسة الاسترداد.',
   'closedTestingGuide.ch3.p3':
     'ترسل رابط الاختبار المغلق من Play Console؛ ننسّق المختبرين، نتابع فترة الاختبار، ونُبقيك على اطلاع عبر لوحة التحكم—حتى تركز على إصلاح الأخطاء وإعداد صفحة المتجر.',
 
@@ -64,7 +64,7 @@ export const closedTestingGuideAr: Record<string, string> = {
     'مجاني 100%، تبادل بين المطورين. مناسب إذا كان لديك وقت للمقابل وتنسيق الجداول بنفسك. لا عدد مضمون ولا جدول زمني ثابت.',
   'closedTestingGuide.ch4.managedTitle': 'الخدمة المُدارة',
   'closedTestingGuide.ch4.managedDesc':
-    'دفعة واحدة 15 $، ~14 مختبراً يُعيَّنون في نحو ساعة، فترة اختبار 14–16 يوماً، متابعة عبر اللوحة، وضمان الوصول للإنتاج.',
+    'دفعة واحدة 15 $، 15 مختبراً يُعيَّنون في نحو ساعة، فترة اختبار 16 يوماً، متابعة عبر اللوحة، وضمان الوصول للإنتاج.',
   'closedTestingGuide.ch4.p2':
     'معظم المطورين الذين يحتاجون الوصول للإنتاج بموعد نهائي يختارون الاختبار المُدار. يبقى المجتمع متاحاً إذا أردت خياراً بلا تكلفة ويمكنك الانتظار للتبادل المتبادل.',
 
@@ -74,8 +74,8 @@ export const closedTestingGuideAr: Record<string, string> = {
   'closedTestingGuide.ch5.p1':
     'Fast Testers يبقي التسعير واضحاً: دفعة واحدة 15 USD لكل اختبار تطبيق. لا اشتراكات، لا مستويات مخفية، لا رسوم إضافية لكل مختبر.',
   'closedTestingGuide.ch5.li1':
-    '~14 مختبر Android محترف (هامش فوق الحد الأدنى 12 من Google)',
-  'closedTestingGuide.ch5.li2': '14–16 يوماً متتالياً من تغطية الاختبار المغلق',
+    '15 مختبر Android محترف (هامش فوق الحد الأدنى 12 من Google)',
+  'closedTestingGuide.ch5.li2': '16 يوماً من تغطية الاختبار المغلق (تغطي 14 يوماً متتالياً لدى Google)',
   'closedTestingGuide.ch5.li3':
     'ضمان الوصول للإنتاج مع استرداد كامل إذا رفض Google بعد فترتنا',
   'closedTestingGuide.ch5.li4': 'لوحة تقدم وتقارير مختبرين ودعم بالبريد',

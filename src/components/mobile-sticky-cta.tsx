@@ -6,7 +6,7 @@ import { ArrowRight, Shield, Zap } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/context';
 import { useRouter } from '@/lib/router';
 import { useAnalytics } from '@/lib/analytics';
-import { goToGetStartedPricing, PRICING_SECTION_ID } from '@/lib/pricing-navigation';
+import { PRICING_SECTION_ID } from '@/lib/pricing-navigation';
 import { usePricingPlans } from '@/lib/hooks/use-pricing-plans';
 import { formatPlanPrice } from '@/lib/pricing';
 import { useAppLoggedIn } from '@/lib/hooks/use-app-logged-in';
@@ -28,7 +28,6 @@ export function MobileStickyCta() {
   const [mounted, setMounted] = useState(false);
 
   const hiddenRoutes = ['/admin', '/submit-app', '/login', '/signup', '/forgot-password'];
-  const isPricingPage = currentPath === '/pricing' || currentPath.startsWith('/pricing/');
   const shouldHideRoute = hiddenRoutes.some((route) => currentPath.startsWith(route));
 
   useEffect(() => {
@@ -82,11 +81,7 @@ export function MobileStickyCta() {
 
   const handleGetStarted = () => {
     trackCta('mobile_sticky_cta');
-    if (isPricingPage) {
-      navigate(APP_URL);
-      return;
-    }
-    goToGetStartedPricing(currentPath, navigate);
+    navigate(APP_URL);
   };
 
   return (

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { BRAND_OG_IMAGE_PATH } from '@/lib/brand';
+import { applyBlogSnippetOverride } from '@/lib/blog-snippet-overrides';
 import {
   defaultSeo,
   pageSeoConfig,
@@ -179,13 +180,15 @@ export function buildBlogArticleMetadata(
   keywords: string
 ): Metadata {
   const path = `/blog/${article.slug}`;
-  const title =
-    article.seoTitle?.trim() || `${article.title?.trim() || 'Article'} - Fast Testers Blog`;
-  const description = (
+  const snippet = applyBlogSnippetOverride(
+    article.slug,
+    article.seoTitle?.trim() || `${article.title?.trim() || 'Article'} - Fast Testers Blog`,
     article.seoDescription?.trim() ||
-    article.description?.trim() ||
-    'Expert guide on Google Play testing and Android app publishing from Fast Testers.'
-  ).slice(0, 160);
+      article.description?.trim() ||
+      'Expert guide on Google Play testing and Android app publishing from Fast Testers.'
+  );
+  const title = snippet.title;
+  const description = snippet.description;
 
   return buildMetadataForPath(path, {
     title,

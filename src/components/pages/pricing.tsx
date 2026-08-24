@@ -211,7 +211,7 @@ export default function Pricing() {
                   />
                 ))}
               </div>
-              <span className="text-foreground font-semibold text-lg">4.9</span>
+              <span className="text-foreground font-semibold text-lg">4.6</span>
               <span className="text-muted-foreground text-sm">{t('pricing.onTrustpilot')}</span>
             </div>
           </AnimatedSection>

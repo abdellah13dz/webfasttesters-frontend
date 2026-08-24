@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from '@/lib/router'
+import { APP_URL } from '@/lib/app-urls'
 import { useLanguage } from '@/lib/i18n/context'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -123,7 +124,7 @@ export default function AndroidAppTestersPage() {
             <Button
               size="lg"
               className="bg-blue-500 hover:bg-blue-600 text-white font-semibold"
-              onClick={() => navigate('/production-access')}
+              onClick={() => navigate(APP_URL)}
             >
               {t('androidAppTesters.ctaGetTesters')}
               <ArrowRight className="ml-2 size-4" />
@@ -278,7 +279,7 @@ export default function AndroidAppTestersPage() {
               <Button
                 size="lg"
                 className="bg-blue-500 hover:bg-blue-600 text-white font-semibold"
-                onClick={() => navigate('/production-access')}
+                onClick={() => navigate(APP_URL)}
               >
                 {t('androidAppTesters.ctaGetTesters')}
                 <ArrowRight className="ml-2 size-4" />

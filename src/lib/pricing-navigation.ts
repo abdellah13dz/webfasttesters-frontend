@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { APP_URL } from '@/lib/app-urls';
 
 /** Anchors the price card + Get Started Now CTA (centered in the viewport on scroll). */
 export const PRICING_SECTION_ID = 'pricing';
@@ -24,21 +25,12 @@ export function scrollToPricingSection() {
   });
 }
 
-/** Homepage CTAs → home pricing card; all other site pages → pricing page card. */
+/** BUY CTAs go to checkout on the app. Pricing page remains for people who want to confirm $15. */
 export function goToGetStartedPricing(
-  currentPath: string,
+  _currentPath: string,
   navigate: (path: string) => void,
 ) {
-  const target: PricingScrollTarget = currentPath === '/' ? 'home' : 'pricing';
-  const targetPath = target === 'home' ? '/' : '/pricing';
-
-  if (currentPath === targetPath) {
-    scrollToPricingSection();
-    return;
-  }
-
-  sessionStorage.setItem(SCROLL_KEY, target);
-  navigate(targetPath);
+  navigate(APP_URL);
 }
 
 export function usePricingSectionScroll(target: PricingScrollTarget) {

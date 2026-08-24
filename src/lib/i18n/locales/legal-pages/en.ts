@@ -155,7 +155,7 @@ export const legalPagesEn: Record<string, string> = {
   'termsPolicy.subtitle': 'The service agreement governing your use of {brand} app testing services — pricing, delivery, cancellations, refunds, and your responsibilities as a customer.',
   'termsPolicy.tableOfContents': 'Table of Contents',
   'termsPolicy.serviceHighlight.title': 'What You Are Purchasing',
-  'termsPolicy.serviceHighlight.description': 'Each order is a one-time $15 USD payment for professional Android app testing: 14 testers over 14–16 days to help you meet Google Play closed-testing requirements. No subscriptions. No hidden fees.',
+  'termsPolicy.serviceHighlight.description': 'Each order is a one-time $15 USD payment for professional Android app testing: 15 testers over 16 days to help you meet Google Play closed-testing requirements. No subscriptions. No hidden fees.',
   'termsPolicy.toc.legalRestrictions': 'Legal Restrictions',
   'termsPolicy.toc.about': 'About Fast Testers',
   'termsPolicy.toc.agreement': 'Legally Binding Agreement',
@@ -180,7 +180,7 @@ export const legalPagesEn: Record<string, string> = {
 
   'termsPolicy.sections.about.title': 'About Fast Testers',
   'termsPolicy.sections.about.p1': '{brand} is a professional app testing service operated by {entity} that helps Android developers meet Google Play Store\'s closed testing and production access requirements.',
-  'termsPolicy.sections.about.p2': 'We assign 14 professional testers to evaluate your app over a 14–16 day testing period. Our standard service fee is $15 USD per app, charged as a one-time payment with no recurring subscriptions.',
+  'termsPolicy.sections.about.p2': 'We assign 15 professional testers to evaluate your app over a 16-day testing period. Our standard service fee is $15 USD per app, charged as a one-time payment with no recurring subscriptions.',
   'termsPolicy.sections.about.p3': 'For questions about our services, contact us at contact@fasttesters.com, call +213 549 17 93 03, or write to us at {address}. We aim to respond to all inquiries within 1–2 business days.',
 
   'termsPolicy.sections.agreement.title': 'Legally Binding Agreement',
@@ -192,12 +192,12 @@ export const legalPagesEn: Record<string, string> = {
   'termsPolicy.sections.definitions.p1': '"Services" refers to the app testing and quality assurance services provided by {entity} through the {brand} platform, including but not limited to professional app testing, feedback collection, and production access support.',
   'termsPolicy.sections.definitions.p2': '"User" refers to any individual or entity that accesses or uses the Services, including developers who submit apps for testing and testers who participate in testing programs.',
   'termsPolicy.sections.definitions.p3': '"App" refers to any mobile application submitted to Fast Testers for testing purposes.',
-  'termsPolicy.sections.definitions.p4': '"Testing Period" refers to the 14-16 day duration during which assigned testers evaluate and test a submitted app.',
+  'termsPolicy.sections.definitions.p4': '"Testing Period" refers to the 16-day duration during which assigned testers evaluate and test a submitted app.',
   'termsPolicy.sections.definitions.p5': '"Production Access Guarantee" refers to our commitment to provide a full refund if Google Play rejects your app after completing our testing service.',
 
   'termsPolicy.sections.services.title': 'Services Description',
   'termsPolicy.sections.services.p1': "Fast Testers provides professional app testing services designed to help developers meet Google Play Store's testing requirements for production access.",
-  'termsPolicy.sections.services.p2': 'Our core service includes assigning 14 professional testers to evaluate your app over a 14-16 day testing period. Testers will install, use, and provide feedback on your application.',
+  'termsPolicy.sections.services.p2': 'Our core service includes assigning 15 professional testers to evaluate your app over a 16-day testing period. Testers will install, use, and provide feedback on your application.',
   'termsPolicy.sections.services.p3': 'Testers are assigned instantly after you submit your app for Google Play Closed Testing, though onboarding may vary slightly based on demand and app complexity.',
   'termsPolicy.sections.services.p4': 'We reserve the right to refuse service to any app that contains illegal content, malware, or violates Google Play Store policies.',
 
@@ -216,7 +216,7 @@ export const legalPagesEn: Record<string, string> = {
   'termsPolicy.sections.orderFulfillment.title': 'Order Fulfillment & Delivery',
   'termsPolicy.sections.orderFulfillment.p1': 'Upon successful payment, you will receive a confirmation email with your order details. Google Play Closed Testing begins once testers are assigned to your app — instantly after submission.',
   'termsPolicy.sections.orderFulfillment.p2': 'You are responsible for providing a valid Google Play closed testing link and ensuring your app is accessible to testers throughout the testing period.',
-  'termsPolicy.sections.orderFulfillment.p3': 'Our service is considered delivered once the full 14–16 day testing period has been completed and testing results have been made available in your account dashboard.',
+  'termsPolicy.sections.orderFulfillment.p3': 'Our service is considered delivered once the full 16-day testing period has been completed and testing results have been made available in your account dashboard.',
   'termsPolicy.sections.orderFulfillment.p4': 'We are not responsible for delays caused by incorrect testing links, app unavailability, Google Play policy changes, or factors outside our reasonable control.',
 
   'termsPolicy.sections.userAccounts.title': 'User Accounts',
@@ -319,7 +319,7 @@ export const legalPagesEn: Record<string, string> = {
 
   'refundPolicyPage.sections.cancellation.title': 'Cancellation Before Delivery',
   'refundPolicyPage.sections.cancellation.p1': 'You may cancel your order and receive a full refund if you request cancellation before we assign testers to your app. See our Cancellation Policy for full details.',
-  'refundPolicyPage.sections.cancellation.p2': 'Once testers have been assigned and the 14–16 day testing period has begun, the digital service is considered delivered and cannot be cancelled. Refunds after delivery are available only under the Production Access Guarantee described below.',
+  'refundPolicyPage.sections.cancellation.p2': 'Once testers have been assigned and the 16-day testing period has begun, the digital service is considered delivered and cannot be cancelled. Refunds after delivery are available only under the Production Access Guarantee described below.',
 
   'refundPolicyPage.sections.returnPolicy.title': 'Return Policy (Digital Services)',
   'refundPolicyPage.sections.returnPolicy.p1': '{brand} sells digital app testing services, not physical products. Because our service is delivered electronically and begins immediately after tester assignment, traditional product returns do not apply.',
@@ -336,7 +336,7 @@ export const legalPagesEn: Record<string, string> = {
   'refundPolicyPage.eligibility.intro': 'To be eligible for a refund under our Production Access Guarantee, you must meet the following criteria:',
   'refundPolicyPage.eligibility.item1': 'You must have used our paid testing service for the app in question',
   'refundPolicyPage.eligibility.item2': "Your app must meet Google Play's basic requirements and content policies",
-  'refundPolicyPage.eligibility.item3': 'The full testing period (14-16 days) must have been completed',
+  'refundPolicyPage.eligibility.item3': 'The full testing period (16 days) must have been completed',
   'refundPolicyPage.eligibility.item4': 'You must have addressed all critical feedback provided by our testers',
   'refundPolicyPage.eligibility.item5': 'The refund request must be submitted within 30 days of testing period completion',
 
@@ -400,7 +400,7 @@ export const legalPagesEn: Record<string, string> = {
 
   'cancellationPolicyPage.sections.cannotCancel.title': 'Orders That Cannot Be Cancelled',
   'cancellationPolicyPage.sections.cannotCancel.p1': 'Once the testing period has started (testers have been assigned and your app testing link is active), the order cannot be cancelled because our testers have committed time and resources to your project.',
-  'cancellationPolicyPage.sections.cannotCancel.p2': 'Orders cannot be cancelled after the 14–16 day testing period has been completed, regardless of the outcome of your Google Play submission.',
+  'cancellationPolicyPage.sections.cannotCancel.p2': 'Orders cannot be cancelled after the 16-day testing period has been completed, regardless of the outcome of your Google Play submission.',
   'cancellationPolicyPage.sections.cannotCancel.p3': 'Partial cancellations or refunds for partially completed testing periods are not available. Our service is delivered as a complete package.',
   'cancellationPolicyPage.sections.cannotCancel.p4': 'If you believe your order was placed in error after testing has begun, please contact us. While we cannot guarantee a refund, we will review your situation on a case-by-case basis.',
 

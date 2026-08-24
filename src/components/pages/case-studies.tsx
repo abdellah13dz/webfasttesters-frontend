@@ -54,12 +54,12 @@ function StarRating({ rating, size = 'sm' }: { rating: number; size?: 'sm' | 'md
 // ─── Data ───────────────────────────────────────────────────────────────────
 
 const dashboardMetrics = [
-  { labelKey: 'caseStudies.metricSuccessRate', value: '99.9%', icon: Shield, color: 'text-emerald-500', bg: 'bg-emerald-500/10' },
+  { labelKey: 'caseStudies.metricSuccessRate', value: '$15', icon: Shield, color: 'text-emerald-500', bg: 'bg-emerald-500/10' },
   { labelKey: 'caseStudies.metricAvgTime', value: '16 days', icon: Clock, color: 'text-blue-500', bg: 'bg-blue-500/10' },
-  { labelKey: 'caseStudies.metricAppsPublished', value: '1,500+', icon: TrendingUp, color: 'text-violet-500', bg: 'bg-violet-500/10' },
-  { labelKey: 'caseStudies.metricAvgRating', value: '4.8★', icon: Star, color: 'text-yellow-500', bg: 'bg-yellow-500/10' },
-  { labelKey: 'caseStudies.metricFirstAttempt', value: '94%', icon: Target, color: 'text-blue-500', bg: 'bg-blue-500/10' },
-  { labelKey: 'caseStudies.metricCountries', value: '120+', icon: Globe, color: 'text-cyan-500', bg: 'bg-cyan-500/10' },
+  { labelKey: 'caseStudies.metricAppsPublished', value: '15 testers', icon: TrendingUp, color: 'text-violet-500', bg: 'bg-violet-500/10' },
+  { labelKey: 'caseStudies.metricAvgRating', value: '4.6★', icon: Star, color: 'text-yellow-500', bg: 'bg-yellow-500/10' },
+  { labelKey: 'caseStudies.metricFirstAttempt', value: 'Google decides', icon: Target, color: 'text-blue-500', bg: 'bg-blue-500/10' },
+  { labelKey: 'caseStudies.metricCountries', value: 'None', icon: Globe, color: 'text-cyan-500', bg: 'bg-cyan-500/10' },
 ];
 
 const appCategories = [

@@ -54,16 +54,16 @@ export interface SiteSettings {
 
 export const DEFAULT_ANNOUNCEMENT_BANNER: AnnouncementBannerSetting = {
   enabled: true,
-  message: '🚀 Limited time: Get 14 professional testers for just $15/app — 99.9% success rate!',
+  message: '🚀 Google Play closed testing — 15 testers for 16 days for $15/app. Covers Google’s 12 testers / 14 days requirement.',
   ctaText: 'Get Started →',
   ctaLink: 'https://app.fasttesters.com/',
 };
 
 export const DEFAULT_HERO_STATS: HeroStatsSetting = {
-  heroCount: 2900,
-  successRate: 99,
-  appsCount: 1500,
-  countriesCount: 120,
+  heroCount: 15,
+  successRate: 15,
+  appsCount: 16,
+  countriesCount: 15,
 };
 
 let cachedSettings: SiteSettings | null = null;

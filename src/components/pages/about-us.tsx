@@ -56,9 +56,9 @@ function AnimatedSection({ children, className = '', delay = 0 }: { children: Re
 }
 
 const stats = [
-  { labelKey: 'aboutUs.appsPublished', value: '12,000+', icon: Smartphone },
+  { labelKey: 'aboutUs.appsPublished', value: '15 testers', icon: Smartphone },
   { labelKey: 'aboutUs.starRating', value: '4.6', icon: Star },
-  { labelKey: 'aboutUs.downloads', value: '20,000+', icon: Download },
+  { labelKey: 'aboutUs.downloads', value: '16 days', icon: Download },
 ];
 
 const values = [

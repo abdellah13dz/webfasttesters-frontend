@@ -36,7 +36,7 @@ export function getOrganizationSchema() {
     },
     image: `${SITE_URL}${BRAND_OG_IMAGE_PATH}`,
     description:
-      'Fast Testers is a professional Google Play Closed Testing service operated by Hassil LLC. Android developers use Fast Testers to assign 15 real testers (meeting Google’s minimum of 12) for 14 consecutive days of closed testing before requesting production access — one-time $15 per app.',
+      'Fast Testers is a professional Google Play Closed Testing service operated by Hassil LLC. Android developers use Fast Testers to assign 15 real testers (meeting Google’s minimum of 12) for 16 days of closed testing — covering Google’s 14 consecutive days — before requesting production access. One-time $15 per app. Google decides production approval.',
     slogan: 'Google Play Closed Testing — 15 testers for $15',
     foundingDate: '2023',
     brand: {
@@ -112,7 +112,7 @@ export function getProductSchema() {
     '@id': `${SITE_URL}/#product`,
     name: 'Fast Testers - Google Play Closed Testing Service',
     description:
-      'Get Google Play production access with 12 testers for 14 days. Professional Google Play Closed Testing service: 15 quality testers for $15 with production access.',
+      'Google requires 12 testers for 14 consecutive days. Fast Testers provides 15 quality testers for 16 days for $15 one-time so developers can complete closed testing and apply for production access.',
     brand: { '@type': 'Brand', name: 'Fast Testers' },
     image: `${SITE_URL}${BRAND_OG_IMAGE_PATH}`,
     sku: 'FT-CLOSED-TESTING-15',
@@ -126,16 +126,8 @@ export function getProductSchema() {
       availability: 'https://schema.org/InStock',
       itemCondition: 'https://schema.org/NewCondition',
       description:
-        'One-time $15 per app — 14-day testing with professional testers and production access support.',
+        'One-time $15 per app — 15 testers for 16 days of closed testing covering Google’s 14 consecutive days.',
       seller: { '@id': `${SITE_URL}/#organization` },
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      bestRating: '5',
-      worstRating: '1',
-      ratingCount: '1500',
-      reviewCount: '850',
     },
   };
 }
@@ -157,7 +149,7 @@ export function getServiceSchema() {
       audienceType: 'Android developers seeking Google Play production access',
     },
     description:
-      'Professional Google Play Closed Testing service by Fast Testers. Assigns 15 real Android testers (covers Google’s minimum of 12) for 14 consecutive days of closed testing so developers can request production access — $15 one-time per app.',
+      'Professional Google Play Closed Testing service by Fast Testers. Assigns 15 real Android testers (covers Google’s minimum of 12) for 16 days of closed testing so developers can request production access — $15 one-time per app. Google decides approval.',
     termsOfService: `${SITE_URL}/terms-and-conditions`,
     offers: {
       '@type': 'Offer',
@@ -208,7 +200,7 @@ export function getHowToSchema() {
         position: 2,
         name: 'Submit Your App',
         text: "Share your app's testing link from Google Play Console. We handle the rest — no technical setup needed.",
-        url: `${SITE_URL}/submit-app`,
+        url: 'https://app.fasttesters.com/',
       },
       {
         '@type': 'HowToStep',
@@ -220,7 +212,7 @@ export function getHowToSchema() {
         '@type': 'HowToStep',
         position: 4,
         name: 'Production Access',
-        text: 'After the required closed testing period, apply for production access. Fast Testers has a 99.9% success rate with a production access guarantee.',
+        text: 'After the 16-day Fast Testers cycle (covering Google’s 14 consecutive days), apply for production access in Play Console. Google decides approval; Fast Testers refund terms are on the refund policy page.',
       },
     ],
   };

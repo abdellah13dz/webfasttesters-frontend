@@ -318,10 +318,10 @@ function InstructionsPanel() {
           <div className="flex gap-2 mb-2">
             <Shield className="h-5 w-5 text-emerald-500 shrink-0" />
             <div>
-              <p className="text-sm font-semibold text-foreground">Production Access Guarantee</p>
+              <p className="text-sm font-semibold text-foreground">Closed testing coverage</p>
               <p className="text-[10px] sm:text-xs text-muted-foreground mt-1 leading-relaxed">
-                Unlike other testing services, we guarantee your app will receive production access
-                from Google Play after completing our 14-day testing program.
+                Fast Testers assigns 15 testers for 16 days, covering Google’s 12 testers / 14 consecutive
+                days. Google decides production access; refund terms are on the refund policy page.
               </p>
             </div>
           </div>

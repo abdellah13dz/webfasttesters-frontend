@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useMemo, useState } from 'react';
+import Link from 'next/link';
 import { CheckCircle2, Circle, User, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { COMMUNITY_URL } from '@/lib/app-urls';
@@ -59,6 +60,31 @@ function RuleAtAGlance({ t }: { t: (key: string) => string }) {
           <p className="text-sm text-muted-foreground">{t('closedTestingGuide.daysSub')}</p>
         </div>
       </div>
+      <p className="mt-4 text-sm text-muted-foreground">
+        <Link href="/google-play-12-testers" className="text-blue-600 hover:underline dark:text-blue-400">
+          {t('header.twelveTesters')}
+        </Link>
+        {' · '}
+        <Link href="/google-play-14-day-testing" className="text-blue-600 hover:underline dark:text-blue-400">
+          {t('header.fourteenDayTesting')}
+        </Link>
+        {' · '}
+        <Link href="/google-play-testing-service" className="text-blue-600 hover:underline dark:text-blue-400">
+          {t('header.testingService')}
+        </Link>
+        {' · '}
+        <Link href="/android-app-testers" className="text-blue-600 hover:underline dark:text-blue-400">
+          {t('header.androidTesters')}
+        </Link>
+        {' · '}
+        <Link href="/google-play-production-access-12-testers" className="text-blue-600 hover:underline dark:text-blue-400">
+          {t('header.productionAccess')}
+        </Link>
+        {' · '}
+        <Link href="/resources/google-play-checklist" className="text-blue-600 hover:underline dark:text-blue-400">
+          {t('header.checklist')}
+        </Link>
+      </p>
     </div>
   );
 }

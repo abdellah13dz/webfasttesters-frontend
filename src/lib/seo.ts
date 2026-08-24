@@ -23,7 +23,7 @@ export const SEO_DEFAULT_TITLE =
   'Fast Testers | Google Play Closed Testing Service — 12 Testers for 14 Days';
 
 export const SEO_DEFAULT_DESCRIPTION =
-  'Get Google Play production access with 12 testers for 14 days! Professional Google Play Closed Testing service: 15 quality testers for $15 with production access. Trusted by 1,500+ developers.';
+  'Google requires 12 testers for 14 consecutive days. Fast Testers provides 15 real testers for 16 days for $15 one-time so you can complete closed testing and apply for production access. Google decides approval.';
 
 export const defaultSeo: PageSeo = {
   title: SEO_DEFAULT_TITLE,
@@ -50,7 +50,7 @@ export const pageSeoConfig: Record<string, PageSeo> = {
   '/how-it-works': {
     title: 'How Fast Testers Works | Google Play Closed Testing in 4 Steps',
     description:
-      'Pay $15, submit your closed testing link, get 15 testers assigned instantly, and complete Google’s 14-day requirement. See the exact process.',
+      'Pay $15, submit your closed testing link, get 15 testers assigned instantly, and complete a 16-day cycle that covers Google’s 14-day requirement. See the exact process.',
     keywords: mergeKeywords('how app testing works', 'google play testing process', '12 testers process'),
     ogImage: '/images/illustrations/how-it-works.png',
     type: 'website',
@@ -59,7 +59,7 @@ export const pageSeoConfig: Record<string, PageSeo> = {
   '/pricing': {
     title: 'Pricing — $15 Google Play Closed Testing | Fast Testers',
     description:
-      'One-time $15 per app: 15 quality testers, ~1-hour assignment, 14-day closed testing coverage, and a production access guarantee. No subscription.',
+      'One-time $15 per app: 15 quality testers, ~1-hour assignment, 16-day closed testing (covers Google’s 14 consecutive days). Google decides production access. No subscription.',
     keywords: mergeKeywords('app testing pricing', 'google play testing cost', '$15 app testing'),
     ogImage: BRAND_OG_IMAGE_PATH,
     type: 'website',
@@ -84,9 +84,9 @@ export const pageSeoConfig: Record<string, PageSeo> = {
   },
 
   '/reviews': {
-    title: 'Reviews - Fast Testers | Trusted by 1,500+ Android Developers',
+    title: 'Reviews - Fast Testers | Google Play Closed Testing',
     description:
-      'Read verified reviews from developers who used Fast Testers to meet Google Play 12-tester requirement. 4.9/5 average rating across 1,500+ users.',
+      'Read reviews from developers who used Fast Testers to complete Google Play closed testing: 15 testers for 16 days for $15, covering the 12-tester / 14-day requirement.',
     keywords: DEFAULT_KEYWORDS_META,
     ogImage: BRAND_OG_IMAGE_PATH,
     type: 'website',
@@ -104,7 +104,7 @@ export const pageSeoConfig: Record<string, PageSeo> = {
   '/contact-us': {
     title: 'Contact Us - Fast Testers | Get in Touch for App Testing Help',
     description:
-      'Contact the Fast Testers team for help with Google Play testing requirements, account questions, or partnership inquiries. We respond within 2 hours.',
+      'Contact the Fast Testers team for help with Google Play testing requirements, account questions, or partnership inquiries. We typically respond within 1–2 business days.',
     keywords: DEFAULT_KEYWORDS_META,
     ogImage: '/images/illustrations/contact-us.png',
     type: 'website',
@@ -300,7 +300,7 @@ export const pageSeoConfig: Record<string, PageSeo> = {
     keywords: mergeKeywords(
       'google play production access guide',
       '12 testers production',
-      '14 testers production access'
+      '15 testers production access'
     ),
     ogImage: '/images/illustrations/success-approved.png',
     type: 'article',
@@ -376,19 +376,10 @@ export const pageSeoConfig: Record<string, PageSeo> = {
   '/google-play-testing-service': {
     title: 'Google Play Testing Service — Professional Closed Testing | Fast Testers',
     description:
-      'Professional Google Play testing service: 15 real Android testers, production access guarantee. One-time $15.',
+      'Professional Google Play testing service: 15 real Android testers for 16 days for $15. Google decides production access.',
     keywords: mergeKeywords('google play testing service', 'professional app testers'),
     ogImage: '/images/illustrations/app-testing.png',
     type: 'website',
-  },
-
-  '/google-play-requirement': {
-    title: 'Google Play Requirement for New Developers — 2026 Guide | Fast Testers',
-    description:
-      'All Google Play requirements for new personal developer accounts: 12 testers, 14 days, closed testing, production access.',
-    keywords: mergeKeywords('google play requirement', 'play store publishing requirements'),
-    ogImage: '/images/illustrations/success-approved.png',
-    type: 'article',
   },
 
   '/android-closed-testing': {
@@ -398,6 +389,15 @@ export const pageSeoConfig: Record<string, PageSeo> = {
     keywords: mergeKeywords('android closed testing', 'google play closed test'),
     ogImage: '/images/blog/closed-testing.png',
     type: 'article',
+  },
+
+  '/free-testers': {
+    title: 'Free Android Testers Community | Fast Testers',
+    description:
+      'Join the free Fast Testers peer community. Free is slower and has no 12 testers / 14 days guarantee. Paid closed testing is 15 testers for 16 days for $15.',
+    keywords: mergeKeywords('free android testers', 'free google play testers', 'tester community'),
+    ogImage: '/images/illustrations/app-testing.png',
+    type: 'website',
   },
 
   '/resources/google-play-checklist': {
@@ -410,30 +410,29 @@ export const pageSeoConfig: Record<string, PageSeo> = {
   },
 
   '/sample-app': {
-    title:
-      'Sample App - Fast Testers | Try Our Demo App Testing Experience',
+    title: 'Closed Testing Dashboard Demo | Fast Testers',
     description:
-      'Try the Fast Testers sample app to see how our testing process works. Experience real tester feedback, bug reports, and Google Play compliance testing.',
+      'Example dashboard progress for Fast Testers closed testing: 15 testers for 16 days at $15. Not a second product or Play listing. Google decides production access.',
     keywords: DEFAULT_KEYWORDS_META,
     ogImage: '/images/illustrations/app-testing.png',
     type: 'website',
+    noindex: true,
   },
 
   '/submit-app': {
-    title:
-      'Submit Your App - Fast Testers | Start Google Play Closed Testing Today',
+    title: 'Custom / WhatsApp Testing Offers | Fast Testers',
     description:
-      'Submit your app for Google Play Closed Testing. Testers are assigned instantly after submission — 15 quality testers for $15 with production access guarantee.',
+      'WhatsApp and custom/volume Google Play closed-testing quotes. Standard $15 testing (15 testers / 16 days) is in the dashboard at app.fasttesters.com.',
     keywords: DEFAULT_KEYWORDS_META,
     ogImage: '/images/illustrations/app-testing.png',
     type: 'website',
+    noindex: true,
   },
 
   '/partners': {
-    title:
-      'Partners - Fast Testers | Partner With Us for App Testing Solutions',
+    title: 'Agency & Volume Partnerships | Fast Testers',
     description:
-      'Partner with Fast Testers to offer app testing services to your clients. Integration options, affiliate programs, and co-branded solutions available.',
+      'Volume Google Play closed testing for agencies and studios. 15 testers for 16 days per app. Fast Testers is not a Google partner — we supply real testers for Play Console closed testing.',
     keywords: DEFAULT_KEYWORDS_META,
     ogImage: BRAND_OG_IMAGE_PATH,
     type: 'website',
@@ -459,11 +458,14 @@ export const pageSeoConfig: Record<string, PageSeo> = {
   },
 
   '/compare': {
-    title:
-      'Compare - Fast Testers vs Competitors | App Testing Service Comparison',
+    title: 'Fast Testers vs Tester Groups, Fiverr & DIY | Closed Testing',
     description:
-      'Compare Fast Testers with other app testing services. See pricing, speed, tester quality, and features side by side. Save up to 80% with Fast Testers.',
-    keywords: DEFAULT_KEYWORDS_META,
+      'Compare Fast Testers ($15, 15 testers, 16 days) with Facebook groups, Telegram, Reddit, Fiverr, and DIY recruiting for Google Play closed testing. Google decides production access.',
+    keywords: mergeKeywords(
+      'fast testers vs facebook groups',
+      'google play testers vs fiverr',
+      'diy closed testing vs paid'
+    ),
     ogImage: BRAND_OG_IMAGE_PATH,
     type: 'website',
   },

@@ -18,14 +18,13 @@ function getOrganizationSchema() {
     url: SITE_URL,
     logo: `${SITE_URL}${BRAND_LOGO_PATH}`,
     description:
-      'Fast Testers is a professional Google Play Closed Testing service. Get production access with 12 testers for 14 days — 15 quality testers for $15, assigned instantly.',
+      'Fast Testers is a Google Play Closed Testing service. Google requires 12 testers for 14 consecutive days; Fast Testers provides 15 testers for 16 days for $15. Google decides production access.',
     sameAs: [...SOCIAL_PROFILES],
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer support',
       email: CONTACT_EMAIL,
       availableLanguage: ['English', 'Spanish', 'Turkish', 'Arabic'],
-      responseTime: 'PT2H',
     },
   };
 }
@@ -37,7 +36,7 @@ function getProductSchema() {
     '@type': 'Product',
     name: 'Fast Testers - Google Play Closed Testing Service',
     description:
-      'Get Google Play production access with 12 testers for 14 days. Professional Google Play Closed Testing service: 15 quality testers for $15 with production access.',
+      'Google Play Closed Testing service: 15 testers for 16 days for $15, covering Google’s 12 testers / 14 consecutive days. Google decides production access.',
     brand: {
       '@type': 'Brand',
       name: 'Fast Testers',
@@ -55,15 +54,7 @@ function getProductSchema() {
         .split('T')[0],
       availability: 'https://schema.org/InStock',
       description:
-        'One-time payment of $15 per app. Google Play Closed Testing service with 15 quality testers and a 14-day testing period.',
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      bestRating: '5',
-      worstRating: '1',
-      ratingCount: '1500',
-      reviewCount: '850',
+        'One-time payment of $15 per app. 15 testers for 16 days, covering Google’s 14 consecutive days. Google decides production access.',
     },
   };
 }
@@ -79,17 +70,17 @@ function getFaqSchema() {
     {
       question: 'How does Fast Testers work?',
       answer:
-        'The process is simple: Pay $15, submit your Google Play closed testing link, and 15 quality testers are assigned instantly. They test your app for 14 days, then you can apply for production access.',
+        'The process is simple: Pay $15, submit your Google Play closed testing link, and 15 quality testers are assigned instantly. They test your app for 16 days (covering Google’s 14 consecutive days), then you can apply for production access. Google decides approval.',
     },
     {
       question: "What's the difference between free and paid testing?",
       answer:
-        'Free testing means finding testers on your own through forums and social media, which takes longer with no guarantee. Our Google Play Closed Testing service ($15) provides 15 quality testers assigned instantly with a production access guarantee.',
+        'Free testing means finding testers on your own through forums and social media, which takes longer with no guarantee. Our Google Play Closed Testing service ($15) provides 15 quality testers assigned instantly. Google decides production access; refund terms are on the refund policy page.',
     },
     {
       question: 'What if my app gets rejected?',
       answer:
-        'We offer a production access guarantee. If Google rejects your app after our testing period, we will refund your payment in full. We stand behind our service with a 99.9% success rate.',
+        'If you do not reach production after our 16-day managed testing period as defined in our refund policy, you can request a refund. Google alone decides approval. We do not quote an unverified success rate.',
     },
     {
       question: 'How quickly do testers start testing?',

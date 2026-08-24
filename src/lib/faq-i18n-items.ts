@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 
 export const HOME_FAQ_COUNT = 16;
+export const HOME_FAQ_PREVIEW_COUNT = 6;
 
 export type FaqI18nItemDef = {
   id: string;

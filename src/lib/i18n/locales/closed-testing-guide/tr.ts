@@ -4,8 +4,8 @@ export const closedTestingGuideTr: Record<string, string> = {
   'closedTestingGuide.subtitle':
     'Yayınlamadan önce bize sorduklarınızın tamamı, kuraldan lansman sonrasına kadar bölüm bölüm yanıtlandı.',
   'closedTestingGuide.pill1': 'Gerçek insanlar, gerçek cihazlar',
-  'closedTestingGuide.pill2': '1.500+ uygulama yayında',
-  'closedTestingGuide.pill3': 'Onay veya tam iade',
+  'closedTestingGuide.pill2': '16 gün boyunca 15 testçi',
+  'closedTestingGuide.pill3': 'Google karar verir; iade politikası geçerlidir',
   'closedTestingGuide.indexLabel': 'İNDEKS · 12 BÖLÜM',
   'closedTestingGuide.chapterPrefix': 'BÖLÜM',
   'closedTestingGuide.navAriaLabel': 'Kapalı test bölümleri',
@@ -50,7 +50,7 @@ export const closedTestingGuideTr: Record<string, string> = {
   'closedTestingGuide.ch3.p1':
     'Fast Testers, Hassil LLC tarafından işletilen profesyonel bir Google Play kapalı test hizmetidir. Bağımsız geliştiricilere ve küçük ekiplere, forumlarda ve sosyal medyada haftalarca güvenilir testçi aramadan Google\'ın kapalı test gereksinimlerini karşılamalarında yardımcı oluruz.',
   'closedTestingGuide.ch3.p2':
-    'Üretim erişimine giden yolda 1.500\'den fazla uygulamayı destekledik. Odak noktamız kasıtlı olarak dar: Android kapalı test, gerçek cihazlar, net zaman çizelgeleri ve iade politikasıyla desteklenen üretim erişimi garantisi.',
+    'Android geliştiricilerinin Google Play kapalı testini tamamlayıp üretim erişimi için başvurmasına yardımcı oluyoruz. Odak noktamız kasıtlı olarak dar: Android kapalı test, gerçek cihazlar, 16 günlük döngü ve iade politikasındaki koşullar.',
   'closedTestingGuide.ch3.p3':
     'Play Console\'dan kapalı test bağlantınızı gönderirsiniz; testçileri koordine eder, test süresini izler ve panelinizden sizi bilgilendiririz—böylece hataları düzeltmeye ve mağaza listesini hazırlamaya odaklanabilirsiniz.',
 
@@ -64,7 +64,7 @@ export const closedTestingGuideTr: Record<string, string> = {
     '%100 ücretsiz, geliştiriciden geliştiriciye takas. Karşılıklılık için zamanınız ve programı kendiniz koordine edebiliyorsanız ideal. Garantili sayı veya zaman çizelgesi yok.',
   'closedTestingGuide.ch4.managedTitle': 'Yönetilen hizmet',
   'closedTestingGuide.ch4.managedDesc':
-    'Tek seferlik 15 $ ödeme, yaklaşık bir saatte ~14 testçi ataması, 14–16 günlük test süresi, panel takibi ve üretim erişimi garantimiz.',
+    'Tek seferlik 15 $ ödeme, yaklaşık bir saatte 15 testçi ataması, 16 günlük test süresi, panel takibi ve üretim erişimi garantimiz.',
   'closedTestingGuide.ch4.p2':
     'Son tarihli üretim erişimi gereken geliştiricilerin çoğu yönetilen testi seçer. Ücretsiz seçenek ve karşılıklı takas için bekleyebiliyorsanız topluluk hâlâ kullanılabilir.',
 
@@ -74,8 +74,8 @@ export const closedTestingGuideTr: Record<string, string> = {
   'closedTestingGuide.ch5.p1':
     'Fast Testers fiyatlandırmayı sade tutar: uygulama testi başına tek seferlik 15 USD. Abonelik yok, gizli kademe yok, testçi başına ek satış yok.',
   'closedTestingGuide.ch5.li1':
-    '~14 profesyonel Android testçisi (Google\'ın minimum 12\'sinin üzerinde tampon)',
-  'closedTestingGuide.ch5.li2': '14–16 ardışık gün kapalı test kapsamı',
+    '15 profesyonel Android testçisi (Google\'ın minimum 12\'sinin üzerinde tampon)',
+  'closedTestingGuide.ch5.li2': '16 gün kapalı test kapsamı (Google’ın 14 ardışık gününü kapsar)',
   'closedTestingGuide.ch5.li3':
     'Süremizden sonra Google reddederse tam iade ile üretim erişimi garantisi',
   'closedTestingGuide.ch5.li4': 'İlerleme paneli, testçi raporları ve e-posta desteği',

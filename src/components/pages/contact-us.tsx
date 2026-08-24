@@ -273,7 +273,7 @@ export default function ContactUsPage() {
                   <span className="h-2 w-2 rounded-full bg-blue-400 animate-bounce-dot-3" />
                 </div>
                 <span className="text-xs sm:text-sm text-blue-400 font-medium text-center sm:text-left">
-                  Typical response time: Under 2 hours
+                  {t('contact.responseTimeDesc')}
                 </span>
               </div>
             </div>

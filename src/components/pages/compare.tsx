@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from '@/lib/router';
 import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 import { useLanguage } from '@/lib/i18n/context';
@@ -122,7 +123,7 @@ const comparisonRows: ComparisonRow[] = [
     ft: { type: 'check' },
     manual: { type: 'x' },
     freelance: { type: 'x' },
-    other: { type: 'minus' },
+    other: { type: 'x' },
   },
   {
     featureKey: 'compare.compTesterQuality',
@@ -146,7 +147,7 @@ const comparisonRows: ComparisonRow[] = [
     ft: { type: 'check' },
     manual: { type: 'x' },
     freelance: { type: 'x' },
-    other: { type: 'minus' },
+    other: { type: 'x' },
   },
   {
     featureKey: 'compare.compRealTimeUpdates',
@@ -347,7 +348,7 @@ export default function ComparePage() {
                 <Shield className="h-5 w-5 text-blue-400" />
               </div>
               <div className="text-left">
-                <p className="text-lg font-bold text-foreground">99.9%</p>
+                <p className="text-lg font-bold text-foreground">15</p>
                 <p className="text-xs text-muted-foreground">{t('compare.statSuccessRate')}</p>
               </div>
             </div>
@@ -451,6 +452,23 @@ export default function ComparePage() {
               );
             })}
           </div>
+          <p className="mt-8 text-center text-sm text-muted-foreground">
+            <Link href="/free-testers" className="text-blue-600 hover:underline dark:text-blue-400">
+              {t('compare.freeTestersLink')}
+            </Link>
+            {' · '}
+            <Link href="/blog/fast-testers-vs-facebook-groups" className="text-blue-600 hover:underline dark:text-blue-400">
+              {t('compare.vsFacebook')}
+            </Link>
+            {' · '}
+            <Link href="/blog/fast-testers-vs-telegram-communities" className="text-blue-600 hover:underline dark:text-blue-400">
+              {t('compare.vsTelegram')}
+            </Link>
+            {' · '}
+            <Link href="/blog/fast-testers-vs-reddit-testers" className="text-blue-600 hover:underline dark:text-blue-400">
+              {t('compare.vsReddit')}
+            </Link>
+          </p>
         </div>
       </section>
 

@@ -64,9 +64,8 @@ declare global {
 }
 
 const plansFallback = [
-  { value: 'basic', label: 'Basic - $15', price: '$15' },
-  { value: 'standard', label: 'Standard - $29', price: '$29' },
-  { value: 'premium', label: 'Premium - $49', price: '$49' },
+  { value: 'basic', label: 'Standard — $15', price: '$15' },
+  { value: 'custom', label: 'Custom / volume — quote', price: 'Quote' },
 ];
 
 const requirements = [
@@ -189,13 +188,15 @@ export default function SubmitAppPage() {
   const [submitMessage, setSubmitMessage] = useState('');
   const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
 
-  const plans = apiPlans.length > 0
+  const mappedPlans = apiPlans.length > 0
     ? apiPlans.map((plan) => ({
         value: plan.id,
         label: `${plan.name} - ${formatPlanPrice(plan)}`,
         price: formatPlanPrice(plan),
       }))
     : plansFallback;
+  const filteredPlans = mappedPlans.filter((plan) => !/\$29|\$49/.test(`${plan.label} ${plan.price}`));
+  const plans = filteredPlans.length > 0 ? filteredPlans : plansFallback;
 
   useEffect(() => {
     if (!RECAPTCHA_SITE_KEY) return;
@@ -286,7 +287,7 @@ export default function SubmitAppPage() {
         customData: { content_name: 'Submit App Form', plan: selectedPlanData?.label },
       });
       setSubmitStatus('success');
-      setSubmitMessage('App submitted successfully! Our team will review your submission within 2 hours.');
+      setSubmitMessage(t('submitApp.successMessage'));
       setName('');
       setEmail('');
       setWhatsapp('');
@@ -676,7 +677,7 @@ export default function SubmitAppPage() {
                   ) : (
                     <Upload className="mr-2 h-5 w-5" />
                   )}
-                  {submitting ? 'Submitting...' : t('submitApp.submitButton')}
+                  {submitting ? t('submitApp.submitting') : t('submitApp.submitButton')}
                   {!submitting && <ArrowRight className="ml-2 h-5 w-5" />}
                 </Button>
               </form>

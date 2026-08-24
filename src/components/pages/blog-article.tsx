@@ -14,6 +14,11 @@ import {
   type ApiArticle,
 } from '@/lib/blog';
 import { applyClientSeo } from '@/lib/hooks/use-seo';
+import {
+  applyBlogSnippetOverride,
+  isInternalTestingArticle,
+  isVsGroupsCompareArticle,
+} from '@/lib/blog-snippet-overrides';
 import { isHtmlArticleContent } from '@/lib/article-content';
 import { BRAND_OG_IMAGE_PATH } from '@/lib/brand';
 import { Breadcrumbs } from '@/components/breadcrumbs';
@@ -127,16 +132,15 @@ export default function BlogArticlePage({
 
   useEffect(() => {
     if (!rawArticle) return;
+    const snippet = applyBlogSnippetOverride(
+      slug,
+      rawArticle.seoTitle?.trim() || `${rawArticle.title} - Fast Testers Blog`,
+      rawArticle.seoDescription?.trim() || rawArticle.description || ''
+    );
     applyClientSeo(
       {
-        title:
-          rawArticle.seoTitle?.trim() ||
-          `${rawArticle.title} - Fast Testers Blog`,
-        description: (
-          rawArticle.seoDescription?.trim() ||
-          rawArticle.description ||
-          ''
-        ).slice(0, 160),
+        title: snippet.title,
+        description: snippet.description,
         keywords: blogArticleKeywords(rawArticle),
         ogImage: rawArticle.coverImage || BRAND_OG_IMAGE_PATH,
         type: 'article',
@@ -301,6 +305,48 @@ export default function BlogArticlePage({
 
             <div className="mb-8 border-b border-border pb-8" />
 
+            {isInternalTestingArticle(slug) ? (
+              <div className="mb-8 rounded-xl border border-border/60 bg-muted/20 p-4">
+                <p className="text-sm font-semibold text-foreground">
+                  {t('blogArticle.internalNoticeTitle')}
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+                  {t('blogArticle.internalNoticeBody')}
+                </p>
+                <Link
+                  href="/google-play-12-testers"
+                  className="mt-2 inline-block text-sm text-blue-600 hover:underline dark:text-blue-400"
+                >
+                  {t('blogArticle.internalNoticeLink')}
+                </Link>
+              </div>
+            ) : null}
+
+            {isVsGroupsCompareArticle(slug) ? (
+              <div className="mb-8 rounded-xl border border-border/60 bg-muted/20 p-4">
+                <p className="text-sm font-semibold text-foreground">
+                  {t('blogArticle.compareNoticeTitle')}
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+                  {t('blogArticle.compareNoticeBody')}
+                </p>
+                <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+                  <Link
+                    href="/compare"
+                    className="text-sm text-blue-600 hover:underline dark:text-blue-400"
+                  >
+                    {t('blogArticle.compareNoticeLink')}
+                  </Link>
+                  <Link
+                    href="/free-testers"
+                    className="text-sm text-blue-600 hover:underline dark:text-blue-400"
+                  >
+                    {t('blogArticle.compareNoticeFreeLink')}
+                  </Link>
+                </div>
+              </div>
+            ) : null}
+
             <div itemProp="articleBody">
               {isHtmlArticleContent(article.content) ? (
                 <ArticleHtmlBody html={article.content} variant="surface" />
@@ -349,7 +395,15 @@ export default function BlogArticlePage({
                   <Send className="size-4 text-blue-600 dark:text-blue-400" />
                   <h3 className="text-sm font-semibold text-foreground">{t('blogArticle.submitApp')}</h3>
                 </div>
-                <p className="text-xs text-muted-foreground mb-4">{t('blogArticle.submitAppDesc')}</p>
+                <p className="text-xs text-muted-foreground mb-2">{t('blogArticle.submitAppDesc')}</p>
+                <p className="mb-4 text-xs">
+                  <Link
+                    href="/google-play-12-testers"
+                    className="text-blue-600 hover:underline dark:text-blue-400"
+                  >
+                    {t('blogArticle.requirementLink')}
+                  </Link>
+                </p>
                 <Button
                   onClick={() => goToGetStartedPricing(currentPath, navigate)}
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white shadow-sm shadow-blue-500/20 dark:bg-blue-500 dark:hover:bg-blue-600 dark:shadow-blue-500/20"

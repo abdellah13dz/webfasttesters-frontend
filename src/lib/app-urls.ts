@@ -7,7 +7,7 @@ export const APP_DASHBOARD_URL = 'https://app.fasttesters.com/dashboard';
 /** Dashboard submit-app page — post-payment destination */
 export const APP_SUBMIT_APP_URL = 'https://app.fasttesters.com/dashboard/submit-app';
 
-/** Interactive full-screen close testing dashboard demo */
+/** Interactive full-screen closed testing dashboard demo */
 export const APP_DEMO_URL = 'https://app.fasttesters.com/demo';
 
 /** Play Console closed-testing setup guide with screenshots and video */

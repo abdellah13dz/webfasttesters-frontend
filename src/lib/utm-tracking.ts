@@ -103,14 +103,28 @@ export function captureUtmFromCrossDomainUrl(): void {
 export function appendUtmToUrl(url: string): string {
   if (typeof window === 'undefined') return url;
 
-  const utm = getStoredUtm();
-  if (Object.keys(utm).length === 0) return url;
-
   let parsed: URL;
   try {
     parsed = new URL(url, window.location.origin);
   } catch {
     return url;
+  }
+
+  const utm = getStoredUtm();
+  const isAppHost = parsed.hostname === 'app.fasttesters.com';
+
+  if (
+    isAppHost &&
+    !utm.utm_source &&
+    !parsed.searchParams.get('utm_source')
+  ) {
+    parsed.searchParams.set('utm_source', 'website');
+    parsed.searchParams.set('utm_medium', 'cta');
+    parsed.searchParams.set('utm_campaign', 'site_to_app');
+    if (!parsed.searchParams.get('utm_content')) {
+      const page = window.location.pathname.replace(/^\//, '') || 'home';
+      parsed.searchParams.set('utm_content', page);
+    }
   }
 
   for (const [key, value] of Object.entries(utm)) {

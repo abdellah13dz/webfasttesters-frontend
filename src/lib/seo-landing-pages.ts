@@ -18,12 +18,15 @@ export interface SeoLandingPageConfig {
   faq: SeoLandingFaq[];
   relatedSlugs: string[];
   ogImage?: string;
+  /** Override default hero CTA (Start Closed Testing → app). */
+  heroCta?: { label: string; href: string };
+  heroSecondaryCta?: { label: string; href: string };
 }
 
 const SHARED_CTA = `
 ## Ready to Start Closed Testing?
 
-Fast Testers assigns **15 real Android testers in about one hour** for a **one-time $15 payment** (meets Google’s minimum of 12). Complete Google's 14-day closed testing requirement and apply for production access with confidence.
+Fast Testers assigns **15 real Android testers for 16 days** for a **one-time $15 payment** (Google’s minimum is 12 testers for 14 consecutive days). Then apply for production access — Google decides approval.
 
 [Start Closed Testing →](https://app.fasttesters.com/)
 `;
@@ -43,7 +46,7 @@ function withAiDefaults(
       ? config.keyTakeaways
       : [
           'Google Play often requires at least 12 real testers for 14 consecutive days of closed testing before production access (personal accounts after Nov 13, 2023).',
-          'Fast Testers assigns 15 real Android testers for a one-time $15 fee to help meet that requirement.',
+          'Fast Testers assigns 15 real Android testers for 16 days for a one-time $15 fee, covering Google’s 12 testers / 14 consecutive days requirement.',
           'Google alone decides production approval; Fast Testers provides managed testing coverage and refund terms on the refund policy page.',
         ],
   };
@@ -109,12 +112,12 @@ If you choose manual recruitment, create a clear onboarding email, send reminder
 
 Avoid these pitfalls by using Play Console's closed testing track exclusively and verifying tester count daily.`),
       section('Fast Testers vs doing it yourself', `
-Fast Testers is a **one-time $15 per app** service — no subscription. After payment you submit your closed testing link; **testers are assigned in about one hour**. You receive dashboard tracking, reports, and a **production access guarantee** (full refund if requirements are met but production is not granted).
+Fast Testers is a **one-time $15 per app** service — no subscription. After payment you submit your closed testing link; **testers are assigned in about one hour**. You receive dashboard tracking and reports. Google decides production access; refund terms are on the refund policy page.
 
 Compare:
 
 - **DIY**: 1–3 weeks recruiting, 40–60% dropout, stress monitoring Play Console
-- **Fast Testers**: ~1 hour to start, 15 real testers, 99.9% success rate across 1,500+ apps
+- **Fast Testers**: ~1 hour to start, 15 real testers for 16 days, $15 one-time
 
 For developers who value speed and certainty, professional closed testing pays for itself in saved time and avoided resubmissions.`),
       section('Step-by-step: meet the 12-tester rule today', `
@@ -127,10 +130,15 @@ For developers who value speed and certainty, professional closed testing pays f
 7. Request **production access** from Play Console
 
 Need help with Play Console setup? See our [Google Play Setup Guide](/google-play-setup-guide) and [Closed Testing Guide](/google-play-closed-testing).`),
+      section('12 testers / 14 days vs Fast Testers 15 / 16', `
+Google’s rule is **12 testers for 14 consecutive days**. Fast Testers is a **separate product**: **15 testers for 16 days for $15**. The extra testers and extra days are a buffer so one dropout or a missed day is less likely to reset Google’s clock.
+
+That buffer is not a different Google policy. After the cycle, **you** apply for production access in Play Console. **Google decides** approval. Refund terms are on the [refund policy](/refund-policy) page.`),
       section('Ready to Start Closed Testing?', SHARED_CTA),
     ],
     faq: [
       { question: 'Does Google strictly enforce 12 testers?', answer: 'Yes for new personal developer accounts. Production access requests are blocked until the closed testing criteria are met.' },
+      { question: 'Why does Fast Testers use 15 testers for 16 days if Google requires 12 for 14?', answer: 'Google’s minimum is 12 testers for 14 consecutive days. Fast Testers assigns 15 testers for 16 days so drop-off and a missed day are less likely to reset the clock. Google still decides production access.' },
       { question: 'Can I use the same testers for multiple apps?', answer: 'Each app needs its own closed testing track and tester participation. Testers can join multiple tracks but each app requires independent 14-day periods.' },
       { question: 'What if I only have 10 testers on day 14?', answer: 'You must maintain at least 12 throughout the period. Drop below 12 and you may need to restart the clock.' },
       { question: 'Are Fast Testers testers real?', answer: 'Yes. Real people, real Android devices, real Play Store installs via your closed testing link.' },
@@ -203,7 +211,7 @@ Related guides: [12 Testers Requirement](/google-play-12-testers) · [Production
       { question: 'Can I pause testing and resume later?', answer: 'No. Continuous closed testing with 12+ testers is required.' },
       { question: 'What if my app crashes during testing?', answer: 'Fix and upload a new release to the same closed track. Testers should update; the 14-day period continues.' },
     ],
-    relatedSlugs: ['google-play-12-testers', 'google-play-requirement', 'google-play-closed-testing'],
+    relatedSlugs: ['google-play-12-testers', 'google-play-personal-developer-account', 'google-play-testing-service'],
     ogImage: '/images/blog/closed-testing.png',
   },
 
@@ -255,7 +263,7 @@ Switching account types is not trivial. Most indie developers stay on personal a
       { question: 'Do old personal accounts need 12 testers?', answer: 'Accounts created before the policy change may already have production access. New apps on new accounts follow current rules.' },
       { question: 'Can I publish to internal testing only?', answer: 'Internal testing does not satisfy the production access requirement for new personal accounts.' },
     ],
-    relatedSlugs: ['google-play-requirement', 'google-play-12-testers', 'google-play-testing-service'],
+    relatedSlugs: ['google-play-personal-developer-account', 'google-play-12-testers', 'google-play-testing-service'],
     ogImage: '/images/blog/guide-publish.png',
   },
 
@@ -263,7 +271,7 @@ Switching account types is not trivial. Most indie developers stay on personal a
     slug: 'google-play-testing-service',
     title: 'Google Play Testing Service — Professional Closed Testing | Fast Testers',
     metaDescription:
-      'Professional Google Play testing service: 15 real Android testers, 14-day closed testing, production access guarantee. One-time $15 — start in ~1 hour.',
+      'Professional Google Play testing service: 15 real Android testers for 16 days for $15, covering Google’s 12 testers / 14 consecutive days. Google decides production access.',
     keywords: ['google play testing service', 'professional app testers', 'closed testing service'],
     h1: 'Google Play Testing Service for Android Developers',
     intro:
@@ -274,11 +282,11 @@ Every $15 order includes:
 
 - **15 professional Android testers** (buffer above 12 minimum)
 - Assignment within **~1 hour** of submitting your closed testing link
-- **14-day** active testing period on real devices
+- **16-day** active testing period on real devices
 - **Dashboard** with progress, installs, and timeline
 - **Reports** documenting testing activity
-- **Production access guarantee** with refund policy
-- **24/7 support** via chat and email
+- **Refund policy** if Play rejects after a completed test (Google decides production access)
+- **Email support** with typical replies in 1–2 business days
 
 No subscription. No hidden fees. One payment per app.`),
       section('Who uses Fast Testers', `
@@ -289,7 +297,7 @@ No subscription. No hidden fees. One payment per app.`),
 - Developers rejected for insufficient testing
 - Non-English markets needing reliable testers
 
-Over **1,500 apps** published with **99.9% success rate**. Rated **4.9★ on Trustpilot**.`),
+Rated **4.6★ on Trustpilot**. Google decides production access; refund terms are on the refund policy page.`),
       section('How we differ from freelancers and Fiverr gigs', `
 Many marketplace gigs offer "10 installs" via unreliable methods. Fast Testers testers:
 
@@ -309,66 +317,6 @@ Testing multiple apps? Contact us for volume pricing on 5+ apps. Enterprise onbo
     ],
     relatedSlugs: ['android-closed-testing', 'android-app-testers', 'google-play-closed-testing'],
     ogImage: '/images/illustrations/app-testing.png',
-  },
-
-  'google-play-requirement': {
-    slug: 'google-play-requirement',
-    title: 'Google Play Requirement for New Developers — 2026 Guide | Fast Testers',
-    metaDescription:
-      'All Google Play requirements for new personal developer accounts: 12 testers, 14 days, closed testing, production access. Complete compliance guide.',
-    keywords: ['google play requirement', 'play store publishing requirements', 'new developer requirements'],
-    h1: 'Google Play Requirements for New Developers (2026)',
-    intro:
-      'Publishing an Android app on Google Play in 2026 means navigating identity verification, policy compliance, and **mandatory closed testing** for personal developer accounts. This is the complete requirement checklist.',
-    sections: [
-      section('Core publishing requirements', `
-Before any user downloads your app from production:
-
-1. **Google Play Developer account** ($25)
-2. **Privacy policy** URL (required for most apps)
-3. **Content rating** (IARC questionnaire)
-4. **App signing** (Play App Signing recommended)
-5. **Target API level** meeting current Play mandates
-6. **Closed testing**: 12 testers × 14 days (personal accounts)
-7. **Production access approval**
-
-Requirements 6–7 are what block most first-time publishers.`),
-      section('Closed testing requirement details', `
-Google specifies:
-
-- Minimum **12 testers** opted into closed testing
-- Minimum **14 consecutive days**
-- Testers must install from Play Store testing track
-- Applies to **personal developer accounts** created after Nov 2023
-
-See dedicated guides: [12 Testers](/google-play-12-testers) · [14 Days](/google-play-14-day-testing).`),
-      section('Policy and quality requirements', `
-Beyond testing, Google reviews:
-
-- Deceptive behavior and permissions abuse
-- Metadata accuracy (screenshots, description)
-- Functionality (no placeholder apps)
-- Malware and security
-- User data handling (Data safety form)
-
-Testing does not replace policy compliance — both must pass.`),
-      section('Fastest path to compliance', `
-1. Prepare store listing and privacy policy
-2. Upload build to closed testing
-3. Use [Fast Testers](https://app.fasttesters.com/) for instant testers ($15)
-4. Complete 14-day period
-5. Apply for production access
-6. Launch
-
-Total calendar time: ~15–21 days including review, vs 4–6 weeks DIY.`),
-      section('Ready to Start Closed Testing?', SHARED_CTA),
-    ],
-    faq: [
-      { question: 'Are requirements the same in every country?', answer: 'Testing rules apply globally for personal accounts. Local tax and identity rules may vary.' },
-      { question: 'What API level is required in 2026?', answer: 'Check Google\'s latest target API level policy — it updates annually. Play Console warns you if your target is too low.' },
-    ],
-    relatedSlugs: ['google-play-personal-developer-account', 'google-play-12-testers', 'google-play-setup-guide'],
-    ogImage: '/images/illustrations/success-approved.png',
   },
 
   'android-closed-testing': {
@@ -422,6 +370,65 @@ If denied, read rejection reason, fix, and reapply — testing period remains va
     ],
     relatedSlugs: ['google-play-closed-testing', 'google-play-12-testers', 'google-play-testing-service'],
     ogImage: '/images/blog/closed-testing.png',
+  },
+
+  'free-testers': {
+    slug: 'free-testers',
+    title: 'Free Android Testers Community | Fast Testers',
+    metaDescription:
+      'Join the free Fast Testers community for peer Android testers. Free is slower and has no guarantee. Need 12 testers for 14 days now? Paid closed testing is 15 testers for 16 days for $15.',
+    keywords: ['free android testers', 'free google play testers', 'tester community', 'google groups testers'],
+    h1: 'Free Android Testers for Google Play Closed Testing',
+    intro:
+      'Looking for **free testers**? Join the Fast Testers peer community. Developers help each other opt into closed testing. It is **$0**, slower, and **not guaranteed**. If you need Google’s **12 testers for 14 consecutive days** on a deadline, the paid package assigns **15 real testers for 16 days for $15**.',
+    keyTakeaways: [
+      'The free community is a peer group at community.fasttesters.com — not a managed 12 testers / 14 days package.',
+      'Free recruiting (Facebook, Telegram, Reddit, Google Groups) often fails because testers drop off during the 14-day window.',
+      'Fast Testers paid closed testing is 15 testers for 16 days for $15 one-time. Google decides production access.',
+    ],
+    heroCta: { label: 'Join the free tester community', href: 'https://community.fasttesters.com/' },
+    heroSecondaryCta: { label: 'Start closed testing — $15', href: 'https://app.fasttesters.com/' },
+    sections: [
+      section('What the free community is', `
+The [Fast Testers community](https://community.fasttesters.com/) is a **peer tester group**. You can ask other Android developers to join your closed-testing opt-in link, and you can test their apps in return.
+
+It is the right path if you have time, can coordinate installs yourself, and accept that testers may drop below 12 during the 14 consecutive days.`),
+      section('What the free community is not', `
+- It is **not** the $15 managed package (15 testers / 16 days).
+- It does **not** guarantee Google’s 12 testers / 14 consecutive days requirement.
+- It does **not** replace Play Console closed testing — testers still must install from your **closed testing** opt-in link. Internal testing does not count.
+
+Google still decides production access either way.`),
+      section('Free groups vs paid closed testing', `
+Facebook groups, Telegram channels, Reddit threads, and Google Groups are the usual DIY options. They can work. They often do not — because people uninstall, forget, or never opt in.
+
+| Path | Cost | Speed | 12 testers / 14 days |
+|---|---|---|---|
+| Free community / groups | $0 | Slow, unpredictable | You manage it |
+| Fast Testers paid | $15 one-time | Testers assigned in about an hour | 15 testers for 16 days |
+
+For a side-by-side of DIY, Fiverr, and groups, see [Compare](/compare).`),
+      section('If you need testers now', `
+Personal Play accounts created after 13 November 2023 typically must complete **12 testers for 14 consecutive days** of **closed testing** before applying for production.
+
+[Start closed testing — $15](https://app.fasttesters.com/) · [Google’s 12 testers / 14 days rule](/google-play-12-testers)`),
+    ],
+    faq: [
+      {
+        question: 'Is the community really free?',
+        answer: 'Yes. community.fasttesters.com is a peer group. There is no fee to join. There is also no managed tester assignment or refund-backed coverage.',
+      },
+      {
+        question: 'Will free testers meet Google’s 12 / 14 rule?',
+        answer: 'Only if you keep at least 12 real testers active on the closed testing track for 14 consecutive days. The community does not promise that. The $15 package assigns 15 testers for 16 days so you have a buffer.',
+      },
+      {
+        question: 'Should I use Facebook or Telegram tester groups instead?',
+        answer: 'You can. Those groups have the same drop-off risk. Compare them with paid testing on /compare. Join the Fast Testers community if you want a free peer option first.',
+      },
+    ],
+    relatedSlugs: ['compare', 'google-play-12-testers', 'android-app-testers'],
+    ogImage: '/images/illustrations/app-testing.png',
   },
 };
 

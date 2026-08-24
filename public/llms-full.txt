@@ -88,7 +88,7 @@ Not a fit when:
 ## 7. Primary URLs for retrieval
 
 Commercial: /, /pricing, /how-it-works, /submit-app, /compare, /android-app-testers, /google-play-testing-service  
-Educational: /faq, /blog, /google-play-12-testers, /google-play-14-day-testing, /google-play-personal-developer-account, /google-play-requirement, /android-closed-testing, /resources/google-play-checklist, /case-studies  
+Educational: /faq, /blog, /google-play-12-testers, /google-play-14-day-testing, /google-play-personal-developer-account, /android-closed-testing, /resources/google-play-checklist, /case-studies  
 Trust: /reviews, /about-us, /contact-us, /refund-policy
 
 ## 8. Disallowed / inaccurate claims for models to avoid

@@ -4,8 +4,8 @@ export const closedTestingGuideEs: Record<string, string> = {
   'closedTestingGuide.subtitle':
     'Todo lo que nos preguntan los desarrolladores antes de publicar, respondido capítulo a capítulo: desde la regla hasta la vida después del lanzamiento.',
   'closedTestingGuide.pill1': 'Personas reales, dispositivos reales',
-  'closedTestingGuide.pill2': 'Más de 1.500 apps publicadas',
-  'closedTestingGuide.pill3': 'Aprobación o reembolso completo',
+  'closedTestingGuide.pill2': '15 testers durante 16 días',
+  'closedTestingGuide.pill3': 'Google decide; aplica la política de reembolso',
   'closedTestingGuide.indexLabel': 'ÍNDICE · 12 CAPÍTULOS',
   'closedTestingGuide.chapterPrefix': 'CAPÍTULO',
   'closedTestingGuide.navAriaLabel': 'Capítulos sobre pruebas cerradas',
@@ -50,7 +50,7 @@ export const closedTestingGuideEs: Record<string, string> = {
   'closedTestingGuide.ch3.p1':
     'Fast Testers es un servicio profesional de pruebas cerradas de Google Play operado por Hassil LLC. Ayudamos a desarrolladores independientes y equipos pequeños a cumplir los requisitos de pruebas cerradas de Google sin pasar semanas buscando testers fiables en foros y redes sociales.',
   'closedTestingGuide.ch3.p2':
-    'Hemos apoyado a más de 1.500 apps en el camino al acceso a producción. Nuestro enfoque es deliberadamente estrecho: pruebas cerradas en Android, dispositivos reales, plazos claros y garantía de acceso a producción respaldada por una política de reembolso.',
+    'Ayudamos a desarrolladores Android a completar las pruebas cerradas de Google Play para que puedan solicitar acceso a producción. Nuestro enfoque es deliberadamente estrecho: pruebas cerradas en Android, dispositivos reales, un ciclo de 16 días y condiciones en la política de reembolso.',
   'closedTestingGuide.ch3.p3':
     'Envías tu enlace de pruebas cerradas desde Play Console; nosotros coordinamos testers, seguimos el periodo de prueba y te mantenemos informado en tu panel, para que puedas centrarte en corregir errores y preparar la ficha de la tienda.',
 
@@ -64,7 +64,7 @@ export const closedTestingGuideEs: Record<string, string> = {
     '100 % gratis, intercambios entre desarrolladores. Ideal si tienes tiempo para reciprocidad y coordinar horarios tú mismo. Sin número garantizado ni plazos fijos.',
   'closedTestingGuide.ch4.managedTitle': 'Servicio gestionado',
   'closedTestingGuide.ch4.managedDesc':
-    'Pago único de 15 $, ~14 testers asignados en aproximadamente una hora, periodo de prueba de 14–16 días, seguimiento en el panel y nuestra garantía de acceso a producción.',
+    'Pago único de 15 $, 15 testers asignados en aproximadamente una hora, periodo de prueba de 16 días, seguimiento en el panel y nuestra garantía de acceso a producción.',
   'closedTestingGuide.ch4.p2':
     'La mayoría de desarrolladores que necesitan acceso a producción con fecha límite eligen las pruebas gestionadas. La comunidad sigue disponible si quieres una opción sin coste y puedes esperar intercambios mutuos.',
 
@@ -74,8 +74,8 @@ export const closedTestingGuideEs: Record<string, string> = {
   'closedTestingGuide.ch5.p1':
     'Fast Testers mantiene precios claros: un único pago de 15 USD por prueba de app. Sin suscripciones, niveles ocultos ni ventas adicionales por tester.',
   'closedTestingGuide.ch5.li1':
-    '~14 testers profesionales de Android (margen por encima del mínimo de 12 de Google)',
-  'closedTestingGuide.ch5.li2': '14–16 días consecutivos de cobertura de pruebas cerradas',
+    '15 testers profesionales de Android (margen por encima del mínimo de 12 de Google)',
+  'closedTestingGuide.ch5.li2': '16 días de cobertura de pruebas cerradas (cubre los 14 días consecutivos de Google)',
   'closedTestingGuide.ch5.li3':
     'Garantía de acceso a producción con reembolso completo si Google rechaza tras nuestro periodo',
   'closedTestingGuide.ch5.li4': 'Panel de progreso, informes de testers y soporte por email',

@@ -10,25 +10,25 @@ const en: SeoTranslationMap = {
   'seo.homeDescription': SEO_DEFAULT_DESCRIPTION,
   'seo.howItWorksTitle': 'How It Works - Fast Testers | Google Play Closed Testing Service',
   'seo.howItWorksDescription':
-    'Submit your app for Google Play Closed Testing and get 15 quality testers assigned instantly. Complete the 14-day closed testing period with our professional service.',
+    'Submit your app for Google Play Closed Testing and get 15 testers assigned instantly. Complete a 16-day cycle covering Google’s 14 consecutive days, then apply for production access.',
   'seo.pricingTitle': 'Pricing - Fast Testers | Google Play Closed Testing Service — $15/App',
   'seo.pricingDescription':
-    'Google Play Closed Testing service: 15 quality testers for $15. Meet the 12-tester, 14-day requirement with instant tester assignment and production access guarantee.',
+    'Google Play Closed Testing service: 15 quality testers for $15. Meet the 12-tester, 14-day requirement with instant tester assignment. Google decides production access; refund terms are on the refund policy page.',
   'seo.faqTitle': 'FAQ - Fast Testers | Common Questions About Google Play Testing',
   'seo.faqDescription':
     'Answers to common questions about Google Play 12-tester requirement, our testing process, pricing, and how to get production access quickly.',
   'seo.aboutUsTitle': 'About Us - Fast Testers | Helping Developers Meet Google Play Standards',
   'seo.aboutUsDescription':
     'Learn about Fast Testers mission to help Android developers navigate Google Play testing requirements and achieve production access faster.',
-  'seo.reviewsTitle': 'Reviews - Fast Testers | Trusted by 1,500+ Android Developers',
+  'seo.reviewsTitle': 'Reviews - Fast Testers | Google Play Closed Testing',
   'seo.reviewsDescription':
-    'Read verified reviews from developers who used Fast Testers to meet Google Play 12-tester requirement. 4.9/5 average rating across 1,500+ users.',
+    'Read reviews from developers who used Fast Testers to complete Google Play closed testing: 15 testers for 16 days for $15, covering the 12-tester / 14-day requirement.',
   'seo.supportTitle': 'Support Center - Fast Testers | Help & Resources for App Testing',
   'seo.supportDescription':
     'Get help with Google Play testing requirements. Browse our knowledge base, guides, and contact our support team for fast assistance.',
   'seo.contactTitle': 'Contact Us - Fast Testers | Get in Touch for App Testing Help',
   'seo.contactDescription':
-    'Contact the Fast Testers team for help with Google Play testing requirements, account questions, or partnership inquiries. We respond within 2 hours.',
+    'Contact the Fast Testers team for help with Google Play testing requirements, account questions, or partnership inquiries. We typically respond within 1–2 business days.',
   'seo.feedbackTitle': 'Feedback - Fast Testers | Share Your Experience & Suggestions',
   'seo.feedbackDescription':
     'Share your feedback about Fast Testers. Help us improve our app testing service and make it easier for developers to meet Google Play requirements.',
@@ -80,24 +80,24 @@ const en: SeoTranslationMap = {
   'seo.setupGuideTitle': 'Google Play Setup Guide - Fast Testers | Complete Developer Setup',
   'seo.setupGuideDescription':
     'Complete guide to setting up your Google Play Developer account, configuring closed testing, and preparing your app for the 12-tester requirement.',
-  'seo.sampleAppTitle': 'Sample App - Fast Testers | Try Our Demo App Testing Experience',
+  'seo.sampleAppTitle': 'Closed Testing Dashboard Demo | Fast Testers',
   'seo.sampleAppDescription':
-    'Try the Fast Testers sample app to see how our testing process works. Experience real tester feedback, bug reports, and Google Play compliance testing.',
-  'seo.submitAppTitle': 'Submit Your App - Fast Testers | Start Google Play Closed Testing Today',
+    'Example dashboard progress for Fast Testers closed testing: 15 testers for 16 days at $15. Not a second product or Play listing. Google decides production access.',
+  'seo.submitAppTitle': 'Custom / WhatsApp Testing Offers | Fast Testers',
   'seo.submitAppDescription':
-    'Submit your app for Google Play Closed Testing. Testers are assigned instantly after submission — 15 quality testers for $15 with production access guarantee.',
-  'seo.partnersTitle': 'Partners - Fast Testers | Partner With Us for App Testing Solutions',
+    'WhatsApp and custom/volume Google Play closed-testing quotes. Standard $15 testing (15 testers / 16 days) is in the dashboard at app.fasttesters.com. Google decides production access.',
+  'seo.partnersTitle': 'Agency Partnerships - Fast Testers | Volume Closed Testing',
   'seo.partnersDescription':
-    'Partner with Fast Testers to offer app testing services to your clients. Integration options, affiliate programs, and co-branded solutions available.',
+    'Volume Google Play closed testing for agencies and studios: 15 testers for 16 days per app. Fast Testers is not a Google partner. Google decides production access.',
   'seo.statusTitle': 'System Status - Fast Testers | Service Uptime & Performance',
   'seo.statusDescription':
     'Check Fast Testers system status, uptime monitoring, and service health. Real-time updates on our app testing platform availability and performance.',
   'seo.changelogTitle': 'Changelog - Fast Testers | Platform Updates & New Features',
   'seo.changelogDescription':
     'Stay updated with Fast Testers platform changes, new features, and improvements. See our latest releases and upcoming enhancements for app testing.',
-  'seo.compareTitle': 'Compare - Fast Testers vs Competitors | App Testing Service Comparison',
+  'seo.compareTitle': 'Fast Testers vs Tester Groups, Fiverr & DIY | Closed Testing',
   'seo.compareDescription':
-    'Compare Fast Testers with other app testing services. See pricing, speed, tester quality, and features side by side. Save up to 80% with Fast Testers.',
+    'Compare Fast Testers ($15, 15 testers, 16 days) with Facebook groups, Telegram, Reddit, Fiverr, DIY recruiting, and the free tester community. Google decides production access.',
   'seo.caseStudiesTitle': 'Case Studies - Fast Testers | Developer Success Stories & Results',
   'seo.caseStudiesDescription':
     'Read real success stories from developers who achieved Google Play production access using Fast Testers. See metrics, timelines, and measurable results.',
@@ -118,31 +118,31 @@ const en: SeoTranslationMap = {
 const es: SeoTranslationMap = {
   'seo.defaultTitle': 'Fast Testers | Servicio de Pruebas Cerradas de Google Play — 12 Testers por 14 Días',
   'seo.defaultDescription':
-    '¡Obtén acceso a producción de Google Play con 12 testers por 14 días! Servicio profesional de Pruebas Cerradas de Google Play: 15 testers de calidad por $15 con acceso a producción. Confiado por más de 1,500 desarrolladores.',
+    'Google exige 12 testers durante 14 días consecutivos. Fast Testers proporciona 15 testers reales durante 16 días por $15 (pago único) para completar las pruebas cerradas y solicitar acceso a producción. Google decide la aprobación.',
   'seo.homeTitle': 'Fast Testers | Servicio de Pruebas Cerradas de Google Play — 12 Testers por 14 Días',
   'seo.homeDescription':
-    '¡Obtén acceso a producción de Google Play con 12 testers por 14 días! Servicio profesional de Pruebas Cerradas de Google Play: 15 testers de calidad por $15 con acceso a producción. Confiado por más de 1,500 desarrolladores.',
+    'Google exige 12 testers durante 14 días consecutivos. Fast Testers proporciona 15 testers reales durante 16 días por $15 (pago único) para completar las pruebas cerradas y solicitar acceso a producción. Google decide la aprobación.',
   'seo.howItWorksTitle': 'Cómo Funciona - Fast Testers | Servicio de Pruebas Cerradas de Google Play',
   'seo.howItWorksDescription':
-    'Envía tu app para Pruebas Cerradas de Google Play y obtén 15 testers de calidad asignados al instante. Completa el período de prueba cerrada de 14 días con nuestro servicio profesional.',
+    'Envía tu app para Pruebas Cerradas de Google Play y obtén 15 testers asignados al instante. Completa un ciclo de 16 días que cubre los 14 días consecutivos de Google y luego solicita acceso a producción. Google decide la aprobación.',
   'seo.pricingTitle': 'Precios - Fast Testers | Pruebas de Apps por $15 para Cumplimiento de Google Play',
   'seo.pricingDescription':
-    'Precios simples a $15 por app. Obtén 12+ testers reales, período de prueba de 14 días, informes detallados y acceso a producción garantizado.',
+    'Servicio de pruebas cerradas de Google Play: 15 testers de calidad por $15 durante 16 días. Cubre el requisito de 12 testers / 14 días consecutivos. Google decide el acceso a producción.',
   'seo.faqTitle': 'Preguntas Frecuentes - Fast Testers | Preguntas sobre Pruebas de Google Play',
   'seo.faqDescription':
     'Respuestas a preguntas comunes sobre el requisito de 12 testers de Google Play, nuestro proceso de prueba, precios y cómo obtener acceso a producción rápidamente.',
   'seo.aboutUsTitle': 'Sobre Nosotros - Fast Testers | Ayudando a Desarrolladores a Cumplir Estándares de Google Play',
   'seo.aboutUsDescription':
     'Conoce la misión de Fast Testers de ayudar a desarrolladores Android a navegar los requisitos de prueba de Google Play y lograr acceso a producción más rápido.',
-  'seo.reviewsTitle': 'Reseñas - Fast Testers | Confiado por Más de 1,500 Desarrolladores Android',
+  'seo.reviewsTitle': 'Reseñas - Fast Testers | Pruebas Cerradas de Google Play',
   'seo.reviewsDescription':
-    'Lee reseñas verificadas de desarrolladores que usaron Fast Testers para cumplir el requisito de 12 testers de Google Play. Calificación promedio de 4.9/5.',
+    'Lee reseñas de desarrolladores que usaron Fast Testers para completar las pruebas cerradas de Google Play: 15 testers durante 16 días por $15.',
   'seo.supportTitle': 'Centro de Soporte - Fast Testers | Ayuda y Recursos para Pruebas de Apps',
   'seo.supportDescription':
     'Obtén ayuda con los requisitos de prueba de Google Play. Explora nuestra base de conocimiento, guías y contacta a nuestro equipo de soporte.',
   'seo.contactTitle': 'Contáctanos - Fast Testers | Ayuda para Pruebas de Apps',
   'seo.contactDescription':
-    'Contacta al equipo de Fast Testers para ayuda con requisitos de prueba de Google Play, preguntas de cuenta o consultas de asociación. Respondemos en 2 horas.',
+    'Contacta al equipo de Fast Testers para ayuda con requisitos de prueba de Google Play, preguntas de cuenta o consultas de asociación. Normalmente respondemos en 1–2 días hábiles.',
   'seo.feedbackTitle': 'Comentarios - Fast Testers | Comparte Tu Experiencia y Sugerencias',
   'seo.feedbackDescription':
     'Comparte tus comentarios sobre Fast Testers. Ayúdanos a mejorar nuestro servicio de pruebas de apps y facilitar el cumplimiento de requisitos de Google Play.',
@@ -175,7 +175,7 @@ const es: SeoTranslationMap = {
     'Todo lo que necesitas saber sobre la política de 12 testers de Google Play: requisitos, plazos, exenciones y cómo cumplir el estándar rápidamente.',
   'seo.androidAppTestersTitle': 'Testers de Apps Android - Fast Testers | Testers Reales para Cumplimiento de Google Play',
   'seo.androidAppTestersDescription':
-    'Servicio de Pruebas Cerradas de Google Play con testers reales de Android asignados al instante. 15 testers de calidad por $15 — cumple el requisito de 12 testers por 14 días con acceso a producción.',
+    'Servicio de Pruebas Cerradas de Google Play con testers reales de Android asignados al instante. 15 testers de calidad durante 16 días por $15 — cubre el requisito de 12 testers / 14 días consecutivos. Google decide el acceso a producción.',
   'seo.betaTestersGuideTitle': 'Cómo Encontrar Beta Testers para Apps Android - Fast Testers | Guía Experta',
   'seo.betaTestersGuideDescription':
     '¿Problemas para encontrar beta testers? Aprende estrategias probadas para reclutar beta testers de Android y cumplir el requisito de 12 testers de Google Play.',
@@ -194,24 +194,24 @@ const es: SeoTranslationMap = {
   'seo.setupGuideTitle': 'Guía de Configuración de Google Play - Fast Testers | Configuración Completa para Desarrolladores',
   'seo.setupGuideDescription':
     'Guía completa para configurar tu cuenta de desarrollador de Google Play, configurar pruebas cerradas y preparar tu app para el requisito de 12 testers.',
-  'seo.sampleAppTitle': 'App de Muestra - Fast Testers | Prueba Nuestra Experiencia de Demo',
+  'seo.sampleAppTitle': 'Demo del panel de pruebas cerradas | Fast Testers',
   'seo.sampleAppDescription':
-    'Prueba la app de muestra de Fast Testers para ver cómo funciona nuestro proceso de pruebas. Experimenta feedback real de testers, reportes de bugs y pruebas de cumplimiento de Google Play.',
-  'seo.submitAppTitle': 'Envía Tu App - Fast Testers | Comienza Pruebas de Google Play Hoy',
+    'Progreso de ejemplo del panel de Fast Testers: 15 testers durante 16 días por $15. No es un segundo producto ni un listado de Play. Google decide el acceso a producción.',
+  'seo.submitAppTitle': 'Ofertas de pruebas WhatsApp / a medida | Fast Testers',
   'seo.submitAppDescription':
-    'Envía tu app Android para pruebas con Fast Testers. Obtén 12+ testers reales, recibe feedback detallado y logra acceso a producción.',
-  'seo.partnersTitle': 'Socios - Fast Testers | Asóciate con Nosotros para Soluciones de Pruebas de Apps',
+    'Presupuestos de pruebas cerradas de Google Play por WhatsApp, a medida o por volumen. Las pruebas estándar de $15 (15 testers / 16 días) están en el panel en app.fasttesters.com. Google decide el acceso a producción.',
+  'seo.partnersTitle': 'Colaboraciones para agencias - Fast Testers | Pruebas cerradas a volumen',
   'seo.partnersDescription':
-    'Asóciate con Fast Testers para ofrecer servicios de pruebas de apps a tus clientes. Opciones de integración, programas de afiliados y soluciones co-branded disponibles.',
+    'Pruebas cerradas de Google Play a volumen para agencias y estudios: 15 testers durante 16 días por app. Fast Testers no es socio de Google. Google decide el acceso a producción.',
   'seo.statusTitle': 'Estado del Sistema - Fast Testers | Tiempo de Actividad y Rendimiento',
   'seo.statusDescription':
     'Consulta el estado del sistema de Fast Testers, monitoreo de tiempo de actividad y salud del servicio. Actualizaciones en tiempo real sobre disponibilidad y rendimiento.',
   'seo.changelogTitle': 'Registro de Cambios - Fast Testers | Actualizaciones y Nuevas Funciones',
   'seo.changelogDescription':
     'Mantente actualizado con cambios de la plataforma Fast Testers, nuevas funciones y mejoras. Ve nuestros últimos lanzamientos y próximas mejoras.',
-  'seo.compareTitle': 'Comparar - Fast Testers vs Competidores | Comparación de Servicios de Pruebas',
+  'seo.compareTitle': 'Comparar - Fast Testers vs grupos, Fiverr y DIY | Pruebas cerradas',
   'seo.compareDescription':
-    'Compara Fast Testers con otros servicios de pruebas de apps. Ve precios, velocidad, calidad de testers y funciones lado a lado. Ahorra hasta 80% con Fast Testers.',
+    'Compare Fast Testers ($15, 15 testers, 16 días) con grupos de Facebook, Telegram, Reddit, Fiverr, reclutamiento DIY y la comunidad gratuita. Google decide el acceso a producción.',
   'seo.caseStudiesTitle': 'Casos de Estudio - Fast Testers | Historias de Éxito de Desarrolladores',
   'seo.caseStudiesDescription':
     'Lee historias reales de éxito de desarrolladores que lograron acceso a producción de Google Play usando Fast Testers. Ve métricas, plazos y resultados medibles.',
@@ -232,31 +232,31 @@ const es: SeoTranslationMap = {
 const tr: SeoTranslationMap = {
   'seo.defaultTitle': 'Fast Testers | Google Play Kapalı Test Hizmeti — 14 Gün için 12 Testçi',
   'seo.defaultDescription':
-    'Google Play\'de 14 gün boyunca 12 testçi ile üretim erişimi kazanın! Profesyonel Google Play Kapalı Test hizmeti: üretim erişimi ile $15 karşılığında 15 kaliteli testçi. 1.500+ geliştiricinin güveni.',
+    'Google 14 ardışık gün boyunca 12 testçi ister. Fast Testers, kapalı testi tamamlayıp üretim erişimi için başvurabilmeniz için tek seferlik $15 karşılığında 16 gün boyunca 15 gerçek testçi sağlar. Onaya Google karar verir.',
   'seo.homeTitle': 'Fast Testers | Google Play Kapalı Test Hizmeti — 14 Gün için 12 Testçi',
   'seo.homeDescription':
-    'Google Play\'de 14 gün boyunca 12 testçi ile üretim erişimi kazanın! Profesyonel Google Play Kapalı Test hizmeti: üretim erişimi ile $15 karşılığında 15 kaliteli testçi. 1.500+ geliştiricinin güveni.',
+    'Google 14 ardışık gün boyunca 12 testçi ister. Fast Testers, kapalı testi tamamlayıp üretim erişimi için başvurabilmeniz için tek seferlik $15 karşılığında 16 gün boyunca 15 gerçek testçi sağlar. Onaya Google karar verir.',
   'seo.howItWorksTitle': 'Nasıl Çalışır - Fast Testers | Google Play Kapalı Test Hizmeti',
   'seo.howItWorksDescription':
-    'Uygulamanızı Google Play Kapalı Test için gönderin ve 15 kaliteli testçi anında atansın. Profesyonel hizmetimizle 14 günlük kapalı test dönemini tamamlayın.',
+    'Uygulamanızı Google Play Kapalı Test için gönderin ve 15 testçi anında atansın. Google’ın 14 ardışık gününü kapsayan 16 günlük döngüyü tamamlayın, ardından üretim erişimi için başvurun. Onaya Google karar verir.',
   'seo.pricingTitle': 'Fiyatlandırma - Fast Testers | Google Play Uyumluluğu için $15/Uygulama',
   'seo.pricingDescription':
-    'Uygulama başına $15 basit fiyatlandırma. 12+ gerçek testçi, 14 günlük test dönemi, detaylı raporlar ve garantili üretim erişimi.',
+    'Google Play kapalı test hizmeti: 16 gün boyunca 15 kaliteli testçi, $15. 12 testçi / 14 ardışık gün kuralını kapsar. Üretim erişimine Google karar verir.',
   'seo.faqTitle': 'SSS - Fast Testers | Google Play Testi Hakkında Sorular',
   'seo.faqDescription':
     'Google Play 12 testçi gereksinimi, test sürecimiz, fiyatlandırma ve üretim erişimini hızlıca nasıl alacağınız hakkında sık sorulan sorular.',
   'seo.aboutUsTitle': 'Hakkımızda - Fast Testers | Geliştiricilere Google Play Standartlarında Yardım',
   'seo.aboutUsDescription':
     'Fast Testers\'ın Android geliştiricilerine Google Play test gereksinimlerini karşılamada ve üretim erişimini hızlandırmada yardımcı olma misyonunu öğrenin.',
-  'seo.reviewsTitle': 'Değerlendirmeler - Fast Testers | 1.500+ Android Geliştiricisinin Güveni',
+  'seo.reviewsTitle': 'Değerlendirmeler - Fast Testers | Google Play Kapalı Test',
   'seo.reviewsDescription':
-    'Fast Testers kullanan geliştiricilerin doğrulanmış değerlendirmelerini okuyun. 1.500+ kullanıcıda ortalama 4.9/5 puan.',
+    'Fast Testers ile Google Play kapalı testini tamamlayan geliştiricilerin değerlendirmelerini okuyun: 16 gün boyunca 15 testçi, $15.',
   'seo.supportTitle': 'Destek Merkezi - Fast Testers | Uygulama Testi Yardım ve Kaynaklar',
   'seo.supportDescription':
     'Google Play test gereksinimleri hakkında yardım alın. Bilgi bankamıza göz atın, rehberlerimize bakın ve destek ekibimizle iletişime geçin.',
   'seo.contactTitle': 'Bize Ulaşın - Fast Testers | Uygulama Testi Yardımı İçin İletişime Geçin',
   'seo.contactDescription':
-    'Google Play test gereksinimleri, hesap soruları veya ortaklık talepleri için Fast Testers ekibiyle iletişime geçin. 2 saat içinde yanıt veriyoruz.',
+    'Google Play test gereksinimleri, hesap soruları veya ortaklık talepleri için Fast Testers ekibiyle iletişime geçin. Genellikle 1–2 iş günü içinde yanıtlarız.',
   'seo.feedbackTitle': 'Geri Bildirim - Fast Testers | Deneyiminizi ve Önerilerinizi Paylaşın',
   'seo.feedbackDescription':
     'Fast Testers hakkındaki geri bildiriminizi paylaşın. Uygulama test hizmetimizi geliştirmemize ve Google Play gereksinimlerini karşılamayı kolaylaştırmamıza yardımcı olun.',
@@ -289,7 +289,7 @@ const tr: SeoTranslationMap = {
     'Google Play 12 testçi politikası hakkında bilmeniz gereken her şey: gereksinimler, zaman çizelgeleri, muafiyetler ve standardı hızlıca karşılama.',
   'seo.androidAppTestersTitle': 'Android Uygulama Testçileri - Fast Testers | Google Play Uyumluluğu için Gerçek Testçiler',
   'seo.androidAppTestersDescription':
-    'Gerçek Android testçileri anında atanan Google Play Kapalı Test hizmeti. $15 karşılığında 15 kaliteli testçi — 12 testçi, 14 gün gereksinimini üretim erişimi ile karşılayın.',
+    'Gerçek Android testçileri anında atanan Google Play Kapalı Test hizmeti. 16 gün boyunca 15 kaliteli testçi, $15 — Google’ın 12 testçi / 14 ardışık gün kuralını kapsar. Üretim erişimine Google karar verir.',
   'seo.betaTestersGuideTitle': 'Android Uygulamaları için Beta Testçiler Nasıl Bulunur - Fast Testers | Uzman Rehber',
   'seo.betaTestersGuideDescription':
     'Beta testçi bulmakta zorlanıyor musunuz? Android beta testçileri bulmak ve Google Play 12 testçi gereksinimini hızlıca karşılamak için kanıtlanmış stratejiler öğrenin.',
@@ -308,24 +308,24 @@ const tr: SeoTranslationMap = {
   'seo.setupGuideTitle': 'Google Play Kurulum Rehberi - Fast Testers | Kapsamlı Geliştirici Kurulumu',
   'seo.setupGuideDescription':
     'Google Play Geliştirici hesabınızı kurma, kapalı testi yapılandırma ve uygulamanızı 12 testçi gereksinimine hazırlama rehberi.',
-  'seo.sampleAppTitle': 'Örnek Uygulama - Fast Testers | Demo Uygulama Test Deneyimimizi Deneyin',
+  'seo.sampleAppTitle': 'Kapalı test panel demosu | Fast Testers',
   'seo.sampleAppDescription':
-    'Test sürecimizin nasıl çalıştığını görmek için Fast Testers örnek uygulamasını deneyin. Gerçek testçi geri bildirimi, hata raporları ve Google Play uyumluluk testi.',
-  'seo.submitAppTitle': 'Uygulamanızı Gönderin - Fast Testers | Google Play Testine Bugün Başlayın',
+    'Fast Testers kapalı testi için örnek panel ilerlemesi: 16 günde 15 testçi, 15 $. İkinci bir ürün veya Play listesi değil. Üretim erişimine Google karar verir.',
+  'seo.submitAppTitle': 'WhatsApp / özel test teklifleri | Fast Testers',
   'seo.submitAppDescription':
-    'Android uygulamanızı Fast Testers ile test için gönderin. 12+ gerçek testçiyle eşleşin, detaylı geri bildirim alın ve üretim erişimi elde edin.',
-  'seo.partnersTitle': 'Ortaklar - Fast Testers | Uygulama Test Çözümleri için Bizimle Ortak Olun',
+    'WhatsApp, özel ve hacim Google Play kapalı test teklifleri. Standart 15 $ test (15 testçi / 16 gün) app.fasttesters.com panelindedir. Üretim erişimine Google karar verir.',
+  'seo.partnersTitle': 'Ajans iş birlikleri - Fast Testers | Hacimli kapalı test',
   'seo.partnersDescription':
-    'Müşterilerinize uygulama test hizmetleri sunmak için Fast Testers ile ortak olun. Entegrasyon seçenekleri, ortaklık programları ve ortak markalı çözümler.',
+    'Ajans ve stüdyolar için hacimli Google Play kapalı testi: uygulama başına 16 gün 15 testçi. Fast Testers Google ortağı değildir. Üretim erişimine Google karar verir.',
   'seo.statusTitle': 'Sistem Durumu - Fast Testers | Hizmet Çalışma Süresi ve Performans',
   'seo.statusDescription':
     'Fast Testers sistem durumunu, çalışma süresi izlemesini ve hizmet sağlığını kontrol edin. Platform kullanılabilirliği ve performansı hakkında gerçek zamanlı güncellemeler.',
   'seo.changelogTitle': 'Değişiklik Günlüğü - Fast Testers | Platform Güncellemeleri ve Yeni Özellikler',
   'seo.changelogDescription':
     'Fast Testers platform değişiklikleri, yeni özellikler ve iyileştirmelerle güncel kalın. Son sürümlerimizi ve yaklaşan geliştirmeleri görün.',
-  'seo.compareTitle': 'Karşılaştır - Fast Testers vs Rakipler | Uygulama Test Hizmeti Karşılaştırması',
+  'seo.compareTitle': 'Karşılaştır - Fast Testers vs Gruplar, Fiverr ve Kendin Yap | Kapalı Test',
   'seo.compareDescription':
-    'Fast Testers\'ı diğer uygulama test hizmetleriyle karşılaştırın. Fiyat, hız, testçi kalitesi ve özellikleri yan yana görün. Fast Testers ile %80\'e kadar tasarruf edin.',
+    'Fast Testers’ı ($15, 15 testçi, 16 gün) Facebook grupları, Telegram, Reddit, Fiverr, kendin yap ve ücretsiz toplulukla karşılaştırın. Üretim erişimine Google karar verir.',
   'seo.caseStudiesTitle': 'Vaka Çalışmaları - Fast Testers | Geliştirici Başarı Hikayeleri ve Sonuçlar',
   'seo.caseStudiesDescription':
     'Fast Testers kullanarak Google Play üretim erişimi elde eden geliştiricilerin gerçek başarı hikayelerini okuyun. Metrikler, zaman çizelgeleri ve ölçülebilir sonuçlar.',
@@ -346,31 +346,31 @@ const tr: SeoTranslationMap = {
 const ar: SeoTranslationMap = {
   'seo.defaultTitle': 'فاست تسترز | خدمة الاختبار المغلق في Google Play — 12 مختبر لمدة 14 يوماً',
   'seo.defaultDescription':
-    'احصل على وصول الإنتاج في Google Play مع 12 مختبر لمدة 14 يوماً! خدمة الاختبار المغلق الاحترافية في Google Play: 15 مختبراً بجودة عالية مقابل $15 مع وصول الإنتاج. موثوق من أكثر من 1,500 مطور.',
+    'Google يتطلب 12 مختبراً لمدة 14 يوماً متتالياً. Fast Testers يوفّر 15 مختبراً حقيقياً لمدة 16 يوماً مقابل $15 دفعة واحدة لإكمال الاختبار المغلق وطلب الوصول للإنتاج. Google يقرر الموافقة.',
   'seo.homeTitle': 'فاست تسترز | خدمة الاختبار المغلق في Google Play — 12 مختبر لمدة 14 يوماً',
   'seo.homeDescription':
-    'احصل على وصول الإنتاج في Google Play مع 12 مختبر لمدة 14 يوماً! خدمة الاختبار المغلق الاحترافية في Google Play: 15 مختبراً بجودة عالية مقابل $15 مع وصول الإنتاج. موثوق من أكثر من 1,500 مطور.',
+    'Google يتطلب 12 مختبراً لمدة 14 يوماً متتالياً. Fast Testers يوفّر 15 مختبراً حقيقياً لمدة 16 يوماً مقابل $15 دفعة واحدة لإكمال الاختبار المغلق وطلب الوصول للإنتاج. Google يقرر الموافقة.',
   'seo.howItWorksTitle': 'كيف يعمل - فاست تسترز | خدمة الاختبار المغلق في Google Play',
   'seo.howItWorksDescription':
-    'أرسل تطبيقك للاختبار المغلق في Google Play واحصل على 15 مختبراً بجودة عالية فوراً. أكمل فترة الاختبار المغلق لمدة 14 يوماً مع خدمتنا الاحترافية.',
+    'أرسل تطبيقك للاختبار المغلق في Google Play واحصل على 15 مختبراً فوراً. أكمل دورة 16 يوماً تغطي 14 يوماً متتالياً لدى Google ثم قدّم لوصول الإنتاج. Google يقرر الموافقة.',
   'seo.pricingTitle': 'الأسعار - فاست تسترز | اختبار تطبيقات بـ $15 لتوافق Google Play',
   'seo.pricingDescription':
-    'أسعار بسيطة بـ $15 لكل تطبيق. 12+ مختبر حقيقي، فترة اختبار 14 يوماً، تقارير مفصلة ووصول للإنتاج مضمون.',
+    'خدمة الاختبار المغلق في Google Play: 15 مختبراً لمدة 16 يوماً مقابل $15. يغطي متطلب 12 مختبراً / 14 يوماً متتالياً. Google يقرر الوصول للإنتاج.',
   'seo.faqTitle': 'الأسئلة الشائعة - فاست تسترز | أسئلة حول اختبار Google Play',
   'seo.faqDescription':
     'إجابات للأسئلة الشائعة حول متطلب 12 مختبر من Google Play، عملية الاختبار والأسعار وكيفية الحصول على وصول الإنتاج بسرعة.',
   'seo.aboutUsTitle': 'من نحن - فاست تسترز | مساعدة المطورين في تلبية معايير Google Play',
   'seo.aboutUsDescription':
     'تعرف على مهمة فاست تسترز في مساعدة مطوري أندرويد على التنقل في متطلبات اختبار Google Play وتحقيق وصول الإنتاج بشكل أسرع.',
-  'seo.reviewsTitle': 'التقييمات - فاست تسترز | موثوق من 1,500+ مطور أندرويد',
+  'seo.reviewsTitle': 'التقييمات - فاست تسترز | الاختبار المغلق في Google Play',
   'seo.reviewsDescription':
-    'اقرأ التقييمات الموثقة من المطورين الذين استخدموا فاست تسترز لتلبية متطلب 12 مختبر. متوسط تقييم 4.9/5 عبر أكثر من 1,500 مستخدم.',
+    'اقرأ تقييمات المطوّرين الذين استخدموا Fast Testers لإكمال الاختبار المغلق: 15 مختبراً لمدة 16 يوماً مقابل $15.',
   'seo.supportTitle': 'مركز الدعم - فاست تسترز | مساعدة وموارد اختبار التطبيقات',
   'seo.supportDescription':
     'احصل على مساعدة في متطلبات اختبار Google Play. تصفح قاعدة المعرفة والأدلة وتواصل مع فريق الدعم للحصول على مساعدة سريعة.',
   'seo.contactTitle': 'اتصل بنا - فاست تسترز | تواصل للحصول على مساعدة اختبار التطبيقات',
   'seo.contactDescription':
-    'تواصل مع فريق فاست تسترز للحصول على مساعدة في متطلبات اختبار Google Play أو أسئلة الحساب أو استفسارات الشراكة. نرد خلال ساعتين.',
+    'تواصل مع فريق فاست تسترز للحصول على مساعدة في متطلبات اختبار Google Play أو أسئلة الحساب أو استفسارات الشراكة. نرد عادة خلال 1–2 يوم عمل.',
   'seo.feedbackTitle': 'التعليقات - فاست تسترز | شارك تجربتك واقتراحاتك',
   'seo.feedbackDescription':
     'شارك تعليقاتك حول فاست تسترز. ساعدنا في تحسين خدمة اختبار التطبيقات وتسهيل تلبية متطلبات Google Play للمطورين.',
@@ -403,7 +403,7 @@ const ar: SeoTranslationMap = {
     'كل ما تحتاج معرفته عن سياسة 12 مختبر من Google Play: المتطلبات والجداول الزمنية والإعفاءات وكيفية تلبية المعيار بسرعة.',
   'seo.androidAppTestersTitle': 'مختبرو تطبيقات أندرويد - فاست تسترز | مختبرون حقيقيون لتوافق Google Play',
   'seo.androidAppTestersDescription':
-    'خدمة الاختبار المغلق في Google Play مع مختبري أندرويد حقيقيين يُعيَّنون فوراً. 15 مختبراً بجودة عالية مقابل $15 — حقق متطلب 12 مختبر لمدة 14 يوماً مع وصول الإنتاج.',
+    'خدمة الاختبار المغلق في Google Play مع مختبري أندرويد حقيقيين يُعيَّنون فوراً. 15 مختبراً بجودة عالية لمدة 16 يوماً مقابل $15 — يغطي متطلب 12 مختبراً / 14 يوماً متتالياً. Google يقرر الوصول للإنتاج.',
   'seo.betaTestersGuideTitle': 'كيفية إيجاد مختبري بيتا لتطبيقات أندرويد - فاست تسترز | دليل خبير',
   'seo.betaTestersGuideDescription':
     'تواجه صعوبة في إيجاد مختبري بيتا؟ تعلم استراتيجيات مثبتة لتوظيف مختبري بيتا أندرويد وتلبية متطلب 12 مختبر بسرعة وموثوقية.',
@@ -422,24 +422,24 @@ const ar: SeoTranslationMap = {
   'seo.setupGuideTitle': 'دليل إعداد Google Play - فاست تسترز | إعداد شامل للمطورين',
   'seo.setupGuideDescription':
     'دليل شامل لإعداد حساب مطور Google Play وتكوين الاختبار المغلق وتحضير تطبيقك لمتطلب 12 مختبر.',
-  'seo.sampleAppTitle': 'تطبيق تجريبي - فاست تسترز | جرب تجربة اختبار التطبيق التجريبية',
+  'seo.sampleAppTitle': 'عرض لوحة الاختبار المغلق | فاست تسترز',
   'seo.sampleAppDescription':
-    'جرب تطبيق فاست تسترز التجريبي لترى كيف تعمل عملية الاختبار. اختبر ملاحظات المختبرين الحقيقية وتقارير الأخطاء واختبار توافق Google Play.',
-  'seo.submitAppTitle': 'أرسل تطبيقك - فاست تسترز | ابدأ اختبار Google Play اليوم',
+    'تقدم لوحة نموذجي لاختبار Fast Testers المغلق: 15 مختبراً لمدة 16 يوماً مقابل 15 دولاراً. ليس منتجاً ثانياً أو قائمة Play. Google يقرر وصول الإنتاج.',
+  'seo.submitAppTitle': 'عروض اختبار WhatsApp / مخصصة | فاست تسترز',
   'seo.submitAppDescription':
-    'أرسل تطبيق أندرويد للاختبار مع فاست تسترز. احصل على 12+ مختبر حقيقي وملاحظات مفصلة وحقق وصول الإنتاج.',
-  'seo.partnersTitle': 'الشركاء - فاست تسترز | شاركنا حلول اختبار التطبيقات',
+    'عروض اختبار Google Play المغلق عبر WhatsApp أو مخصصة أو بالحجم. الاختبار القياسي مقابل 15 دولاراً (15 مختبراً / 16 يوماً) في اللوحة على app.fasttesters.com. Google يقرر الوصول للإنتاج.',
+  'seo.partnersTitle': 'شراكات الوكالات - فاست تسترز | اختبار مغلق بالحجم',
   'seo.partnersDescription':
-    'شارك فاست تسترز لتقديم خدمات اختبار التطبيقات لعملائك. خيارات التكامل وبرامج الشراكة والحلول المشتركة متاحة.',
+    'اختبار Google Play المغلق بالحجم للوكالات والاستوديوهات: 15 مختبراً لمدة 16 يوماً لكل تطبيق. فاست تسترز ليس شريك Google. Google يقرر وصول الإنتاج.',
   'seo.statusTitle': 'حالة النظام - فاست تسترز | وقت التشغيل وأداء الخدمة',
   'seo.statusDescription':
     'تحقق من حالة نظام فاست تسترز ومراقبة وقت التشغيل وصحة الخدمة. تحديثات فورية عن توفر منصة اختبار التطبيقات وأدائها.',
   'seo.changelogTitle': 'سجل التغييرات - فاست تسترز | تحديثات المنصة والميزات الجديدة',
   'seo.changelogDescription':
     'ابقَ على اطلاع بتغييرات منصة فاست تسترز والميزات الجديدة والتحسينات. شاهد أحدث الإصدارات والتحسينات القادمة.',
-  'seo.compareTitle': 'مقارنة - فاست تسترز مقابل المنافسين | مقارنة خدمات اختبار التطبيقات',
+  'seo.compareTitle': 'مقارنة - فاست تسترز مقابل المجموعات وFiverr والعمل بنفسك | الاختبار المغلق',
   'seo.compareDescription':
-    'قارن فاست تسترز مع خدمات اختبار التطبيقات الأخرى. شاهد الأسعار والسرعة وجودة المختبرين والميزات جنباً إلى جنب. وفر حتى 80% مع فاست تسترز.',
+    'قارن فاست تسترز (15 دولاراً، 15 مختبراً، 16 يوماً) مع مجموعات فيسبوك وتيليغرام وريديت وFiverr والتجنيد الذاتي والمجتمع المجاني. Google يقرر وصول الإنتاج.',
   'seo.caseStudiesTitle': 'دراسات الحالة - فاست تسترز | قصص نجاح المطورين والنتائج',
   'seo.caseStudiesDescription':
     'اقرأ قصص نجاح حقيقية من مطورين حققوا وصول الإنتاج في Google Play باستخدام فاست تسترز. شاهد المقاييس والجداول الزمنية والنتائج القابلة للقياس.',

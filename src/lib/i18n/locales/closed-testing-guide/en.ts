@@ -4,8 +4,8 @@ export const closedTestingGuideEn: Record<string, string> = {
   'closedTestingGuide.subtitle':
     'Everything developers ask us before they publish, answered one chapter at a time—from the rule itself to life after launch.',
   'closedTestingGuide.pill1': 'Real people, real devices',
-  'closedTestingGuide.pill2': '1,500+ apps taken live',
-  'closedTestingGuide.pill3': 'Approved, or a full refund',
+  'closedTestingGuide.pill2': '15 testers for 16 days',
+  'closedTestingGuide.pill3': 'Google decides; refund policy applies',
   'closedTestingGuide.indexLabel': 'INDEX · 12 CHAPTERS',
   'closedTestingGuide.chapterPrefix': 'CHAPTER',
   'closedTestingGuide.navAriaLabel': 'Closed testing chapters',
@@ -50,7 +50,7 @@ export const closedTestingGuideEn: Record<string, string> = {
   'closedTestingGuide.ch3.p1':
     'Fast Testers is a professional Google Play closed testing service operated by Hassil LLC. We help indie developers and small teams meet Google\'s closed testing requirements without spending weeks hunting for reliable testers on forums and social media.',
   'closedTestingGuide.ch3.p2':
-    'We\'ve supported more than 1,500 apps on the path to production access. Our focus is narrow by design: Android closed testing, real devices, clear timelines, and a production access guarantee backed by a refund policy.',
+    'We help Android developers complete Google Play closed testing so they can apply for production access. Our focus is narrow by design: Android closed testing, real devices, a 16-day cycle, and refund terms on the refund policy page.',
   'closedTestingGuide.ch3.p3':
     'You submit your closed testing link from Play Console; we coordinate testers, track the testing period, and keep you updated through your dashboard—so you can focus on fixing bugs and preparing your store listing.',
 
@@ -64,7 +64,7 @@ export const closedTestingGuideEn: Record<string, string> = {
     '100% free, developer-to-developer swaps. Great if you have time to reciprocate and coordinate schedules yourself. No guaranteed headcount or timeline.',
   'closedTestingGuide.ch4.managedTitle': 'Managed service',
   'closedTestingGuide.ch4.managedDesc':
-    'One-time $15 payment, ~14 testers assigned in about an hour, 14–16 day testing period, dashboard tracking, and our production access guarantee.',
+    'One-time $15 payment, 15 testers assigned in about an hour, 16-day testing period (covers Google’s 14 consecutive days), dashboard tracking, and refund terms on our refund policy.',
   'closedTestingGuide.ch4.p2':
     'Most developers who need production access on a deadline choose managed testing. The community remains available if you want a no-cost option and can wait for mutual swaps.',
 
@@ -74,10 +74,10 @@ export const closedTestingGuideEn: Record<string, string> = {
   'closedTestingGuide.ch5.p1':
     'Fast Testers keeps pricing straightforward: a single $15 USD one-time payment per app test. No subscriptions, no hidden tiers, no per-tester upsells.',
   'closedTestingGuide.ch5.li1':
-    '~14 professional Android testers (buffer above Google\'s minimum of 12)',
-  'closedTestingGuide.ch5.li2': '14–16 consecutive days of closed testing coverage',
+    '15 professional Android testers (buffer above Google\'s minimum of 12)',
+  'closedTestingGuide.ch5.li2': '16 consecutive days of closed testing coverage (covers Google’s 14-day requirement)',
   'closedTestingGuide.ch5.li3':
-    'Production access guarantee with full refund if Google rejects after our period',
+    'Refund terms if you do not reach production after our managed testing period — Google decides approval',
   'closedTestingGuide.ch5.li4': 'Progress dashboard, tester reports, and email support',
   'closedTestingGuide.ch5.p2':
     'Payment is processed securely through Stripe. You can cancel for a full refund before testers are assigned; once testing starts, the guarantee covers eligible production rejections—see our Refund Policy for details.',

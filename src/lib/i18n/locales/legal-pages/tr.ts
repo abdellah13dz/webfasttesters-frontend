@@ -76,12 +76,12 @@ export const legalPagesTr: Record<string, string> = {
   'termsPolicy.sections.definitions.p1': '"Hizmetler", {entity} tarafından {brand} platformu aracılığıyla sağlanan profesyonel uygulama testi, geri bildirim toplama ve üretim erişimi desteği dahil ancak bunlarla sınırlı olmamak üzere uygulama testi ve kalite güvence hizmetlerini ifade eder.',
   'termsPolicy.sections.definitions.p2': '"Kullanıcı", test için uygulama gönderen geliştiriciler ve test programlarına katılan testçiler dahil olmak üzere Hizmetlere erişen veya bunları kullanan herhangi bir birey veya kuruluşu ifade eder.',
   'termsPolicy.sections.definitions.p3': '"Uygulama", test amacıyla Fast Testers\'a gönderilen herhangi bir mobil uygulamayı ifade eder.',
-  'termsPolicy.sections.definitions.p4': '"Test Dönemi", atanan testçilerin gönderilen bir uygulamayı değerlendirdiği ve test ettiği 14-16 günlük süreyi ifade eder.',
+  'termsPolicy.sections.definitions.p4': '"Test Dönemi", atanan testçilerin gönderilen bir uygulamayı değerlendirdiği ve test ettiği 16 günlük süreyi ifade eder.',
   'termsPolicy.sections.definitions.p5': '"Üretim Erişimi Garantisi", test hizmetimizi tamamladıktan sonra Google Play uygulamanızı reddederse tam geri ödeme sağlama taahhüdümüzü ifade eder.',
 
   'termsPolicy.sections.services.title': 'Hizmet Açıklaması',
   'termsPolicy.sections.services.p1': 'Fast Testers, geliştiricilerin Google Play Store\'un üretim erişimi için test gereksinimlerini karşılamalarına yardımcı olmak üzere tasarlanmış profesyonel uygulama test hizmetleri sunar.',
-  'termsPolicy.sections.services.p2': 'Temel hizmetimiz, uygulamanızı 14-16 günlük bir test dönemi boyunca değerlendirmek için 14 profesyonel testçi atamayı içerir. Testçiler uygulamanızı yükleyecek, kullanacak ve geri bildirim sağlayacaktır.',
+  'termsPolicy.sections.services.p2': 'Temel hizmetimiz, uygulamanızı 16 günlük bir test dönemi boyunca değerlendirmek için 15 profesyonel testçi atamayı içerir. Testçiler uygulamanızı yükleyecek, kullanacak ve geri bildirim sağlayacaktır.',
   'termsPolicy.sections.services.p3': 'Ödeme onayından sonra aninda içinde testçi atamasına başlamaya çalışırız, ancak gerçek zamanlama talep ve uygulama karmaşıklığına göre değişebilir.',
   'termsPolicy.sections.services.p4': 'Yasadışı içerik, kötü amaçlı yazılım içeren veya Google Play Store politikalarını ihlal eden herhangi bir uygulamaya hizmet vermeyi reddetme hakkını saklı tutarız.',
 

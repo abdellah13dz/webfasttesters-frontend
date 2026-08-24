@@ -3,7 +3,7 @@
  * Keeps FAQ rich results / LLM citations aligned with on-page answers.
  */
 import { en } from '@/lib/i18n/locales/en';
-import { HOME_FAQ_COUNT, getFullFaqI18nItems } from '@/lib/faq-i18n-items';
+import { HOME_FAQ_PREVIEW_COUNT, getFullFaqI18nItems } from '@/lib/faq-i18n-items';
 
 export type FaqSchemaEntry = { question: string; answer: string };
 
@@ -14,9 +14,9 @@ function entryFromKeys(questionKey: string, answerKey: string): FaqSchemaEntry {
   };
 }
 
-/** Homepage FAQ accordion (all 16 items). */
+/** Homepage FAQ accordion (preview items only). */
 export function getHomeFaqSchemaEntries(): FaqSchemaEntry[] {
-  return Array.from({ length: HOME_FAQ_COUNT }, (_, index) => {
+  return Array.from({ length: HOME_FAQ_PREVIEW_COUNT }, (_, index) => {
     const i = index + 1;
     return entryFromKeys(`homeFaq.fallback${i}Q`, `homeFaq.fallback${i}A`);
   });

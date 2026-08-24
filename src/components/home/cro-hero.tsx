@@ -13,6 +13,7 @@
  */
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowRight, CheckCircle, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -137,6 +138,31 @@ export function CroHero({ onSecondaryAction }: CroHeroProps) {
 
               <p className="mx-auto max-w-xl text-sm text-muted-foreground lg:mx-0">
                 {t('croHero.trustLine')}
+              </p>
+              <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground lg:mx-0">
+                <Link href="/google-play-12-testers" className="underline-offset-4 hover:underline hover:text-foreground">
+                  {t('croHero.requirementLink')}
+                </Link>
+                {' · '}
+                <Link href="/google-play-14-day-testing" className="underline-offset-4 hover:underline hover:text-foreground">
+                  {t('croHero.fourteenDayLink')}
+                </Link>
+                {' · '}
+                <Link href="/google-play-testing-service" className="underline-offset-4 hover:underline hover:text-foreground">
+                  {t('croHero.serviceLink')}
+                </Link>
+                {' · '}
+                <Link href="/android-app-testers" className="underline-offset-4 hover:underline hover:text-foreground">
+                  {t('croHero.testersLink')}
+                </Link>
+                {' · '}
+                <Link href="/google-play-production-access-12-testers" className="underline-offset-4 hover:underline hover:text-foreground">
+                  {t('croHero.productionLink')}
+                </Link>
+                {' · '}
+                <Link href="/resources/google-play-checklist" className="underline-offset-4 hover:underline hover:text-foreground">
+                  {t('croHero.checklistLink')}
+                </Link>
               </p>
             </div>
           </div>

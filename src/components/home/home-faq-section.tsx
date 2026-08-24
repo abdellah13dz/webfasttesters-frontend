@@ -15,10 +15,10 @@ import { useAnalytics } from '@/lib/analytics';
 import { useRouter } from '@/lib/router';
 import { ArrowRight, HelpCircle, Search } from 'lucide-react';
 
-import { HOME_FAQ_COUNT } from '@/lib/faq-i18n-items';
+import { HOME_FAQ_PREVIEW_COUNT } from '@/lib/faq-i18n-items';
 
 function buildFallbackFaq(t: (key: string) => string) {
-  return Array.from({ length: HOME_FAQ_COUNT }, (_, index) => {
+  return Array.from({ length: HOME_FAQ_PREVIEW_COUNT }, (_, index) => {
     const i = index + 1;
     return {
       id: `home-faq-${i}`,

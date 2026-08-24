@@ -1,19 +1,46 @@
 import type { SiteNavigation, NavLink, NavSection } from '@/lib/site-settings';
 import { COMMUNITY_URL } from '@/lib/app-urls';
 
+const FREE_TESTERS_PATH = '/free-testers';
+
 const COMMUNITY_HEADER_LINK: NavLink = {
   labelKey: 'header.freeTestersCommunity',
-  path: COMMUNITY_URL,
+  path: FREE_TESTERS_PATH,
 };
 
 const COMMUNITY_FOOTER_LINK: NavLink = {
   labelKey: 'footer.freeTestersCommunity',
-  path: COMMUNITY_URL,
+  path: FREE_TESTERS_PATH,
 };
+
+/** Blog URLs that duplicate money/requirement landings. */
+const RESOURCE_PATH_ALIASES: Record<string, string> = {
+  '/blog/google-play-12-testers-policy': '/google-play-12-testers',
+  [COMMUNITY_URL]: FREE_TESTERS_PATH,
+};
+
+const HEADER_SEO_RESOURCE_LINKS: NavLink[] = [
+  { labelKey: 'header.twelveTesters', path: '/google-play-12-testers' },
+  { labelKey: 'header.fourteenDayTesting', path: '/google-play-14-day-testing' },
+  { labelKey: 'header.testingService', path: '/google-play-testing-service' },
+  { labelKey: 'header.androidTesters', path: '/android-app-testers' },
+  { labelKey: 'header.productionAccess', path: '/google-play-production-access-12-testers' },
+  { labelKey: 'header.checklist', path: '/resources/google-play-checklist' },
+];
+
+const FOOTER_SEO_RESOURCE_LINKS: NavLink[] = [
+  { labelKey: 'footer.twelveTesters', path: '/google-play-12-testers' },
+  { labelKey: 'footer.fourteenDayTesting', path: '/google-play-14-day-testing' },
+  { labelKey: 'footer.testingService', path: '/google-play-testing-service' },
+  { labelKey: 'footer.androidTesters', path: '/android-app-testers' },
+  { labelKey: 'footer.productionAccess', path: '/google-play-production-access-12-testers' },
+  { labelKey: 'footer.checklist', path: '/resources/google-play-checklist' },
+];
 
 function isCommunityLink(link: NavLink): boolean {
   return (
     link.path === COMMUNITY_URL ||
+    link.path === FREE_TESTERS_PATH ||
     link.labelKey === 'header.freeTestersCommunity' ||
     link.labelKey === 'footer.freeTestersCommunity'
   );
@@ -33,19 +60,92 @@ function isProductFooterSection(section: NavSection): boolean {
   );
 }
 
-/** Ensures community links exist when older DB navigation is loaded from the API. */
+function isResourcesFooterSection(section: NavSection): boolean {
+  if (section.titleKey === 'footer.resources') return true;
+  if (
+    section.titleKey === 'footer.product' ||
+    section.titleKey === 'footer.company' ||
+    section.titleKey === 'footer.support'
+  ) {
+    return false;
+  }
+  return section.links.some(
+    (link) =>
+      link.path === '/faq' ||
+      link.path === '/blog/google-play-12-testers-policy' ||
+      link.path === '/google-play-12-testers'
+  );
+}
+
+function normalizeResourcePath(path: string): string {
+  return RESOURCE_PATH_ALIASES[path] ?? path;
+}
+
+/**
+ * CMS nav can omit SEO landings or still point at cannibalizing blog URLs.
+ * Always expose the money/requirement pages; keep extra CMS links after them.
+ */
+function upsertSeoResourceLinks(links: NavLink[], seoLinks: NavLink[]): NavLink[] {
+  const seoPaths = new Set(seoLinks.map((link) => link.path));
+  const rest = links
+    .map((link) => {
+      const path = normalizeResourcePath(link.path);
+      if (path === link.path) return link;
+      return { path };
+    })
+    .filter((link) => !seoPaths.has(normalizeResourcePath(link.path)));
+
+  const insertAfterPaths = ['/case-studies', '/compare', '/faq'];
+  let insertAt = 0;
+  for (const after of insertAfterPaths) {
+    const index = rest.findIndex((link) => link.path === after);
+    if (index !== -1) {
+      insertAt = index + 1;
+      break;
+    }
+  }
+
+  return [...rest.slice(0, insertAt), ...seoLinks, ...rest.slice(insertAt)];
+}
+
+function remapCommunityPath(links: NavLink[]): NavLink[] {
+  return links.map((link) =>
+    link.path === COMMUNITY_URL ? { ...link, path: FREE_TESTERS_PATH } : link
+  );
+}
+
+/** Ensures community + SEO landing links exist when older DB navigation is loaded. */
 export function mergeSiteNavigation(stored: SiteNavigation): SiteNavigation {
   return {
     ...stored,
-    headerMain: insertLinkAfter(stored.headerMain ?? [], COMMUNITY_HEADER_LINK, '/blog'),
-    footerSections: (stored.footerSections ?? []).map((section) =>
-      isProductFooterSection(section)
-        ? {
-            ...section,
-            links: insertLinkAfter(section.links ?? [], COMMUNITY_FOOTER_LINK, '/submit-app'),
-          }
-        : section
+    headerMain: insertLinkAfter(
+      remapCommunityPath(stored.headerMain ?? []),
+      COMMUNITY_HEADER_LINK,
+      '/blog'
     ),
+    headerResources: upsertSeoResourceLinks(
+      stored.headerResources ?? [],
+      HEADER_SEO_RESOURCE_LINKS
+    ),
+    footerSections: (stored.footerSections ?? []).map((section) => {
+      if (isProductFooterSection(section)) {
+        return {
+          ...section,
+          links: insertLinkAfter(
+            remapCommunityPath(section.links ?? []),
+            COMMUNITY_FOOTER_LINK,
+            '/submit-app'
+          ),
+        };
+      }
+      if (isResourcesFooterSection(section)) {
+        return {
+          ...section,
+          links: upsertSeoResourceLinks(section.links ?? [], FOOTER_SEO_RESOURCE_LINKS),
+        };
+      }
+      return section;
+    }),
   };
 }
 
@@ -55,19 +155,14 @@ export const FALLBACK_NAVIGATION: SiteNavigation = mergeSiteNavigation({
     { labelKey: 'header.reviews', path: '/reviews' },
     { labelKey: 'header.pricing', path: '/pricing' },
     { labelKey: 'header.blog', path: '/blog' },
-    { labelKey: 'header.freeTestersCommunity', path: 'https://community.fasttesters.com/' },
+    { labelKey: 'header.freeTestersCommunity', path: '/free-testers' },
   ],
   headerResources: [
     { labelKey: 'header.compare', path: '/compare' },
     { labelKey: 'header.caseStudies', path: '/case-studies' },
-    { labelKey: 'header.androidTesters', path: '/android-app-testers' },
-    { labelKey: 'header.betaTestersGuide', path: '/blog/how-to-find-beta-testers-for-android-apps' },
     { labelKey: 'header.googlePlayClosedTesting', path: '/blog/google-play-closed-testing' },
-    { label: '12 Testers Policy', path: '/blog/google-play-12-testers-policy' },
     { labelKey: 'header.appRejected', path: '/blog/app-rejected-google-play' },
-    { labelKey: 'header.multiLanguageTesting', path: '/blog/multi-language-app-testing' },
     { labelKey: 'header.setupGuide', path: '/google-play-setup-guide' },
-    { labelKey: 'header.productionAccess', path: '/google-play-production-access-12-testers' },
   ],
   headerSupport: [
     { labelKey: 'footer.helpCenter', path: '/support', icon: 'Headphones' },
@@ -95,7 +190,7 @@ export const FALLBACK_NAVIGATION: SiteNavigation = mergeSiteNavigation({
         { labelKey: 'footer.pricing', path: '/pricing' },
         { labelKey: 'footer.compare', path: '/compare' },
         { labelKey: 'footer.submitApp', path: '/submit-app' },
-        { labelKey: 'footer.freeTestersCommunity', path: 'https://community.fasttesters.com/' },
+        { labelKey: 'footer.freeTestersCommunity', path: '/free-testers' },
         { labelKey: 'footer.affiliateProgram', path: '/app-testing-referral-program' },
       ],
     },
@@ -103,11 +198,9 @@ export const FALLBACK_NAVIGATION: SiteNavigation = mergeSiteNavigation({
       titleKey: 'footer.resources',
       links: [
         { labelKey: 'footer.faq', path: '/faq' },
-        { labelKey: 'footer.androidTesters', path: '/android-app-testers' },
-        { labelKey: 'footer.googlePlayGuide', path: '/blog/publish-app-google-play' },
         { label: 'Closed Testing Guide', path: '/blog/google-play-closed-testing' },
-        { label: '12 Testers Policy', path: '/blog/google-play-12-testers-policy' },
-        { label: 'Find Beta Testers', path: '/blog/how-to-find-beta-testers-for-android-apps' },
+        { labelKey: 'footer.appRejected', path: '/blog/app-rejected-google-play' },
+        { labelKey: 'footer.setupGuide', path: '/google-play-setup-guide' },
         { labelKey: 'footer.enterpriseGuide', path: '/guides/enterprise-onboarding' },
       ],
     },

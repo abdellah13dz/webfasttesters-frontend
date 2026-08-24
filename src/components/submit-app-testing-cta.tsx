@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { ArrowRight, Send } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/context';
 import { useRouter } from '@/lib/router';
@@ -12,6 +13,18 @@ interface SubmitAppTestingCtaProps {
   className?: string;
   /** `card` for page sections; `banner` for footer / compact rows */
   variant?: 'card' | 'banner';
+}
+
+function RequirementLink({ className }: { className?: string }) {
+  const { t } = useLanguage();
+  return (
+    <Link
+      href="/google-play-12-testers"
+      className={cn('text-blue-600 hover:underline dark:text-blue-400', className)}
+    >
+      {t('blogArticle.requirementLink')}
+    </Link>
+  );
 }
 
 export function SubmitAppTestingCta({ className, variant = 'card' }: SubmitAppTestingCtaProps) {
@@ -34,6 +47,9 @@ export function SubmitAppTestingCta({ className, variant = 'card' }: SubmitAppTe
               <h3 className="text-sm font-semibold text-foreground">{t('blogArticle.submitApp')}</h3>
             </div>
             <p className="text-sm text-muted-foreground">{t('blogArticle.submitAppDesc')}</p>
+            <p className="mt-2 text-sm">
+              <RequirementLink />
+            </p>
           </div>
           <Button
             onClick={() => goToGetStartedPricing(currentPath, navigate)}
@@ -61,8 +77,11 @@ export function SubmitAppTestingCta({ className, variant = 'card' }: SubmitAppTe
           <span className="text-sm font-medium text-blue-600 dark:text-blue-400">{t('submitApp.badge')}</span>
         </div>
         <h3 className="mb-2 text-xl font-bold text-foreground sm:text-2xl">{t('blogArticle.submitApp')}</h3>
-        <p className="mx-auto mb-6 max-w-md text-sm text-muted-foreground sm:text-base">
+        <p className="mx-auto mb-2 max-w-md text-sm text-muted-foreground sm:text-base">
           {t('blogArticle.submitAppDesc')}
+        </p>
+        <p className="mb-6 text-sm">
+          <RequirementLink />
         </p>
         <Button
           onClick={() => goToGetStartedPricing(currentPath, navigate)}

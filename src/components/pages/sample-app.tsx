@@ -11,8 +11,6 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import {
   Smartphone,
-  Star,
-  Download,
   CheckCircle,
   Clock,
   Bug,
@@ -31,8 +29,9 @@ import {
 const timelineSteps = [
   {
     day: 'Day 1',
-    title: 'App Submitted',
-    description: 'QuickNote was submitted to Fast Testers with all required metadata and APK/AAB file.',
+    title: 'Example app submitted',
+    description:
+      'In this dashboard walkthrough, QuickNote is submitted for Fast Testers closed testing with a Play Console opt-in link — not as a second product or a Play listing.',
     icon: Smartphone,
     color: 'text-blue-400',
     bgColor: 'bg-blue-500/10',
@@ -41,7 +40,7 @@ const timelineSteps = [
   {
     day: 'Day 1-3',
     title: 'Testers Join & Install',
-    description: '14 verified testers joined the closed testing track and installed the app on their devices.',
+    description: '15 verified testers joined the closed testing track and installed the app on their devices.',
     icon: Users,
     color: 'text-cyan-400',
     bgColor: 'bg-cyan-500/10',
@@ -75,9 +74,10 @@ const timelineSteps = [
     borderColor: 'border-blue-500/20',
   },
   {
-    day: 'Day 14',
-    title: 'Production Access Granted',
-    description: 'All requirements met — 14 testers active for 14 days with meaningful interactions. Production access approved!',
+    day: 'Day 16',
+    title: 'Ready to apply in Play Console',
+    description:
+      'The 16-day example cycle with 15 testers is complete. Apply for production access in Play Console — Google decides. Fast Testers does not grant or guarantee production access.',
     icon: CheckCircle,
     color: 'text-cyan-400',
     bgColor: 'bg-cyan-500/10',
@@ -150,7 +150,7 @@ const metricsAfter = [
   { label: 'ANR Rate', value: '0.0%', highlight: true },
   { label: 'User Rating', value: '4.8', highlight: true },
   { label: 'Accessibility Score', value: '94/100', highlight: true },
-  { label: 'Test Coverage', value: '14 devices', highlight: true },
+  { label: 'Test Coverage', value: '15 testers', highlight: true },
   { label: 'Tester Retention', value: '100%', highlight: true },
 ]
 
@@ -215,18 +215,13 @@ export default function SampleAppPage() {
             className="mb-6 border-blue-400/30 text-blue-400 bg-blue-400/10 px-4 py-1.5 text-sm"
           >
             <Smartphone className="mr-1.5 size-3.5" />
-            Live Demo
+            {t('sampleApp.liveDemo')}
           </Badge>
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-            See Our Testing{' '}
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-              in Action
-            </span>
+            {t('sampleApp.seeTesting')}
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-            Download a sample app that was tested through Fast Testers and follow its complete 14-day
-            journey from submission to production access. See exactly what happens when you choose
-            professional testing.
+            {t('sampleApp.heroDescription')}
           </p>
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Button
@@ -259,7 +254,7 @@ export default function SampleAppPage() {
               }}
             >
               <Clock className="mr-2 size-4" />
-              View 14-Day Timeline
+              View 16-Day Timeline
             </Button>
           </div>
         </div>
@@ -271,11 +266,11 @@ export default function SampleAppPage() {
       <section className="mx-auto max-w-5xl px-4 sm:px-6 pb-16">
         <div className="mb-8 text-center">
           <Badge variant="outline" className="border-border text-muted-foreground">
-            Sample App
+            {t('sampleApp.detailsBadge')}
           </Badge>
-          <h2 className="mt-4 text-2xl font-bold sm:text-3xl">Sample App Details</h2>
+          <h2 className="mt-4 text-2xl font-bold sm:text-3xl">{t('sampleApp.detailsTitle')}</h2>
           <p className="mx-auto mt-2 max-w-xl text-muted-foreground">
-            A real example of an app that went through our complete testing process
+            {t('sampleApp.detailsSubtitle')}
           </p>
         </div>
 
@@ -293,29 +288,25 @@ export default function SampleAppPage() {
               <div className="flex-1 space-y-4">
                 <div>
                   <h3 className="text-2xl font-bold text-foreground sm:text-3xl">
-                    QuickNote - Todo &amp; Tasks
+                    {t('sampleApp.quickNote')}
                   </h3>
                   <p className="mt-1 font-mono text-sm text-muted-foreground">
                     com.demo.quicknote
                   </p>
+                  <p className="mt-2 text-sm text-muted-foreground">{t('sampleApp.exampleNotice')}</p>
                 </div>
 
                 {/* Meta row */}
                 <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
                   <span className="flex items-center gap-1.5">
                     <BarChart3 className="size-4 text-blue-400" />
-                    Productivity
+                    Example dashboard app
                   </span>
                   <span className="text-border">|</span>
                   <span className="flex items-center gap-1">
-                    <Star className="size-4 text-yellow-500" />
-                    <span className="font-semibold text-foreground">4.8</span>
-                    <span>(142 reviews)</span>
-                  </span>
-                  <span className="text-border">|</span>
-                  <span className="flex items-center gap-1">
-                    <Download className="size-4 text-blue-400" />
-                    10K+ downloads
+                    <Users className="size-4 text-blue-400" />
+                    <span className="font-semibold text-foreground">15 testers</span>
+                    <span>/ 16 days / $15</span>
                   </span>
                 </div>
 
@@ -323,26 +314,26 @@ export default function SampleAppPage() {
                 <div className="flex flex-wrap gap-2">
                   <Badge className="border-blue-500/30 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20">
                     <CheckCircle className="mr-1 size-3" />
-                    Production Access ✓
+                    {t('sampleApp.productionAccess')}
                   </Badge>
                   <Badge className="border-cyan-500/30 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20">
                     <Clock className="mr-1 size-3" />
-                    14-Day Testing Complete
+                    {t('sampleApp.testingComplete')}
                   </Badge>
                   <Badge className="border-blue-500/30 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20">
                     <Shield className="mr-1 size-3" />
-                    14 Verified Testers
+                    15 Verified Testers
                   </Badge>
                 </div>
 
                 {/* Quick Stats */}
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                   <div className="rounded-lg border border-border bg-muted/30 p-3 text-center">
-                    <div className="text-xl font-bold text-blue-400">14</div>
+                    <div className="text-xl font-bold text-blue-400">15</div>
                     <div className="text-xs text-muted-foreground">Testers</div>
                   </div>
                   <div className="rounded-lg border border-border bg-muted/30 p-3 text-center">
-                    <div className="text-xl font-bold text-cyan-400">14</div>
+                    <div className="text-xl font-bold text-cyan-400">16</div>
                     <div className="text-xs text-muted-foreground">Days</div>
                   </div>
                   <div className="rounded-lg border border-border bg-muted/30 p-3 text-center">
@@ -369,7 +360,7 @@ export default function SampleAppPage() {
             </Badge>
             <h2 className="mt-4 text-2xl font-bold sm:text-3xl">Testing Timeline</h2>
             <p className="mx-auto mt-2 max-w-xl text-muted-foreground">
-              Follow QuickNote&apos;s 14-day journey from submission to production access
+              {t('sampleApp.timelineJourney')}
             </p>
           </div>
 
@@ -554,8 +545,8 @@ export default function SampleAppPage() {
               <div className="mt-1 text-xs text-muted-foreground sm:text-sm">Better Accessibility</div>
             </div>
             <div className="rounded-xl border border-border bg-card/50 p-4 text-center">
-              <div className="text-2xl font-bold text-cyan-400 sm:text-3xl">14</div>
-              <div className="mt-1 text-xs text-muted-foreground sm:text-sm">Devices Tested</div>
+              <div className="text-2xl font-bold text-cyan-400 sm:text-3xl">15</div>
+              <div className="mt-1 text-xs text-muted-foreground sm:text-sm">Testers Assigned</div>
             </div>
           </div>
         </div>
@@ -576,7 +567,7 @@ export default function SampleAppPage() {
               {t('sampleApp.dayByDayProgress')}
             </h2>
             <p className="mx-auto mt-2 max-w-xl text-muted-foreground">
-              Track each milestone from tester installation to production access
+              {t('sampleApp.progressSubtitle')}
             </p>
           </div>
 
@@ -667,9 +658,8 @@ export default function SampleAppPage() {
               Ready to Test Your App?
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground text-lg">
-              Join thousands of developers who have successfully launched their apps on Google Play
-              with Fast Testers. Get 14 verified testers, detailed feedback, and guaranteed
-              production access — all in just 14 days.
+              Fast Testers assigns 15 testers for 16 days for $15, covering Google’s 12 testers /
+              14 consecutive days. Google decides production access. See the refund policy for terms.
             </p>
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Button
@@ -691,7 +681,7 @@ export default function SampleAppPage() {
             </div>
             <p className="mt-6 text-sm text-muted-foreground">
               Starting at just <span className="font-semibold text-foreground">$15</span> —
-              99.9% success rate — 15,000+ apps tested
+              15 testers for 16 days. Google decides production access.
             </p>
           </CardContent>
         </Card>

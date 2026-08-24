@@ -170,6 +170,16 @@ const nextConfig: NextConfig = {
         destination: "/blog/publish-app-google-play",
         permanent: true,
       },
+      {
+        source: "/production-access",
+        destination: "/google-play-production-access-12-testers",
+        permanent: true,
+      },
+      {
+        source: "/google-play-requirement",
+        destination: "/google-play-12-testers",
+        permanent: true,
+      },
     ];
   },
 };

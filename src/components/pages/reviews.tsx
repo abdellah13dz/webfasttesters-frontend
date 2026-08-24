@@ -269,7 +269,7 @@ export default function Reviews() {
                       <Trophy className="h-4 w-4 text-blue-400" />
                     </div>
                     <div>
-                      <div className="text-sm font-semibold text-foreground">1,500+</div>
+                      <div className="text-sm font-semibold text-foreground">15 testers</div>
                       <div className="text-xs text-muted-foreground">
                         {t('reviews.appsPublished')}
                       </div>
