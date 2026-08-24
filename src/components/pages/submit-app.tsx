@@ -48,7 +48,6 @@ import {
 } from 'lucide-react';
 import { ClientOnly } from '@/components/client-only';
 import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
-import { FullDemoCta } from '@/components/full-demo-cta';
 import { AppSetupGuideCta } from '@/components/app-setup-guide-cta';
 import { FastTestersTutorial } from '@/components/video-tutorial/fast-testers-tutorial';
 
@@ -364,13 +363,11 @@ export default function SubmitAppPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-4 sm:px-6 pb-2">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-8 lg:px-8">
         <FastTestersTutorial variant="cta" analyticsLocation="submit_app_tutorial" />
       </section>
 
       <AppSetupGuideCta trackingId="submit_app_setup_guide" />
-
-      <FullDemoCta trackingId="submit_app_full_demo" />
 
       {/* ═══════════════════════════════════════════════════════════════════
           REQUIREMENTS CHECKLIST SECTION
@@ -851,7 +848,7 @@ export default function SubmitAppPage() {
       {/* ═══════════════════════════════════════════════════════════════════
           BOTTOM CTA
           ═══════════════════════════════════════════════════════════════════ */}
-      <section className="mx-auto max-w-5xl px-4 sm:px-6 py-12 sm:py-16">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-16 sm:py-24">
         <Card className="border-blue-400/20 bg-gradient-to-br from-blue-500/5 to-cyan-500/10 backdrop-blur-sm">
           <CardContent className="p-8 sm:p-12 text-center">
             <div className="flex justify-center mb-4">

@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from '@/lib/router';
 import { useLanguage } from '@/lib/i18n/context';
 import { NewsletterSection } from '@/components/newsletter-section';
 import { useSiteNavigation } from '@/lib/hooks/use-site-navigation';
@@ -13,13 +12,9 @@ import { BusinessLegalNotice } from '@/components/business-legal-notice';
 import { LEGAL_ENTITY_NAME } from '@/lib/business';
 import { Facebook, Instagram, Youtube } from 'lucide-react';
 import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
-import { SubmitAppTestingCta } from '@/components/submit-app-testing-cta';
-import { shouldShowFooterSubmitCta } from '@/lib/page-has-dashboard-cta';
 
 export function Footer() {
-  const { currentPath } = useRouter();
   const { t } = useLanguage();
-  const showSubmitCta = shouldShowFooterSubmitCta(currentPath);
   const navigation = useSiteNavigation();
   const footerSections = navigation.footerSections?.length
     ? navigation.footerSections
@@ -103,7 +98,6 @@ export function Footer() {
         </div>
 
         <div className="border-t border-border/40 py-6 space-y-5">
-          {showSubmitCta && <SubmitAppTestingCta variant="banner" />}
           <div className="flex flex-col items-center justify-between gap-5 lg:flex-row w-full">
             <NewsletterSection variant="inline" title={t('footer.newsletterTitle')} />
             <TrustpilotWidget

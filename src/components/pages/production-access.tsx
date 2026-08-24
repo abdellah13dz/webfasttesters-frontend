@@ -19,7 +19,6 @@ import {
   Send,
   Trophy,
 } from 'lucide-react'
-import { FullDemoCta } from '@/components/full-demo-cta'
 import { AppSetupGuideCta } from '@/components/app-setup-guide-cta'
 
 const steps = [
@@ -257,8 +256,6 @@ export default function ProductionAccessPage() {
       </section>
 
       <AppSetupGuideCta trackingId="production_access_setup_guide" />
-
-      <FullDemoCta trackingId="production_access_full_demo" />
 
       {/* CTA Section */}
       <section className="border-t border-border bg-background">

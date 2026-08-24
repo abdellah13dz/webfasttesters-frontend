@@ -50,7 +50,7 @@
 
 /* Light Mode */
 :root {
-  --mobile-cta-bar-height: 4.75rem;
+  --mobile-cta-bar-height: 4rem;
   --mobile-sticky-offset: calc(var(--mobile-cta-bar-height) + env(safe-area-inset-bottom, 0px));
   --radius: 0.625rem;
   --background: oklch(0.985 0.002 250);

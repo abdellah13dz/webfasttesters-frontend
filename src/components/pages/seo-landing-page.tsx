@@ -16,7 +16,6 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { ArrowRight, CheckCircle2, BookOpen } from 'lucide-react';
-import { FullDemoCta } from '@/components/full-demo-cta';
 import { AiCitationSummary, AiEntityDefinition } from '@/components/ai-citation-summary';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -178,12 +177,6 @@ export function SeoLandingPage({ config }: SeoLandingPageProps) {
           </div>
         </section>
       )}
-
-      <section className="py-12 border-t border-border/40">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <FullDemoCta trackingId="seo_landing_demo" />
-        </div>
-      </section>
 
       <section className="py-12 border-t border-border/40">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">

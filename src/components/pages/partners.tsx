@@ -87,7 +87,7 @@ export default function PartnersPage() {
     <div className="min-h-screen bg-background text-foreground">
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-cyan-500/5 to-blue-500/5" />
-        <div className="relative mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24 text-center">
+        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 text-center">
           <Badge
             variant="outline"
             className="mb-6 border-blue-400/30 text-blue-400 bg-blue-400/10 px-4 py-1.5 text-sm"
@@ -108,7 +108,7 @@ export default function PartnersPage() {
       </section>
 
       <section className="border-t border-border bg-card/50">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-16 sm:py-24">
           <div className="text-center mb-12">
             <Badge
               variant="outline"
@@ -160,7 +160,7 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-4 sm:px-6 py-16 sm:py-24">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-16 sm:py-24">
         <div className="text-center mb-12">
           <Badge
             variant="outline"
@@ -177,7 +177,7 @@ export default function PartnersPage() {
           </p>
         </div>
 
-        <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
+        <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {benefits.map((benefit) => {
             const Icon = benefit.icon;
             return (
@@ -185,7 +185,7 @@ export default function PartnersPage() {
                 key={benefit.titleKey}
                 className="border border-border bg-card/50 backdrop-blur-sm hover:border-blue-400/20 transition-all duration-300 group"
               >
-                <CardContent className="p-6">
+                <CardContent className="p-6 sm:p-8">
                   <div className="flex items-start gap-4">
                     <div
                       className={`flex items-center justify-center w-12 h-12 rounded-xl ${benefit.bg} shrink-0 group-hover:scale-110 transition-transform`}
@@ -209,7 +209,7 @@ export default function PartnersPage() {
       </section>
 
       <section className="border-t border-border">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-16 sm:py-24">
           <Card className="border-blue-400/20 bg-gradient-to-br from-blue-500/5 via-cyan-500/5 to-blue-500/5 backdrop-blur-sm overflow-hidden relative">
             <CardContent className="p-8 sm:p-12 text-center relative">
               <div className="flex justify-center mb-6">

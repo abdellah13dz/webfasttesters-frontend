@@ -34,6 +34,13 @@ import {
   Upload,
   ExternalLink,
   Trophy,
+  Briefcase,
+  Heart,
+  GraduationCap,
+  Gamepad2,
+  Wallet,
+  Wrench,
+  ShoppingBag,
 } from 'lucide-react';
 import { NewsletterSection } from '@/components/newsletter-section';
 import { FullDemoCta } from '@/components/full-demo-cta';
@@ -165,16 +172,16 @@ export default function HomePage() {
       <HomeTrustBar />
 
       {/* ═══════════════════════════════════════════════════════════════════
-          PLATFORM OVERVIEW — SEO copy + explainer video (single column)
+          PLATFORM OVERVIEW — SEO copy + explainer video (two-column on lg)
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="relative overflow-x-hidden border-t border-border/40 bg-muted/25">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/[0.02] to-transparent" />
-        <div className="relative mx-auto max-w-3xl lg:max-w-4xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-          <div className="flex flex-col items-center text-center gap-8 sm:gap-10">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             {/* Copy */}
-            <div className="w-full max-w-2xl">
+            <div className="flex-1 text-center lg:text-left w-full">
               <AnimatedSection>
-                <div className="mb-5 flex flex-wrap items-center justify-center gap-2">
+                <div className="mb-5 flex flex-wrap items-center justify-center lg:justify-start gap-2">
                   <Badge
                     variant="outline"
                     className="border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground"
@@ -200,7 +207,7 @@ export default function HomePage() {
               </AnimatedSection>
 
               <AnimatedSection delay={140}>
-                <p className="mx-auto max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed mb-5 sm:mb-6">
+                <p className="mx-auto lg:mx-0 max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed mb-5 sm:mb-6">
                   {t('home.heroDescription')}{' '}
                   {t('home.heroDescriptionJoin')}
                 </p>
@@ -210,7 +217,7 @@ export default function HomePage() {
               <AnimatedSection delay={180}>
                 <div className="space-y-2.5 sm:space-y-5">
                   {/* Line 1 — fact chips */}
-                  <ul className="flex flex-nowrap items-center justify-center gap-x-0 overflow-x-auto scrollbar-none text-[10px] leading-tight text-foreground/80 sm:flex-wrap sm:gap-2 sm:text-xs sm:leading-normal">
+                  <ul className="flex flex-nowrap items-center justify-center lg:justify-start gap-x-0 overflow-x-auto scrollbar-none text-[10px] leading-tight text-foreground/80 sm:flex-wrap sm:gap-2 sm:text-xs sm:leading-normal">
                     {[
                       { icon: Users, label: t('home.overviewChipTesters') },
                       { icon: Clock, label: t('home.overviewChipDays') },
@@ -231,7 +238,7 @@ export default function HomePage() {
                   </ul>
 
                   {/* Line 2 — CTAs; trust sits on its own row on mobile */}
-                  <div className="flex flex-col items-center gap-2 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-3">
+                  <div className="flex flex-col items-center lg:items-start gap-2 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start sm:gap-3">
                     <div className="flex flex-nowrap items-center justify-center gap-x-1.5">
                       <Button
                         size="sm"
@@ -268,7 +275,7 @@ export default function HomePage() {
             </div>
 
             {/* Explainer video — slightly larger on desktop, still not full-bleed */}
-            <AnimatedSection delay={160} className="w-full max-w-2xl lg:max-w-3xl">
+            <AnimatedSection delay={160} className="w-full flex-1 max-w-2xl lg:max-w-none">
               <div className="rounded-2xl border border-border/50 bg-background/60 p-2 sm:p-3 shadow-sm">
                 <div className="mb-2.5 flex items-center justify-between gap-3 px-1">
                   <p className="text-xs sm:text-sm font-medium text-muted-foreground">
@@ -307,7 +314,7 @@ export default function HomePage() {
                   <div className="text-3xl sm:text-4xl font-bold gradient-text mb-1">
                     $15
                   </div>
-                  <p className="text-sm text-muted-foreground font-medium">{t('home.successRate')}</p>
+                  <p className="text-sm text-muted-foreground font-medium">{t('home.statPrice')}</p>
                 </CardContent>
               </Card>
             </AnimatedSection>
@@ -321,7 +328,7 @@ export default function HomePage() {
                   <div className="text-3xl sm:text-4xl font-bold gradient-text mb-1">
                     15
                   </div>
-                  <p className="text-sm text-muted-foreground font-medium">{t('home.appsPublished')}</p>
+                  <p className="text-sm text-muted-foreground font-medium">{t('home.statTesters')}</p>
                 </CardContent>
               </Card>
             </AnimatedSection>
@@ -333,9 +340,9 @@ export default function HomePage() {
                     <Globe className="h-6 w-6 text-blue-400" />
                   </div>
                   <div className="text-3xl sm:text-4xl font-bold gradient-text mb-1">
-                    16
+                    16 Days
                   </div>
-                  <p className="text-sm text-muted-foreground font-medium">{t('home.countriesServed')}</p>
+                  <p className="text-sm text-muted-foreground font-medium">{t('home.statCycle')}</p>
                 </CardContent>
               </Card>
             </AnimatedSection>
@@ -502,6 +509,48 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ═══════════════════════════════════════════════════════════════════
+          APP CATEGORIES WE TEST
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-16 sm:py-20 border-t border-border/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="text-center mb-10">
+              <Badge variant="outline" className="mb-4 border-blue-500/30 text-blue-400 bg-blue-500/10">
+                {t('home.weTestAllApps')}
+              </Badge>
+              <h2 className="text-3xl sm:text-4xl font-bold mb-3">
+                <span className="gradient-text">{t('home.allAndroidCategories')}</span>
+              </h2>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { icon: Briefcase, nameKey: 'home.catProductivity', descKey: 'home.catProductivityDesc' },
+              { icon: MessageSquare, nameKey: 'home.catSocial', descKey: 'home.catSocialDesc' },
+              { icon: Heart, nameKey: 'home.catHealth', descKey: 'home.catHealthDesc' },
+              { icon: GraduationCap, nameKey: 'home.catEducation', descKey: 'home.catEducationDesc' },
+              { icon: Gamepad2, nameKey: 'home.catEntertainment', descKey: 'home.catEntertainmentDesc' },
+              { icon: Wallet, nameKey: 'home.catFinance', descKey: 'home.catFinanceDesc' },
+              { icon: Wrench, nameKey: 'home.catUtilities', descKey: 'home.catUtilitiesDesc' },
+              { icon: ShoppingBag, nameKey: 'home.catLifestyle', descKey: 'home.catLifestyleDesc' },
+            ].map((cat, idx) => (
+              <AnimatedSection key={cat.nameKey} delay={idx * 70}>
+                <Card className="card-hover bg-card/80 border-border/60 h-full">
+                  <CardContent className="p-5 flex flex-col items-center text-center">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10 mb-3">
+                      <cat.icon className="h-6 w-6 text-blue-400" />
+                    </div>
+                    <h3 className="text-sm font-semibold text-foreground mb-1">{t(cat.nameKey)}</h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{t(cat.descKey)}</p>
+                  </CardContent>
+                </Card>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Requirement + compare teasers (full pages own the long copy) */}
       <section className="py-16 sm:py-20 border-t border-border/40">

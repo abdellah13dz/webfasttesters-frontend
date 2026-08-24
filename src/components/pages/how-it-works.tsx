@@ -21,7 +21,6 @@ import {
   Star,
 } from 'lucide-react';
 import { TrustpilotWidget } from '@/components/trustpilot/trustpilot-widget';
-import { FullDemoCta } from '@/components/full-demo-cta';
 import { AppSetupGuideCta } from '@/components/app-setup-guide-cta';
 import { FastTestersTutorial } from '@/components/video-tutorial/fast-testers-tutorial';
 import { PageFaqSection } from '@/components/page-faq-section';
@@ -215,8 +214,6 @@ export default function HowItWorks() {
       </section>
 
       <AppSetupGuideCta trackingId="how_it_works_setup_guide" />
-
-      <FullDemoCta trackingId="how_it_works_full_demo" />
 
       {/* Stats Bar */}
       <AnimatedSection>

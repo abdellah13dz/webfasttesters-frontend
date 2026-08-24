@@ -1,9 +1,7 @@
 'use client'
 
 import { useRouter } from '@/lib/router'
-import { openAppDemo } from '@/lib/app-urls'
 import { useLanguage } from '@/lib/i18n/context'
-import { useAnalytics } from '@/lib/analytics'
 import { goToGetStartedPricing } from '@/lib/pricing-navigation'
 import { FullDemoCta } from '@/components/full-demo-cta'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -23,7 +21,6 @@ import {
   BarChart3,
   Circle,
   CheckCircle2,
-  ExternalLink,
 } from 'lucide-react'
 
 const timelineSteps = [
@@ -202,14 +199,13 @@ const testingTimelineEntries = [
 export default function SampleAppPage() {
   const { navigate, currentPath } = useRouter()
   const { t } = useLanguage()
-  const { trackCta } = useAnalytics()
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-cyan-500/5" />
-        <div className="relative mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24 text-center">
+        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 text-center">
           <Badge
             variant="outline"
             className="mb-6 border-blue-400/30 text-blue-400 bg-blue-400/10 px-4 py-1.5 text-sm"
@@ -237,18 +233,6 @@ export default function SampleAppPage() {
               variant="outline"
               className="border-border text-foreground/80 hover:bg-muted"
               onClick={() => {
-                trackCta('sample_app_full_demo')
-                openAppDemo()
-              }}
-            >
-              <ExternalLink className="mr-2 size-4" />
-              {t('fullDemo.cta')}
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-border text-foreground/80 hover:bg-muted"
-              onClick={() => {
                 const el = document.getElementById('timeline-section')
                 el?.scrollIntoView({ behavior: 'smooth' })
               }}
@@ -263,7 +247,7 @@ export default function SampleAppPage() {
       <FullDemoCta trackingId="sample_app_full_demo" />
 
       {/* Sample App Details Section */}
-      <section className="mx-auto max-w-5xl px-4 sm:px-6 pb-16">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-16">
         <div className="mb-8 text-center">
           <Badge variant="outline" className="border-border text-muted-foreground">
             {t('sampleApp.detailsBadge')}
@@ -353,7 +337,7 @@ export default function SampleAppPage() {
 
       {/* Testing Timeline Section */}
       <section id="timeline-section" className="border-y border-border bg-card/30">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-16">
           <div className="mb-10 text-center">
             <Badge variant="outline" className="border-border text-muted-foreground">
               Timeline
@@ -410,7 +394,7 @@ export default function SampleAppPage() {
       </section>
 
       {/* What Testers Found Section */}
-      <section className="mx-auto max-w-5xl px-4 sm:px-6 py-16">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-16">
         <div className="mb-10 text-center">
           <Badge variant="outline" className="border-border text-muted-foreground">
             Feedback
@@ -460,7 +444,7 @@ export default function SampleAppPage() {
 
       {/* Before & After Section */}
       <section className="border-y border-border bg-card/30">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-16">
           <div className="mb-10 text-center">
             <Badge variant="outline" className="border-border text-muted-foreground">
               Results
@@ -554,7 +538,7 @@ export default function SampleAppPage() {
 
       {/* Testing Timeline Section */}
       <section className="border-y border-border bg-card/30">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-16">
           <div className="mb-10 text-center">
             <Badge
               variant="outline"
@@ -646,7 +630,7 @@ export default function SampleAppPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="mx-auto max-w-5xl px-4 sm:px-6 py-16 sm:py-24">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-16 sm:py-24">
         <Card className="border-blue-400/20 bg-gradient-to-br from-blue-500/5 to-cyan-500/10 backdrop-blur-sm">
           <CardContent className="p-8 sm:p-12 text-center">
             <div className="mb-6 flex justify-center">

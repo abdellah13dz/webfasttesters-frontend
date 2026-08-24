@@ -6,7 +6,6 @@ import { useRouter } from '@/lib/router';
 import { goToGetStartedPricing } from '@/lib/pricing-navigation';
 import { useLanguage } from '@/lib/i18n/context';
 import { useAnalytics } from '@/lib/analytics';
-import { FullDemoCta } from '@/components/full-demo-cta';
 import { PageFaqSection } from '@/components/page-faq-section';
 import { AiEntityDefinition } from '@/components/ai-citation-summary';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -476,7 +475,7 @@ export default function ComparePage() {
           DETAILED COMPARISON TABLE
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="border-t border-border">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-16 sm:py-20">
           <div className="text-center mb-10">
             <Badge variant="outline" className="mb-4 border-blue-500/30 text-blue-400 bg-blue-500/10 px-4 py-1.5 text-sm">
               <BarChart3 className="h-3.5 w-3.5 mr-1.5" />
@@ -491,10 +490,10 @@ export default function ComparePage() {
           </div>
 
           {/* Desktop Table View */}
-          <div className="hidden md:block">
-            <Card className="bg-card/80 border-border/60 overflow-hidden">
+          <div className="hidden md:block overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+            <Card className="bg-card/80 border-border/60 overflow-hidden min-w-[760px]">
               <CardContent className="p-0">
-                <table className="w-full">
+                <table className="w-full min-w-[760px]">
                   <thead>
                     <tr className="border-b border-border/60">
                       <th className="text-left py-4 px-4 text-sm font-semibold text-muted-foreground w-[22%]">
@@ -837,8 +836,6 @@ export default function ComparePage() {
           </div>
         </div>
       </section>
-
-      <FullDemoCta trackingId="compare_full_demo" />
 
       <PageFaqSection
         keyPrefix="compare.faq"
