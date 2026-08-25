@@ -382,32 +382,19 @@ body {
 
 /* Fade in animation */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 .animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
+  animation: fadeInUp 0.18s ease-out forwards;
 }
 
-/* Page route enter + loader bar */
 @keyframes pageEnter {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 .animate-page-enter {
-  animation: pageEnter 0.45s ease-out forwards;
+  animation: pageEnter 0.18s ease-out forwards;
 }
 
 @keyframes pageLoaderBar {
@@ -817,6 +804,9 @@ body {
   height: auto;
   border-radius: 0.5rem;
 }
+.blog-article-content img {
+  background-color: var(--muted);
+}
 
 /* Scrollable tables — markdown + HTML articles */
 .blog-article-content .article-table-scroll,
@@ -1164,4 +1154,18 @@ body {
 }
 .animate-timeline-dot-pulse {
   animation: timeline-dot-pulse 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-page-enter,
+  .animate-float,
+  .animate-float-slow,
+  .animate-float-delay,
+  .animate-sparkle,
+  .animate-sparkle-delayed,
+  .animate-particle,
+  .animate-arrow-bounce {
+    animation: none !important;
+  }
 }

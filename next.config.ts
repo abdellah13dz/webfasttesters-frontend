@@ -22,6 +22,41 @@ const BACKEND_API_PREFIXES = [
   "admin",
 ] as const;
 
+function imageRemotePatterns() {
+  const patterns: {
+    protocol: "http" | "https";
+    hostname: string;
+    port?: string;
+    pathname?: string;
+  }[] = [
+    { protocol: "https", hostname: "i.ytimg.com" },
+    { protocol: "https", hostname: "img.youtube.com" },
+    { protocol: "https", hostname: "webapi.fasttesters.com", pathname: "/uploads/**" },
+    { protocol: "https", hostname: "assets.fasttesters.com" },
+    { protocol: "https", hostname: "fasttesters.com" },
+    { protocol: "https", hostname: "www.fasttesters.com" },
+    { protocol: "https", hostname: "**.fasttesters.com" },
+    { protocol: "https", hostname: "**.r2.dev" },
+  ];
+
+  try {
+    const api = new URL(API_BASE);
+    const protocol = api.protocol.replace(":", "") as "http" | "https";
+    if (protocol === "http" || protocol === "https") {
+      patterns.push({
+        protocol,
+        hostname: api.hostname,
+        ...(api.port ? { port: api.port } : {}),
+        pathname: "/uploads/**",
+      });
+    }
+  } catch {
+    // Ignore invalid NEXT_PUBLIC_API_URL at build time.
+  }
+
+  return patterns;
+}
+
 function backendApiRewrites() {
   const rules: { source: string; destination: string }[] = [];
   for (const prefix of BACKEND_API_PREFIXES) {
@@ -62,14 +97,11 @@ const nextConfig: NextConfig = {
   compress: true,
   images: {
     formats: ["image/avif", "image/webp"],
+    qualities: [40, 45, 75],
     minimumCacheTTL: 60 * 60 * 24 * 30,
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    deviceSizes: [640, 750, 828, 960, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    remotePatterns: [
-      { protocol: "https", hostname: "i.ytimg.com" },
-      { protocol: "https", hostname: "img.youtube.com" },
-      { protocol: "https", hostname: "webapi.fasttesters.com" },
-    ],
+    remotePatterns: imageRemotePatterns(),
   },
   experimental: {
     optimizePackageImports: [
@@ -96,6 +128,15 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/images/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/uploads/(.*)",
         headers: [
           {
             key: "Cache-Control",

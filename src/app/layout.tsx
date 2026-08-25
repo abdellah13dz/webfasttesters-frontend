@@ -136,7 +136,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://i.ytimg.com" />
         <link rel="preconnect" href="https://www.youtube-nocookie.com" />
         <link rel="dns-prefetch" href="https://www.youtube-nocookie.com" />
+        <link rel="preconnect" href="https://webapi.fasttesters.com" />
         <link rel="dns-prefetch" href="https://webapi.fasttesters.com" />
+        <link rel="preconnect" href="https://assets.fasttesters.com" />
+        <link rel="dns-prefetch" href="https://assets.fasttesters.com" />
         <link rel="dns-prefetch" href="https://app.fasttesters.com" />
         <meta name="facebook-domain-verification" content="v21c1ydxk4erpw0gkio4xngp6wyfcb" />
         <meta name="p:domain_verify" content="adbae5ce77a03735673fa9667c3048d8" />

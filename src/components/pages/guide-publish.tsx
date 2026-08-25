@@ -7,6 +7,7 @@ import { useLanguage } from '@/lib/i18n/context';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
+import { StaticBlogCover } from '@/components/blog-cover-image';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
   ArrowRight,
@@ -187,10 +188,9 @@ export default function GuidePublishPage() {
       </section>
 
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <img
+        <StaticBlogCover
           src="/images/blog/guide-publish.png"
           alt={t('guidePublish.coverImageAlt')}
-          className="w-full rounded-xl border border-border/50 mb-8"
         />
       </div>
 

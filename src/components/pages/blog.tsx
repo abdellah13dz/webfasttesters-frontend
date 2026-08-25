@@ -22,6 +22,8 @@ import {
 } from 'lucide-react';
 import { NewsletterSection } from '@/components/newsletter-section';
 import { SubmitAppTestingCta } from '@/components/submit-app-testing-cta';
+import { BlogCoverImage } from '@/components/blog-cover-image';
+import { BLOG_IMAGE_SIZES } from '@/lib/blog-image';
 
 const categoryLabelMap: Record<string, string> = {
   ALL: 'blog.categoryAll',
@@ -171,11 +173,13 @@ export default function BlogPage({ initialArticles = [] }: BlogPageProps) {
           <Card
             className="group border-border bg-card shadow-md transition-all hover:border-blue-300 hover:shadow-lg dark:bg-card/50 dark:shadow-none dark:hover:border-blue-500/30 overflow-hidden"
           >
-            <div className="relative overflow-hidden aspect-video">
-              <img
+            <div className="relative overflow-hidden aspect-video bg-muted">
+              <BlogCoverImage
                 src={featuredPost.image}
                 alt={featuredPost.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                priority
+                sizes={BLOG_IMAGE_SIZES.featured}
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </div>
@@ -257,11 +261,12 @@ export default function BlogPage({ initialArticles = [] }: BlogPageProps) {
                 <Card
                   className="group h-full border-border bg-card shadow-sm transition-all hover:border-blue-200 hover:shadow-md flex flex-col overflow-hidden dark:bg-card/50 dark:shadow-none dark:hover:border-blue-500/20 dark:hover:shadow-none"
                 >
-                  <div className="relative overflow-hidden aspect-video">
-                    <img
+                  <div className="relative overflow-hidden aspect-video bg-muted">
+                    <BlogCoverImage
                       src={post.image}
                       alt={post.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes={BLOG_IMAGE_SIZES.card}
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                     <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from '@/lib/router';
 import { APP_HOST, APP_URL } from '@/lib/app-urls';
@@ -60,50 +60,7 @@ import {
   PRICING_SECTION_ID,
   usePricingSectionScroll,
 } from '@/lib/pricing-navigation';
-
-// ─── Animated Section Wrapper ──────────────────────────────────────────
-type AnimationDirection = 'fade-up' | 'fade-left' | 'fade-right' | 'scale-in';
-
-function AnimatedSection({ children, className = '', delay = 0, direction = 'fade-up' }: { children: React.ReactNode; className?: string; delay?: number; direction?: AnimationDirection }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => setIsVisible(true), delay);
-        }
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [delay]);
-
-  const getAnimationClasses = () => {
-    switch (direction) {
-      case 'fade-left':
-        return isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8';
-      case 'fade-right':
-        return isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8';
-      case 'scale-in':
-        return isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95';
-      case 'fade-up':
-      default:
-        return isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8';
-    }
-  };
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ${getAnimationClasses()} ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
+import { AnimatedSection } from '@/components/animated-section';
 
 // ─── Android Plan Features ─────────────────────────────────────────────
 const androidFeatures = [

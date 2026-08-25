@@ -8,6 +8,7 @@ import { useStickyAside } from '@/lib/hooks/use-sticky-aside'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { StaticBlogCover } from '@/components/blog-cover-image'
 import {
   Users,
   MessageCircle,
@@ -297,10 +298,9 @@ export default function BetaTestersPage() {
 
       {/* Cover Image */}
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <img
+        <StaticBlogCover
           src="/images/blog/beta-testers.png"
           alt={t('betaTesters.coverImageAlt')}
-          className="w-full rounded-xl border border-border/50 mb-8"
         />
       </div>
 

@@ -6,6 +6,7 @@ import { useLanguage } from '@/lib/i18n/context';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
+import { StaticBlogCover } from '@/components/blog-cover-image';
 import {
   ArrowRight,
   ArrowLeft,
@@ -195,10 +196,9 @@ export default function Blog12TestersPage() {
       </section>
 
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <img
+        <StaticBlogCover
           src="/images/blog/blog-12-testers.png"
           alt={t('blog12Testers.coverImageAlt')}
-          className="w-full rounded-xl border border-border/50 mb-8"
         />
       </div>
 

@@ -2,6 +2,8 @@
 
 import ReactMarkdown, { type Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { BlogCoverImage } from '@/components/blog-cover-image';
+import { BLOG_IMAGE_SIZES } from '@/lib/blog-image';
 import { cn } from '@/lib/utils';
 
 const markdownComponents: Components = {
@@ -21,8 +23,15 @@ const markdownComponents: Components = {
     </a>
   ),
   img: ({ src, alt }) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img src={src || ''} alt={alt || ''} loading="lazy" />
+    <BlogCoverImage
+      src={typeof src === 'string' ? src : ''}
+      alt={alt || ''}
+      fill={false}
+      width={1200}
+      height={800}
+      sizes={BLOG_IMAGE_SIZES.inline}
+      className="h-auto w-full rounded-lg"
+    />
   ),
 };
 

@@ -1,6 +1,5 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
 import { useRouter } from '@/lib/router'
 import { APP_URL } from '@/lib/app-urls'
 import { useLanguage } from '@/lib/i18n/context'
@@ -24,33 +23,7 @@ import {
   Zap,
   Sparkles,
 } from 'lucide-react'
-
-function AnimatedSection({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => setIsVisible(true), delay)
-        }
-      },
-      { threshold: 0.1 }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [delay])
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${className}`}
-    >
-      {children}
-    </div>
-  )
-}
+import { AnimatedSection } from '@/components/animated-section'
 
 const beforeItems = [
   { icon: <XCircle className="size-5 text-red-600 dark:text-red-400" />, textKey: 'appRejected.beforeItem1' },

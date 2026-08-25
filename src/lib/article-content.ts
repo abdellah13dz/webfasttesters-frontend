@@ -1,3 +1,5 @@
+import { optimizeArticleHtmlImages, optimizeArticleImagesInDocument } from '@/lib/blog-image';
+
 /** True when stored body should be rendered as HTML (not Markdown). */
 export function isHtmlArticleContent(content: string): boolean {
   const trimmed = content.trim();
@@ -275,6 +277,7 @@ function sanitizeInlineStyles(html: string): string {
       wrapper.appendChild(table);
     });
 
+    optimizeArticleImagesInDocument(doc.body);
     return doc.body.innerHTML;
   }
 
@@ -298,7 +301,7 @@ function sanitizeInlineStyles(html: string): string {
     return `<div class="article-table-scroll">${match}</div>`;
   });
 
-  return result;
+  return optimizeArticleHtmlImages(result);
 }
 
 /** Prepare embedded-style HTML articles for themed display without mutating stored content. */

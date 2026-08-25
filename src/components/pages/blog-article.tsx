@@ -29,6 +29,8 @@ import { NewsletterSection } from '@/components/newsletter-section';
 import { SubmitAppTestingCta } from '@/components/submit-app-testing-cta';
 import { ArticleHtmlBody } from '@/components/article-html-body';
 import { MarkdownContent } from '@/components/markdown-content';
+import { BlogCoverImage } from '@/components/blog-cover-image';
+import { BLOG_IMAGE_SIZES } from '@/lib/blog-image';
 import {
   Calendar,
   Clock,
@@ -199,12 +201,13 @@ export default function BlogArticlePage({
         <div className="absolute inset-0 hero-grid-pattern opacity-20" />
         <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <Breadcrumbs items={breadcrumbItems} />
-          <div className="relative overflow-hidden rounded-xl aspect-video mb-8 ring-1 ring-border shadow-lg dark:shadow-none">
-            <img
+          <div className="relative mb-8 aspect-video overflow-hidden rounded-xl bg-muted ring-1 ring-border shadow-lg dark:shadow-none">
+            <BlogCoverImage
               src={article.image}
               alt={`${article.title} - Google Play app testing guide`}
-              className="w-full h-full object-cover"
-              fetchPriority="high"
+              priority
+              sizes={BLOG_IMAGE_SIZES.hero}
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent dark:from-black/40" />
           </div>
